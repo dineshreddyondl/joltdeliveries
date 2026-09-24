@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+  ============================================================================
+  JOLT — Landing V2 · "Stripe discipline" light version
+  frozen design/jolt-landing-v2.html
+  V2 of the prototype series. Light canvas, aurora gradients, product UI mock
+  in a browser frame, bento grid, interactive tabs + B2B/D2C toggle.
+  ============================================================================
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JOLT — India's Express Layer for Heavy Commerce · V2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ================================================================ TOKENS */
+:root{
+  --bg:#FFFFFF;--bg-soft:#F5F7F2;--bg-tint:#FBFCf8;
+  --ink:#0C0E09;--body:#4A4E44;--mut:#878B80;
+  --brand:#5F7300;--acid:#D4FF3F;--acid-ink:#0B0D02;
+  --line:rgba(12,14,9,.10);--line-soft:rgba(12,14,9,.06);
+  --shadow:0 24px 60px -24px rgba(12,14,9,.18);
+  --radius:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1140px;margin:0 auto;padding:0 32px}
+a{color:inherit}
+::selection{background:var(--acid);color:var(--acid-ink)}
+
+/* ================================================================ VERSION PILL */
+.ver-pill{position:fixed;top:84px;left:50%;transform:translateX(-50%);z-index:2147483000;display:flex;align-items:center;gap:3px;padding:5px;border-radius:999px;background:rgba(10,10,12,.78);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(0,0,0,.35);font-family:'Inter',system-ui,sans-serif}
+.ver-pill .ver-lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);padding:0 9px 0 5px;white-space:nowrap}
+.ver-pill a{font-size:11px;font-weight:600;line-height:1;color:rgba(255,255,255,.62);text-decoration:none;padding:7px 13px;border-radius:999px;transition:color .2s,background .2s}
+.ver-pill a:hover{color:#fff}
+.ver-pill a.active{background:var(--acid);color:var(--acid-ink)}
+
+/* ================================================================ NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:18px 32px;background:rgba(255,255,255,0);transition:background .3s,box-shadow .3s,backdrop-filter .3s}
+nav.scrolled{background:rgba(255,255,255,.78);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--line)}
+.nav-logo{font-family:'Space Grotesk';font-weight:700;font-size:20px;letter-spacing:.06em;text-decoration:none;display:inline-flex;align-items:center;gap:9px}
+.nav-logo .nav-bolt{width:19px;height:19px;color:var(--brand);flex-shrink:0}
+.nav-logo em{font-style:italic;font-weight:500;color:var(--brand);font-size:.82em;letter-spacing:-.01em;margin-left:2px;transform:skewX(-8deg)}
+.nav-logo i{font-style:normal;color:var(--brand)}
+.nav-links{display:flex;gap:4px;position:absolute;left:50%;transform:translateX(-50%)}
+.nav-links a{font-size:13.5px;font-weight:500;color:var(--body);text-decoration:none;padding:8px 14px;border-radius:100px;transition:.2s}
+.nav-links a:hover{color:var(--ink);background:var(--bg-soft)}
+.nav-ctas{display:flex;gap:10px;align-items:center}
+.btn-ink{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;padding:11px 20px;font-size:13.5px;font-weight:600;border-radius:10px;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.btn-ink:hover{transform:translateY(-1px);box-shadow:0 10px 24px -10px rgba(12,14,9,.45)}
+.btn-ink.acid{background:var(--acid);color:var(--acid-ink)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;font-size:13.5px;font-weight:600;border-radius:10px;text-decoration:none;border:1px solid var(--line);color:var(--ink);transition:.2s}
+.btn-ghost:hover{border-color:rgba(12,14,9,.3);background:var(--bg-soft)}
+.btn-nav{padding:9px 16px;font-size:13px}
+
+/* ================================================================ HERO */
+.hero{position:relative;padding:168px 0 80px;background:var(--bg-tint);overflow:hidden}
+.aurora{position:absolute;inset:0;pointer-events:none}
+.aurora::before,.aurora::after{content:'';position:absolute;border-radius:50%;filter:blur(70px)}
+.aurora::before{width:640px;height:640px;left:-180px;top:-220px;background:radial-gradient(circle,rgba(212,255,63,.5),rgba(212,255,63,0) 65%);animation:drift 14s ease-in-out infinite alternate}
+.aurora::after{width:560px;height:560px;right:-160px;top:-60px;background:radial-gradient(circle,rgba(64,190,180,.25),rgba(64,190,180,0) 65%);animation:drift 18s ease-in-out infinite alternate-reverse}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(60px,40px) scale(1.08)}}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.02fr .98fr;gap:72px;align-items:start}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--brand);margin-bottom:26px}
+.eyebrow::before{content:'';width:22px;height:1.5px;background:var(--brand)}
+.hero h1{font-family:'Space Grotesk';font-size:clamp(44px,5.6vw,68px);line-height:1.03;font-weight:700;letter-spacing:-.035em}
+.hero h1 .em{position:relative;white-space:nowrap}
+.hero h1 .em::after{content:'';position:absolute;left:0;right:0;bottom:4px;height:.42em;background:var(--acid);z-index:-1;border-radius:4px}
+.hero-sub{margin-top:26px;font-size:17px;line-height:1.65;color:var(--body);max-width:480px}
+.hero-sub b{color:var(--ink);font-weight:600}
+.hero-ctas{display:flex;gap:12px;margin-top:36px}
+.btn-lg{padding:15px 28px;font-size:14.5px;border-radius:12px}
+.live-on{margin-top:44px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.live-on small{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+.live-on .lo-names{display:flex;gap:22px;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#9AA08E}
+
+/* ---------- Control tower mock ---------- */
+.mock{position:relative;border-radius:20px;background:#fff;border:1px solid rgba(12,14,9,.09);box-shadow:var(--shadow);overflow:hidden}
+.mock-chrome{display:flex;align-items:center;gap:14px;padding:13px 16px;border-bottom:1px solid var(--line-soft)}
+.mc-dots{display:flex;gap:6px}
+.mc-dots i{width:9px;height:9px;border-radius:50%;background:#E3E5DD}
+.mc-dots i:nth-child(1){background:#F5B8A0}.mc-dots i:nth-child(2){background:#F2D59A}.mc-dots i:nth-child(3){background:#B8DFA9}
+.mc-url{flex:1;max-width:250px;margin:0 auto;background:var(--bg-soft);border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--mut);text-align:center;padding:6px 10px}
+.mc-live{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--brand);display:flex;align-items:center;gap:6px}
+.mc-live::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--brand);animation:blink 1.6s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.mock-tabs{display:flex;gap:2px;padding:10px 16px 0}
+.mt{font-size:12px;font-weight:600;color:var(--mut);padding:9px 14px;border-radius:8px 8px 0 0;cursor:default}
+.mt.on{color:var(--ink);background:var(--bg-soft)}
+.mt.on::after{content:'';display:block;height:2px;background:var(--acid);margin-top:7px;border-radius:2px}
+.mock-body{padding:20px 22px 24px}
+.mb-card{background:var(--bg-tint);border:1px solid var(--line-soft);border-radius:14px;padding:16px 18px 14px}
+.mb-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.mb-id{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--body)}
+.mb-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--brand);background:rgba(212,255,63,.35);border:1px solid rgba(95,115,0,.25);padding:4px 9px;border-radius:999px}
+.mb-map svg{width:100%;height:auto;display:block}
+.rail-track{fill:none;stroke:rgba(12,14,9,.16);stroke-width:2;stroke-dasharray:5 7}
+.tie{stroke:rgba(12,14,9,.13);stroke-width:1}
+.station{fill:var(--ink)}
+.stn-lbl{font-family:'JetBrains Mono';font-size:9px;fill:var(--mut);letter-spacing:.12em}
+.end-ping{fill:none;stroke:var(--brand);stroke-width:1.5;opacity:0}
+.pkg-body{fill:var(--acid);stroke:var(--acid-ink);stroke-width:1.6}
+.pkg-tape{fill:var(--acid-ink)}
+.pkg-bolt{fill:var(--acid-ink)}
+.pkg-glow{fill:rgba(212,255,63,.5)}
+.trail .pkg-body{fill:var(--acid)}
+.trail.t1{opacity:.34}.trail.t2{opacity:.2}.trail.t3{opacity:.1}
+.mb-strip{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:10px;margin-top:14px}
+.mb-stat{background:#fff;border:1px solid var(--line-soft);border-radius:12px;padding:11px 13px;position:relative;min-height:58px}
+.mb-stat small{display:block;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin-bottom:5px}
+.mb-stat .val{font-family:'Space Grotesk';font-weight:700;font-size:15.5px;letter-spacing:-.01em}
+.mb-stat .val s{color:var(--mut);font-weight:500}
+.mb-stat .swap{position:absolute;left:13px;bottom:11px;opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s}
+.mock.flip .mb-stat .val.old{opacity:0;transform:translateY(-6px);transition:opacity .35s,transform .35s}
+.mock.flip .mb-stat .swap{opacity:1;transform:none;transition-delay:.08s}
+.mb-stat .swap .acid{color:var(--brand)}
+.sla-lock{position:absolute;top:12px;right:12px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;background:var(--acid);color:var(--acid-ink);border-radius:999px;padding:6px 11px;box-shadow:0 6px 16px -6px rgba(95,115,0,.6);opacity:0;transform:scale(.6)}
+.mock.locked .sla-lock{animation:lockPop .5s cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes lockPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+
+/* ================================================================ LOGOS */
+.logos{padding:54px 0 46px;border-bottom:1px solid var(--line-soft)}
+.logos-inner{display:flex;align-items:center;justify-content:center;gap:56px;flex-wrap:wrap}
+.logos small{width:100%;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);margin-bottom:8px}
+.logos .lg{font-size:15px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#B7BBAD;transition:color .25s}
+.logos .lg:hover{color:var(--body)}
+
+/* ================================================================ METRICS */
+.metrics{padding:96px 0;background:var(--bg)}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.metric{border:1px solid var(--line-soft);border-radius:var(--radius);padding:30px 26px;background:#fff;transition:box-shadow .3s,transform .3s}
+.metric:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.metric b{display:block;font-family:'Space Grotesk';font-size:clamp(32px,3.4vw,42px);font-weight:700;letter-spacing:-.03em;line-height:1}
+.metric b .u{font-size:.62em;color:var(--brand);vertical-align:.08em;margin-left:2px}
+.metric small{display:block;margin-top:12px;font-size:13px;color:var(--body);line-height:1.5}
+.metric small em{font-style:normal;color:var(--ink);font-weight:600}
+
+/* ================================================================ SECTIONS SHARED */
+.sec{padding:96px 0;scroll-margin-top:80px}
+.sec.soft{background:var(--bg-soft);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+.sec-tag{display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--brand);margin-bottom:22px}
+.sec-tag::before{content:'';width:20px;height:1.5px;background:var(--brand)}
+h2{font-family:'Space Grotesk';font-size:clamp(30px,3.6vw,44px);font-weight:700;letter-spacing:-.03em;line-height:1.12;max-width:760px}
+.lede{margin-top:20px;font-size:16.5px;line-height:1.7;color:var(--body);max-width:620px}
+
+/* ================================================================ WHY (bento) */
+.why-head{text-align:center;display:flex;flex-direction:column;align-items:center}
+.why-head h2{max-width:820px}
+.bento{display:grid;grid-template-columns:1.2fr 1fr;grid-auto-rows:200px;gap:18px;margin-top:64px}
+.b-card{position:relative;border:1px solid var(--line-soft);border-radius:var(--radius);padding:26px;background:#fff;overflow:hidden;transition:box-shadow .3s,transform .3s}
+.b-card:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.b-card.big{grid-row:span 2}
+.b-card .b-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--brand);letter-spacing:.14em}
+.b-card h3{font-family:'Space Grotesk';font-size:21px;font-weight:700;letter-spacing:-.02em;margin-top:14px}
+.b-card p{margin-top:12px;font-size:14.5px;line-height:1.65;color:var(--body)}
+.b-card .b-art{position:absolute;right:-34px;bottom:-34px;width:150px;height:150px;border-radius:50%;background:var(--bg-soft);display:flex;align-items:center;justify-content:center;color:var(--brand);opacity:.9}
+.b-card.big .b-art{width:220px;height:220px;background:rgba(212,255,63,.28)}
+.b-art svg{width:46px;height:46px}
+.b-card.big .b-art svg{width:60px;height:60px}
+.term-line{margin-top:56px;font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--ink);text-align:center}
+.term-line .prompt{color:var(--brand);margin-right:8px}
+
+/* ================================================================ GAP (comparison) */
+.gap-compare{margin-top:56px;background:#fff;border:1px solid var(--line-soft);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.gc-head{display:grid;grid-template-columns:1fr 1.25fr 1.25fr;border-bottom:1px solid var(--line-soft)}
+.gc-head div{padding:18px 24px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+.gc-head .jolt-col{background:var(--bg-tint);color:var(--brand);display:flex;align-items:center;gap:8px}
+.gc-row{display:grid;grid-template-columns:1fr 1.25fr 1.25fr;border-bottom:1px solid var(--line-soft)}
+.gc-row:last-child{border-bottom:none}
+.gc-row>div{padding:20px 24px;font-size:15px;display:flex;align-items:center}
+.gc-row .gc-old{color:var(--mut)}
+.gc-row .gc-new{background:var(--bg-tint);font-weight:600}
+.gc-row .gc-new::before{content:'✓';color:var(--brand);margin-right:10px;font-weight:700}
+.verdict{margin-top:44px;text-align:center}
+.verdict p{font-size:clamp(20px,2.4vw,26px);font-style:italic;color:var(--body);font-weight:300}
+.verdict b{color:var(--ink);font-weight:600}
+
+/* ================================================================ HOW (tabs) */
+.how-tabs{display:inline-flex;background:var(--bg-soft);border:1px solid var(--line-soft);border-radius:100px;padding:5px;margin-top:52px;gap:4px}
+.ht-btn{font-size:14px;font-weight:600;color:var(--body);border:none;background:none;padding:11px 22px;border-radius:100px;transition:.2s;font-family:inherit}
+.ht-btn.on{background:var(--ink);color:#fff;box-shadow:0 8px 18px -8px rgba(12,14,9,.5)}
+.how-panel{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-top:48px;background:#fff;border:1px solid var(--line-soft);border-radius:var(--radius);padding:46px;box-shadow:var(--shadow)}
+.hp-content{display:none}
+.hp-content.on{display:block;animation:fadeUp .45s cubic-bezier(.16,1,.3,1)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.hp-step{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--brand);text-transform:uppercase}
+.hp-content h3{font-family:'Space Grotesk';font-size:28px;font-weight:700;letter-spacing:-.02em;margin-top:12px}
+.hp-content p{margin-top:16px;font-size:15.5px;line-height:1.7;color:var(--body)}
+.hp-art{display:flex;justify-content:center}
+.hp-art svg{width:min(260px,100%);height:auto;display:none}
+.hp-art svg.on{display:block;animation:fadeUp .45s cubic-bezier(.16,1,.3,1)}
+
+/* ================================================================ ECOSYSTEM (toggle) */
+.eco-center{text-align:center;display:flex;flex-direction:column;align-items:center}
+.eco-toggle{display:inline-flex;background:var(--bg-soft);border:1px solid var(--line-soft);border-radius:100px;padding:5px;margin-top:44px;gap:4px}
+.et-btn{font-size:14px;font-weight:600;color:var(--body);border:none;background:none;padding:12px 26px;border-radius:100px;transition:.2s;font-family:inherit}
+.et-btn.on{background:var(--acid);color:var(--acid-ink);box-shadow:0 8px 18px -8px rgba(95,115,0,.55)}
+.eco-panel{display:none;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center;margin-top:52px;text-align:left;background:#fff;border:1px solid var(--line-soft);border-radius:var(--radius);padding:52px;box-shadow:var(--shadow)}
+.eco-panel.on{display:grid;animation:fadeUp .45s cubic-bezier(.16,1,.3,1)}
+.eco-panel h3{font-family:'Space Grotesk';font-size:clamp(24px,2.6vw,32px);font-weight:700;letter-spacing:-.02em}
+.eco-panel .ep-tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--brand);margin-bottom:14px;display:block}
+.eco-panel p{margin-top:16px;font-size:15.5px;line-height:1.7;color:var(--body)}
+.ep-chips{display:flex;flex-direction:column;gap:12px}
+.ep-chip{display:flex;align-items:baseline;gap:12px;background:var(--bg-tint);border:1px solid var(--line-soft);border-radius:12px;padding:15px 18px}
+.ep-chip b{font-family:'Space Grotesk';font-size:20px;font-weight:700}
+.ep-chip span{font-size:13.5px;color:var(--body)}
+.integrations{margin-top:64px;text-align:center;width:100%;max-width:100%}
+.integrations small{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
+.marquee{overflow:hidden;margin-top:20px;width:100%;max-width:100%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee-track{display:flex;width:max-content;animation:scroll 26s linear infinite;gap:0}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.mq-item{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#A5AA99;padding:0 34px;white-space:nowrap}
+
+/* ================================================================ PROOF */
+.proof-card{max-width:880px;margin:0 auto;background:var(--bg-tint);border:1px solid var(--line-soft);border-radius:24px;padding:64px 56px;text-align:center;position:relative;overflow:hidden}
+.proof-card::before{content:'';position:absolute;top:-90px;left:50%;transform:translateX(-50%);width:340px;height:180px;background:radial-gradient(ellipse,rgba(212,255,63,.55),transparent 70%);filter:blur(20px)}
+.proof-quote{position:relative;font-family:'Space Grotesk';font-size:clamp(24px,3vw,34px);font-weight:600;letter-spacing:-.02em;line-height:1.25}
+.proof-quote .qmark{color:var(--brand)}
+.proof-stat{margin-top:30px;display:inline-flex;align-items:center;gap:14px;font-family:'Space Grotesk';font-size:22px;font-weight:700}
+.proof-stat s{color:var(--mut);font-weight:500}
+.proof-stat .arrow{color:var(--brand);font-weight:700}
+.proof-stat .now{background:var(--acid);color:var(--acid-ink);border-radius:999px;padding:8px 18px}
+
+/* ================================================================ CTA */
+.cta-sec{padding:96px 0 120px}
+.cta-card{position:relative;background:var(--ink);color:#fff;border-radius:28px;padding:88px 64px;text-align:center;overflow:hidden}
+.cta-card::before,.cta-card::after{content:'';position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.cta-card::before{width:460px;height:460px;left:-120px;top:-180px;background:radial-gradient(circle,rgba(212,255,63,.34),transparent 65%)}
+.cta-card::after{width:460px;height:460px;right:-140px;bottom:-200px;background:radial-gradient(circle,rgba(64,190,180,.28),transparent 65%)}
+.cta-card .sec-tag{justify-content:center;color:var(--acid)}
+.cta-card .sec-tag::before{background:var(--acid)}
+.cta-card h2{color:#fff;margin:0 auto}
+.cta-card h2 .u{position:relative;z-index:1}
+.cta-card h2 .u::after{content:'';position:absolute;left:0;right:0;bottom:2px;height:.4em;background:var(--acid);z-index:-1;border-radius:4px;opacity:.9}
+.cta-card .lede{color:rgba(255,255,255,.68);margin:22px auto 0}
+.cta-btns{display:flex;gap:12px;justify-content:center;margin-top:40px}
+.cta-btns .btn-ghost{color:#fff;border-color:rgba(255,255,255,.25)}
+.cta-btns .btn-ghost:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.4)}
+.fineprint{margin-top:26px;font-size:11.5px;color:rgba(255,255,255,.42)}
+
+/* ================================================================ FOOTER */
+footer{border-top:1px solid var(--line-soft);padding:72px 0 36px;background:var(--bg-soft)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px}
+.foot-brand .logo{font-family:'Space Grotesk';font-weight:700;font-size:22px;letter-spacing:.06em}
+.foot-brand .logo i{font-style:normal;color:var(--brand)}
+.foot-brand .by{font-size:12px;color:var(--mut);margin-top:6px}
+.foot-brand .tag{margin-top:18px;font-size:14px;color:var(--body);max-width:260px;line-height:1.6}
+.foot-brand .support{margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mut)}
+.foot-col h4{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);font-weight:500;margin-bottom:18px}
+.foot-col a{display:block;font-size:14px;color:var(--body);text-decoration:none;padding:6px 0;transition:color .2s}
+.foot-col a:hover{color:var(--ink)}
+.foot-bar{margin-top:56px;padding-top:26px;border-top:1px solid var(--line-soft);font-size:12px;color:var(--mut);text-align:center}
+
+/* ================================================================ REVEALS + MISC */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+#toTop{position:fixed;bottom:28px;right:28px;width:52px;height:52px;border-radius:50%;background:var(--ink);color:#fff;border:none;font-size:18px;z-index:120;opacity:0;transform:translateY(20px);pointer-events:none;transition:.4s;display:flex;align-items:center;justify-content:center}
+#toTop.show{opacity:1;transform:none;pointer-events:auto}
+#toTop:hover{background:var(--brand)}
+
+/* ================================================================ RESPONSIVE */
+@media(max-width:1020px){
+  .hero-grid{grid-template-columns:1fr;gap:64px}
+  .hero{padding-top:170px}
+  .nav-links{display:none}
+  .metric-grid{grid-template-columns:1fr 1fr}
+  .bento{grid-template-columns:1fr 1fr;grid-auto-rows:auto}
+  .b-card.big{grid-row:auto}
+  .how-panel,.eco-panel{grid-template-columns:1fr;padding:36px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+  .metric-grid,.bento{grid-template-columns:1fr}
+  .mock-body{padding:14px 12px 18px}
+  .mb-strip{grid-template-columns:1fr}
+  .cta-card{padding:64px 28px}
+  .hero-ctas{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== VERSION SWITCHER ==================== -->
+<div class="ver-pill">
+  <span class="ver-lbl">Version</span>
+  <a href="jolt-landing-v1.html">V1</a>
+  <a href="jolt-landing-v2.html" class="active">V2</a>
+  <a href="jolt-landing-v3.html">V3</a>
+</div>
+
+<nav id="nav">
+  <a href="#top" class="nav-logo"><svg class="nav-bolt" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 L4.5 13.5 H11 L10 22 L19.5 10 H12.5 Z"/></svg>JOLT<em>Deliveries</em></a>
+  <div class="nav-links">
+    <a href="#why">Why now</a>
+    <a href="#gap">The gap</a>
+    <a href="#how">How it works</a>
+    <a href="#eco">Ecosystem</a>
+  </div>
+  <div class="nav-ctas">
+    <a href="#cta" class="btn-ghost btn-nav">Request demo</a>
+    <a href="#cta" class="btn-ink acid btn-nav">Check serviceability</a>
+  </div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<header class="hero" id="top">
+  <div class="aurora"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow rv">Express speed is no longer just for small parcels</span>
+      <h1 class="rv">India&rsquo;s express layer for <span class="em">heavy commerce</span>.</h1>
+      <p class="hero-sub rv">Heavy commerce moved online, but logistics didn&rsquo;t. JOLT moves <b>200kg payloads rail-first</b> — next-day, hubless, with a <b>guaranteed SLA</b> in writing.</p>
+      <div class="hero-ctas rv">
+        <a href="#cta" class="btn-ink btn-lg">Check serviceability</a>
+        <a href="#cta" class="btn-ghost btn-lg">Request demo</a>
+      </div>
+      <div class="live-on rv">
+        <small>Live with</small>
+        <div class="lo-names"><span>Ola Electric</span><span>Duroflex</span><span>Ather</span><span>Wakefit</span></div>
+      </div>
+    </div>
+
+    <!-- Control tower mock · the flying package -->
+    <div class="mock rv" id="mock">
+      <div class="mock-chrome">
+        <div class="mc-dots"><i></i><i></i><i></i></div>
+        <div class="mc-url">jolt.ondl.in/live</div>
+        <span class="mc-live">LIVE</span>
+      </div>
+      <div class="mock-tabs">
+        <span class="mt on">Live network</span><span class="mt">Tracking</span><span class="mt">SLA</span>
+      </div>
+      <div class="mock-body">
+        <span class="sla-lock" id="slaLock">✓ SLA LOCKED</span>
+        <div class="mb-card">
+          <div class="mb-head">
+            <span class="mb-id">NTO-2417 · DEL → BOM</span>
+            <span class="mb-tag" id="mbTag">IN TRANSIT</span>
+          </div>
+          <div class="mb-map">
+            <svg viewBox="0 0 460 210" aria-hidden="true">
+              <path class="rail-track" id="railPath" d="M 64 176 C 180 158, 300 82, 398 42"/>
+              <g id="railTies"></g>
+              <circle class="station" cx="64" cy="176" r="4"/>
+              <circle class="station" cx="398" cy="42" r="5"/>
+              <text class="stn-lbl" x="74" y="200">DELHI</text>
+              <text class="stn-lbl" x="388" y="26" text-anchor="end">MUMBAI</text>
+              <circle class="end-ping" id="endPing" cx="398" cy="42" r="6">
+                <animate attributeName="r" values="6;30" dur="1s" begin="indefinite" fill="freeze"/>
+                <animate attributeName="opacity" values=".9;0" dur="1s" begin="indefinite" fill="freeze"/>
+              </circle>
+              <g class="trail t3" id="trail3"><rect class="pkg-body" x="-11" y="-9" width="22" height="18" rx="2.5"/><rect class="pkg-tape" x="-2.5" y="-9" width="5" height="18"/></g>
+              <g class="trail t2" id="trail2"><rect class="pkg-body" x="-11" y="-9" width="22" height="18" rx="2.5"/><rect class="pkg-tape" x="-2.5" y="-9" width="5" height="18"/></g>
+              <g class="trail t1" id="trail1"><rect class="pkg-body" x="-11" y="-9" width="22" height="18" rx="2.5"/><rect class="pkg-tape" x="-2.5" y="-9" width="5" height="18"/></g>
+              <g id="pkg">
+                <circle class="pkg-glow" r="15"/>
+                <rect class="pkg-body" x="-11" y="-9" width="22" height="18" rx="2.5"/>
+                <rect class="pkg-tape" x="-2.5" y="-9" width="5" height="18"/>
+                <path class="pkg-bolt" d="M -1 -6 L -5 1 L 0 1 L -2 6 L 4 -1 L -1 -1 Z"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="mb-strip">
+          <div class="mb-stat">
+            <small>Transit time</small>
+            <span class="val old">5&ndash;7 days</span>
+            <span class="swap val"><s>5&ndash;7 days</s> <span class="acid">Next-day</span></span>
+          </div>
+          <div class="mb-stat">
+            <small>SLA adherence</small>
+            <span class="val old">—</span>
+            <span class="swap val"><span class="acid">99.2%</span></span>
+          </div>
+          <div class="mb-stat">
+            <small>CO₂ saved vs road</small>
+            <span class="val old">—</span>
+            <span class="swap val"><span class="acid">1.4T / lane</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== LOGOS ==================== -->
+<div class="logos">
+  <div class="wrap logos-inner">
+    <small>Trusted by heavy commerce teams</small>
+    <span class="lg">Ola Electric</span><span class="lg">Duroflex</span><span class="lg">Ather</span><span class="lg">Wakefit</span>
+  </div>
+</div>
+
+<!-- ==================== METRICS ==================== -->
+<section class="metrics" id="metrics">
+  <div class="wrap metric-grid">
+    <div class="metric rv">
+      <b><span class="count" data-target="80">0</span><span class="u">%</span></b>
+      <small><em>Lower emissions</em> vs road freight — rail-first linehaul</small>
+    </div>
+    <div class="metric rv">
+      <b><span class="count" data-target="99.2" data-decimals="1">0</span><span class="u">%</span></b>
+      <small><em>SLA adherence</em> across all live lanes</small>
+    </div>
+    <div class="metric rv">
+      <b><span class="count" data-target="1.4" data-decimals="1">0</span><span class="u">T</span></b>
+      <small><em>CO₂ saved</em> per lane vs road</small>
+    </div>
+    <div class="metric rv">
+      <b>24&ndash;48<span class="u">h</span></b>
+      <small><em>Distributor arrivals</em> — B2B replenishment, guaranteed</small>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WHY NOW ==================== -->
+<section class="sec soft" id="why">
+  <div class="wrap">
+    <div class="why-head">
+      <span class="sec-tag rv">Why Now</span>
+      <h2 class="rv">Your customers won&rsquo;t wait 10 days for anything anymore.</h2>
+      <p class="lede rv">Heavy commerce moved online, but logistics didn&rsquo;t. To scale today, you need a network built for modern speed&mdash;not legacy hub-and-spoke delays.</p>
+    </div>
+    <div class="bento">
+      <div class="b-card big rv">
+        <span class="b-num">01</span>
+        <h3>The Expectation Gap</h3>
+        <p>Quick-commerce killed consumer patience. Buyers now expect parcel-speed for 200kg payloads. Traditional freight is physically incapable of delivering it.</p>
+        <div class="b-art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
+      </div>
+      <div class="b-card rv">
+        <span class="b-num">02</span>
+        <h3>The Working Capital Trap</h3>
+        <p>Long transit is a cash trap. Cut transit to 2 days and distributors rotate cash 3x faster.</p>
+        <div class="b-art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/><path d="M7 15h.01M12 15h.01"/></svg></div>
+      </div>
+      <div class="b-card rv">
+        <span class="b-num">03</span>
+        <h3>The Tech Unlock</h3>
+        <p>The capacity always existed on Indian rail — a black box. We built the orchestration tech to unlock it.</p>
+        <div class="b-art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12h8M12 8v8"/><circle cx="12" cy="12" r="9"/></svg></div>
+      </div>
+    </div>
+    <div class="term-line rv"><span class="prompt">▸</span>Until JOLT.</div>
+  </div>
+</section>
+
+<!-- ==================== THE GAP ==================== -->
+<section class="sec" id="gap">
+  <div class="wrap">
+    <span class="sec-tag rv">The Unfilled Gap</span>
+    <h2 class="rv">You never had a choice. You were forced to use networks that were never built for you.</h2>
+    <p class="lede rv">A purpose-built heavy express didn&rsquo;t exist. You&rsquo;ve just been surviving on workarounds&mdash;hacking logistics models designed for entirely different categories.</p>
+
+    <div class="gap-compare rv">
+      <div class="gc-head">
+        <div></div>
+        <div>Legacy way</div>
+        <div class="jolt-col"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 L4.5 13.5 H11 L10 22 L19.5 10 H12.5 Z"/></svg> The JOLT way</div>
+      </div>
+      <div class="gc-row">
+        <div>Transit time</div><div class="gc-old">5&ndash;7 days</div><div class="gc-new">Next-day</div>
+      </div>
+      <div class="gc-row">
+        <div>Handoffs</div><div class="gc-old">Hub waits</div><div class="gc-new">Direct corridor</div>
+      </div>
+      <div class="gc-row">
+        <div>Visibility</div><div class="gc-old">Opaque</div><div class="gc-new">Live SLA tracking</div>
+      </div>
+    </div>
+
+    <div class="verdict rv">
+      <p>&ldquo;The system isn&rsquo;t broken. <b>It just wasn&rsquo;t built for you.</b>&rdquo;</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== HOW IT WORKS ==================== -->
+<section class="sec soft" id="how">
+  <div class="wrap">
+    <span class="sec-tag rv">The Orchestration Layer</span>
+    <h2 class="rv">Not another marketplace. We built the intelligence to unlock India&rsquo;s fastest network.</h2>
+    <p class="lede rv">Marketplaces match supply and demand, then wash their hands of the SLA. We don&rsquo;t.</p>
+
+    <div class="how-tabs rv" id="howTabs">
+      <button class="ht-btn on" data-hp="0">01 · NTO Speed</button>
+      <button class="ht-btn" data-hp="1">02 · Hubless execution</button>
+      <button class="ht-btn" data-hp="2">03 · Control tower</button>
+    </div>
+
+    <div class="how-panel rv">
+      <div class="hp-content on" data-hp="0">
+        <span class="hp-step">01 / NTO</span>
+        <h3>Next Train Out (NTO) Speed</h3>
+        <p>Aviation has Next Flight Out. We built Next Train Out for heavy commerce. Your payload doesn&rsquo;t wait for a truck to fill up. High-capacity rail bypasses highway tolls, borders, and traffic to deliver non-stop transit&mdash;slashing carbon emissions by 80%.</p>
+      </div>
+      <div class="hp-content" data-hp="1">
+        <span class="hp-step">02 / HUBLESS</span>
+        <h3>End-to-End Hubless Execution</h3>
+        <p>From first-mile pickup to final-mile delivery. No consolidation yards. No waiting in truck hubs. We pick up your payload, load it directly onto the rail linehaul, and deliver it straight to the destination. One seamless motion. Zero mid-journey sorting delays.</p>
+      </div>
+      <div class="hp-content" data-hp="2">
+        <span class="hp-step">03 / VISIBILITY</span>
+        <h3>Control Tower Visibility</h3>
+        <p>Real-time tracking across every milestone. Rail used to be a blind spot. Our tech gives your ops team proactive alerts and absolute visibility, allowing us to guarantee the SLA.</p>
+      </div>
+      <div class="hp-art">
+        <svg class="on" data-hp="0" viewBox="0 0 200 140" fill="none">
+          <rect x="30" y="40" width="52" height="36" rx="6" fill="#0C0E09"/>
+          <rect x="38" y="48" width="14" height="10" rx="2" fill="#D4FF3F"/>
+          <rect x="56" y="48" width="14" height="10" rx="2" fill="#D4FF3F"/>
+          <circle cx="96" cy="46" r="7" fill="#5F7300"/><circle cx="116" cy="66" r="7" fill="#5F7300"/><circle cx="136" cy="82" r="7" fill="#5F7300"/>
+          <path d="M30 84 C 80 84, 120 84, 170 84" stroke="#0C0E09" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 12"/>
+          <path d="M8 120 C 60 90, 140 90, 192 112" stroke="#0C0E09" stroke-width="4" fill="none" opacity=".12" stroke-dasharray="6 8"/>
+        </svg>
+        <svg data-hp="1" viewBox="0 0 200 140" fill="none">
+          <path d="M20 70 C 80 70, 120 70, 180 70" stroke="#0C0E09" stroke-width="4" stroke-dasharray="6 8" opacity=".15"/>
+          <rect x="20" y="52" width="40" height="36" rx="6" fill="#0C0E09"/>
+          <path d="M20 96 L 100 96" stroke="#5F7300" stroke-width="4" stroke-dasharray="6 6"/>
+          <rect x="100" y="78" width="44" height="36" rx="6" fill="#D4FF3F" stroke="#0C0E09" stroke-width="2"/>
+          <path d="M112 88 L 118 100 L 132 92" stroke="#0C0E09" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M150 96 L 180 96" stroke="#5F7300" stroke-width="4" stroke-dasharray="6 6"/>
+          <rect x="156" y="84" width="30" height="24" rx="5" fill="#0C0E09"/>
+        </svg>
+        <svg data-hp="2" viewBox="0 0 200 140" fill="none">
+          <rect x="40" y="22" width="120" height="96" rx="10" fill="#0C0E09"/>
+          <rect x="52" y="34" width="96" height="10" rx="5" fill="#D4FF3F"/>
+          <rect x="52" y="52" width="38" height="20" rx="4" fill="#2A2E1C"/>
+          <rect x="96" y="52" width="52" height="20" rx="4" fill="#2A2E1C"/>
+          <rect x="52" y="80" width="28" height="20" rx="4" fill="#2A2E1C"/>
+          <rect x="86" y="80" width="28" height="20" rx="4" fill="#2A2E1C"/>
+          <rect x="120" y="80" width="28" height="20" rx="4" fill="#2A2E1C"/>
+          <circle cx="164" cy="24" r="10" fill="#D4FF3F" stroke="#0C0E09" stroke-width="2"/>
+          <path d="M159 24 l4 4 l6 -7" stroke="#0C0E09" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ECOSYSTEM ==================== -->
+<section class="sec" id="eco">
+  <div class="wrap">
+    <div class="eco-center">
+      <span class="sec-tag rv">Live Across Your Logistics Ecosystem</span>
+      <h2 class="rv">No integration effort. We&rsquo;re already live where you are.</h2>
+      <p class="lede rv">Express SLAs for your distributors and your end-consumers. Zero IT overhaul required.</p>
+
+      <div class="eco-toggle rv" id="ecoToggle">
+        <button class="et-btn on" data-eco="0">B2B · Replenishment</button>
+        <button class="et-btn" data-eco="1">D2C · Heavy delivery</button>
+      </div>
+
+      <div class="eco-panel on rv" data-eco="0">
+        <div>
+          <span class="ep-tag">For Your Distributors</span>
+          <h3>B2B Replenishment</h3>
+          <p>Guaranteed 24-48 hour arrivals mean your distributors stop holding defensive buffer stock. It compresses working capital cycles, kills out-of-stock losses, and unlocks trapped cash.</p>
+        </div>
+        <div class="ep-chips">
+          <div class="ep-chip"><b>24&ndash;48h</b><span>Guaranteed distributor arrivals</span></div>
+          <div class="ep-chip"><b>3x</b><span>Faster cash rotation on inventory</span></div>
+          <div class="ep-chip"><b>0</b><span>Buffer stock required</span></div>
+        </div>
+      </div>
+      <div class="eco-panel rv" data-eco="1">
+        <div>
+          <span class="ep-tag">For Your Consumers</span>
+          <h3>D2C Heavy Delivery</h3>
+          <p>Consumers won&rsquo;t wait 10 days for heavy purchases. Give them a courier-grade post-purchase experience. Drop your cart cancellations and eliminate doorstep rejections on your heaviest items.</p>
+        </div>
+        <div class="ep-chips">
+          <div class="ep-chip"><b>Next-day</b><span>Post-purchase experience</span></div>
+          <div class="ep-chip"><b>&darr;</b><span>Cart cancellations</span></div>
+          <div class="ep-chip"><b>0</b><span>Doorstep rejections</span></div>
+        </div>
+      </div>
+
+      <div class="integrations rv">
+        <small>Plugs into your stack</small>
+        <div class="marquee"><div class="marquee-track">
+          <span class="mq-item">SAP</span><span class="mq-item">Oracle</span><span class="mq-item">Clickpost</span><span class="mq-item">Pando</span><span class="mq-item">eShipz</span><span class="mq-item">Custom REST APIs</span><span class="mq-item">SAP</span><span class="mq-item">Oracle</span><span class="mq-item">Clickpost</span><span class="mq-item">Pando</span><span class="mq-item">eShipz</span><span class="mq-item">Custom REST APIs</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PROOF ==================== -->
+<section class="sec soft" id="proof">
+  <div class="wrap">
+    <div class="proof-card rv">
+      <p class="proof-quote"><span class="qmark">&ldquo;</span>Finally, an express layer that doesn&rsquo;t crawl.<span class="qmark">&rdquo;</span></p>
+      <div class="proof-stat">
+        <s>7 days</s><span class="arrow">→</span><span class="now">Next-day · SLA locked</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CHALLENGE CTA ==================== -->
+<section class="cta-sec" id="cta">
+  <div class="wrap">
+    <div class="cta-card rv">
+      <span class="sec-tag">The JOLT Challenge</span>
+      <h2>Try a pilot on any active route. If we miss the SLA, <span class="u">it&rsquo;s on us.</span></h2>
+      <p class="lede">Supply chain leaders are tired of empty vendor promises. Let&rsquo;s look at the data. Pick a route from our live network and run a payload with JOLT. If we miss the guaranteed TAT, the shipment is free.</p>
+      <div class="cta-btns">
+        <a href="#top" class="btn-ink acid btn-lg">Check active routes</a>
+        <a href="#top" class="btn-ghost btn-lg">Start the challenge</a>
+      </div>
+      <p class="fineprint">*Conditions apply. Pilot SLA guarantees apply strictly to active, serviceable routes and are subject to payload specifications.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <div class="logo">JOLT<i>.</i></div>
+      <div class="by">An ONDL Network Platform</div>
+      <div class="tag">India&rsquo;s first express layer for heavy commerce.</div>
+      <div class="support">support@ondl.in · +91 80194 61199</div>
+    </div>
+    <div class="foot-col">
+      <h4>Product</h4>
+      <a href="#how">How It Works</a><a href="#eco">Solutions</a><a href="#why">Route Network</a><a href="#cta">Pricing</a>
+    </div>
+    <div class="foot-col">
+      <h4>Company</h4>
+      <a href="#">About Us</a><a href="#">Careers</a><a href="#">Case Studies</a><a href="#">Contact</a>
+    </div>
+    <div class="foot-col">
+      <h4>Legal</h4>
+      <a href="#">Terms of Service</a><a href="#">Privacy Policy</a><a href="#">SLA Policy</a><a href="#">Refund Policy</a>
+    </div>
+  </div>
+  <div class="wrap"><div class="foot-bar">&copy; 2026 ONDL Network Private Limited. All rights reserved.</div></div>
+</footer>
+
+<button id="toTop" aria-label="Back to top">↑</button>
+
+<script>
+/* ================= NAV SCROLL STATE ================= */
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10),{passive:true});
+
+/* ================= REVEALS ================= */
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+}),{threshold:.14});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* ================= COUNTERS ================= */
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  const el=e.target,target=parseFloat(el.dataset.target),dec=+(el.dataset.decimals||0),t0=performance.now(),dur=1400;
+  (function tick(now){
+    const p=Math.min((now-t0)/dur,1),eased=1-Math.pow(1-p,3);
+    el.textContent=(target*eased).toFixed(dec);
+    if(p<1)requestAnimationFrame(tick);
+  })(t0);
+  cio.unobserve(el);
+}),{threshold:.5});
+document.querySelectorAll('.count').forEach(el=>cio.observe(el));
+
+/* ================= HOW-IT-WORKS TABS ================= */
+document.getElementById('howTabs').addEventListener('click',e=>{
+  const b=e.target.closest('.ht-btn');if(!b)return;
+  document.querySelectorAll('.ht-btn').forEach(x=>x.classList.toggle('on',x===b));
+  const i=b.dataset.hp;
+  document.querySelectorAll('.hp-content,.hp-art svg').forEach(x=>x.classList.toggle('on',x.dataset.hp===i));
+});
+
+/* ================= ECOSYSTEM TOGGLE ================= */
+document.getElementById('ecoToggle').addEventListener('click',e=>{
+  const b=e.target.closest('.et-btn');if(!b)return;
+  document.querySelectorAll('.et-btn').forEach(x=>x.classList.toggle('on',x===b));
+  const i=b.dataset.eco;
+  document.querySelectorAll('.eco-panel').forEach(x=>x.classList.toggle('on',x.dataset.eco===i));
+});
+
+/* ================= TO TOP ================= */
+const toTop=document.getElementById('toTop');
+addEventListener('scroll',()=>toTop.classList.toggle('show',scrollY>600),{passive:true});
+toTop.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+
+/* ================= FLYING PACKAGE · 7s loop, IO-gated ================= */
+(function(){
+  const mock=document.getElementById('mock');
+  const pkg=document.getElementById('pkg');
+  const trails=[document.getElementById('trail1'),document.getElementById('trail2'),document.getElementById('trail3')];
+  const path=document.getElementById('railPath');
+  const ping=document.getElementById('endPing');
+  const NS='http://www.w3.org/2000/svg';
+  const PL=path.getTotalLength();
+
+  /* rail ties */
+  const ties=document.getElementById('railTies');
+  const TIES=22;
+  for(let i=0;i<=TIES;i++){
+    const p=path.getPointAtLength(PL*i/TIES);
+    const p2=path.getPointAtLength(PL*Math.min(i/TIES+.002,1));
+    const m=Math.hypot(p2.x-p.x,p2.y-p.y)||1;
+    const nx=-(p2.y-p.y)/m*3.4,ny=(p2.x-p.x)/m*3.4;
+    const l=document.createElementNS(NS,'line');
+    l.setAttribute('x1',p.x+nx);l.setAttribute('y1',p.y+ny);
+    l.setAttribute('x2',p.x-nx);l.setAttribute('y2',p.y-ny);
+    l.setAttribute('class','tie');
+    ties.appendChild(l);
+  }
+
+  const CYCLE=7000,FLY_A=350,FLY_B=1800,LAND_B=2150;
+  let confirmed=false,pinged=false,clock=0,last=performance.now(),visible=false;
+  const tag=document.getElementById('mbTag');
+
+  new IntersectionObserver(es=>{visible=es[0].isIntersecting;},{threshold:.15}).observe(mock);
+
+  function place(g,tt,angOff){
+    const a=Math.max(tt,0),b=Math.min(a+.004,1);
+    const p=path.getPointAtLength(PL*a),p2=path.getPointAtLength(PL*b);
+    const ang=Math.atan2(p2.y-p.y,p2.x-p.x)*180/Math.PI+angOff;
+    g.setAttribute('transform',`translate(${p.x} ${p.y}) rotate(${ang})`);
+  }
+
+  function frame(now){
+    const dt=Math.min(now-last,64);last=now;
+    if(visible)clock+=dt;
+    const m=clock%CYCLE;
+
+    if(m<50&&confirmed){confirmed=false;mock.classList.remove('flip','locked');tag.textContent='IN TRANSIT';tag.style.display='';pinged=false;}
+    else if(m<FLY_A){place(pkg,0,0);pkg.style.opacity='1';trails.forEach(t=>t.style.opacity='0');}
+    else if(m<FLY_B){
+      const p=(m-FLY_A)/(FLY_B-FLY_A),eased=1-Math.pow(1-p,2.1);
+      place(pkg,eased,eased*900);
+      pkg.style.opacity='1';
+      const f=[.06,.11,.17];
+      trails.forEach((t,i)=>{t.style.opacity='1';place(t,eased-f[i],eased*900);});
+    }
+    else if(m<LAND_B){
+      const u=(m-FLY_B)/(LAND_B-FLY_B);
+      const s=1+.15*Math.sin(Math.PI*u);
+      place(pkg,1,900);
+      pkg.setAttribute('transform',pkg.getAttribute('transform')+` scale(${s})`);
+      trails.forEach(t=>t.style.opacity='0');
+      if(!pinged){pinged=true;ping.querySelectorAll('animate').forEach(a=>a.beginElement());}
+    }
+    else if(m<3300){
+      place(pkg,1,900);pkg.setAttribute('transform',pkg.getAttribute('transform')+' scale(1)');
+      trails.forEach(t=>t.style.opacity='0');
+    }
+    else if(!confirmed){
+      confirmed=true;mock.classList.add('flip','locked');tag.textContent='DELIVERED';
+    }
+    requestAnimationFrame(frame);
+  }
+
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+    place(pkg,1,900);mock.classList.add('flip','locked');tag.textContent='DELIVERED';
+    return;
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+<!-- ==================== JOLT CONTROL TOWER · QUIRK MODAL ==================== -->
+<div class="jq-backdrop" id="jqBackdrop" aria-hidden="true">
+  <div class="jq-modal" role="dialog" aria-modal="true" aria-labelledby="jqTitle">
+    <div class="jq-chrome">
+      <span class="jq-dots"><i></i><i></i><i></i></span>
+      <span class="jq-url">jolt.ondl.in/control-tower</span>
+      <span class="jq-live">● LIVE</span>
+    </div>
+    <div class="jq-body">
+      <div class="jq-head">
+        <svg class="jq-bolt" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 L4.5 13.5 H11 L10 22 L19.5 10 H12.5 Z"/></svg>
+        <span class="jq-title" id="jqTitle">Incoming transmission</span>
+      </div>
+      <p class="jq-line" id="jqLine"><span class="jq-cursor">▌</span></p>
+      <form class="jq-form" id="jqForm">
+        <input class="jq-input" id="jqEmail" type="email" placeholder="your@email.com — trains dislike spam" autocomplete="off" />
+        <button class="jq-btn" type="submit">Ping me when live</button>
+      </form>
+      <p class="jq-fine">*No hubs were waited at during the making of this modal.</p>
+    </div>
+  </div>
+</div>
+<style>
+.jq-backdrop{position:fixed;inset:0;z-index:2147483500;background:rgba(5,5,7,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.jq-backdrop.on{opacity:1;visibility:visible}
+.jq-modal{width:min(460px,100%);background:var(--ink,#08080A);border:1px solid rgba(255,255,255,.14);border-radius:16px;box-shadow:0 40px 90px -20px rgba(0,0,0,.7),0 0 60px -20px rgba(212,255,63,.35);overflow:hidden;transform:translateY(14px) scale(.97);transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.jq-backdrop.on .jq-modal{transform:none}
+.jq-chrome{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.08);font-family:'JetBrains Mono',monospace}
+.jq-dots{display:flex;gap:6px}
+.jq-dots i{width:9px;height:9px;border-radius:50%;background:#333}
+.jq-dots i:nth-child(1){background:#E8805F}.jq-dots i:nth-child(2){background:#E0B65A}.jq-dots i:nth-child(3){background:#7FBF6A}
+.jq-url{margin:0 auto;font-size:10px;color:var(--mut,#8B8B90);letter-spacing:.04em}
+.jq-live{margin-left:auto;font-size:10px;letter-spacing:.12em;color:var(--acid,#D4FF3F);display:flex;align-items:center;gap:6px}
+.jq-body{padding:28px 28px 22px}
+.jq-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.jq-bolt{width:22px;height:22px;color:var(--acid,#D4FF3F);filter:drop-shadow(0 0 8px rgba(212,255,63,.6));flex-shrink:0}
+.jq-title{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#e8e8ea}
+.jq-line{font-family:'JetBrains Mono',monospace;font-size:15px;line-height:1.65;color:var(--acid,#D4FF3F);min-height:50px;margin-bottom:18px}
+.jq-cursor{display:inline-block;animation:jqBlink .8s steps(1) infinite;color:var(--acid,#D4FF3F)}
+@keyframes jqBlink{50%{opacity:0}}
+.jq-form{display:flex;flex-direction:column;gap:12px;opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s}
+.jq-form.show{opacity:1;transform:none}
+.jq-input{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:14px 16px;color:#fff;font-family:'JetBrains Mono',monospace;font-size:13px;outline:none;transition:border-color .25s}
+.jq-input:focus{border-color:var(--acid,#D4FF3F)}
+.jq-btn{background:var(--acid,#D4FF3F);color:var(--ink,#08080A);border:none;border-radius:10px;padding:14px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .25s}
+.jq-btn:hover{background:#fff}
+.jq-fine{margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#56565c;text-align:center}
+@media(prefers-reduced-motion:reduce){.jq-cursor{display:none}}
+</style>
+<script>
+(function(){
+  const QUIRKS=[
+    "We've dispatched a response. It left Delhi two days before you clicked.",
+    "This button moves faster than your current carrier. It just needed a destination.",
+    "Error 404: delays not found.",
+    "Sit tight. Heavy things move quickly around here.",
+    "Your click has been loaded onto the next train. It will not wait at hubs.",
+    "Control tower sees you. The tower is impressed. The tower says: watch this.",
+    "We'd call you, but a 200kg payload is using the phone line.",
+    "Calm down — our trains are already on it."
+  ];
+  const POST=[
+    "Ping received. Our train departed with it. ETA: yesterday.",
+    "Good news: you're now in the system. Bad news: so is your old carrier's delay.",
+    "Transmission complete. Someone fast will reach out. Probably next-day."
+  ];
+  const back=document.getElementById('jqBackdrop');
+  if(!back)return;
+  const line=document.getElementById('jqLine');
+  const form=document.getElementById('jqForm');
+  const email=document.getElementById('jqEmail');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let open=false;
+  function typeText(txt,done){
+    if(reduce){line.textContent=txt;if(done)done();return;}
+    let i=0;
+    line.innerHTML='<span class="jq-cursor">▌</span>';
+    const iv=setInterval(()=>{
+      i++;
+      line.innerHTML=txt.slice(0,i)+'<span class="jq-cursor">▌</span>';
+      if(i>=txt.length){clearInterval(iv);if(done)done();}
+    },16);
+  }
+  function openModal(){
+    if(open)return;open=true;
+    form.classList.remove('show');
+    back.classList.add('on');
+    back.setAttribute('aria-hidden','false');
+    email.value='';
+    typeText(QUIRKS[Math.floor(Math.random()*QUIRKS.length)],()=>form.classList.add('show'));
+    setTimeout(()=>email.focus({preventScroll:true}),350);
+  }
+  function closeModal(){
+    if(!open)return;open=false;
+    back.classList.remove('on');
+    back.setAttribute('aria-hidden','true');
+  }
+  document.addEventListener('click',e=>{
+    const c=e.target.closest('a[href]');
+    if(!c)return;
+    const isCta=c.classList.contains('btn-primary')||c.classList.contains('btn-secondary')||c.classList.contains('btn-nav')||c.classList.contains('btn-ink')||c.classList.contains('btn-ghost')||c.closest('.cta-btns')||c.closest('.cta-group');
+    if(isCta){e.preventDefault();openModal();}
+  });
+  back.addEventListener('click',e=>{if(e.target===back)closeModal();});
+  addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    if(!email.value.trim()){typeText("Hold on — trains need a destination, and we need an email.",null);email.focus();return;}
+    form.classList.remove('show');
+    typeText(POST[Math.floor(Math.random()*POST.length)],()=>setTimeout(closeModal,2400));
+  });
+})();
+</script>
+</body>
+</html>

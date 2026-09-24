@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+  ============================================================================
+  JOLT — Landing · V3 "Blueprint Line" (frozen design/jolt-landing-v3.html)
+  DESIGN : original V3 concept — dark engineering-blueprint canvas, Fraunces
+           serif display + JetBrains Mono data + Inter body. Hero is a
+           transit-map style schematic (legacy hub & spoke vs. the single
+           direct JOLT line). A vertical "track spine" runs the full page,
+           turning every section into a station on the same line.
+  COPY   : FINAL FROZEN CONTENT (identical to v2/v3) — no new claims added.
+  ============================================================================
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JOLT — India's Express Layer for Heavy Commerce · V3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#08080A;
+  --ink2:#111114;
+  --paper:#F3F1EA;
+  --paper-line:rgba(8,8,10,.12);
+  --acid:#D4FF3F;
+  --acid-dim:rgba(212,255,63,.35);
+  --line:rgba(255,255,255,.09);
+  --line-soft:rgba(255,255,255,.05);
+  --mut:#8B8B90;
+  --mut2:#5c5c62;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--ink);color:#EDEDEF;
+  line-height:1.6;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--acid);color:var(--ink)}
+:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
+a{color:inherit}
+
+/* ---------- blueprint grid backdrop ---------- */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(212,255,63,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(212,255,63,.035) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 0%,transparent 75%);
+}
+.wrap{max-width:1220px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+@media(min-width:900px){.wrap{padding:0 48px}}
+
+/* ---------- PRELOADER ---------- */
+#preloader{position:fixed;inset:0;z-index:1000;background:var(--ink);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:22px;transition:opacity .7s cubic-bezier(.16,1,.3,1),visibility .7s}
+#preloader.done{opacity:0;visibility:hidden}
+.pre-mark{font-family:'Fraunces';font-weight:700;font-size:clamp(40px,7vw,72px);letter-spacing:-.02em}
+.pre-mark i{font-style:normal;color:var(--acid)}
+.pre-line{width:220px;height:44px}
+.pre-line svg{width:100%;height:100%;display:block}
+.pre-track{fill:none;stroke:rgba(255,255,255,.14);stroke-width:2}
+.pre-fill{fill:none;stroke:var(--acid);stroke-width:2.5;stroke-linecap:round;filter:drop-shadow(0 0 6px rgba(212,255,63,.6))}
+.pre-pct{font-family:'JetBrains Mono';font-size:11px;color:var(--mut);letter-spacing:.18em}
+
+/* ---------- SCROLL PROGRESS ---------- */
+#progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--acid);z-index:200}
+
+/* ---------- NAV ---------- */
+nav{position:fixed;inset:0 0 auto 0;z-index:150;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:68px;background:rgba(8,8,10,.6);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);transition:transform .4s cubic-bezier(.16,1,.3,1),background .3s}
+nav.hidden{transform:translateY(-100%)}
+.nav-logo{font-family:'Fraunces';font-weight:700;font-size:21px;letter-spacing:-.01em;text-decoration:none;color:#fff;display:flex;align-items:center;gap:9px}
+.nav-logo .nav-bolt{width:19px;height:19px;color:var(--acid);filter:drop-shadow(0 0 7px rgba(212,255,63,.55));flex-shrink:0}
+.nav-logo em{font-style:italic;font-weight:500;color:var(--acid);font-size:.8em;letter-spacing:0;margin-left:2px;transform:skewX(-8deg)}
+.nav-logo i{font-style:normal;color:var(--acid)}
+.nav-links{display:none;gap:4px;margin-left:auto;margin-right:22px}
+.nav-links a{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.06em;color:var(--mut);text-decoration:none;padding:8px 14px;border-radius:100px;transition:.25s}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.05)}
+.btn-nav{padding:10px 20px;background:var(--acid);color:var(--ink);font-family:'JetBrains Mono';font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;text-decoration:none;border-radius:4px;transition:.25s}
+.btn-nav:hover{background:#fff;transform:translateY(-1px)}
+@media(min-width:900px){nav{padding:0 48px}.nav-links{display:flex}}
+
+/* ---------- TRACK SPINE (scrollytelling nav) ---------- */
+.spine{position:fixed;left:28px;top:50%;transform:translateY(-50%);z-index:140;display:none;flex-direction:column;align-items:center;height:340px}
+.spine-line{position:relative;width:1px;flex:1;background:var(--line)}
+.spine-fill{position:absolute;top:0;left:0;width:100%;height:0;background:var(--acid);box-shadow:0 0 10px var(--acid-dim);transition:height .15s linear}
+.spine-node{position:relative;width:9px;height:9px;margin:0 0 0 -4px;border-radius:50%;background:var(--ink);border:1.5px solid rgba(255,255,255,.3);z-index:2;transition:.3s;flex-shrink:0}
+.spine-node:first-child{margin-top:0}
+.spine-node.on{border-color:var(--acid);background:var(--acid);box-shadow:0 0 12px var(--acid)}
+.spine-node .lbl{position:absolute;left:20px;top:50%;transform:translateY(-50%);font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);white-space:nowrap;opacity:0;transition:opacity .3s,transform .3s}
+.spine-node.on .lbl{opacity:1;color:var(--acid);transform:translate(4px,-50%)}
+@media(min-width:1240px){.spine{display:flex}}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;padding:120px 0 0}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:52px;align-items:start;position:relative;z-index:1}
+.eyebrow{font-family:'JetBrains Mono';font-size:11px;color:var(--acid);letter-spacing:.16em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;margin-bottom:24px;opacity:0}
+.eyebrow::before{content:'';width:28px;height:1px;background:var(--acid)}
+h1{font-family:'Fraunces';font-weight:600;font-size:clamp(38px,7vw,74px);line-height:1.03;letter-spacing:-.025em;margin-bottom:26px;opacity:0}
+h1 em{font-style:italic;font-weight:500;color:var(--acid)}
+.hero-sub{font-size:17px;color:#c7c7cb;max-width:520px;margin-bottom:30px;opacity:0;line-height:1.7}
+.hero-sub b{color:#fff;font-weight:600}
+.sla-box{border:1px solid var(--line);border-radius:12px;margin-bottom:26px;width:fit-content;max-width:100%;background:rgba(255,255,255,.02);padding:13px 20px;opacity:0}
+.sla-row{font-family:'JetBrains Mono';font-size:12.5px;color:#c9c9cd;padding:4px 0;white-space:nowrap}
+.sla-row + .sla-row{border-top:1px dashed rgba(255,255,255,.12)}
+.sla-row .lane{color:var(--mut)}
+.sla-row s{color:var(--mut);text-decoration-thickness:1.5px}
+.sla-row .new{color:var(--acid);font-weight:500}
+.pillar-row{display:flex;flex-wrap:wrap;gap:9px 20px;font-family:'JetBrains Mono';font-size:12px;letter-spacing:.03em;color:#d6d6da;margin-bottom:22px;opacity:0}
+.pillar-row span{display:inline-flex;align-items:center;gap:8px}
+.pillar-row i{width:5px;height:5px;background:var(--acid);box-shadow:0 0 8px rgba(212,255,63,.6);flex-shrink:0}
+.closing{font-family:'Fraunces';font-style:italic;font-weight:500;font-size:19px;color:#d8d8db;margin-bottom:32px;opacity:0}
+.cta-group{display:flex;gap:12px;flex-wrap:wrap;opacity:0;margin-bottom:36px}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--acid);color:var(--ink);padding:16px 30px;font-family:'JetBrains Mono';font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;text-decoration:none;border-radius:6px;transition:background .3s,box-shadow .3s}
+.btn-primary:hover{background:#fff;box-shadow:0 0 30px rgba(212,255,63,.25)}
+.btn-secondary{display:inline-flex;align-items:center;padding:16px 30px;font-family:'JetBrains Mono';font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;text-decoration:none;color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:6px;transition:border-color .3s,background .3s}
+.btn-secondary:hover{border-color:#fff;background:rgba(255,255,255,.04)}
+.live-with{font-family:'JetBrains Mono';font-size:10.5px;color:var(--mut2);letter-spacing:.08em;display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;opacity:0}
+.live-with b{color:var(--mut);font-weight:500}
+
+/* ---------- METRO SCHEMATIC ---------- */
+.metro-wrap{position:relative;opacity:0;transform:translateY(24px)}
+.metro-panel{border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.015);padding:20px 20px 0;overflow:hidden}
+.metro-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px;flex-wrap:wrap}
+.metro-legend{display:flex;gap:16px;flex-wrap:wrap}
+.mlg{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.mlg .sw{width:16px;height:2px;flex-shrink:0}
+.mlg.legacy .sw{background:repeating-linear-gradient(90deg,rgba(255,255,255,.4) 0 4px,transparent 4px 7px)}
+.mlg.jolt .sw{background:var(--acid);box-shadow:0 0 6px var(--acid)}
+.mlg.jolt{color:var(--acid)}
+.metro-badge{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:100px;border:1px solid rgba(255,255,255,.16);color:#8f8f94}
+.metro-svg-holder{position:relative}
+.metro-svg-holder svg{width:100%;height:auto;display:block}
+.mm-legacy-line{fill:none;stroke:rgba(255,255,255,.28);stroke-width:2.5;stroke-dasharray:1 8;stroke-linecap:round;animation:mmDash 1.1s linear infinite}
+@keyframes mmDash{to{stroke-dashoffset:-9}}
+.mm-hub{fill:var(--ink2);stroke:rgba(255,255,255,.5);stroke-width:1.6}
+.mm-hub-ring{fill:none;stroke:rgba(255,255,255,.35);stroke-width:1}
+.mm-node{fill:var(--ink2);stroke:rgba(255,255,255,.5);stroke-width:1.6}
+.mm-node.origin{fill:var(--acid);stroke:var(--acid)}
+.mm-lbl{font-family:'JetBrains Mono';font-size:8.6px;fill:var(--mut);letter-spacing:.1em}
+.mm-city{font-family:'Fraunces';font-weight:600;font-size:13px;fill:#eee}
+.mm-city.acid{fill:var(--acid)}
+.mm-wait{font-family:'JetBrains Mono';font-size:7.6px;fill:#77777c;letter-spacing:.08em}
+.mm-jolt-line{fill:none;stroke:var(--acid);stroke-width:2.5;stroke-linecap:round;filter:drop-shadow(0 0 5px rgba(212,255,63,.45))}
+.mm-tie{stroke:rgba(212,255,63,.18);stroke-width:1}
+.mm-tick{fill:var(--ink);stroke:var(--acid);stroke-width:1.4}
+.mm-tick-lbl{font-family:'JetBrains Mono';font-size:7.6px;fill:var(--mut);letter-spacing:.08em}
+.mm-train{opacity:0;transition:opacity .3s}
+.mm-train.on{opacity:1}
+.mm-train-body{fill:var(--acid)}
+.mm-train-win{fill:var(--ink)}
+.mm-train-glow{fill:rgba(212,255,63,.22)}
+.metro-caption{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px 24px;padding:16px 0 18px;border-top:1px solid var(--line);margin-top:14px;font-family:'JetBrains Mono';font-size:11.5px}
+.metro-caption .cap{color:var(--mut2)}
+.metro-caption .cap b{color:#c9c9cd;font-weight:500}
+.metro-caption .cap.jolt b{color:var(--acid)}
+
+/* ---------- MANIFEST STAT STRIP ---------- */
+.manifest{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.015);margin-top:56px}
+.manifest-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.man-item{padding:26px 24px;border-right:1px dashed var(--line);border-bottom:1px dashed var(--line)}
+.man-item:nth-child(2n){border-right:none}
+.man-item small{display:block;font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--mut2);margin-bottom:8px}
+.man-item b{font-family:'Fraunces';font-weight:700;font-size:clamp(24px,3vw,32px);letter-spacing:-.02em;color:var(--acid)}
+.man-item b .u{font-size:.55em;margin-left:1px}
+.man-item p{font-size:12.5px;color:var(--mut);margin-top:4px;max-width:220px}
+@media(min-width:900px){.manifest-grid{grid-template-columns:repeat(4,1fr)}.man-item{border-bottom:none}.man-item:nth-child(2n){border-right:1px dashed var(--line)}.man-item:last-child{border-right:none}}
+@media(min-width:900px){.hero-grid{grid-template-columns:1.05fr .95fr;gap:60px}.hero{padding:132px 0 0}}
+
+/* ---------- SHARED SECTION SCAFFOLDING ---------- */
+.sec{padding:88px 0;position:relative}
+.sec-tag{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acid);margin-bottom:20px;display:inline-flex;align-items:center;gap:10px}
+.sec-tag::before{content:'';width:22px;height:1px;background:var(--acid)}
+.sec h2{font-family:'Fraunces';font-weight:600;font-size:clamp(28px,4vw,44px);line-height:1.12;letter-spacing:-.02em;max-width:800px;margin-bottom:18px}
+.sec .lede{font-size:16.5px;color:var(--mut);max-width:660px;margin-bottom:44px;line-height:1.7}
+.rv{opacity:0;transform:translateY(32px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+
+/* ---------- WHY NOW · TIMELINE ---------- */
+.timeline{position:relative;padding-left:52px;max-width:700px}
+.timeline::before{content:'';position:absolute;left:13px;top:8px;bottom:8px;width:1px;background:linear-gradient(180deg,var(--acid),rgba(255,255,255,.08))}
+.tl-item{position:relative;padding-bottom:40px}
+.tl-item:last-child{padding-bottom:0}
+.tl-node{position:absolute;left:-52px;top:-2px;width:28px;height:28px;border:1px solid rgba(212,255,63,.5);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono';font-size:10px;color:var(--acid);background:var(--ink)}
+.tl-item h3{font-family:'Fraunces';font-size:22px;font-weight:600;letter-spacing:-.01em;margin-bottom:8px}
+.tl-item p{font-size:15px;color:var(--mut);line-height:1.7;max-width:600px}
+.term-line{display:flex;align-items:baseline;gap:10px;font-family:'JetBrains Mono';font-size:14px;color:#e8e8ea;margin-top:34px}
+.term-line .prompt{color:var(--acid)}
+
+/* ---------- THE GAP · DIAGNOSTIC PANEL (paper) ---------- */
+.problem{background:var(--paper);color:var(--ink);border-radius:32px;position:relative;overflow:hidden}
+.problem::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--paper-line) 1px,transparent 1px),linear-gradient(90deg,var(--paper-line) 1px,transparent 1px);
+  background-size:44px 44px;opacity:.5;
+}
+.problem .sec-tag{color:#75726a}
+.problem .sec-tag::before{background:#75726a}
+.problem h2{color:var(--ink)}
+.problem h2 em{font-style:italic;color:#000;box-shadow:inset 0 -0.36em var(--acid);transition:box-shadow .4s}
+.problem h2 em:hover{box-shadow:inset 0 -1em var(--acid)}
+.problem .lede{color:#55524b}
+.trap-grid{display:grid;grid-template-columns:1fr;gap:18px;position:relative}
+.trap{background:#fff;border:1px solid #e4e0d6;border-radius:16px;padding:34px;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;position:relative}
+.trap:hover{transform:translateY(-6px);box-shadow:0 26px 54px rgba(10,10,11,.1)}
+.trap .badge{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.13em;text-transform:uppercase;padding:5px 11px;border-radius:100px;display:inline-block;margin-bottom:18px}
+.trap.courier .badge{background:#E8F3DE;color:#3f6212}
+.trap.freight .badge{background:#EEEAE2;color:#57534e}
+.trap h3{font-family:'Fraunces';font-size:22px;font-weight:600;letter-spacing:-.01em;margin-bottom:10px;color:var(--ink)}
+.trap p{font-size:15px;color:#55524b;line-height:1.7}
+.trap .tagline{font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:#9a968c;margin-top:18px;display:block}
+.verdict{margin-top:36px;text-align:center}
+.verdict p{font-family:'Fraunces';font-size:clamp(19px,2.2vw,26px);font-weight:500;letter-spacing:-.01em;font-style:italic;color:#6b6b66}
+.verdict p b{color:var(--ink);font-style:normal;font-weight:700}
+@media(min-width:768px){.trap-grid{grid-template-columns:1fr 1fr;align-items:start}.trap:nth-child(2){margin-top:34px}}
+
+/* ---------- ENGINE · LINE PIPELINE ---------- */
+.pipeline{margin-top:8px}
+.pipe-track{position:relative;height:3px;background:rgba(255,255,255,.08);border-radius:3px;margin-bottom:44px}
+.pipe-fill{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,var(--acid),#8fff5a);border-radius:3px;box-shadow:0 0 18px rgba(212,255,63,.5);transition:width 1.6s cubic-bezier(.16,1,.3,1)}
+.pipe-stop{position:absolute;top:50%;transform:translate(-50%,-50%);width:12px;height:12px;border-radius:50%;background:var(--ink);border:1.5px solid rgba(255,255,255,.25);transition:border-color .4s,background .4s,box-shadow .4s}
+.pipe-stop.hit{border-color:var(--acid);background:var(--acid);box-shadow:0 0 14px var(--acid)}
+.pipe-cols{display:grid;grid-template-columns:1fr;gap:32px}
+.pipe-col .step{font-family:'JetBrains Mono';font-size:11px;color:var(--acid);letter-spacing:.14em;display:block;margin-bottom:12px}
+.pipe-col h3{font-family:'Fraunces';font-size:20px;font-weight:600;margin-bottom:10px;letter-spacing:-.01em}
+.pipe-col p{font-size:14.5px;color:var(--mut);line-height:1.7}
+@media(min-width:768px){.pipe-cols{grid-template-columns:repeat(3,1fr);gap:26px}}
+
+/* ---------- ECOSYSTEM · TOGGLE ---------- */
+.eco-toggle{display:inline-flex;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:100px;padding:5px;gap:4px;margin-bottom:36px}
+.et-btn{font-family:'JetBrains Mono';font-size:12px;font-weight:500;letter-spacing:.03em;color:var(--mut);border:none;background:none;padding:11px 20px;border-radius:100px;transition:.2s;cursor:pointer}
+.et-btn.on{background:var(--acid);color:var(--ink);font-weight:600}
+.eco-panel{display:none;grid-template-columns:1fr;gap:32px;background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:18px;padding:36px}
+.eco-panel.on{display:grid;animation:fadeUp .5s cubic-bezier(.16,1,.3,1)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.eco-panel .ep-tag{font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--acid);margin-bottom:12px;display:block}
+.eco-panel h3{font-family:'Fraunces';font-size:clamp(22px,2.4vw,28px);font-weight:600;letter-spacing:-.015em}
+.eco-panel p{margin-top:14px;font-size:15px;line-height:1.7;color:var(--mut);max-width:520px}
+.ep-chips{display:flex;flex-direction:column;gap:10px}
+.ep-chip{display:flex;align-items:baseline;gap:12px;background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.ep-chip b{font-family:'Fraunces';font-size:19px;font-weight:700;color:var(--acid)}
+.ep-chip span{font-size:13px;color:var(--mut)}
+@media(min-width:800px){.eco-panel{grid-template-columns:1fr 1fr;align-items:center}}
+
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;overflow:hidden;position:relative;background:rgba(255,255,255,.012);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);margin-top:44px}
+.marquee-track{display:flex;width:max-content;animation:scroll 24s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.mq-item{font-family:'JetBrains Mono';font-size:13px;font-weight:500;letter-spacing:.1em;color:#6b6b70;white-space:nowrap;display:flex;align-items:center;text-transform:uppercase}
+.mq-item::after{content:'\2022';color:var(--acid);font-size:10px;margin:0 26px}
+
+/* ---------- CHALLENGE CTA ---------- */
+.cta{padding:96px 0;text-align:center;position:relative;overflow:hidden}
+.cta-glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(212,255,63,.09) 0%,transparent 60%);pointer-events:none}
+.cta h2{font-family:'Fraunces';font-weight:600;font-size:clamp(30px,5vw,56px);line-height:1.08;letter-spacing:-.025em;margin:0 auto 22px;max-width:860px;position:relative}
+.cta h2 .u{position:relative;white-space:nowrap;font-style:italic;color:var(--acid)}
+.cta .lede{color:var(--mut);font-size:16.5px;max-width:600px;margin:0 auto 42px;position:relative}
+.cta-btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;position:relative}
+.fineprint{margin-top:28px;font-size:11.5px;color:#56565c;position:relative;font-family:'JetBrains Mono';letter-spacing:.02em}
+
+/* ---------- FOOTER ---------- */
+footer{border-top:1px solid var(--line);padding:52px 0 0}
+.foot-grid{display:grid;grid-template-columns:1fr;gap:38px}
+.brand .logo{font-family:'Fraunces';font-weight:700;font-size:21px;letter-spacing:-.01em}
+.brand .logo i{font-style:normal;color:var(--acid)}
+.brand .by{font-family:'JetBrains Mono';font-size:10.5px;color:var(--mut);margin-top:5px;letter-spacing:.06em}
+.brand .tag{font-size:14px;color:var(--mut);margin-top:14px;max-width:280px}
+.brand .support{font-family:'JetBrains Mono';font-size:11.5px;color:var(--mut);margin-top:16px;letter-spacing:.03em}
+.links{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.links .col h4{font-family:'JetBrains Mono';font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--mut);margin-bottom:14px}
+.links .col a{display:block;font-size:13.5px;color:var(--mut);text-decoration:none;padding:4px 0;transition:color .25s}
+.links .col a:hover{color:var(--acid)}
+.foot-bar{border-top:1px solid var(--line);margin-top:48px;padding:20px 0;font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.03em;color:#56565c;text-align:center}
+#toTop{position:fixed;bottom:26px;right:26px;width:50px;height:50px;border-radius:50%;background:var(--acid);color:var(--ink);border:none;font-size:17px;z-index:120;opacity:0;transform:translateY(20px);pointer-events:none;transition:.4s cubic-bezier(.16,1,.3,1)}
+#toTop.show{opacity:1;transform:none;pointer-events:auto}
+#toTop:hover{background:#fff;transform:translateY(-4px)}
+@media(min-width:768px){.foot-grid{grid-template-columns:1.2fr 1fr 1fr 1fr}.links{grid-column:2/-1;grid-template-columns:1fr 1fr 1fr}}
+</style>
+</head>
+<body>
+
+<div id="preloader">
+  <div class="pre-mark">JOLT<i>.</i></div>
+  <div class="pre-line">
+    <svg viewBox="0 0 220 44" preserveAspectRatio="none">
+      <path class="pre-track" d="M 6 34 L 80 34 L 140 10 L 214 10"/>
+      <path class="pre-fill" id="preFillPath" d="M 6 34 L 80 34 L 140 10 L 214 10"/>
+    </svg>
+  </div>
+  <div class="pre-pct" id="prePct">LAYING TRACK · 0%</div>
+</div>
+
+<div id="progress"></div>
+
+<nav id="nav">
+  <a href="#top" class="nav-logo"><svg class="nav-bolt" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 L4.5 13.5 H11 L10 22 L19.5 10 H12.5 Z"/></svg>JOLT<em>Deliveries</em></a>
+  <div class="nav-links">
+    <a href="#why">Why Now</a>
+    <a href="#gap">The Gap</a>
+    <a href="#engine">The Engine</a>
+    <a href="#ecosystem">Ecosystem</a>
+  </div>
+  <a href="#challenge" class="btn-nav" data-magnet>Start the Challenge</a>
+</nav>
+
+<div class="spine" id="spine">
+  <div class="spine-node on" data-target="top"><span class="lbl">Origin</span></div>
+  <div class="spine-line"><div class="spine-fill" id="spineFill"></div></div>
+  <div class="spine-node" data-target="why"><span class="lbl">01 · Why Now</span></div>
+  <div class="spine-line"><div class="spine-fill"></div></div>
+  <div class="spine-node" data-target="gap"><span class="lbl">02 · The Gap</span></div>
+  <div class="spine-line"><div class="spine-fill"></div></div>
+  <div class="spine-node" data-target="engine"><span class="lbl">03 · The Engine</span></div>
+  <div class="spine-line"><div class="spine-fill"></div></div>
+  <div class="spine-node" data-target="ecosystem"><span class="lbl">04 · Ecosystem</span></div>
+  <div class="spine-line"><div class="spine-fill"></div></div>
+  <div class="spine-node" data-target="challenge"><span class="lbl">Destination</span></div>
+</div>
+
+<!-- ==================== HERO ==================== -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow" id="eyebrow">Express speed is no longer just for small parcels</span>
+        <h1 id="heroTitle">India&rsquo;s first express layer for <em>heavy commerce.</em></h1>
+        <p class="hero-sub" id="heroSub">Heavy commerce moved online, but logistics didn&rsquo;t. JOLT moves <b>200kg payloads rail-first</b> — next-day, hubless, with a guaranteed SLA in writing.</p>
+
+        <div class="sla-box" id="slaBox">
+          <div class="sla-row"><span class="lane">Mumbai → Delhi</span> — <s>7 days</s> <span class="new">→ 2 days</span></div>
+          <div class="sla-row"><span class="lane">Bangalore → Delhi</span> — <s>7 days</s> <span class="new">→ 3 days</span></div>
+        </div>
+
+        <div class="pillar-row" id="pillarRow">
+          <span><i></i>Zero-Hub Execution</span>
+          <span><i></i>Dedicated Rail Linehaul</span>
+          <span><i></i>80% Lower Emissions</span>
+        </div>
+        <p class="closing" id="closing">&ldquo;Finally, an express layer that doesn&rsquo;t crawl.&rdquo;</p>
+
+        <div class="cta-group" id="heroCtas">
+          <a href="#challenge" class="btn-primary" data-magnet>Check Serviceability</a>
+          <a href="#challenge" class="btn-secondary" data-magnet>Request Demo</a>
+        </div>
+
+        <div class="live-with" id="liveWith"><b>Live with:</b> Ather · Wakefit · Ola Electric · Duroflex</div>
+      </div>
+
+      <div class="metro-wrap" id="metroWrap">
+        <div class="metro-panel">
+          <div class="metro-head">
+            <div class="metro-legend">
+              <span class="mlg legacy"><i class="sw"></i>Hub &amp; Spoke</span>
+              <span class="mlg jolt"><i class="sw"></i>JOLT Direct Line</span>
+            </div>
+            <span class="metro-badge">DEL → BOM · Live</span>
+          </div>
+          <div class="metro-svg-holder">
+            <svg viewBox="0 0 640 380" preserveAspectRatio="xMidYMid meet">
+              <!-- legacy hub & spoke -->
+              <path class="mm-legacy-line" d="M 70 50 L 70 150 L 230 150 L 230 250 L 400 250 L 400 330 L 560 330"/>
+              <circle class="mm-hub" cx="70" cy="150" r="7"/>
+              <circle class="mm-hub" cx="230" cy="250" r="7"/>
+              <circle class="mm-hub" cx="400" cy="330" r="7"/>
+              <circle class="mm-hub-ring" cx="70" cy="150" r="7"><animate attributeName="r" values="7;22" dur="2s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".8;0" dur="2s" repeatCount="indefinite"/></circle>
+              <circle class="mm-hub-ring" cx="230" cy="250" r="7"><animate attributeName="r" values="7;22" dur="2.3s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".8;0" dur="2.3s" repeatCount="indefinite"/></circle>
+              <circle class="mm-hub-ring" cx="400" cy="330" r="7"><animate attributeName="r" values="7;22" dur="2.15s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".8;0" dur="2.15s" repeatCount="indefinite"/></circle>
+              <text class="mm-lbl" x="82" y="146" text-anchor="start">DEL HUB</text>
+              <text class="mm-wait" x="82" y="160" text-anchor="start">wait 24h</text>
+              <text class="mm-lbl" x="242" y="246" text-anchor="start">TRANSHIP HUB</text>
+              <text class="mm-wait" x="242" y="260" text-anchor="start">wait 36h</text>
+              <text class="mm-lbl" x="412" y="326" text-anchor="start">MUM HUB</text>
+              <text class="mm-wait" x="412" y="340" text-anchor="start">sort + dispatch</text>
+
+              <!-- jolt direct line -->
+              <g id="mmTies"></g>
+              <path class="mm-jolt-line" id="mmJoltPath" d="M 70 50 L 320 190 L 560 330"/>
+              <circle class="mm-tick" cx="217.8" cy="132.7" r="3"/>
+              <circle class="mm-tick" cx="340.6" cy="202" r="3"/>
+              <circle class="mm-tick" cx="462.5" cy="273.1" r="3"/>
+              <text class="mm-tick-lbl" x="200" y="122" text-anchor="end">JAI · +6H</text>
+              <text class="mm-tick-lbl" x="323" y="218" text-anchor="start">IND · +14H</text>
+              <text class="mm-tick-lbl" x="446" y="263" text-anchor="end">SUR · +20H</text>
+
+              <!-- endpoints -->
+              <circle class="mm-node origin" cx="70" cy="50" r="5.5"/>
+              <circle class="mm-node" cx="560" cy="330" r="6"/>
+              <text class="mm-city" x="70" y="34" text-anchor="start">Delhi</text>
+              <text class="mm-city acid" x="560" y="358" text-anchor="end">Mumbai</text>
+              <circle class="mm-ping" id="mmPing" cx="560" cy="330" r="6" fill="none" stroke="#D4FF3F" stroke-width="1.5" opacity="0">
+                <animate attributeName="r" values="6;30" dur="1s" begin="indefinite" fill="freeze"/>
+                <animate attributeName="opacity" values=".9;0" dur="1s" begin="indefinite" fill="freeze"/>
+              </circle>
+
+              <g class="mm-train" id="mmTrain">
+                <circle class="mm-train-glow" r="11"/>
+                <rect class="mm-train-body" x="-9" y="-5" width="18" height="10" rx="2.5"/>
+                <rect class="mm-train-win" x="-5" y="-2.6" width="4.4" height="4.4" rx="0.6"/>
+                <rect class="mm-train-win" x="0.6" y="-2.6" width="4.4" height="4.4" rx="0.6"/>
+              </g>
+            </svg>
+          </div>
+          <div class="metro-caption">
+            <span class="cap">Legacy: <b>3 hub transfers</b> · avg 32h dwell each</span>
+            <span class="cap jolt">JOLT: <b>0 transfers</b> · one direct rail corridor</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="manifest">
+    <div class="wrap">
+      <div class="manifest-grid">
+        <div class="man-item rv"><small>Lower emissions</small><b><span class="count" data-target="80">0</span><span class="u">%</span></b><p>vs. road freight, rail-first linehaul</p></div>
+        <div class="man-item rv"><small>SLA adherence</small><b><span class="count" data-target="99.2" data-decimals="1">0</span><span class="u">%</span></b><p>across all live lanes</p></div>
+        <div class="man-item rv"><small>CO₂ saved</small><b><span class="count" data-target="1.4" data-decimals="1">0</span><span class="u">T</span></b><p>per lane vs. road</p></div>
+        <div class="man-item rv"><small>Distributor arrivals</small><b>24&ndash;48<span class="u">h</span></b><p>B2B replenishment, guaranteed</p></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== WHY NOW ==================== -->
+<section class="sec" id="why">
+  <div class="wrap">
+    <span class="sec-tag rv">Why Now</span>
+    <h2 class="rv">Your customers won&rsquo;t wait 10 days for anything anymore.</h2>
+    <p class="lede rv">Heavy commerce moved online, but logistics didn&rsquo;t. To scale today, you need a network built for modern speed&mdash;not legacy hub-and-spoke delays.</p>
+    <div class="timeline">
+      <div class="tl-item rv">
+        <div class="tl-node">01</div>
+        <h3>The Expectation Gap</h3>
+        <p>Quick-commerce killed consumer patience. Buyers now expect parcel-speed for 200kg payloads. Traditional freight is physically incapable of delivering it.</p>
+      </div>
+      <div class="tl-item rv">
+        <div class="tl-node">02</div>
+        <h3>The Working Capital Trap</h3>
+        <p>Long transit times are a cash trap for your distributors. Inventory sitting on a truck for 8 days is dead capital. Cut transit to 2 days, and they rotate cash 3x faster.</p>
+      </div>
+      <div class="tl-item rv">
+        <div class="tl-node">03</div>
+        <h3>The Tech Unlock</h3>
+        <p>The capacity always existed on the Indian rail network&mdash;the fastest, cleanest way to move weight. But it was a black box. We built the orchestration tech to stitch it end-to-end and back it with a guaranteed SLA.</p>
+      </div>
+    </div>
+    <div class="term-line rv"><span class="prompt">▸</span>Until JOLT.</div>
+  </div>
+</section>
+
+<!-- ==================== THE GAP ==================== -->
+<section class="sec problem" id="gap">
+  <div class="wrap">
+    <span class="sec-tag rv">The Unfilled Gap</span>
+    <h2 class="rv">You never had a choice. You were forced to use networks that were <em>never built for you</em>.</h2>
+    <p class="lede rv">A purpose-built heavy express didn&rsquo;t exist. You&rsquo;ve just been surviving on workarounds&mdash;hacking logistics models designed for entirely different categories.</p>
+    <div class="trap-grid">
+      <div class="trap courier rv">
+        <span class="badge">Workaround 01</span>
+        <h3>Stretching the Courier Network</h3>
+        <p>You force heavy payloads into parcel networks for speed. The infrastructure breaks: goods get damaged, delays are masked by fake delivery attempts, and punitive dimensional pricing destroys your unit economics.</p>
+        <span class="tagline">A model built for 2kg parcels</span>
+      </div>
+      <div class="trap freight rv">
+        <span class="badge">Workaround 02</span>
+        <h3>Settling for Traditional Transport</h3>
+        <p>You default to LTL freight for capacity. But their model relies on consolidation. Your shipments sit idle in hub yards for days, waiting for enough volume to justify a dispatch. You save money, but lose a week.</p>
+        <span class="tagline">A model built for bulk consolidation</span>
+      </div>
+    </div>
+    <div class="verdict rv">
+      <p>&ldquo;The system isn&rsquo;t broken. <b>It just wasn&rsquo;t built for you.</b>&rdquo;</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== THE ENGINE ==================== -->
+<section class="sec" id="engine">
+  <div class="wrap">
+    <span class="sec-tag rv">The Orchestration Layer</span>
+    <h2 class="rv">Not another marketplace. We built the intelligence to unlock India&rsquo;s fastest network.</h2>
+    <p class="lede rv">Marketplaces match supply and demand, then wash their hands of the SLA. We don&rsquo;t. Indian rail has always been the fastest way to move weight, but it was an analog black box. We built the tech to run it end-to-end, and we take full accountability for the delivery.</p>
+    <div class="pipeline rv" id="pipeline">
+      <div class="pipe-track">
+        <div class="pipe-fill" id="pipeFill"></div>
+        <div class="pipe-stop" data-p="0" style="left:0%"></div>
+        <div class="pipe-stop" data-p="0.5" style="left:50%"></div>
+        <div class="pipe-stop" data-p="1" style="left:100%"></div>
+      </div>
+      <div class="pipe-cols">
+        <div class="pipe-col"><span class="step">01 / NTO</span><h3>Next Train Out (NTO) Speed</h3><p>Aviation has Next Flight Out. We built Next Train Out for heavy commerce. Your payload doesn&rsquo;t wait for a truck to fill up. High-capacity rail bypasses highway tolls, borders, and traffic to deliver non-stop transit&mdash;slashing carbon emissions by 80%.</p></div>
+        <div class="pipe-col"><span class="step">02 / HUBLESS</span><h3>End-to-End Hubless Execution</h3><p>From first-mile pickup to final-mile delivery. No consolidation yards. No waiting in truck hubs. We pick up your payload, load it directly onto the rail linehaul, and deliver it straight to the destination. One seamless motion. Zero mid-journey sorting delays.</p></div>
+        <div class="pipe-col"><span class="step">03 / VISIBILITY</span><h3>Control Tower Visibility</h3><p>Real-time tracking across every milestone. Rail used to be a blind spot. Our tech gives your ops team proactive alerts and absolute visibility, allowing us to guarantee the SLA.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ECOSYSTEM ==================== -->
+<section class="sec" id="ecosystem">
+  <div class="wrap">
+    <span class="sec-tag rv">Live Across Your Logistics Ecosystem</span>
+    <h2 class="rv">No integration effort. We&rsquo;re already live where you are.</h2>
+    <p class="lede rv">Express SLAs for your distributors and your end-consumers. Zero IT overhaul required. We plug directly into your existing stack&mdash;just switch us on.</p>
+
+    <div class="eco-toggle rv" id="ecoToggle">
+      <button class="et-btn on" data-eco="0">B2B · Replenishment</button>
+      <button class="et-btn" data-eco="1">D2C · Heavy Delivery</button>
+    </div>
+
+    <div class="eco-panel on rv" data-eco="0">
+      <div>
+        <span class="ep-tag">For Your Distributors</span>
+        <h3>B2B Replenishment</h3>
+        <p>Guaranteed 24-48 hour arrivals mean your distributors stop holding defensive buffer stock. It compresses working capital cycles, kills out-of-stock losses, and unlocks trapped cash.</p>
+      </div>
+      <div class="ep-chips">
+        <div class="ep-chip"><b>24&ndash;48h</b><span>Guaranteed distributor arrivals</span></div>
+        <div class="ep-chip"><b>3x</b><span>Faster cash rotation on inventory</span></div>
+        <div class="ep-chip"><b>0</b><span>Buffer stock required</span></div>
+      </div>
+    </div>
+    <div class="eco-panel rv" data-eco="1">
+      <div>
+        <span class="ep-tag">For Your Consumers</span>
+        <h3>D2C Heavy Delivery</h3>
+        <p>Consumers won&rsquo;t wait 10 days for heavy purchases. Give them a courier-grade post-purchase experience. Drop your cart cancellations and eliminate doorstep rejections on your heaviest items.</p>
+      </div>
+      <div class="ep-chips">
+        <div class="ep-chip"><b>Next-day</b><span>Post-purchase experience</span></div>
+        <div class="ep-chip"><b>&darr;</b><span>Cart cancellations</span></div>
+        <div class="ep-chip"><b>0</b><span>Doorstep rejections</span></div>
+      </div>
+    </div>
+
+    <div class="marquee rv" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="mq-item">SAP</span><span class="mq-item">Oracle</span><span class="mq-item">Clickpost</span><span class="mq-item">Pando</span><span class="mq-item">eShipz</span><span class="mq-item">Custom REST APIs</span><span class="mq-item">SAP</span><span class="mq-item">Oracle</span><span class="mq-item">Clickpost</span><span class="mq-item">Pando</span><span class="mq-item">eShipz</span><span class="mq-item">Custom REST APIs</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CHALLENGE CTA ==================== -->
+<section class="cta" id="challenge">
+  <div class="cta-glow"></div>
+  <div class="wrap">
+    <span class="sec-tag rv" style="justify-content:center">The JOLT Challenge</span>
+    <h2 class="rv">Try a pilot on any active route. If we miss the SLA, <span class="u">it&rsquo;s on us.</span></h2>
+    <p class="lede rv">Supply chain leaders are tired of empty vendor promises. Let&rsquo;s look at the data. Pick a route from our live network and run a payload with JOLT. If we miss the guaranteed TAT, the shipment is free.</p>
+    <div class="cta-btns rv">
+      <a href="#ecosystem" class="btn-primary" data-magnet>Check Active Routes</a>
+      <a href="#challenge" class="btn-secondary" data-magnet>Start the Challenge</a>
+    </div>
+    <p class="fineprint rv">*Conditions apply. Pilot SLA guarantees apply strictly to active, serviceable routes and are subject to payload specifications.</p>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="brand">
+        <div class="logo">JOLT<i>.</i></div>
+        <div class="by">An ONDL Network Platform</div>
+        <div class="tag">India&rsquo;s first express layer for heavy commerce.</div>
+        <div class="support">support@ondl.in · +91 80194 61199</div>
+      </div>
+      <div class="links">
+        <div class="col">
+          <h4>Product</h4>
+          <a href="#engine">How It Works</a>
+          <a href="#ecosystem">Solutions</a>
+          <a href="#why">Route Network</a>
+          <a href="#challenge">Pricing</a>
+        </div>
+        <div class="col">
+          <h4>Company</h4>
+          <a href="#">About Us</a>
+          <a href="#">Careers</a>
+          <a href="#">Case Studies</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="col">
+          <h4>Legal</h4>
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">SLA Policy</a>
+          <a href="#">Refund Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bar">&copy; 2026 ONDL Network Private Limited. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- ==================== VERSION SWITCHER ==================== -->
+<div class="ver-pill">
+  <span class="ver-lbl">Version</span>
+  <a href="jolt-landing-v1.html">V1</a>
+  <a href="jolt-landing-v2.html">V2</a>
+  <a href="jolt-landing-v3.html" class="active">V3</a>
+</div>
+<style>
+.ver-pill{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:2147483000;display:flex;align-items:center;gap:3px;padding:5px;border-radius:999px;background:rgba(10,10,12,.78);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(0,0,0,.4);font-family:'Inter',system-ui,sans-serif}
+.ver-pill .ver-lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);padding:0 9px 0 5px;white-space:nowrap}
+.ver-pill a{font-size:11px;font-weight:600;line-height:1;color:rgba(255,255,255,.62);text-decoration:none;padding:7px 13px;border-radius:999px;transition:color .2s,background .2s}
+.ver-pill a:hover{color:#fff}
+.ver-pill a.active{background:#D4FF3F;color:#0B0C0E}
+</style>
+
+<button id="toTop" aria-label="Back to top">↑</button>
+
+<script>
+/* ================= PRELOADER ================= */
+(function(){
+  const pathEl=document.getElementById('preFillPath'),pct=document.getElementById('prePct'),pre=document.getElementById('preloader');
+  const len=pathEl.getTotalLength();
+  pathEl.style.strokeDasharray=len;pathEl.style.strokeDashoffset=len;
+  let p=0;
+  const iv=setInterval(()=>{
+    p+=Math.random()*15;
+    if(p>=100){p=100;clearInterval(iv);
+      setTimeout(()=>{pre.classList.add('done');startHero();},300);}
+    pathEl.style.strokeDashoffset=len*(1-p/100);
+    pct.textContent='LAYING TRACK · '+Math.floor(p)+'%';
+  },110);
+})();
+
+/* ================= MAGNETIC BUTTONS ================= */
+document.querySelectorAll('[data-magnet]').forEach(el=>{
+  el.addEventListener('mousemove',e=>{
+    const r=el.getBoundingClientRect();
+    el.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.2}px,${(e.clientY-r.top-r.height/2)*.26}px)`;
+  });
+  el.addEventListener('mouseleave',()=>{el.style.transform='';});
+});
+
+/* ================= SCROLL: PROGRESS + NAV + TOTOP ================= */
+(function(){
+  const bar=document.getElementById('progress'),nav=document.getElementById('nav'),toTop=document.getElementById('toTop');
+  let lastY=0;
+  addEventListener('scroll',()=>{
+    const y=scrollY,h=document.documentElement.scrollHeight-innerHeight;
+    bar.style.width=(y/h*100)+'%';
+    if(y>140&&y>lastY)nav.classList.add('hidden');else nav.classList.remove('hidden');
+    lastY=y;
+    toTop.classList.toggle('show',y>600);
+  },{passive:true});
+  toTop.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+})();
+
+/* ================= TRACK SPINE ================= */
+(function(){
+  const nodes=[...document.querySelectorAll('.spine-node')];
+  const sections=nodes.map(n=>document.getElementById(n.dataset.target));
+  const fill=document.getElementById('spineFill');
+  function update(){
+    const y=scrollY+innerHeight*0.4;
+    let activeIdx=0;
+    sections.forEach((s,i)=>{if(s&&s.offsetTop<=y)activeIdx=i;});
+    nodes.forEach((n,i)=>n.classList.toggle('on',i===activeIdx));
+    const h=document.documentElement.scrollHeight-innerHeight;
+    fill.style.height=Math.min(100,(scrollY/h*100))+'%';
+  }
+  addEventListener('scroll',update,{passive:true});
+  addEventListener('resize',update);
+  update();
+})();
+
+/* ================= REVEAL OBSERVER ================= */
+const revealObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revealObs.unobserve(e.target);}});
+},{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>revealObs.observe(el));
+
+/* ================= HERO ENTRANCE ================= */
+function startHero(){
+  const seq=[['#eyebrow',150],['#heroTitle',250],['#heroSub',450],['#slaBox',600],['#pillarRow',720],['#closing',820],['#heroCtas',920],['#liveWith',1050],['#metroWrap',500]];
+  seq.forEach(([sel,d])=>setTimeout(()=>{
+    const el=document.querySelector(sel);
+    el.style.transition='opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)';
+    el.style.transform='none';el.style.opacity=1;
+  },d));
+}
+['#eyebrow','#heroTitle','#heroSub','#slaBox','#pillarRow','#closing','#heroCtas','#liveWith'].forEach(s=>{const el=document.querySelector(s);el.style.transform='translateY(20px)';});
+
+/* ================= COUNTERS ================= */
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  const el=e.target,target=parseFloat(el.dataset.target),dec=+(el.dataset.decimals||0),t0=performance.now(),dur=1300;
+  (function tick(now){
+    const p=Math.min((now-t0)/dur,1),eased=1-Math.pow(1-p,3);
+    el.textContent=(target*eased).toFixed(dec);
+    if(p<1)requestAnimationFrame(tick);
+  })(t0);
+  cio.unobserve(el);
+}),{threshold:.4});
+document.querySelectorAll('.count').forEach(el=>cio.observe(el));
+
+/* ================= METRO SCHEMATIC: ties + train loop ================= */
+(function(){
+  const path=document.getElementById('mmJoltPath');
+  const ties=document.getElementById('mmTies');
+  const train=document.getElementById('mmTrain');
+  const ping=document.getElementById('mmPing');
+  const wrap=document.getElementById('metroWrap');
+  const NS='http://www.w3.org/2000/svg';
+  const len=path.getTotalLength();
+
+  const TIES=26;
+  for(let i=0;i<=TIES;i++){
+    const p=path.getPointAtLength(len*i/TIES);
+    const p2=path.getPointAtLength(Math.min(len*i/TIES+0.6,len));
+    const m=Math.hypot(p2.x-p.x,p2.y-p.y)||1;
+    const nx=-(p2.y-p.y)/m*3.6,ny=(p2.x-p.x)/m*3.6;
+    const l=document.createElementNS(NS,'line');
+    l.setAttribute('x1',p.x+nx);l.setAttribute('y1',p.y+ny);
+    l.setAttribute('x2',p.x-nx);l.setAttribute('y2',p.y-ny);
+    l.setAttribute('class','mm-tie');
+    ties.appendChild(l);
+  }
+
+  let visible=false,clock=0,last=performance.now(),pinged=false;
+  const CYCLE=4200,TRAVEL=3200,PAUSE=500;
+  new IntersectionObserver(es=>{visible=es[0].isIntersecting;},{threshold:.15}).observe(wrap);
+
+  function frame(now){
+    const dt=Math.min(now-last,64);last=now;
+    if(visible)clock+=dt;
+    const m=clock%CYCLE;
+    if(m<TRAVEL){
+      const t=m/TRAVEL,eased=1-Math.pow(1-t,2);
+      const p=path.getPointAtLength(len*eased);
+      const p2=path.getPointAtLength(Math.min(len*eased+1,len));
+      const ang=Math.atan2(p2.y-p.y,p2.x-p.x)*180/Math.PI;
+      train.setAttribute('transform',`translate(${p.x} ${p.y}) rotate(${ang})`);
+      train.classList.add('on');
+      pinged=false;
+    }else{
+      train.classList.remove('on');
+      if(!pinged){pinged=true;ping.querySelectorAll('animate').forEach(a=>a.beginElement());}
+    }
+    requestAnimationFrame(frame);
+  }
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+    train.classList.remove('on');
+  }else{
+    requestAnimationFrame(frame);
+  }
+})();
+
+/* ================= ENGINE PIPELINE FILL ================= */
+(function(){
+  const pipe=document.getElementById('pipeline');
+  if(!pipe)return;
+  const fillEl=document.getElementById('pipeFill');
+  const stops=[...pipe.querySelectorAll('.pipe-stop')];
+  let done=false;
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting&&!done){
+        done=true;
+        fillEl.style.width='100%';
+        stops.forEach((s,i)=>setTimeout(()=>s.classList.add('hit'),300+i*500));
+      }
+    });
+  },{threshold:.4});
+  io.observe(pipe);
+})();
+
+/* ================= ECOSYSTEM TOGGLE ================= */
+document.getElementById('ecoToggle').addEventListener('click',e=>{
+  const b=e.target.closest('.et-btn');if(!b)return;
+  document.querySelectorAll('.et-btn').forEach(x=>x.classList.toggle('on',x===b));
+  const i=b.dataset.eco;
+  document.querySelectorAll('.eco-panel').forEach(x=>x.classList.toggle('on',x.dataset.eco===i));
+});
+</script>
+<!-- ==================== JOLT CONTROL TOWER · QUIRK MODAL ==================== -->
+<div class="jq-backdrop" id="jqBackdrop" aria-hidden="true">
+  <div class="jq-modal" role="dialog" aria-modal="true" aria-labelledby="jqTitle">
+    <div class="jq-chrome">
+      <span class="jq-dots"><i></i><i></i><i></i></span>
+      <span class="jq-url">jolt.ondl.in/control-tower</span>
+      <span class="jq-live">● LIVE</span>
+    </div>
+    <div class="jq-body">
+      <div class="jq-head">
+        <svg class="jq-bolt" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 L4.5 13.5 H11 L10 22 L19.5 10 H12.5 Z"/></svg>
+        <span class="jq-title" id="jqTitle">Incoming transmission</span>
+      </div>
+      <p class="jq-line" id="jqLine"><span class="jq-cursor">▌</span></p>
+      <form class="jq-form" id="jqForm">
+        <input class="jq-input" id="jqEmail" type="email" placeholder="your@email.com — trains dislike spam" autocomplete="off" />
+        <button class="jq-btn" type="submit">Ping me when live</button>
+      </form>
+      <p class="jq-fine">*No hubs were waited at during the making of this modal.</p>
+    </div>
+  </div>
+</div>
+<style>
+.jq-backdrop{position:fixed;inset:0;z-index:2147483500;background:rgba(5,5,7,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.jq-backdrop.on{opacity:1;visibility:visible}
+.jq-modal{width:min(460px,100%);background:var(--ink,#08080A);border:1px solid rgba(255,255,255,.14);border-radius:16px;box-shadow:0 40px 90px -20px rgba(0,0,0,.7),0 0 60px -20px rgba(212,255,63,.35);overflow:hidden;transform:translateY(14px) scale(.97);transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.jq-backdrop.on .jq-modal{transform:none}
+.jq-chrome{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.08);font-family:'JetBrains Mono',monospace}
+.jq-dots{display:flex;gap:6px}
+.jq-dots i{width:9px;height:9px;border-radius:50%;background:#333}
+.jq-dots i:nth-child(1){background:#E8805F}.jq-dots i:nth-child(2){background:#E0B65A}.jq-dots i:nth-child(3){background:#7FBF6A}
+.jq-url{margin:0 auto;font-size:10px;color:var(--mut,#8B8B90);letter-spacing:.04em}
+.jq-live{margin-left:auto;font-size:10px;letter-spacing:.12em;color:var(--acid,#D4FF3F);display:flex;align-items:center;gap:6px}
+.jq-body{padding:28px 28px 22px}
+.jq-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.jq-bolt{width:22px;height:22px;color:var(--acid,#D4FF3F);filter:drop-shadow(0 0 8px rgba(212,255,63,.6));flex-shrink:0}
+.jq-title{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#e8e8ea}
+.jq-line{font-family:'JetBrains Mono',monospace;font-size:15px;line-height:1.65;color:var(--acid,#D4FF3F);min-height:50px;margin-bottom:18px}
+.jq-cursor{display:inline-block;animation:jqBlink .8s steps(1) infinite;color:var(--acid,#D4FF3F)}
+@keyframes jqBlink{50%{opacity:0}}
+.jq-form{display:flex;flex-direction:column;gap:12px;opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s}
+.jq-form.show{opacity:1;transform:none}
+.jq-input{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:14px 16px;color:#fff;font-family:'JetBrains Mono',monospace;font-size:13px;outline:none;transition:border-color .25s}
+.jq-input:focus{border-color:var(--acid,#D4FF3F)}
+.jq-btn{background:var(--acid,#D4FF3F);color:var(--ink,#08080A);border:none;border-radius:10px;padding:14px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .25s}
+.jq-btn:hover{background:#fff}
+.jq-fine{margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#56565c;text-align:center}
+@media(prefers-reduced-motion:reduce){.jq-cursor{display:none}}
+</style>
+<script>
+(function(){
+  const QUIRKS=[
+    "We've dispatched a response. It left Delhi two days before you clicked.",
+    "This button moves faster than your current carrier. It just needed a destination.",
+    "Error 404: delays not found.",
+    "Sit tight. Heavy things move quickly around here.",
+    "Your click has been loaded onto the next train. It will not wait at hubs.",
+    "Control tower sees you. The tower is impressed. The tower says: watch this.",
+    "We'd call you, but a 200kg payload is using the phone line.",
+    "Calm down — our trains are already on it."
+  ];
+  const POST=[
+    "Ping received. Our train departed with it. ETA: yesterday.",
+    "Good news: you're now in the system. Bad news: so is your old carrier's delay.",
+    "Transmission complete. Someone fast will reach out. Probably next-day."
+  ];
+  const back=document.getElementById('jqBackdrop');
+  if(!back)return;
+  const line=document.getElementById('jqLine');
+  const form=document.getElementById('jqForm');
+  const email=document.getElementById('jqEmail');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let open=false;
+  function typeText(txt,done){
+    if(reduce){line.textContent=txt;if(done)done();return;}
+    let i=0;
+    line.innerHTML='<span class="jq-cursor">▌</span>';
+    const iv=setInterval(()=>{
+      i++;
+      line.innerHTML=txt.slice(0,i)+'<span class="jq-cursor">▌</span>';
+      if(i>=txt.length){clearInterval(iv);if(done)done();}
+    },16);
+  }
+  function openModal(){
+    if(open)return;open=true;
+    form.classList.remove('show');
+    back.classList.add('on');
+    back.setAttribute('aria-hidden','false');
+    email.value='';
+    typeText(QUIRKS[Math.floor(Math.random()*QUIRKS.length)],()=>form.classList.add('show'));
+    setTimeout(()=>email.focus({preventScroll:true}),350);
+  }
+  function closeModal(){
+    if(!open)return;open=false;
+    back.classList.remove('on');
+    back.setAttribute('aria-hidden','true');
+  }
+  document.addEventListener('click',e=>{
+    const c=e.target.closest('a[href]');
+    if(!c)return;
+    const isCta=c.classList.contains('btn-primary')||c.classList.contains('btn-secondary')||c.classList.contains('btn-nav')||c.classList.contains('btn-ink')||c.classList.contains('btn-ghost')||c.closest('.cta-btns')||c.closest('.cta-group');
+    if(isCta){e.preventDefault();openModal();}
+  });
+  back.addEventListener('click',e=>{if(e.target===back)closeModal();});
+  addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    if(!email.value.trim()){typeText("Hold on — trains need a destination, and we need an email.",null);email.focus();return;}
+    form.classList.remove('show');
+    typeText(POST[Math.floor(Math.random()*POST.length)],()=>setTimeout(closeModal,2400));
+  });
+})();
+</script>
+</body>
+</html>
