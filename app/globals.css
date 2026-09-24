@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+/* ============ PROTO DARK THEME (Kimi build — pure black, zinc hierarchy, no accent hues) ============ */
+@theme {
+  /* palette */
+  --color-ink: #000000;
+  --color-ink-2: #0a0a0a;
+  --color-mut: #a1a1aa; /* zinc-400 */
+  --color-mut-dark: #52525b; /* zinc-600 */
+  --color-line: rgba(255, 255, 255, 0.1);
+  --color-line-strong: rgba(255, 255, 255, 0.16);
+
+  /* typography */
+  --font-sans: var(--font-inter), "Inter", sans-serif;
+  --font-mono: var(--font-jetbrains), "JetBrains Mono", monospace;
+
+  /* motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 250ms;
+  --duration-base: 450ms;
+  --duration-slow: 900ms;
+}
+
+/* ============ BASE ============ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: #ffffff;
+  color: #000000;
+}
+
+:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ============ LOAD REVEAL (reference-matched) ============ */
+@keyframes fadeRise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.reveal {
+  opacity: 0;
+  animation: fadeRise 300ms ease-out forwards;
+}
+.d1 { animation-delay: 0ms; }
+.d2 { animation-delay: 80ms; }
+.d3 { animation-delay: 160ms; }
+.d4 { animation-delay: 240ms; }
+.d5 { animation-delay: 320ms; }
+.d6 { animation-delay: 400ms; }
+
+/* ============ UTILITIES ============ */
+@utility text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.55);
+}
+
+/* Reduced motion: neutralize reveals for users who opt out */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
