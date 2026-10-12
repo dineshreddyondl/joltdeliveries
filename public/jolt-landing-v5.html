@@ -390,6 +390,15 @@ h2{font-family:'Space Grotesk';font-size:clamp(30px,3.6vw,44px);font-weight:700;
 .term-line .prompt{color:var(--brand);margin-right:8px}
 
 /* ================================================================ GAP (comparison) */
+h2 em{font-style:italic;color:var(--brand)}
+.trap-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:44px}
+.trap{border:1px solid var(--line-soft);border-radius:var(--radius);padding:28px;background:#fff;display:flex;flex-direction:column;gap:14px;transition:box-shadow .3s,transform .3s}
+.trap:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.trap .badge{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--brand);border:1px solid rgba(194,65,12,.35);border-radius:999px;padding:4px 12px;width:fit-content;background:rgba(232,90,44,.06)}
+.trap h3{font-family:'Space Grotesk';font-size:21px;font-weight:700;letter-spacing:-.02em}
+.trap p{margin-top:12px;font-size:14.5px;line-height:1.65;color:var(--body)}
+.trap .tagline{margin-top:auto;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);border-top:1px dashed var(--line-soft);padding-top:14px}
+@media(max-width:620px){.trap-grid{grid-template-columns:1fr}}
 .gap-compare{margin-top:56px;background:#fff;border:1px solid var(--line-soft);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
 .gc-head{display:grid;grid-template-columns:1fr 1.25fr 1.25fr;border-bottom:1px solid var(--line-soft)}
 .gc-head div{padding:18px 24px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
@@ -692,13 +701,13 @@ footer{border-top:1px solid var(--line-soft);padding:72px 0 36px;background:var(
       <div class="b-card rv">
         <span class="b-num">02</span>
         <h3>The Working Capital Trap</h3>
-        <p>Long transit is a cash trap. Cut transit to 2 days and distributors rotate cash 3x faster.</p>
+        <p>Long transit times are a cash trap for your distributors. Inventory sitting on a truck for 8 days is dead capital. Cut transit to 2 days, and they rotate cash 3x faster.</p>
         <div class="b-art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/><path d="M7 15h.01M12 15h.01"/></svg></div>
       </div>
       <div class="b-card rv">
         <span class="b-num">03</span>
         <h3>The Tech Unlock</h3>
-        <p>The capacity always existed on Indian rail — a black box. We built the orchestration tech to unlock it.</p>
+        <p>The capacity always existed on the Indian rail network&mdash;the fastest, cleanest way to move weight. But it was a black box. We built the orchestration tech to stitch it end-to-end and back it with a guaranteed SLA.</p>
         <div class="b-art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12h8M12 8v8"/><circle cx="12" cy="12" r="9"/></svg></div>
       </div>
     </div>
@@ -710,8 +719,23 @@ footer{border-top:1px solid var(--line-soft);padding:72px 0 36px;background:var(
 <section class="sec" id="gap">
   <div class="wrap">
     <span class="sec-tag rv">The Unfilled Gap</span>
-    <h2 class="rv">You never had a choice. You were forced to use networks that were never built for you.</h2>
+    <h2 class="rv">You never had a choice. You were forced to use networks that were <em>never built for you</em>.</h2>
     <p class="lede rv">A purpose-built heavy express didn&rsquo;t exist. You&rsquo;ve just been surviving on workarounds&mdash;hacking logistics models designed for entirely different categories.</p>
+
+    <div class="trap-grid">
+      <div class="trap courier rv">
+        <span class="badge">Workaround 01</span>
+        <h3>Stretching the Courier Network</h3>
+        <p>You force heavy payloads into parcel networks for speed. The infrastructure breaks: goods get damaged, delays are masked by fake delivery attempts, and punitive dimensional pricing destroys your unit economics.</p>
+        <span class="tagline">A model built for 2kg parcels</span>
+      </div>
+      <div class="trap freight rv">
+        <span class="badge">Workaround 02</span>
+        <h3>Settling for Traditional Transport</h3>
+        <p>You default to LTL freight for capacity. But their model relies on consolidation. Your shipments sit idle in hub yards for days, waiting for enough volume to justify a dispatch. You save money, but lose a week.</p>
+        <span class="tagline">A model built for bulk consolidation</span>
+      </div>
+    </div>
 
     <div class="gap-compare rv">
       <div class="gc-head">
@@ -741,7 +765,7 @@ footer{border-top:1px solid var(--line-soft);padding:72px 0 36px;background:var(
   <div class="wrap">
     <span class="sec-tag rv">The Orchestration Layer</span>
     <h2 class="rv">Not another marketplace. We built the intelligence to unlock India&rsquo;s fastest network.</h2>
-    <p class="lede rv">Marketplaces match supply and demand, then wash their hands of the SLA. We don&rsquo;t.</p>
+    <p class="lede rv">Marketplaces match supply and demand, then wash their hands of the SLA. We don&rsquo;t. Indian rail has always been the fastest way to move weight, but it was an analog black box. We built the tech to run it end-to-end, and we take full accountability for the delivery.</p>
 
     <div class="how-tabs rv" id="howTabs">
       <button class="ht-btn on" data-hp="0">01 · NTO Speed</button>
@@ -805,7 +829,7 @@ footer{border-top:1px solid var(--line-soft);padding:72px 0 36px;background:var(
     <div class="eco-center">
       <span class="sec-tag rv">Live Across Your Logistics Ecosystem</span>
       <h2 class="rv">No integration effort. We&rsquo;re already live where you are.</h2>
-      <p class="lede rv">Express SLAs for your distributors and your end-consumers. Zero IT overhaul required.</p>
+      <p class="lede rv">Express SLAs for your distributors and your end-consumers. Zero IT overhaul required. We plug directly into your existing stack&mdash;just switch us on.</p>
 
       <div class="eco-toggle rv" id="ecoToggle">
         <button class="et-btn on" data-eco="0">B2B · Replenishment</button>
@@ -867,8 +891,8 @@ footer{border-top:1px solid var(--line-soft);padding:72px 0 36px;background:var(
       <h2>Try a pilot on any active route. If we miss the SLA, <span class="u">it&rsquo;s on us.</span></h2>
       <p class="lede">Supply chain leaders are tired of empty vendor promises. Let&rsquo;s look at the data. Pick a route from our live network and run a payload with JOLT. If we miss the guaranteed TAT, the shipment is free.</p>
       <div class="cta-btns">
-        <a href="#top" class="btn-ink acid btn-lg">Check active routes</a>
-        <a href="#top" class="btn-ghost btn-lg">Start the challenge</a>
+        <a href="#eco" class="btn-ink acid btn-lg">Check Active Routes</a>
+        <a href="#cta" class="btn-ghost btn-lg">Start Pilot</a>
       </div>
       <p class="fineprint">*Conditions apply. Pilot SLA guarantees apply strictly to active, serviceable routes and are subject to payload specifications.</p>
     </div>
