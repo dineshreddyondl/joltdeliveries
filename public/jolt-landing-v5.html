@@ -355,7 +355,7 @@ nav.scrolled{background:rgba(255,255,255,.78);backdrop-filter:blur(16px);-webkit
 .logos .lg:hover{color:var(--body)}
 
 /* ================================================================ METRICS */
-.metrics{padding:96px 0;background:var(--bg)}
+.metrics{padding:24px 0;background:var(--bg)}
 .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
 .metric{border:1px solid var(--line-soft);border-radius:var(--radius);padding:30px 26px;background:#fff;transition:box-shadow .3s,transform .3s}
 .metric:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
@@ -390,15 +390,26 @@ h2{font-family:'Space Grotesk';font-size:clamp(30px,3.6vw,44px);font-weight:700;
 .term-line .prompt{color:var(--brand);margin-right:8px}
 
 /* ================================================================ GAP (comparison) */
-h2 em{font-style:italic;color:var(--brand)}
-.trap-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:44px}
-.trap{border:1px solid var(--line-soft);border-radius:var(--radius);padding:28px;background:#fff;display:flex;flex-direction:column;gap:14px;transition:box-shadow .3s,transform .3s}
-.trap:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
-.trap .badge{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--brand);border:1px solid rgba(194,65,12,.35);border-radius:999px;padding:4px 12px;width:fit-content;background:rgba(232,90,44,.06)}
-.trap h3{font-family:'Space Grotesk';font-size:21px;font-weight:700;letter-spacing:-.02em}
-.trap p{margin-top:12px;font-size:14.5px;line-height:1.65;color:var(--body)}
-.trap .tagline{margin-top:auto;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);border-top:1px dashed var(--line-soft);padding-top:14px}
-@media(max-width:620px){.trap-grid{grid-template-columns:1fr}}
+.problem{background:#F4F2ED;color:var(--ink);padding:64px 24px;border-radius:36px 36px 0 0;position:relative}
+.problem .sec-tag{color:#6b6b66}
+.problem .sec-tag::before{background:#6b6b66}
+.problem h2{color:var(--ink)}
+.problem h2 em{font-style:normal;box-shadow:inset 0 -0.38em #D4FF3F;transition:box-shadow .4s}
+.problem h2 em:hover{box-shadow:inset 0 -1em #D4FF3F}
+.problem .lede{color:#55524b}
+.trap-grid{display:grid;grid-template-columns:1fr;gap:20px;margin-top:44px}
+.trap{background:#fff;border:1px solid #e4e0d6;border-radius:18px;padding:40px;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;position:relative;overflow:hidden}
+.trap:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(10,10,11,.1)}
+.trap .badge{font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:6px 12px;border-radius:100px;display:inline-block;margin-bottom:20px}
+.trap.courier .badge{background:#E8F3DE;color:#3f6212}
+.trap.freight .badge{background:#EEEAE2;color:#57534e}
+.trap h3{font-family:'Space Grotesk';font-size:23px;font-weight:700;letter-spacing:-.02em;margin-bottom:12px;color:var(--ink)}
+.trap p{font-size:15.5px;color:#55524b;line-height:1.7}
+.trap .tagline{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6b6b66;margin-top:20px;display:block}
+.problem .verdict{margin-top:40px;text-align:center}
+.problem .verdict p{font-family:'Space Grotesk';font-size:clamp(20px,2.4vw,28px);font-weight:500;letter-spacing:-.01em;font-style:italic;color:#6b6b66}
+.problem .verdict p b{color:var(--ink);font-style:normal}
+@media(min-width:768px){.trap-grid{grid-template-columns:1fr 1fr}.problem{padding:80px 48px}}
 .gap-compare{margin-top:56px;background:#fff;border:1px solid var(--line-soft);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
 .gc-head{display:grid;grid-template-columns:1fr 1.25fr 1.25fr;border-bottom:1px solid var(--line-soft)}
 .gc-head div{padding:18px 24px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
@@ -517,6 +528,79 @@ footer{border-top:1px solid var(--line-soft);padding:72px 0 36px;background:var(
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   html{scroll-behavior:auto}
 }
+
+/* ================================================================ V1 DARK SECTIONS PORT */
+.dk{background:#08080A;color:#fff}
+.dk.sec{padding:64px 24px}
+.dk .sec-tag{color:#D4FF3F}
+.dk .sec-tag::before{background:#D4FF3F}
+.dk h2{color:#fff}
+.dk .lede{color:#8B8B90}
+.dk .term-line{display:flex;align-items:baseline;gap:12px;font-family:'JetBrains Mono',monospace;font-size:15px;color:#e8e8ea;margin:0 0 20px}
+.dk .term-line .prompt{color:#D4FF3F;flex-shrink:0}
+.dk .term-line.foot{margin:28px 0 0}
+.timeline{position:relative;padding-left:56px;max-width:700px;margin-top:44px}
+.timeline::before{content:'';position:absolute;left:15px;top:12px;bottom:12px;width:1px;background:linear-gradient(180deg,rgba(212,255,63,.6),rgba(255,255,255,.1))}
+.tl-item{position:relative;padding-bottom:44px}
+.tl-item:last-child{padding-bottom:0}
+.tl-node{position:absolute;left:-56px;top:0;width:31px;height:31px;border:1px solid rgba(212,255,63,.55);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:#D4FF3F;background:#08080A;box-shadow:0 0 18px rgba(212,255,63,.18)}
+.tl-item h3{font-family:'Space Grotesk';font-size:22px;font-weight:600;letter-spacing:-.02em;margin-bottom:8px;color:#fff}
+.tl-item p{font-size:15px;color:#8B8B90;line-height:1.65;max-width:640px}
+@media(max-width:767px){.timeline{padding-left:46px}.tl-node{left:-46px;width:27px;height:27px;font-size:9px}}
+.pipeline{position:relative;margin-top:48px}
+.pipe-track{position:relative;height:3px;background:rgba(255,255,255,.08);border-radius:3px}
+.pipe-fill{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,#D4FF3F,#8fff5a);border-radius:3px;box-shadow:0 0 20px rgba(212,255,63,.5)}
+.pipe-dot{position:absolute;top:50%;left:0;width:14px;height:14px;background:#D4FF3F;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 22px #D4FF3F}
+.pipe-dot::after{content:'';position:absolute;inset:-7px;border:1px solid rgba(212,255,63,.4);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:1}100%{transform:scale(1.7);opacity:0}}
+.pipe-stop{position:absolute;top:50%;transform:translate(-50%,-50%)}
+.ps-dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.15);transition:background .4s,box-shadow .4s}
+.pipe-stop.hit .ps-dot{background:#D4FF3F;box-shadow:0 0 12px #D4FF3F}
+.pipe-cols{display:grid;grid-template-columns:1fr;gap:36px;margin-top:40px}
+.pipe-col .step{font-family:'JetBrains Mono',monospace;font-size:11px;color:#D4FF3F;letter-spacing:.16em;display:block;margin-bottom:12px}
+.pipe-col h3{font-family:'Space Grotesk';font-size:20px;font-weight:600;margin-bottom:10px;color:#fff}
+.pipe-col p{font-size:15px;color:#8B8B90;line-height:1.65}
+@media(min-width:768px){.pipe-cols{grid-template-columns:repeat(3,1fr);gap:24px}}
+.band{width:100vw;margin-left:calc(50% - 50vw);border-top:1px solid rgba(255,255,255,.08);padding:40px 24px}
+.band-b2b{background:#0d0d10}
+.band-d2c{background:linear-gradient(140deg,#26300a,#161b05)}
+.band-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:18px;align-items:center}
+.band-tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#D4FF3F;display:block}
+.band-side h3{font-family:'Space Grotesk';font-size:clamp(26px,3.4vw,42px);font-weight:700;letter-spacing:-.025em;margin-top:12px;color:#fff}
+.band-d2c .band-side h3{color:#D4FF3F}
+.band-inner p{font-size:16px;color:#b9b9bf;line-height:1.7;max-width:540px}
+@media(min-width:768px){.band-inner{grid-template-columns:1fr 1.25fr;gap:40px}.band{padding:44px 48px}}
+.dk .marquee{border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);padding:20px 0;background:rgba(255,255,255,.015);margin-top:44px}
+.dk .mq-item{font-size:14px;font-weight:500;color:#8f8f94}
+.dk .mq-item::after{content:'\2022';color:#D4FF3F;font-size:10px;margin:0 28px}
+.dk .mq-item:hover{color:#D4FF3F}
+.dk.cta{padding:88px 24px;text-align:center;position:relative;overflow:hidden;background:#08080A}
+.cta-glow{position:absolute;left:50%;top:55%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(212,255,63,.08) 0%,transparent 60%);pointer-events:none}
+.dk.cta h2{font-family:'Space Grotesk';font-weight:700;font-size:clamp(32px,4.6vw,60px);line-height:1.05;letter-spacing:-.035em;margin:0 auto 26px;max-width:900px;position:relative;color:#fff}
+.dk.cta h2 .u{position:relative;white-space:nowrap}
+.dk.cta h2 .u::after{content:'';position:absolute;left:0;bottom:.08em;height:.14em;width:100%;background:#D4FF3F;transform:scaleX(0);transform-origin:left;transition:transform .8s cubic-bezier(.16,1,.3,1) .4s}
+.dk.cta.in h2 .u::after{transform:scaleX(1)}
+.dk.cta .lede{color:#8B8B90;font-size:17px;max-width:620px;margin:0 auto 46px}
+.dk.cta .cta-btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.dk .btn-primary{display:inline-flex;align-items:center;gap:12px;background:#D4FF3F;color:#08080A;padding:18px 34px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;text-decoration:none;border-radius:6px;transition:background .3s,box-shadow .3s}
+.dk .btn-primary:hover{background:#fff;box-shadow:0 0 34px rgba(212,255,63,.25)}
+.dk .btn-secondary{display:inline-flex;align-items:center;padding:18px 34px;font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;text-decoration:none;color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:6px;transition:border-color .3s,background .3s}
+.dk .btn-secondary:hover{border-color:#fff;background:rgba(255,255,255,.04)}
+.dk .fineprint{color:rgba(255,255,255,.42)}
+.dk.cta .sec-tag{justify-content:center}
+@media(min-width:768px){.dk.sec{padding:80px 48px}.dk.cta{padding:96px 48px}}
+footer.dk{background:#08080A;color:#fff;border-top:1px solid rgba(255,255,255,.08);padding:48px 24px 0}
+footer.dk .foot-grid{display:grid;grid-template-columns:1fr;gap:40px;max-width:1240px;margin:0 auto}
+footer.dk .brand .logo{font-family:'Space Grotesk';font-weight:700;font-size:22px;color:#fff}
+footer.dk .brand .by{font-family:'JetBrains Mono';font-size:11px;color:#8B8B90;margin-top:4px;letter-spacing:.06em}
+footer.dk .brand .tag{font-size:14px;color:#8B8B90;margin-top:14px;max-width:280px}
+footer.dk .brand .support{font-family:'JetBrains Mono';font-size:12px;color:#8B8B90;margin-top:16px;letter-spacing:.04em}
+footer.dk .links{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+footer.dk .col h4{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#8B8B90;font-weight:500;margin-bottom:14px}
+footer.dk .col a{display:block;font-size:14px;color:#b9b9bf;text-decoration:none;padding:5px 0;transition:color .2s}
+footer.dk .col a:hover{color:#D4FF3F}
+footer.dk .foot-bar{border-top:1px solid rgba(255,255,255,.08);margin-top:40px;padding:20px 0;font-family:'JetBrains Mono';font-size:11px;letter-spacing:.04em;color:#8f8f94;text-align:center}
+@media(min-width:768px){footer.dk .foot-grid{grid-template-columns:1.2fr 1fr 1fr 1fr}footer.dk .links{grid-column:2/-1;grid-template-columns:1fr 1fr 1fr}}
 </style>
 </head>
 <body>
@@ -684,44 +768,38 @@ footer{border-top:1px solid var(--line-soft);padding:72px 0 36px;background:var(
 </section>
 
 <!-- ==================== WHY NOW ==================== -->
-<section class="sec soft" id="why">
+<section class="sec dk" id="why">
   <div class="wrap">
-    <div class="why-head">
-      <span class="sec-tag rv">Why Now</span>
-      <h2 class="rv">Your customers won&rsquo;t wait 10 days for anything anymore.</h2>
-      <p class="lede rv">Heavy commerce moved online, but logistics didn&rsquo;t. To scale today, you need a network built for modern speed&mdash;not legacy hub-and-spoke delays.</p>
-    </div>
-    <div class="bento">
-      <div class="b-card big rv">
-        <span class="b-num">01</span>
+    <span class="sec-tag rv">Why Now</span>
+    <h2 class="rv">Your customers won&rsquo;t wait 10 days for anything anymore.</h2>
+    <p class="lede rv">Heavy commerce moved online, but logistics didn&rsquo;t. To scale today, you need a network built for modern speed&mdash;not legacy hub-and-spoke delays.</p>
+    <div class="timeline">
+      <div class="tl-item rv">
+        <div class="tl-node"><span>01</span></div>
         <h3>The Expectation Gap</h3>
         <p>Quick-commerce killed consumer patience. Buyers now expect parcel-speed for 200kg payloads. Traditional freight is physically incapable of delivering it.</p>
-        <div class="b-art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
       </div>
-      <div class="b-card rv">
-        <span class="b-num">02</span>
+      <div class="tl-item rv">
+        <div class="tl-node"><span>02</span></div>
         <h3>The Working Capital Trap</h3>
         <p>Long transit times are a cash trap for your distributors. Inventory sitting on a truck for 8 days is dead capital. Cut transit to 2 days, and they rotate cash 3x faster.</p>
-        <div class="b-art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/><path d="M7 15h.01M12 15h.01"/></svg></div>
       </div>
-      <div class="b-card rv">
-        <span class="b-num">03</span>
+      <div class="tl-item rv">
+        <div class="tl-node"><span>03</span></div>
         <h3>The Tech Unlock</h3>
         <p>The capacity always existed on the Indian rail network&mdash;the fastest, cleanest way to move weight. But it was a black box. We built the orchestration tech to stitch it end-to-end and back it with a guaranteed SLA.</p>
-        <div class="b-art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12h8M12 8v8"/><circle cx="12" cy="12" r="9"/></svg></div>
       </div>
     </div>
-    <div class="term-line rv"><span class="prompt">▸</span>Until JOLT.</div>
+    <div class="term-line foot rv"><span class="prompt">▸</span>Until JOLT.</div>
   </div>
 </section>
 
 <!-- ==================== THE GAP ==================== -->
-<section class="sec" id="gap">
+<section class="sec problem" id="gap">
   <div class="wrap">
     <span class="sec-tag rv">The Unfilled Gap</span>
     <h2 class="rv">You never had a choice. You were forced to use networks that were <em>never built for you</em>.</h2>
     <p class="lede rv">A purpose-built heavy express didn&rsquo;t exist. You&rsquo;ve just been surviving on workarounds&mdash;hacking logistics models designed for entirely different categories.</p>
-
     <div class="trap-grid">
       <div class="trap courier rv">
         <span class="badge">Workaround 01</span>
@@ -736,24 +814,6 @@ footer{border-top:1px solid var(--line-soft);padding:72px 0 36px;background:var(
         <span class="tagline">A model built for bulk consolidation</span>
       </div>
     </div>
-
-    <div class="gap-compare rv">
-      <div class="gc-head">
-        <div></div>
-        <div>Legacy way</div>
-        <div class="jolt-col"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 L4.5 13.5 H11 L10 22 L19.5 10 H12.5 Z"/></svg> The JOLT way</div>
-      </div>
-      <div class="gc-row">
-        <div>Transit time</div><div class="gc-old">5&ndash;7 days</div><div class="gc-new">Next-day</div>
-      </div>
-      <div class="gc-row">
-        <div>Handoffs</div><div class="gc-old">Hub waits</div><div class="gc-new">Direct corridor</div>
-      </div>
-      <div class="gc-row">
-        <div>Visibility</div><div class="gc-old">Opaque</div><div class="gc-new">Live SLA tracking</div>
-      </div>
-    </div>
-
     <div class="verdict rv">
       <p>&ldquo;The system isn&rsquo;t broken. <b>It just wasn&rsquo;t built for you.</b>&rdquo;</p>
     </div>
@@ -761,167 +821,113 @@ footer{border-top:1px solid var(--line-soft);padding:72px 0 36px;background:var(
 </section>
 
 <!-- ==================== HOW IT WORKS ==================== -->
-<section class="sec soft" id="how">
+<section class="sec dk" id="how">
   <div class="wrap">
     <span class="sec-tag rv">The Orchestration Layer</span>
     <h2 class="rv">Not another marketplace. We built the intelligence to unlock India&rsquo;s fastest network.</h2>
     <p class="lede rv">Marketplaces match supply and demand, then wash their hands of the SLA. We don&rsquo;t. Indian rail has always been the fastest way to move weight, but it was an analog black box. We built the tech to run it end-to-end, and we take full accountability for the delivery.</p>
-
-    <div class="how-tabs rv" id="howTabs">
-      <button class="ht-btn on" data-hp="0">01 · NTO Speed</button>
-      <button class="ht-btn" data-hp="1">02 · Hubless execution</button>
-      <button class="ht-btn" data-hp="2">03 · Control tower</button>
-    </div>
-
-    <div class="how-panel rv">
-      <div class="hp-content on" data-hp="0">
-        <span class="hp-step">01 / NTO</span>
-        <h3>Next Train Out (NTO) Speed</h3>
-        <p>Aviation has Next Flight Out. We built Next Train Out for heavy commerce. Your payload doesn&rsquo;t wait for a truck to fill up. High-capacity rail bypasses highway tolls, borders, and traffic to deliver non-stop transit&mdash;slashing carbon emissions by 80%.</p>
+    <div class="pipeline" id="pipeline">
+      <div class="pipe-track">
+        <div class="pipe-fill" id="pipeFill"></div>
+        <div class="pipe-dot" id="pipeDot"></div>
+        <div class="pipe-stop" data-p="0" style="left:0%"><div class="ps-dot"></div></div>
+        <div class="pipe-stop" data-p="0.5" style="left:50%"><div class="ps-dot"></div></div>
+        <div class="pipe-stop" data-p="1" style="left:100%"><div class="ps-dot"></div></div>
       </div>
-      <div class="hp-content" data-hp="1">
-        <span class="hp-step">02 / HUBLESS</span>
-        <h3>End-to-End Hubless Execution</h3>
-        <p>From first-mile pickup to final-mile delivery. No consolidation yards. No waiting in truck hubs. We pick up your payload, load it directly onto the rail linehaul, and deliver it straight to the destination. One seamless motion. Zero mid-journey sorting delays.</p>
-      </div>
-      <div class="hp-content" data-hp="2">
-        <span class="hp-step">03 / VISIBILITY</span>
-        <h3>Control Tower Visibility</h3>
-        <p>Real-time tracking across every milestone. Rail used to be a blind spot. Our tech gives your ops team proactive alerts and absolute visibility, allowing us to guarantee the SLA.</p>
-      </div>
-      <div class="hp-art">
-        <svg class="on" data-hp="0" viewBox="0 0 200 140" fill="none">
-          <rect x="30" y="40" width="52" height="36" rx="6" fill="#0C0E09"/>
-          <rect x="38" y="48" width="14" height="10" rx="2" fill="#E85A2C"/>
-          <rect x="56" y="48" width="14" height="10" rx="2" fill="#E85A2C"/>
-          <circle cx="96" cy="46" r="7" fill="#C2410C"/><circle cx="116" cy="66" r="7" fill="#C2410C"/><circle cx="136" cy="82" r="7" fill="#C2410C"/>
-          <path d="M30 84 C 80 84, 120 84, 170 84" stroke="#0C0E09" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 12"/>
-          <path d="M8 120 C 60 90, 140 90, 192 112" stroke="#0C0E09" stroke-width="4" fill="none" opacity=".12" stroke-dasharray="6 8"/>
-        </svg>
-        <svg data-hp="1" viewBox="0 0 200 140" fill="none">
-          <path d="M20 70 C 80 70, 120 70, 180 70" stroke="#0C0E09" stroke-width="4" stroke-dasharray="6 8" opacity=".15"/>
-          <rect x="20" y="52" width="40" height="36" rx="6" fill="#0C0E09"/>
-          <path d="M20 96 L 100 96" stroke="#C2410C" stroke-width="4" stroke-dasharray="6 6"/>
-          <rect x="100" y="78" width="44" height="36" rx="6" fill="#E85A2C" stroke="#0C0E09" stroke-width="2"/>
-          <path d="M112 88 L 118 100 L 132 92" stroke="#0C0E09" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M150 96 L 180 96" stroke="#C2410C" stroke-width="4" stroke-dasharray="6 6"/>
-          <rect x="156" y="84" width="30" height="24" rx="5" fill="#0C0E09"/>
-        </svg>
-        <svg data-hp="2" viewBox="0 0 200 140" fill="none">
-          <rect x="40" y="22" width="120" height="96" rx="10" fill="#0C0E09"/>
-          <rect x="52" y="34" width="96" height="10" rx="5" fill="#E85A2C"/>
-          <rect x="52" y="52" width="38" height="20" rx="4" fill="#EFE9E3"/>
-          <rect x="96" y="52" width="52" height="20" rx="4" fill="#EFE9E3"/>
-          <rect x="52" y="80" width="28" height="20" rx="4" fill="#EFE9E3"/>
-          <rect x="86" y="80" width="28" height="20" rx="4" fill="#EFE9E3"/>
-          <rect x="120" y="80" width="28" height="20" rx="4" fill="#EFE9E3"/>
-          <circle cx="164" cy="24" r="10" fill="#E85A2C" stroke="#0C0E09" stroke-width="2"/>
-          <path d="M159 24 l4 4 l6 -7" stroke="#0C0E09" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+      <div class="pipe-cols">
+        <div class="pipe-col rv"><span class="step">01 / NTO</span><h3>Next Train Out (NTO) Speed</h3><p>Aviation has Next Flight Out. We built Next Train Out for heavy commerce. Your payload doesn&rsquo;t wait for a truck to fill up. High-capacity rail bypasses highway tolls, borders, and traffic to deliver non-stop transit&mdash;slashing carbon emissions by 80%.</p></div>
+        <div class="pipe-col rv"><span class="step">02 / HUBLESS</span><h3>End-to-End Hubless Execution</h3><p>From first-mile pickup to final-mile delivery. No consolidation yards. No waiting in truck hubs. We pick up your payload, load it directly onto the rail linehaul, and deliver it straight to the destination. One seamless motion. Zero mid-journey sorting delays.</p></div>
+        <div class="pipe-col rv"><span class="step">03 / VISIBILITY</span><h3>Control Tower Visibility</h3><p>Real-time tracking across every milestone. Rail used to be a blind spot. Our tech gives your ops team proactive alerts and absolute visibility, allowing us to guarantee the SLA.</p></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ==================== ECOSYSTEM ==================== -->
-<section class="sec" id="eco">
+<section class="sec dk" id="eco">
   <div class="wrap">
-    <div class="eco-center">
-      <span class="sec-tag rv">Live Across Your Logistics Ecosystem</span>
-      <h2 class="rv">No integration effort. We&rsquo;re already live where you are.</h2>
-      <p class="lede rv">Express SLAs for your distributors and your end-consumers. Zero IT overhaul required. We plug directly into your existing stack&mdash;just switch us on.</p>
+    <span class="sec-tag rv">Live Across Your Logistics Ecosystem</span>
+    <h2 class="rv">No integration effort. We&rsquo;re already live where you are.</h2>
+    <p class="lede rv">Express SLAs for your distributors and your end-consumers. Zero IT overhaul required. We plug directly into your existing stack&mdash;just switch us on.</p>
+  </div>
 
-      <div class="eco-toggle rv" id="ecoToggle">
-        <button class="et-btn on" data-eco="0">B2B · Replenishment</button>
-        <button class="et-btn" data-eco="1">D2C · Heavy delivery</button>
+  <div class="band band-b2b rv">
+    <div class="band-inner">
+      <div class="band-side">
+        <span class="band-tag">For Your Distributors</span>
+        <h3>B2B Replenishment</h3>
       </div>
-
-      <div class="eco-panel on rv" data-eco="0">
-        <div>
-          <span class="ep-tag">For Your Distributors</span>
-          <h3>B2B Replenishment</h3>
-          <p>Guaranteed 24-48 hour arrivals mean your distributors stop holding defensive buffer stock. It compresses working capital cycles, kills out-of-stock losses, and unlocks trapped cash.</p>
-        </div>
-        <div class="ep-chips">
-          <div class="ep-chip"><b>24&ndash;48h</b><span>Guaranteed distributor arrivals</span></div>
-          <div class="ep-chip"><b>3x</b><span>Faster cash rotation on inventory</span></div>
-          <div class="ep-chip"><b>0</b><span>Buffer stock required</span></div>
-        </div>
-      </div>
-      <div class="eco-panel rv" data-eco="1">
-        <div>
-          <span class="ep-tag">For Your Consumers</span>
-          <h3>D2C Heavy Delivery</h3>
-          <p>Consumers won&rsquo;t wait 10 days for heavy purchases. Give them a courier-grade post-purchase experience. Drop your cart cancellations and eliminate doorstep rejections on your heaviest items.</p>
-        </div>
-        <div class="ep-chips">
-          <div class="ep-chip"><b>Next-day</b><span>Post-purchase experience</span></div>
-          <div class="ep-chip"><b>&darr;</b><span>Cart cancellations</span></div>
-          <div class="ep-chip"><b>0</b><span>Doorstep rejections</span></div>
-        </div>
-      </div>
-
-      <div class="integrations rv">
-        <small>Plugs into your stack</small>
-        <div class="marquee"><div class="marquee-track">
-          <span class="mq-item">SAP</span><span class="mq-item">Oracle</span><span class="mq-item">Clickpost</span><span class="mq-item">Pando</span><span class="mq-item">eShipz</span><span class="mq-item">Custom REST APIs</span><span class="mq-item">SAP</span><span class="mq-item">Oracle</span><span class="mq-item">Clickpost</span><span class="mq-item">Pando</span><span class="mq-item">eShipz</span><span class="mq-item">Custom REST APIs</span>
-        </div></div>
-      </div>
+      <p>Guaranteed 24-48 hour arrivals mean your distributors stop holding defensive buffer stock. It compresses working capital cycles, kills out-of-stock losses, and unlocks trapped cash.</p>
     </div>
   </div>
-</section>
+  <div class="band band-d2c rv">
+    <div class="band-inner">
+      <div class="band-side">
+        <span class="band-tag">For Your Consumers</span>
+        <h3>D2C Heavy Delivery</h3>
+      </div>
+      <p>Consumers won&rsquo;t wait 10 days for heavy purchases. Give them a courier-grade post-purchase experience. Drop your cart cancellations and eliminate doorstep rejections on your heaviest items.</p>
+    </div>
+  </div>
 
-<!-- ==================== PROOF ==================== -->
-<section class="sec soft" id="proof">
   <div class="wrap">
-    <div class="proof-card rv">
-      <p class="proof-quote"><span class="qmark">&ldquo;</span>Finally, an express layer that doesn&rsquo;t crawl.<span class="qmark">&rdquo;</span></p>
-      <div class="proof-stat">
-        <s>7 days</s><span class="arrow">→</span><span class="now">Next-day · SLA locked</span>
+    <div class="marquee rv" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="mq-item">SAP</span><span class="mq-item">Oracle</span><span class="mq-item">Clickpost</span><span class="mq-item">Pando</span><span class="mq-item">eShipz</span><span class="mq-item">Custom REST APIs</span><span class="mq-item">SAP</span><span class="mq-item">Oracle</span><span class="mq-item">Clickpost</span><span class="mq-item">Pando</span><span class="mq-item">eShipz</span><span class="mq-item">Custom REST APIs</span>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ==================== CHALLENGE CTA ==================== -->
-<section class="cta-sec" id="cta">
+<section class="cta dk rv" id="cta">
+  <div class="cta-glow" id="ctaGlow"></div>
   <div class="wrap">
-    <div class="cta-card rv">
-      <span class="sec-tag">The JOLT Challenge</span>
-      <h2>Try a pilot on any active route. If we miss the SLA, <span class="u">it&rsquo;s on us.</span></h2>
-      <p class="lede">Supply chain leaders are tired of empty vendor promises. Let&rsquo;s look at the data. Pick a route from our live network and run a payload with JOLT. If we miss the guaranteed TAT, the shipment is free.</p>
-      <div class="cta-btns">
-        <a href="#eco" class="btn-ink acid btn-lg">Check Active Routes</a>
-        <a href="#cta" class="btn-ghost btn-lg">Start Pilot</a>
-      </div>
-      <p class="fineprint">*Conditions apply. Pilot SLA guarantees apply strictly to active, serviceable routes and are subject to payload specifications.</p>
+    <span class="sec-tag">The JOLT Challenge</span>
+    <h2>Try a pilot on any active route. If we miss the SLA, <span class="u">it&rsquo;s on us.</span></h2>
+    <p class="lede">Supply chain leaders are tired of empty vendor promises. Let&rsquo;s look at the data. Pick a route from our live network and run a payload with JOLT. If we miss the guaranteed TAT, the shipment is free.</p>
+    <div class="cta-btns">
+      <a href="#eco" class="btn-primary" data-magnet>Check Active Routes</a>
+      <a href="#cta" class="btn-secondary" data-magnet>Start Pilot</a>
     </div>
+    <p class="fineprint">*Conditions apply. Pilot SLA guarantees apply strictly to active, serviceable routes and are subject to payload specifications.</p>
   </div>
 </section>
 
 <!-- ==================== FOOTER ==================== -->
-<footer>
-  <div class="wrap foot-grid">
-    <div class="foot-brand">
-      <div class="logo">JOLT<i>.</i></div>
+<footer class="dk">
+  <div class="foot-grid">
+    <div class="brand">
+      <div class="logo">JOLT</div>
       <div class="by">An ONDL Network Platform</div>
       <div class="tag">India&rsquo;s first express layer for heavy commerce.</div>
       <div class="support">support@ondl.in · +91 80194 61199</div>
     </div>
-    <div class="foot-col">
-      <h4>Product</h4>
-      <a href="#how">How It Works</a><a href="#eco">Solutions</a><a href="#why">Route Network</a><a href="#cta">Pricing</a>
-    </div>
-    <div class="foot-col">
-      <h4>Company</h4>
-      <a href="#">About Us</a><a href="#">Careers</a><a href="#">Case Studies</a><a href="#">Contact</a>
-    </div>
-    <div class="foot-col">
-      <h4>Legal</h4>
-      <a href="#">Terms of Service</a><a href="#">Privacy Policy</a><a href="#">SLA Policy</a><a href="#">Refund Policy</a>
+    <div class="links">
+      <div class="col">
+        <h4>Product</h4>
+        <a href="#how">How It Works</a>
+        <a href="#eco">Solutions</a>
+        <a href="#why">Route Network</a>
+        <a href="#cta">Pricing</a>
+      </div>
+      <div class="col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Careers</a>
+        <a href="#">Case Studies</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="col">
+        <h4>Legal</h4>
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">SLA Policy</a>
+        <a href="#">Refund Policy</a>
+      </div>
     </div>
   </div>
-  <div class="wrap"><div class="foot-bar">&copy; 2026 ONDL Network Private Limited. All rights reserved.</div></div>
+  <div class="foot-bar">&copy; 2026 ONDL Network Private Limited. All rights reserved.</div>
 </footer>
 
 <button id="toTop" aria-label="Back to top">↑</button>
@@ -974,6 +980,34 @@ if(toTopBtn){
   addEventListener('scroll',()=>toTopBtn.classList.toggle('show',scrollY>600),{passive:true});
   toTopBtn.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
 }
+
+
+/* ================= PIPELINE ANIMATION ================= */
+(function(){
+  const sec=document.getElementById('pipeline');
+  if(!sec)return;
+  const fill=document.getElementById('pipeFill'),dot=document.getElementById('pipeDot');
+  const stops=[...document.querySelectorAll('.pipe-stop')];
+  let t=0,dir=1,running=false;
+  function frame(){
+    if(!running)return;
+    t+=dir*0.0022;
+    if(t>=1){t=1;dir=0;setTimeout(()=>{t=0;dir=1;},1400);}
+    if(t<=0){t=0;dir=1;}
+    const pct=t*100;
+    fill.style.width=pct+'%';
+    dot.style.left=pct+'%';
+    stops.forEach(st=>st.classList.toggle('hit',t>=+st.dataset.p-0.001));
+    requestAnimationFrame(frame);
+  }
+  const obs=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting&&!running){running=true;requestAnimationFrame(frame);}
+      else if(!e.isIntersecting)running=false;
+    });
+  },{threshold:.3});
+  obs.observe(sec);
+})();
 
 /* ================= HERO PANEL · V5 DISPATCH BOARD (single timeline) ================= */
 (function(){
@@ -1162,6 +1196,79 @@ if(toTopBtn){
 .jq-btn:hover{background:#fff}
 .jq-fine{margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#56565c;text-align:center}
 @media(prefers-reduced-motion:reduce){.jq-cursor{display:none}}
+
+/* ================================================================ V1 DARK SECTIONS PORT */
+.dk{background:#08080A;color:#fff}
+.dk.sec{padding:64px 24px}
+.dk .sec-tag{color:#D4FF3F}
+.dk .sec-tag::before{background:#D4FF3F}
+.dk h2{color:#fff}
+.dk .lede{color:#8B8B90}
+.dk .term-line{display:flex;align-items:baseline;gap:12px;font-family:'JetBrains Mono',monospace;font-size:15px;color:#e8e8ea;margin:0 0 20px}
+.dk .term-line .prompt{color:#D4FF3F;flex-shrink:0}
+.dk .term-line.foot{margin:28px 0 0}
+.timeline{position:relative;padding-left:56px;max-width:700px;margin-top:44px}
+.timeline::before{content:'';position:absolute;left:15px;top:12px;bottom:12px;width:1px;background:linear-gradient(180deg,rgba(212,255,63,.6),rgba(255,255,255,.1))}
+.tl-item{position:relative;padding-bottom:44px}
+.tl-item:last-child{padding-bottom:0}
+.tl-node{position:absolute;left:-56px;top:0;width:31px;height:31px;border:1px solid rgba(212,255,63,.55);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:#D4FF3F;background:#08080A;box-shadow:0 0 18px rgba(212,255,63,.18)}
+.tl-item h3{font-family:'Space Grotesk';font-size:22px;font-weight:600;letter-spacing:-.02em;margin-bottom:8px;color:#fff}
+.tl-item p{font-size:15px;color:#8B8B90;line-height:1.65;max-width:640px}
+@media(max-width:767px){.timeline{padding-left:46px}.tl-node{left:-46px;width:27px;height:27px;font-size:9px}}
+.pipeline{position:relative;margin-top:48px}
+.pipe-track{position:relative;height:3px;background:rgba(255,255,255,.08);border-radius:3px}
+.pipe-fill{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,#D4FF3F,#8fff5a);border-radius:3px;box-shadow:0 0 20px rgba(212,255,63,.5)}
+.pipe-dot{position:absolute;top:50%;left:0;width:14px;height:14px;background:#D4FF3F;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 22px #D4FF3F}
+.pipe-dot::after{content:'';position:absolute;inset:-7px;border:1px solid rgba(212,255,63,.4);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:1}100%{transform:scale(1.7);opacity:0}}
+.pipe-stop{position:absolute;top:50%;transform:translate(-50%,-50%)}
+.ps-dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.15);transition:background .4s,box-shadow .4s}
+.pipe-stop.hit .ps-dot{background:#D4FF3F;box-shadow:0 0 12px #D4FF3F}
+.pipe-cols{display:grid;grid-template-columns:1fr;gap:36px;margin-top:40px}
+.pipe-col .step{font-family:'JetBrains Mono',monospace;font-size:11px;color:#D4FF3F;letter-spacing:.16em;display:block;margin-bottom:12px}
+.pipe-col h3{font-family:'Space Grotesk';font-size:20px;font-weight:600;margin-bottom:10px;color:#fff}
+.pipe-col p{font-size:15px;color:#8B8B90;line-height:1.65}
+@media(min-width:768px){.pipe-cols{grid-template-columns:repeat(3,1fr);gap:24px}}
+.band{width:100vw;margin-left:calc(50% - 50vw);border-top:1px solid rgba(255,255,255,.08);padding:40px 24px}
+.band-b2b{background:#0d0d10}
+.band-d2c{background:linear-gradient(140deg,#26300a,#161b05)}
+.band-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:18px;align-items:center}
+.band-tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#D4FF3F;display:block}
+.band-side h3{font-family:'Space Grotesk';font-size:clamp(26px,3.4vw,42px);font-weight:700;letter-spacing:-.025em;margin-top:12px;color:#fff}
+.band-d2c .band-side h3{color:#D4FF3F}
+.band-inner p{font-size:16px;color:#b9b9bf;line-height:1.7;max-width:540px}
+@media(min-width:768px){.band-inner{grid-template-columns:1fr 1.25fr;gap:40px}.band{padding:44px 48px}}
+.dk .marquee{border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);padding:20px 0;background:rgba(255,255,255,.015);margin-top:44px}
+.dk .mq-item{font-size:14px;font-weight:500;color:#8f8f94}
+.dk .mq-item::after{content:'\2022';color:#D4FF3F;font-size:10px;margin:0 28px}
+.dk .mq-item:hover{color:#D4FF3F}
+.dk.cta{padding:88px 24px;text-align:center;position:relative;overflow:hidden;background:#08080A}
+.cta-glow{position:absolute;left:50%;top:55%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(212,255,63,.08) 0%,transparent 60%);pointer-events:none}
+.dk.cta h2{font-family:'Space Grotesk';font-weight:700;font-size:clamp(32px,4.6vw,60px);line-height:1.05;letter-spacing:-.035em;margin:0 auto 26px;max-width:900px;position:relative;color:#fff}
+.dk.cta h2 .u{position:relative;white-space:nowrap}
+.dk.cta h2 .u::after{content:'';position:absolute;left:0;bottom:.08em;height:.14em;width:100%;background:#D4FF3F;transform:scaleX(0);transform-origin:left;transition:transform .8s cubic-bezier(.16,1,.3,1) .4s}
+.dk.cta.in h2 .u::after{transform:scaleX(1)}
+.dk.cta .lede{color:#8B8B90;font-size:17px;max-width:620px;margin:0 auto 46px}
+.dk.cta .cta-btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.dk .btn-primary{display:inline-flex;align-items:center;gap:12px;background:#D4FF3F;color:#08080A;padding:18px 34px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;text-decoration:none;border-radius:6px;transition:background .3s,box-shadow .3s}
+.dk .btn-primary:hover{background:#fff;box-shadow:0 0 34px rgba(212,255,63,.25)}
+.dk .btn-secondary{display:inline-flex;align-items:center;padding:18px 34px;font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;text-decoration:none;color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:6px;transition:border-color .3s,background .3s}
+.dk .btn-secondary:hover{border-color:#fff;background:rgba(255,255,255,.04)}
+.dk .fineprint{color:rgba(255,255,255,.42)}
+.dk.cta .sec-tag{justify-content:center}
+@media(min-width:768px){.dk.sec{padding:80px 48px}.dk.cta{padding:96px 48px}}
+footer.dk{background:#08080A;color:#fff;border-top:1px solid rgba(255,255,255,.08);padding:48px 24px 0}
+footer.dk .foot-grid{display:grid;grid-template-columns:1fr;gap:40px;max-width:1240px;margin:0 auto}
+footer.dk .brand .logo{font-family:'Space Grotesk';font-weight:700;font-size:22px;color:#fff}
+footer.dk .brand .by{font-family:'JetBrains Mono';font-size:11px;color:#8B8B90;margin-top:4px;letter-spacing:.06em}
+footer.dk .brand .tag{font-size:14px;color:#8B8B90;margin-top:14px;max-width:280px}
+footer.dk .brand .support{font-family:'JetBrains Mono';font-size:12px;color:#8B8B90;margin-top:16px;letter-spacing:.04em}
+footer.dk .links{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+footer.dk .col h4{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#8B8B90;font-weight:500;margin-bottom:14px}
+footer.dk .col a{display:block;font-size:14px;color:#b9b9bf;text-decoration:none;padding:5px 0;transition:color .2s}
+footer.dk .col a:hover{color:#D4FF3F}
+footer.dk .foot-bar{border-top:1px solid rgba(255,255,255,.08);margin-top:40px;padding:20px 0;font-family:'JetBrains Mono';font-size:11px;letter-spacing:.04em;color:#8f8f94;text-align:center}
+@media(min-width:768px){footer.dk .foot-grid{grid-template-columns:1.2fr 1fr 1fr 1fr}footer.dk .links{grid-column:2/-1;grid-template-columns:1fr 1fr 1fr}}
 </style>
 <script>
 (function(){
