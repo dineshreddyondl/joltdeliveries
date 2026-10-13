@@ -1032,7 +1032,7 @@ if(toTopBtn){
     { n:'BABY CRIB',        s:'28 KG · 1.2 CBM' },
     { n:'APPLIANCE SET',    s:'180 KG · 4.5 CBM' }
   ];
-  const N = ITEMS.length, PER = 0.8, CLOCK_TURN = 8, IMG_END = N * PER, STAMP_OUT = CLOCK_TURN + 1.4, T = STAMP_OUT + .4;
+  const N = ITEMS.length, PER = 0.8, CLOCK_TURN = 7.2, IMG_END = N * PER, STAMP_OUT = CLOCK_TURN + 1.4, T = STAMP_OUT + .4;
   const zone = document.querySelector('.hero-race .pd-zone');
   const frame = $('dbFrame'), flash = $('dbFlash'), stamp = $('dbStamp'), hand = $('dbHand'), chip = $('pdChip'), core = $('dbCore'), shadow = $('dbShadow');
   const imgs = Array.from(document.querySelectorAll('.hero-race .db-frame .it'));
@@ -1077,7 +1077,7 @@ if(toTopBtn){
     }
     flash.style.opacity = f;
 
-    /* clock hand: starts at 12, one full revolution in 8s, completes at 12 o'clock exactly as the stamp slams */
+    /* clock hand: starts at 12, one full revolution in 7.2s (9 x 0.8s), completes at 12 o'clock exactly as the stamp slams */
     const ang = -90 + Math.min(tt, CLOCK_TURN) / CLOCK_TURN * 360;
     hand.style.transform = 'rotate(' + ang.toFixed(2) + 'deg)';
 
