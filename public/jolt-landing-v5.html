@@ -687,7 +687,7 @@ footer.dk .foot-bar{border-top:1px solid rgba(255,255,255,.08);margin-top:40px;p
 
         
 
-        <div class="viz" role="img" aria-label="Live dispatch: heavy shipments — sideboard, shock absorbers, armchair, wingback armchair, sectional sofa, furniture set, blower motor, baby crib, stroller, home appliance set — moving rail-first on a JOLT flatbed. Next-day, zero handoffs.">
+        <div class="viz" role="img" aria-label="Live dispatch: heavy shipments — sideboard, shock absorbers, armchair, wingback armchair, sectional sofa, furniture set, blower motor, baby crib, home appliance set — moving rail-first on a JOLT flatbed. Next-day, zero handoffs.">
           <div class="parade" id="parade" aria-hidden="true">
             <div class="pd-zone">
               <div class="db-shadow" id="dbShadow" aria-hidden="true"></div>
@@ -709,8 +709,7 @@ footer.dk .foot-bar{border-top:1px solid rgba(255,255,255,.08);margin-top:40px;p
                   <img class="it i5" src="assets/payload-5-furniture.png" alt="Mid-century furniture set">
                   <img class="it i6" src="assets/payload-9-blower.png" alt="Blower motor assembly">
                   <img class="it i7" src="assets/payload-10-crib.png" alt="Baby crib">
-                  <img class="it i8" src="assets/payload-12-stroller.jpg" alt="Baby stroller pram">
-                  <img class="it i9" src="assets/payload-11-appliances.png" alt="Home appliance set">
+                  <img class="it i8" src="assets/payload-11-appliances.png" alt="Home appliance set">
                 </div>
               </div>
               <div class="db-grain" aria-hidden="true"></div>
@@ -1031,10 +1030,9 @@ if(toTopBtn){
     { n:'FURNITURE SET',     s:'140 KG · 3.4 CBM' },
     { n:'BLOWER MOTOR',     s:'4 KG · 0.2 CBM' },
     { n:'BABY CRIB',        s:'28 KG · 1.2 CBM' },
-    { n:'STROLLER',         s:'12 KG · 0.9 CBM' },
     { n:'APPLIANCE SET',    s:'180 KG · 4.5 CBM' }
   ];
-  const N = ITEMS.length, PER = 0.8, CLOCK_TURN = 8, IMG_END = N * PER, STAMP_OUT = IMG_END + 1.4, T = STAMP_OUT + .4;
+  const N = ITEMS.length, PER = 0.8, CLOCK_TURN = 8, IMG_END = N * PER, STAMP_OUT = CLOCK_TURN + 1.4, T = STAMP_OUT + .4;
   const zone = document.querySelector('.hero-race .pd-zone');
   const frame = $('dbFrame'), flash = $('dbFlash'), stamp = $('dbStamp'), hand = $('dbHand'), chip = $('pdChip'), core = $('dbCore'), shadow = $('dbShadow');
   const imgs = Array.from(document.querySelectorAll('.hero-race .db-frame .it'));
@@ -1093,18 +1091,18 @@ if(toTopBtn){
 
     /* spec chip: LED tick-in on swap, fades out as stamp approaches */
     const chipIn = Math.min(1, p / .22);
-    const co = (tt < IMG_END - .15 ? 1 : clamp((IMG_END - .05 - tt) / .1)) * chipIn;
+    const co = (tt < CLOCK_TURN - .15 ? 1 : clamp((CLOCK_TURN - .05 - tt) / .1)) * chipIn;
     chip.style.opacity = co;
     chip.style.transform = 'translateX(-50%) translateY(' + ((-7 * (1 - co)) + 5 * (1 - chipIn)).toFixed(2) + 'px) scale(' + ((.55 + .45 * co) * (.9 + .1 * chipIn)).toFixed(3) + ')';
 
     /* DELIVERED stamp slam + board micro-shake on impact */
-    if (tt >= IMG_END - .01 && tt < STAMP_OUT){
-      const su = clamp((tt - IMG_END) / .4);
+    if (tt >= CLOCK_TURN - .01 && tt < STAMP_OUT){
+      const su = clamp((tt - CLOCK_TURN) / .4);
       const so = clamp((STAMP_OUT - tt) / .3);
       stamp.style.opacity = Math.min(su, so);
       stamp.style.transform = 'translate(-50%,-50%) rotate(-8deg) scale(' + (.4 + .6 * bounce(su)).toFixed(3) + ')';
-      const shAmp = 3 * Math.max(0, 1 - (tt - IMG_END) / .18);
-      core.style.transform = 'translate(' + (Math.sin((tt - IMG_END) * 70) * shAmp).toFixed(2) + 'px,0)';
+      const shAmp = 3 * Math.max(0, 1 - (tt - CLOCK_TURN) / .18);
+      core.style.transform = 'translate(' + (Math.sin((tt - CLOCK_TURN) * 70) * shAmp).toFixed(2) + 'px,0)';
     } else { stamp.style.opacity = 0; core.style.transform = ''; }
   }
 
