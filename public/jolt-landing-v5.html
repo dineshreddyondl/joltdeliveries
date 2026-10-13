@@ -687,7 +687,7 @@ footer.dk .foot-bar{border-top:1px solid rgba(255,255,255,.08);margin-top:40px;p
 
         
 
-        <div class="viz" role="img" aria-label="Live dispatch: heavy shipments — sideboard, shock absorbers, armchair, wingback armchair, sectional sofa, furniture set, blower motor, baby crib, home appliance set — moving rail-first on a JOLT flatbed. Next-day, zero handoffs.">
+        <div class="viz" role="img" aria-label="Live dispatch: heavy shipments — sideboard, shock absorbers, armchair, wingback armchair, sectional sofa, furniture set, blower motor, baby crib, mattress, home appliance set — moving rail-first on a JOLT flatbed. Next-day, zero handoffs.">
           <div class="parade" id="parade" aria-hidden="true">
             <div class="pd-zone">
               <div class="db-shadow" id="dbShadow" aria-hidden="true"></div>
@@ -709,7 +709,8 @@ footer.dk .foot-bar{border-top:1px solid rgba(255,255,255,.08);margin-top:40px;p
                   <img class="it i5" src="assets/payload-5-furniture.png" alt="Mid-century furniture set">
                   <img class="it i6" src="assets/payload-9-blower.png" alt="Blower motor assembly">
                   <img class="it i7" src="assets/payload-10-crib.png" alt="Baby crib">
-                  <img class="it i8" src="assets/payload-11-appliances.png" alt="Home appliance set">
+                  <img class="it i8" src="assets/payload-4-mattress.png" alt="Mattress">
+                  <img class="it i9" src="assets/payload-11-appliances.png" alt="Home appliance set">
                 </div>
               </div>
               <div class="db-grain" aria-hidden="true"></div>
@@ -1030,9 +1031,10 @@ if(toTopBtn){
     { n:'FURNITURE SET',     s:'140 KG · 3.4 CBM' },
     { n:'BLOWER MOTOR',     s:'4 KG · 0.2 CBM' },
     { n:'BABY CRIB',        s:'28 KG · 1.2 CBM' },
+    { n:'MATTRESS',         s:'18 KG · 0.6 CBM' },
     { n:'APPLIANCE SET',    s:'180 KG · 4.5 CBM' }
   ];
-  const N = ITEMS.length, PER = 1.5, CLOCK_TURN = 12, IMG_END = N * PER, STAMP_OUT = IMG_END + 1.4, T = STAMP_OUT + .4;
+  const N = ITEMS.length, PER = 0.8, CLOCK_TURN = 8, IMG_END = N * PER, STAMP_OUT = IMG_END + 1.4, T = STAMP_OUT + .4;
   const zone = document.querySelector('.hero-race .pd-zone');
   const frame = $('dbFrame'), flash = $('dbFlash'), stamp = $('dbStamp'), hand = $('dbHand'), chip = $('pdChip'), core = $('dbCore'), shadow = $('dbShadow');
   const imgs = Array.from(document.querySelectorAll('.hero-race .db-frame .it'));
@@ -1077,7 +1079,7 @@ if(toTopBtn){
     }
     flash.style.opacity = f;
 
-    /* clock hand: one full revolution in 12s, parks at 12 through the final image + stamp */
+    /* clock hand: starts at 12, one full revolution in 8s, completes at 12 o'clock exactly as the stamp slams */
     const ang = -90 + Math.min(tt, CLOCK_TURN) / CLOCK_TURN * 360;
     hand.style.transform = 'rotate(' + ang.toFixed(2) + 'deg)';
 
