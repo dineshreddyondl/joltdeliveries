@@ -6,6 +6,8 @@
    Copy is frozen. No external component or animation libraries.
    ========================================================================== */
 
+import { MetricsBand } from "@/components/sections/metrics-band";
+
 export default function Home() {
   return (
     <>
@@ -125,6 +127,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ===================== METRICS BAND (Brief 01) ===================== */}
+      <MetricsBand />
     </>
   );
 }
