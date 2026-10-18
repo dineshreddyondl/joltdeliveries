@@ -4,8 +4,8 @@
  * Why Now — narrative section · Brief 05 (claim-corrected)
  * Frozen v5 port: dark `#08080A` band, sec-tag, H2, lede, 3-node
  * timeline, footnote, "▸ Until JOLT." term line. Copy per Brief 05
- * (audit replacements: no "10 days", no "killed", no "8 days", no
- * unhedged 3x, "cleanest" not "fastest").
+ * (audit replacements: invented day-counts dropped, "killed" softened,
+ * hedged 3x rotation with footnote, "cleanest" not "fastest").
  */
 
 import { Space_Grotesk } from "next/font/google";

@@ -11,6 +11,7 @@ import { Nav } from "@/components/sections/nav";
 import { WhyNow } from "@/components/sections/why-now";
 import { Gap } from "@/components/sections/gap";
 import { HowItWorks } from "@/components/sections/how-it-works";
+import { Ecosystem } from "@/components/sections/ecosystem";
 
 export default function Home() {
   return (
@@ -66,6 +67,9 @@ export default function Home() {
 
       {/* ============ HOW IT WORKS (Brief 06, claim-corrected) =========== */}
       <HowItWorks />
+
+      {/* ============== ECOSYSTEM (Brief 07, generic marquee) ============ */}
+      <Ecosystem />
     </>
   );
 }
