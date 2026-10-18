@@ -10,17 +10,84 @@
   right: 0;
   z-index: 1000;
   display: flex;
+  flex-direction: column;
+}
+.row {
+  display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 18px 32px;
   background: rgba(255, 255, 255, 0);
   transition: background 0.3s, box-shadow 0.3s, backdrop-filter 0.3s;
 }
-.scrolled {
+.scrolled .row {
   background: rgba(255, 255, 255, 0.78);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 1px 0 rgba(12, 14, 9, 0.1);
+}
+
+/* ---------- utility bar (Brief 09) ---------- */
+.util {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #08080a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 7px 32px;
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+}
+.utilLive {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8b8b90;
+}
+.utilSq {
+  width: 6px;
+  height: 6px;
+  background: #e85a2c;
+  animation: utilBlink 1.6s infinite;
+}
+@keyframes utilBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.utilCtas {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.utilCtas button,
+.utilCtas a {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #e8e8ea;
+  padding: 0;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.utilCtas button:hover,
+.utilCtas a:hover {
+  color: #e85a2c;
+}
+.utilCtas button:focus-visible,
+.utilCtas a:focus-visible {
+  outline: 2px solid #e85a2c;
+  outline-offset: 3px;
 }
 .navLogo {
   display: inline-flex;
@@ -56,6 +123,12 @@
 }
 @media (max-width: 640px) {
   .brandWord {
+    display: none;
+  }
+  .row {
+    padding: 14px 20px;
+  }
+  .util {
     display: none;
   }
 }

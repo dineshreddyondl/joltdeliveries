@@ -303,16 +303,27 @@ export function ServiceabilityChecker() {
     setAnnouncement("");
   };
 
-  const handleOpenChange = (next: boolean) => {
-    setOpen(next);
-    if (next) {
-      // Fresh check every time the dialog opens.
-      setState("idle");
-      setData(null);
-      setAnnouncement("");
-      reset();
-    }
-  };
+  const handleOpenChange = React.useCallback(
+    (next: boolean) => {
+      setOpen(next);
+      if (next) {
+        // Fresh check every time the dialog opens.
+        setState("idle");
+        setData(null);
+        setAnnouncement("");
+        reset();
+      }
+    },
+    [reset],
+  );
+
+  /* External open hook: lets the nav utility bar open this dialog via the
+     `jolt:open-checker` window event (same pattern as the pilot flow). */
+  React.useEffect(() => {
+    const onOpen = () => handleOpenChange(true);
+    window.addEventListener("jolt:open-checker", onOpen);
+    return () => window.removeEventListener("jolt:open-checker", onOpen);
+  }, [handleOpenChange]);
 
   const submitted = lastSubmittedRef.current;
   const pin = (value: string | undefined, fallback: string) =>
