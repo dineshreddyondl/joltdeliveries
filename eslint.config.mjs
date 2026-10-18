@@ -11,9 +11,9 @@ const compat = new FlatCompat({
 
 /**
  * ESLint 9 flat config for the JOLT site.
- * Uses Next.js's core-web-vitals + typescript presets via FlatCompat
- * (eslint-config-next 15.5 ships legacy-config format; Next 16+ has
- * native flat config).
+ * eslint-config-next 15.5 ships legacy-config format, so the Next presets
+ * are loaded via FlatCompat. (Native flat exports arrive with Next 16 —
+ * switch to `eslint-config-next/core-web-vitals` + `/typescript` then.)
  */
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
@@ -27,8 +27,6 @@ const eslintConfig = [
       "design-reference/**",
       "frozen design/**",
       "next-env.d.ts",
-      "*.config.mjs",
-      "*.config.ts",
     ],
   },
 ];
