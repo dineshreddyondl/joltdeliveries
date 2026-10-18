@@ -546,7 +546,10 @@
   object-fit: contain;
   opacity: 0;
 }
-.it.on {
+/* The rAF loop toggles the literal class "on" via classList — it must stay
+   un-hashed (CSS Modules hashes `.on` inside `.it.on`, so that pairing
+   never matched and the board rendered no image at all). */
+.it:global(.on) {
   opacity: 1;
 }
 .dbGrain {
