@@ -10,6 +10,7 @@ import { MetricsBand } from "@/components/sections/metrics-band";
 import { Nav } from "@/components/sections/nav";
 import { WhyNow } from "@/components/sections/why-now";
 import { Gap } from "@/components/sections/gap";
+import { HowItWorks } from "@/components/sections/how-it-works";
 
 export default function Home() {
   return (
@@ -62,6 +63,9 @@ export default function Home() {
       {/* =============== NARRATIVE (Brief 05, claim-corrected) ============ */}
       <WhyNow />
       <Gap />
+
+      {/* ============ HOW IT WORKS (Brief 06, claim-corrected) =========== */}
+      <HowItWorks />
     </>
   );
 }
