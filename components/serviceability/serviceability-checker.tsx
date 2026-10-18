@@ -548,13 +548,16 @@ export function ServiceabilityChecker() {
       >
         <WhatsAppIcon /> Notify me when live <ArrowIcon />
       </a>
-      <a
-        href="#pilot"
-        onClick={() => setOpen(false)}
+      <button
+        type="button"
+        onClick={() => {
+          setOpen(false);
+          window.dispatchEvent(new Event("jolt:open-pilot"));
+        }}
         className={SECONDARY_BTN}
       >
         Or request pilot pricing <ArrowIcon />
-      </a>
+      </button>
     </div>
   );
 

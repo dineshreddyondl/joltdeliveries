@@ -173,14 +173,26 @@ export function PilotFlow({ triggerClassName }: { triggerClassName?: string }) {
   const step1Ref = React.useRef<HTMLInputElement>(null);
   const step2Ref = React.useRef<HTMLInputElement>(null);
 
-  const resetFlow = () => {
+  const resetFlow = React.useCallback(() => {
     setPhase("step1");
     setReference(null);
     setAnnouncement("");
     submittedRef.current = null;
     step1.reset();
     step2.reset();
-  };
+  }, [step1, step2]);
+
+  /* External open hook: lets other conversion surfaces (serviceability
+     checker's "request pilot pricing") open this dialog via the
+     `jolt:open-pilot` window event. */
+  React.useEffect(() => {
+    const onOpen = () => {
+      resetFlow();
+      setOpen(true);
+    };
+    window.addEventListener("jolt:open-pilot", onOpen);
+    return () => window.removeEventListener("jolt:open-pilot", onOpen);
+  }, [resetFlow]);
 
   const handleOpenChange = (next: boolean) => {
     setOpen(next);
