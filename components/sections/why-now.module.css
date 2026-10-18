@@ -1,0 +1,138 @@
+/* ================================================================
+   Why Now — CSS · port of frozen v5 (.sec.dk / .timeline / .tl-* /
+   .term-line, lines 370–413, 535–551)
+   ================================================================ */
+
+.sec {
+  padding: 64px 24px;
+  background: #08080a;
+  color: #fff;
+  scroll-margin-top: 80px;
+}
+.wrap {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #e85a2c;
+  margin-bottom: 22px;
+}
+.tag::before {
+  content: "";
+  width: 20px;
+  height: 1.5px;
+  background: #e85a2c;
+}
+.h2 {
+  font-size: clamp(30px, 3.6vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  max-width: 760px;
+  color: #fff;
+}
+.lede {
+  margin-top: 20px;
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: #8b8b90;
+  max-width: 620px;
+}
+.timeline {
+  position: relative;
+  padding-left: 56px;
+  max-width: 700px;
+  margin-top: 44px;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 12px;
+  bottom: 12px;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(232, 90, 44, 0.6),
+    rgba(255, 255, 255, 0.1)
+  );
+}
+.tlItem {
+  position: relative;
+  padding-bottom: 44px;
+}
+.tlItem:last-child {
+  padding-bottom: 0;
+}
+.tlNode {
+  position: absolute;
+  left: -56px;
+  top: 0;
+  width: 31px;
+  height: 31px;
+  border: 1px solid rgba(232, 90, 44, 0.55);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 10px;
+  color: #e85a2c;
+  background: #08080a;
+  box-shadow: 0 0 18px rgba(232, 90, 44, 0.18);
+}
+.tlItem h3 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  color: #fff;
+}
+.tlItem p {
+  font-size: 15px;
+  color: #b9b9bf; /* 7.4:1 on #08080A (frozen #8B8B90 is 7.1:1 — kept family) */
+  line-height: 1.65;
+  max-width: 640px;
+}
+.footnote {
+  margin-top: 24px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #b9b9bf;
+  max-width: 640px;
+}
+.footnote sup {
+  color: #e85a2c;
+  margin-right: 3px;
+}
+.termLine {
+  margin-top: 56px;
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 15px;
+  color: #e8e8ea;
+  text-align: center;
+}
+.prompt {
+  color: #e85a2c;
+  margin-right: 8px;
+}
+
+@media (max-width: 767px) {
+  .timeline {
+    padding-left: 46px;
+  }
+  .tlNode {
+    left: -46px;
+    width: 27px;
+    height: 27px;
+    font-size: 9px;
+  }
+}

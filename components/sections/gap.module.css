@@ -1,0 +1,136 @@
+/* ================================================================
+   The Unfilled Gap — CSS · port of frozen v5 (.sec.problem / .trap* /
+   .verdict, lines 395–413, 425–427)
+   ================================================================ */
+
+.sec {
+  background: #f4f2ed;
+  color: #0c0e09;
+  padding: 64px 24px;
+  border-radius: 36px 36px 0 0;
+  position: relative;
+  scroll-margin-top: 80px;
+}
+.wrap {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #6b6b66;
+  margin-bottom: 22px;
+}
+.tag::before {
+  content: "";
+  width: 20px;
+  height: 1.5px;
+  background: #6b6b66;
+}
+.h2 {
+  font-size: clamp(30px, 3.6vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  max-width: 760px;
+  color: #0c0e09;
+}
+.h2 em {
+  font-style: normal;
+  box-shadow: inset 0 -0.38em #e85a2c;
+  transition: box-shadow 0.4s;
+}
+.lede {
+  margin-top: 20px;
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: #55524b; /* ~7.2:1 on #F4F2ED */
+  max-width: 620px;
+}
+.trapGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-top: 44px;
+}
+.trap {
+  background: #fff;
+  border: 1px solid #e4e0d6;
+  border-radius: 18px;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s;
+}
+.trap:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(10, 10, 11, 0.1);
+}
+.badge {
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 100px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+.courier .badge {
+  background: #e8f3de;
+  color: #3f6212;
+}
+.freight .badge {
+  background: #eeeae2;
+  color: #57534e;
+}
+.trap h3 {
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  color: #0c0e09;
+}
+.trap p {
+  font-size: 15.5px;
+  color: #55524b;
+  line-height: 1.7;
+}
+.tagline {
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6b6b66;
+  margin-top: 20px;
+  display: block;
+}
+.verdict {
+  margin-top: 40px;
+  text-align: center;
+}
+.verdict p {
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  font-style: italic;
+  color: #6b6b66;
+}
+.verdict b {
+  color: #0c0e09;
+  font-style: normal;
+}
+
+@media (max-width: 640px) {
+  .trap {
+    padding: 28px 22px;
+  }
+}

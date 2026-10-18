@@ -71,8 +71,9 @@ cp .env.example .env.local
 npx tsc --noEmit
 npm run lint          # eslint . — 0 errors / 0 warnings
 npm run build         # stop `next dev` first — shared .next cache
-# Banned-claims sweep (AGENTS.md table):
-grep -rn -E "first express layer|Traditional Logistics|99\.2|1\.4T|3x faster|80% less carbon" app components
+# Banned-claims sweep (AGENTS.md table — banned/unhedged forms only;
+# the guardrail's allowed "Up to 3x faster rotation…" wording is NOT flagged):
+grep -rn -E "first express layer|Express Layer for Heavy|Traditional Logistics|99\.2|1\.4T|80% less carbon|Quick-commerce killed|cash 3x faster|cut transit to 2 days" app components
 # Browser pass + contrast/keyboard audit (dev server running):
 PLAYWRIGHT_BROWSERS_PATH=0 node /Users/dinesh/.jolt-verify/verify-browser.mjs
 PLAYWRIGHT_BROWSERS_PATH=0 node /Users/dinesh/.jolt-verify/a11y-check.mjs

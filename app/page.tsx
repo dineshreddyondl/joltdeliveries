@@ -8,6 +8,8 @@
 import { Hero } from "@/components/sections/hero";
 import { MetricsBand } from "@/components/sections/metrics-band";
 import { Nav } from "@/components/sections/nav";
+import { WhyNow } from "@/components/sections/why-now";
+import { Gap } from "@/components/sections/gap";
 
 export default function Home() {
   return (
@@ -56,6 +58,10 @@ export default function Home() {
 
       {/* ===================== METRICS BAND (Brief 01) ===================== */}
       <MetricsBand />
+
+      {/* =============== NARRATIVE (Brief 05, claim-corrected) ============ */}
+      <WhyNow />
+      <Gap />
     </>
   );
 }
