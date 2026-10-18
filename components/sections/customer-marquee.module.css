@@ -1,0 +1,42 @@
+/* Customer marquee — frozen v5 port (.marquee.cust-mq, lines 143–145,
+   .marquee/.marquee-track, lines 460–461). */
+
+.marquee {
+  border-top: 1px solid rgba(12, 14, 9, 0.08);
+  border-bottom: 1px solid rgba(12, 14, 9, 0.08);
+  padding: 12px 0;
+  margin-top: 30px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.track {
+  display: flex;
+  width: max-content;
+  animation: custScroll 26s linear infinite;
+}
+.marquee:hover .track {
+  animation-play-state: paused;
+}
+.item {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #9aa08e;
+  padding: 0 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 26px;
+  white-space: nowrap;
+}
+.spark {
+  width: 8px;
+  height: 8px;
+  color: #e85a2c;
+  flex-shrink: 0;
+}
+@keyframes custScroll {
+  to {
+    transform: translateX(-50%);
+  }
+}

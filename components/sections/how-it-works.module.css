@@ -226,17 +226,6 @@
   color: #b9b9bf; /* 7.4:1 on #08080A (frozen #8B8B90 ≈ 7.1:1) */
   line-height: 1.65;
 }
-.footnote {
-  margin-top: 28px;
-  font-size: 12px;
-  line-height: 1.6;
-  color: #b9b9bf;
-  max-width: 700px;
-}
-.footnote sup {
-  color: #e85a2c;
-  margin-right: 3px;
-}
 
 @media (min-width: 768px) {
   .cols {

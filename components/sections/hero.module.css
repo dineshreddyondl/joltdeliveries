@@ -389,19 +389,6 @@
   box-shadow: 0 0 8px rgba(232, 90, 44, 0.55);
 }
 
-/* ---------- CO₂ pillar footnote (claim-corrected copy) ---------- */
-.footnote {
-  margin: 10px 0 0;
-  font-size: 12px;
-  line-height: 1.6;
-  color: #4a4e44;
-  max-width: 560px;
-}
-.footnote sup {
-  color: #c2410c;
-  margin-right: 3px;
-}
-
 /* ---------- hero race panel · V5 dispatch board ---------- */
 .heroRace {
   position: relative;

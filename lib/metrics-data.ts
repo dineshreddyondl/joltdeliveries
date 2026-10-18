@@ -94,9 +94,8 @@ export const RELIABLE_AUDITED = {
     "Definition: % of shipments arriving within the committed window, last 90 days, all live lanes. Money-back remedy on missed windows.",
 } as const;
 
-/* ---------- Footnotes (cards 3 and 4) ---------- */
+/* ---------- Footnote (card 4) ---------- */
 export const FOOTNOTES = {
-  co2: "NITI Aayog, “Fast Tracking Freight in India” (2021): rail 11.5 vs road 101 g CO₂/tonne-km (~89% less). Smart Freight Centre India Default GHG Values (2025): 81–87% lower vs road HDT classes, WTW basis. ≈ 8 kg CO₂e avoided per 200 kg shipment HYD–BLR.",
   capital:
     "Where rail transit cuts road transit 3× or more (e.g. HYD–BLR); applies to in-transit working capital, not total inventory.",
 } as const;

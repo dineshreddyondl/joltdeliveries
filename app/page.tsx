@@ -6,6 +6,7 @@
    ========================================================================== */
 
 import { Hero } from "@/components/sections/hero";
+import { CustomerMarquee } from "@/components/sections/customer-marquee";
 import { MetricsBand } from "@/components/sections/metrics-band";
 import { Nav } from "@/components/sections/nav";
 import { WhyNow } from "@/components/sections/why-now";
@@ -22,43 +23,8 @@ export default function Home() {
       <Nav />
       <Hero />
 
-      {/* ===================== PROOF STRIP (dark band — explicit bg per architecture §3) ===================== */}
-      <section className="reveal d6 border-t border-white/10 bg-[#08080A] text-white">
-        <div className="mx-auto grid max-w-[1280px] grid-cols-2 md:grid-cols-4">
-          <div className="border-l border-white/10 px-7 py-8 first:border-l-0 first:pl-10 last:pr-10 max-md:px-5 max-md:py-6 max-md:first:pl-5 max-md:odd:border-l-0">
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-500">
-              Mechanism
-            </p>
-            <p className="mt-[10px] text-[15px] font-medium leading-[1.4] text-white">
-              Next Train Out (NTO)
-            </p>
-          </div>
-          <div className="border-l border-white/10 px-7 py-8 first:border-l-0 first:pl-10 last:pr-10 max-md:px-5 max-md:py-6 max-md:first:pl-5 max-md:odd:border-l-0">
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-500">
-              Payload Class
-            </p>
-            <p className="mt-[10px] text-[15px] font-medium leading-[1.4] text-white">
-              20kg to 5+ Tonnes
-            </p>
-          </div>
-          <div className="border-l border-white/10 px-7 py-8 first:border-l-0 first:pl-10 last:pr-10 max-md:px-5 max-md:py-6 max-md:first:pl-5 max-md:odd:border-l-0">
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-500">
-              Corridor Velocity
-            </p>
-            <p className="mt-[10px] text-[15px] font-medium leading-[1.4] text-white">
-              Next-Day Short · 1–2 Day Medium · Day-3 Long
-            </p>
-          </div>
-          <div className="border-l border-white/10 px-7 py-8 first:border-l-0 first:pl-10 last:pr-10 max-md:px-5 max-md:py-6 max-md:first:pl-5 max-md:odd:border-l-0">
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-500">
-              Sorting Yards
-            </p>
-            <p className="mt-[10px] text-[15px] font-medium leading-[1.4] text-white">
-              ZERO Intermediate Hubs
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* ========== CUSTOMER MARQUEE (frozen v5, founder-restored) ========= */}
+      <CustomerMarquee />
 
       {/* ===================== METRICS BAND (Brief 01) ===================== */}
       <MetricsBand />

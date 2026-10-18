@@ -12,7 +12,6 @@
 import { Space_Grotesk } from "next/font/google";
 import { motion, type Variants } from "motion/react";
 
-import { FOOTNOTES } from "@/lib/metrics-data";
 import { useReveal } from "@/components/ui/use-reveal";
 import { cn } from "@/lib/utils";
 import styles from "./how-it-works.module.css";
@@ -137,17 +136,6 @@ export function HowItWorks() {
             </motion.div>
           ))}
         </div>
-
-        <motion.p
-          variants={rv}
-          custom={6}
-          initial={animateIn ? "hidden" : false}
-          animate={show as never}
-          className={styles.footnote}
-        >
-          <sup aria-hidden="true">†</sup>
-          {FOOTNOTES.co2}
-        </motion.p>
       </div>
     </section>
   );

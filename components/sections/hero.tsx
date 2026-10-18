@@ -457,7 +457,7 @@ export function Hero() {
             <span className={styles.plItem}>
               <i className={styles.plSq} />
               up to <span className={styles.plAcid}>89%</span> less CO₂ per
-              tonne-km<sup aria-hidden="true">†</sup>
+              tonne-km
             </span>
           </motion.div>
 
@@ -498,12 +498,6 @@ export function Hero() {
               </div>
             </div>
           </motion.div>
-
-          <p className={styles.footnote}>
-            <sup>†</sup>
-            Rail 10.6 vs road 55–82 gCO₂e/tonne-km (NITI Aayog 2021; Smart
-            Freight Centre India 2025)
-          </p>
         </div>
 
         {/* ---------- RIGHT · V5 dispatch board ---------- */}
