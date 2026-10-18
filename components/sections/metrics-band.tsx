@@ -17,7 +17,7 @@
  * - SSR: tickers render their target value server-side (no "0" flash).
  */
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Space_Grotesk } from "next/font/google";
 import { motion, useInView, type Variants } from "motion/react";
 
@@ -36,6 +36,10 @@ const sg = Space_Grotesk({
   weight: "700",
   display: "swap",
 });
+
+/* SSR-safe layout effect: runs before paint on the client, no-op on server. */
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 const cardVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -75,6 +79,13 @@ export function MetricsBand() {
 
   const [reduceMotion, setReduceMotion] = useState(false);
   const [now, setNow] = useState<Date | null>(null);
+
+  /* Hydration-safe animation gate (same pattern as Hero): SSR + first
+     client render show the final values with no hidden styles; animation
+     starts from hidden only after mount, and never for reduced motion. */
+  const [ready, setReady] = useState(false);
+  useIsomorphicLayoutEffect(() => setReady(true), []);
+  const animateIn = ready && !reduceMotion;
 
   useEffect(() => {
     setReduceMotion(
@@ -183,8 +194,8 @@ export function MetricsBand() {
               key={c.key}
               custom={i}
               variants={cardVariants}
-              initial={reduceMotion ? false : "hidden"}
-              animate={bandInView || reduceMotion ? "show" : "hidden"}
+              initial={animateIn ? "hidden" : false}
+              animate={animateIn ? (bandInView ? "show" : "hidden") : false}
               className={cn(
                 "rounded-[18px] border border-[rgba(12,14,9,0.06)] bg-white p-[30px_26px]",
                 reduceMotion

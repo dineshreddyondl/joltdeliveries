@@ -13,7 +13,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "JOLT — India's Express Layer for Heavy Commerce",
+  title: "JOLT — India's Rail-First Express Network for 200kg+ B2B",
   description:
     "Direct, rail-led, next-day delivery for heavy shipments — with courier-grade tracking and guaranteed SLAs.",
 };
@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} bg-black font-sans text-white antialiased`}
+        className={`${inter.variable} ${jetbrainsMono.variable} bg-[#FBFCF8] font-sans text-[#0C0E09] antialiased`}
       >
         {children}
       </body>

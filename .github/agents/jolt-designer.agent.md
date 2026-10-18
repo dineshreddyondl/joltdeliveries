@@ -14,10 +14,15 @@ Receive a design brief (section, goals, constraints, acceptance criteria) and pr
 
 ## The frozen design system — you must design within it
 
-- **Colors:** ink `#08080A`, ink-2 `#101013`, paper `#F4F2ED`, accent acid `#D4FF3F`, muted `#8B8B90`, line `rgba(255,255,255,.08)`, line-strong `rgba(255,255,255,.16)`
+- **Colors:** white hero `#FFFFFF` (tint `#F5F7F2`), ink `#0C0E09`, dark sections `#08080A`, accent orange `#C2410C` / `#E85A2C` (used sparingly), body `#4A4E44`, muted `#878B80`/`#8B8B90`, line `rgba(255,255,255,.08)`, line-strong `rgba(255,255,255,.16)`. NOTE: the old acid `#D4FF3F` ink/paper palette is retired — orange is current.
 - **Fonts:** Space Grotesk (display), Inter (body), JetBrains Mono (labels/eyebrows) — via Google Fonts `<link>` or `@import`
 - **Rhythm:** 24px base unit; 240px gaps between sections; desktop-first, note mobile behavior
-- **Style DNA:** dark-first, high contrast, monochrome backgrounds with the acid accent used sparingly for emphasis/state. Cards use subtle `rgba(255,255,255,.015)` fills, 1px `--line` borders, 16–20px radii. Labels are uppercase JetBrains Mono with wide letter-spacing.
+- **Style DNA:** white hero → alternating dark sections (`#08080A`), high contrast, hairline borders, grain/noise overlay on hero + dark, background-tint elevation on dark (no heavy shadows). Accent orange used sparingly for emphasis/state (≤3x per screen). Cards use subtle `rgba(255,255,255,.015)` fills, 1px `--line` borders, 16–20px radii. Labels are uppercase JetBrains Mono with wide letter-spacing.
+
+## Mandatory reading before designing
+
+1. `docs/uplift-spec.md` — decision layer. §0 claim corrections OVERRIDE any copy you find in frozen designs. Never use banned wording ("India's first", bare "99.2% SLA", "1.4T CO₂/lane", "3x cash rotation", DFC references).
+2. The relevant `docs/research/0X-*.md` report for your section.
 
 ## Hard rules
 

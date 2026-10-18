@@ -1,14 +1,17 @@
 @import "tailwindcss";
 
-/* ============ PROTO DARK THEME (Kimi build — pure black, zinc hierarchy, no accent hues) ============ */
+/* ============ JOLT DESIGN TOKENS (current, per AGENTS.md / architecture.md) ============ */
 @theme {
-  /* palette */
-  --color-ink: #000000;
-  --color-ink-2: #0a0a0a;
-  --color-mut: #a1a1aa; /* zinc-400 */
-  --color-mut-dark: #52525b; /* zinc-600 */
-  --color-line: rgba(255, 255, 255, 0.1);
-  --color-line-strong: rgba(255, 255, 255, 0.16);
+  /* palette — white hero, ink, orange accent */
+  --color-ink: #0c0e09;
+  --color-ink-body: #4a4e44;
+  --color-paper: #fbfcf8;
+  --color-paper-pure: #ffffff;
+  --color-dark: #08080a;
+  --color-accent: #e85a2c;
+  --color-accent-deep: #c2410c;
+  --color-mut: #878b80;
+  --color-mut-dark: #6e7366;
 
   /* typography */
   --font-sans: var(--font-inter), "Inter", sans-serif;
@@ -38,7 +41,7 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid #ffffff;
+  outline: 2px solid #e85a2c; /* visible on both white hero and dark sections */
   outline-offset: 3px;
   border-radius: 2px;
 }

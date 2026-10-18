@@ -13,7 +13,8 @@
  *    methodology ("% of shipments arriving within the committed window")
  *    PLUS window ("last 90 days, all live lanes") PLUS a money-back/credit
  *    remedy. ALL of these unlock Option A. Do NOT publish Option A with
- *    only the % — the bare "99.2% SLA adherence" claim is banned.
+ *    only the % — the bare, unaudited SLA-adherence percentage is a banned
+ *    claim (AGENTS.md guardrail table).
  *
  * 2. liveMetricBase — real ops figure + refresh rate, if the LIVE number
  *    itself should reflect ops data. Today only the timestamp ticks; the
