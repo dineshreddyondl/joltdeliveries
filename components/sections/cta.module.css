@@ -1,0 +1,145 @@
+/* ================================================================
+   Challenge CTA — CSS · port of frozen v5 (.dk.cta, .cta-glow,
+   .cta-btns, .fineprint, .u — lines 579–593)
+   ================================================================ */
+
+.sec {
+  padding: 88px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: #08080a;
+  scroll-margin-top: 80px;
+}
+.glow {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(circle, rgba(232, 90, 44, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #e85a2c;
+  margin-bottom: 22px;
+  justify-content: center;
+}
+.tag::before {
+  content: "";
+  width: 20px;
+  height: 1.5px;
+  background: #e85a2c;
+}
+.h2 {
+  font-size: clamp(32px, 4.6vw, 60px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  margin: 0 auto 26px;
+  max-width: 900px;
+  color: #fff;
+}
+.u {
+  position: relative;
+  z-index: 1;
+}
+.u::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  height: 0.4em;
+  background: #e85a2c;
+  z-index: -1;
+  border-radius: 4px;
+  opacity: 0.9;
+}
+.lede {
+  margin: 22px auto 0;
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.68);
+  max-width: 640px;
+}
+.btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #e85a2c;
+  color: #08080a;
+  padding: 14px 26px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 999px;
+  text-decoration: none;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  box-shadow: 0 6px 18px -8px rgba(194, 65, 12, 0.45);
+}
+.btnPrimary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px -8px rgba(194, 65, 12, 0.55);
+}
+.btnGhost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 14px 26px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+.btnGhost:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.fineprint {
+  margin-top: 26px;
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.55);
+}
+.fineprintLink {
+  color: #e8e8ea;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.fineprintLink:hover {
+  color: #e85a2c;
+}
+
+@media (min-width: 768px) {
+  .sec {
+    padding: 96px 48px;
+  }
+}

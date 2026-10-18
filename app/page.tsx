@@ -12,6 +12,8 @@ import { WhyNow } from "@/components/sections/why-now";
 import { Gap } from "@/components/sections/gap";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { Ecosystem } from "@/components/sections/ecosystem";
+import { Cta } from "@/components/sections/cta";
+import { Footer } from "@/components/sections/footer";
 
 export default function Home() {
   return (
@@ -70,6 +72,10 @@ export default function Home() {
 
       {/* ============== ECOSYSTEM (Brief 07, generic marquee) ============ */}
       <Ecosystem />
+
+      {/* ============ CHALLENGE CTA + FOOTER (Brief 08) ============== */}
+      <Cta />
+      <Footer />
     </>
   );
 }

@@ -1,0 +1,105 @@
+/* ================================================================
+   Footer — CSS · port of frozen v5 (.foot-grid, .foot-brand,
+   .foot-col, .foot-bar — lines 494–503)
+   ================================================================ */
+
+.footer {
+  background: #08080a;
+  color: #fff;
+  padding: 72px 24px 28px;
+}
+.grid {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+.brand .logo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.brand .logo i {
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e85a2c;
+}
+.by {
+  font-size: 12px;
+  color: #878b80;
+  margin-top: 6px;
+}
+.tagline {
+  margin-top: 18px;
+  font-size: 14px;
+  color: #e8e8ea;
+  max-width: 260px;
+  line-height: 1.6;
+}
+.support {
+  margin-top: 18px;
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: #8b8b90;
+}
+.support a {
+  color: #e8e8ea;
+  text-decoration: none;
+}
+.support a:hover {
+  color: #e85a2c;
+}
+.cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.col h4 {
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #878b80;
+  font-weight: 500;
+  margin-bottom: 18px;
+}
+.col a {
+  display: block;
+  font-size: 14px;
+  color: #b9b9bf;
+  text-decoration: none;
+  padding: 6px 0;
+  transition: color 0.2s;
+}
+.col a:hover {
+  color: #fff;
+}
+.col a:focus-visible {
+  outline: 2px solid #e85a2c;
+  outline-offset: 2px;
+}
+.bar {
+  max-width: 1140px;
+  margin: 56px auto 0;
+  padding-top: 26px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 12px;
+  color: #878b80;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 1.4fr 2fr;
+    gap: 48px;
+  }
+  .cols {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 48px;
+  }
+}

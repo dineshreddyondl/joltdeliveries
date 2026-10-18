@@ -475,6 +475,7 @@ export function Hero() {
             initial={animateIn ? "hidden" : false}
             animate={animateIn ? "show" : false}
             className={styles.laneBox}
+            id="live-lanes"
           >
             <div className={styles.laneCols}>
               <span>Route</span>
