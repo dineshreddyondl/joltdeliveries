@@ -602,6 +602,14 @@
   pointer-events: none;
   box-shadow: 0 10px 22px -12px rgba(12, 14, 9, 0.55);
 }
+.cCat {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #e85a2c;
+  white-space: nowrap;
+}
 .cName {
   font-size: 9.5px;
   font-weight: 700;

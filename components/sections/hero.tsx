@@ -46,16 +46,20 @@ const STAMP_OUT = 8.6; /* "DELIVERED IN 24 HRS" slam window */
 const T = 9.0; /* full loop */
 const IMG_END = 9 * PER;
 
+/* Category-alternating parade (founder-approved 2026-10-19): no two
+   adjacent payloads share a category — furniture never runs twice, so
+   the board reads "mixed heavy commerce", not a furniture store.
+   Specs are illustrative placeholders to verify. */
 const ITEMS = [
-  { n: "SIDEBOARD", s: "38 KG · 1.2 CBM" },
-  { n: "SHOCK ABSORBERS", s: "6 KG · 0.8 CBM" },
-  { n: "ARMCHAIR", s: "24 KG · 0.9 CBM" },
-  { n: "WINGBACK ARMCHAIR", s: "28 KG · 1.1 CBM" },
-  { n: "SECTIONAL SOFA", s: "96 KG · 2.4 CBM" },
-  { n: "FURNITURE SET", s: "140 KG · 3.4 CBM" },
-  { n: "BLOWER MOTOR", s: "4 KG · 0.2 CBM" },
-  { n: "BABY CRIB", s: "28 KG · 1.2 CBM" },
-  { n: "APPLIANCE SET", s: "180 KG · 4.5 CBM" },
+  { n: "SIDEBOARD", c: "FURNITURE", s: "38 KG · 1.2 CBM" },
+  { n: "SHOCK ABSORBERS", c: "AUTO PARTS", s: "6 KG · 0.8 CBM" },
+  { n: "ARMCHAIR", c: "FURNITURE", s: "24 KG · 0.9 CBM" },
+  { n: "ALTERNATOR", c: "AUTO PARTS", s: "5 KG · 0.15 CBM" },
+  { n: "MATTRESS", c: "BEDDING", s: "30 KG · 1.6 CBM" },
+  { n: "SECTIONAL SOFA", c: "FURNITURE", s: "96 KG · 2.4 CBM" },
+  { n: "GEAR ASSEMBLY", c: "INDUSTRIAL", s: "9 KG · 0.3 CBM" },
+  { n: "BABY CRIB", c: "NURSERY", s: "28 KG · 1.2 CBM" },
+  { n: "APPLIANCE SET", c: "APPLIANCES", s: "180 KG · 4.5 CBM" },
 ];
 const N = ITEMS.length;
 
@@ -63,16 +67,16 @@ const IMAGES = [
   { src: "/assets/payload-1-sideboard.png", alt: "Mid-century wooden sideboard" },
   { src: "/assets/payload-2-shock.png", alt: "Automotive shock absorbers" },
   { src: "/assets/payload-5-armchair.png", alt: "Dark grey fabric armchair" },
-  { src: "/assets/payload-6-wingback.png", alt: "Blue wingback armchair" },
+  { src: "/assets/payload-4-alternator.png", alt: "Car alternator" },
+  { src: "/assets/payload-4-mattress.png", alt: "Rolled mattress" },
   { src: "/assets/payload-7-sofa.png", alt: "Sectional sofa" },
-  { src: "/assets/payload-5-furniture.png", alt: "Mid-century furniture set" },
-  { src: "/assets/payload-9-blower.png", alt: "Blower motor assembly" },
+  { src: "/assets/payload-8-gear.png", alt: "Industrial gear assembly" },
   { src: "/assets/payload-10-crib.png", alt: "Baby crib" },
   { src: "/assets/payload-11-appliances.png", alt: "Home appliance set" },
 ];
 
 const BOARD_LABEL =
-  "Live dispatch: heavy shipments — sideboard, shock absorbers, armchair, wingback armchair, sectional sofa, furniture set, blower motor, baby crib, home appliance set — moving rail-first on a JOLT flatbed. Next-day, zero handoffs.";
+  "Live dispatch: heavy shipments — sideboard, shock absorbers, armchair, alternator, mattress, sectional sofa, gear assembly, baby crib, home appliance set — moving rail-first on a JOLT flatbed. Next-day, zero handoffs.";
 
 /* 12 clock ticks, generated with the frozen math (radius 116 → 128). */
 const TICKS = Array.from({ length: 12 }, (_, i) => {
@@ -184,6 +188,7 @@ export function Hero() {
   const coreRef = useRef<HTMLDivElement>(null);
   const shadowRef = useRef<HTMLDivElement>(null);
   const nameRef = useRef<HTMLSpanElement>(null);
+  const catRef = useRef<HTMLSpanElement>(null);
   const specRef = useRef<HTMLSpanElement>(null);
   const ticksRef = useRef<SVGGElement>(null);
 
@@ -214,6 +219,7 @@ export function Hero() {
     const core = coreRef.current;
     const shadow = shadowRef.current;
     const nameEl = nameRef.current;
+    const catEl = catRef.current;
     const specEl = specRef.current;
     const ticksG = ticksRef.current;
     if (
@@ -227,6 +233,7 @@ export function Hero() {
       !core ||
       !shadow ||
       !nameEl ||
+      !catEl ||
       !specEl
     ) {
       return;
@@ -244,6 +251,7 @@ export function Hero() {
     const coreEl: HTMLDivElement = core;
     const shadowEl: HTMLDivElement = shadow;
     const nameElSafe: HTMLSpanElement = nameEl;
+    const catElSafe: HTMLSpanElement = catEl;
     const specElSafe: HTMLSpanElement = specEl;
 
     const clamp = (v: number, a = 0, b = 1) => Math.min(b, Math.max(a, v));
@@ -279,6 +287,7 @@ export function Hero() {
       const i = Math.min(N - 1, Math.floor(tt / PER));
       imgs.forEach((el, k) => el.classList.toggle("on", k === i));
       nameElSafe.textContent = ITEMS[i].n;
+      catElSafe.textContent = ITEMS[i].c;
       specElSafe.textContent = ITEMS[i].s;
 
       /* image pop on entry + ground shadow breathes with it */
@@ -584,6 +593,9 @@ export function Hero() {
                     </svg>
                   </div>
                   <div className={styles.pdChip} ref={chipRef}>
+                    <span className={styles.cCat} ref={catRef}>
+                      FURNITURE
+                    </span>
                     <span className={styles.cName} ref={nameRef}>
                       SIDEBOARD
                     </span>
