@@ -25,11 +25,11 @@
 
 ## What the founder must decide (nothing here is code)
 
-1. **WhatsApp production number** — replace `WHATSAPP_NUMBER` in `components/serviceability/serviceability-checker.tsx`. Last hard release blocker.
-2. **Legal copy** — ToS/Privacy/SLA pages are DRAFT; finalize wording (or get counsel review) before go-live.
-3. **Deploy decision** — `/` on joltdeliveries.com: (a) switch Cloudflare/redirect to the React app on Railway, or (b) ship a claim-corrected static copy of the v5 page. Option (a) is the v6 end-state.
+1. **WhatsApp production number** — replace `WHATSAPP_NUMBER` in `components/serviceability/serviceability-checker.tsx`. Last hard release blocker. **STATUS: TBD (founder, 2026-10-19).**
+2. **Legal copy** — ToS/Privacy/SLA pages are DRAFT; finalize wording (or get counsel review) before go-live. **STATUS: TBD (founder, 2026-10-19).**
+3. **Deploy decision** — **DECIDED (2026-10-19): go-live serves the React app on Railway.** The Cloudflare/static path retires at go-live; the old v5 static page will no longer be the flagship.
 4. **Railway env** — `JOLT_API_MOCK=true` for go-live; `JOLT_API_BASE_URL`/`JOLT_API_KEY` when the real backend exists.
-5. **Push** — local `main` is 12 commits ahead of origin; push requires two separate confirmations.
+5. **Push** — local `main` is 13 commits ahead of origin; push requires two separate confirmations.
 
 ## Post-go-live maintenance loop (Goal 3)
 
