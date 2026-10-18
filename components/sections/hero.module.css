@@ -60,6 +60,11 @@
   gap: 48px;
   align-items: start;
 }
+.estWrap {
+  max-width: 1220px;
+  margin: 36px auto 0;
+  padding: 0 32px;
+}
 
 /* ---------- left column ---------- */
 .eyebrow {

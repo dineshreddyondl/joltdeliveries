@@ -24,6 +24,7 @@ import { Space_Grotesk } from "next/font/google";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 
 import { cn } from "@/lib/utils";
+import { EstimateWidget } from "@/components/estimate/estimate-widget";
 import styles from "./hero.module.css";
 
 const sg = Space_Grotesk({
@@ -602,6 +603,16 @@ export function Hero() {
           </div>
         </motion.div>
       </div>
+
+      {/* Instant freight estimate (Brief 12) — full-width strip under the grid */}
+      <motion.div
+        variants={fadeUp(1.05)}
+        initial={animateIn ? "hidden" : false}
+        animate={animateIn ? "show" : false}
+        className={styles.estWrap}
+      >
+        <EstimateWidget />
+      </motion.div>
     </header>
   );
 }
