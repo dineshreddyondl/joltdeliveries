@@ -38,7 +38,7 @@ import { Space_Grotesk } from "next/font/google";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 
 import { cn } from "@/lib/utils";
-import { EstimateWidget } from "@/components/estimate/estimate-widget";
+import { CustomerMarquee } from "@/components/sections/customer-marquee";
 import styles from "./hero.module.css";
 
 const sg = Space_Grotesk({
@@ -824,15 +824,10 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Instant freight estimate (Brief 12) — full-width strip under the grid */}
-      <motion.div
-        variants={fadeUp(1.05)}
-        initial={animateIn ? "hidden" : false}
-        animate={animateIn ? "show" : false}
-        className={styles.estWrap}
-      >
-        <EstimateWidget />
-      </motion.div>
+      {/* Brands marquee — inside the hero section (frozen mock: the
+          marquee lives at the bottom of the hero header). The instant
+          freight estimate strip was removed 2026-10-19 (founder). */}
+      <CustomerMarquee />
     </header>
   );
 }

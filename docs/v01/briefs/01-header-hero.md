@@ -50,7 +50,7 @@ Reference mock: `design-reference/jolt-hero-v01-proofrail-v5-learnings.html`
 
 1. **H1 wording** — A `Parcel speed, finally, for the heavy stuff.` · B `Heavy shipments that arrive on time.` · C founder sentence `India's first express layer for heavy shipments.` (C = guardrail-override, recorded).
 2. **Stamp wording** — `DELIVERED IN 24–48 HRS` vs `DELIVERED IN 24 HRS`.
-2b. **Estimate widget placement** — keep under the hero grid (founder earlier) as its own section; not part of the frozen hero columns.
+2b. **Estimate widget placement** — ~~keep under the hero grid as its own section~~ — **removed 2026-10-19** (founder: remove the instant freight estimate section totally). The brands marquee is tagged onto the hero section instead (marquee now renders inside the hero header, per the frozen mock).
 3. **Final images** (deferred by founder — "worry about wiring later"): 6 slots = sofa · alternator · [bench/armchair] · [bed candidate A/B/C/D or window scene] · crib · appliances. Cutout pipeline documented below.
 4. **Dispatch schedule values** — real rows for `lib/dispatch-data.ts` (currently placeholders).
 

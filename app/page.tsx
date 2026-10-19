@@ -6,7 +6,6 @@
    ========================================================================== */
 
 import { Hero } from "@/components/sections/hero";
-import { CustomerMarquee } from "@/components/sections/customer-marquee";
 import { MetricsBand } from "@/components/sections/metrics-band";
 import { Nav } from "@/components/sections/nav";
 import { WhyNow } from "@/components/sections/why-now";
@@ -19,12 +18,11 @@ import { Footer } from "@/components/sections/footer";
 export default function Home() {
   return (
     <>
-      {/* ===================== NAV + HERO (Brief 04) ===================== */}
+      {/* ===================== NAV + HERO (Brief 04) =====================
+          Hero now ends with the brands marquee (founder 2026-10-19);
+          the instant freight estimate strip was removed. */}
       <Nav />
       <Hero />
-
-      {/* ========== CUSTOMER MARQUEE (frozen v5, founder-restored) ========= */}
-      <CustomerMarquee />
 
       {/* ===================== METRICS BAND (Brief 01) ===================== */}
       <MetricsBand />
