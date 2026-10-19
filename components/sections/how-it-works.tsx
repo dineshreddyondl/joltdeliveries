@@ -26,10 +26,11 @@
  */
 
 import { Space_Grotesk } from "next/font/google";
-import { motion, type Variants } from "motion/react";
+import { motion, useInView, type Variants } from "motion/react";
+import { useRef } from "react";
 
 import { useReveal } from "@/components/ui/use-reveal";
-import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
+import { FlipWords } from "@/components/ui/flip-words";
 import { cn } from "@/lib/utils";
 import styles from "./how-it-works.module.css";
 
@@ -157,6 +158,12 @@ export function HowItWorks() {
   const { ref, animateIn, inView } = useReveal<HTMLElement>();
   const show = animateIn ? (inView ? "show" : "hidden") : false;
 
+  /* Gate the heading flip-in on the heading's own visibility so the
+     letters cascade when the user actually arrives at the section. */
+  const h2Ref = useRef<HTMLHeadingElement>(null);
+  const h2InView = useInView(h2Ref as never, { once: true, amount: 0.6 });
+  const flipOn = animateIn && h2InView;
+
   return (
     <section
       id="how"
@@ -178,13 +185,28 @@ export function HowItWorks() {
 
         <motion.h2
           id="how-heading"
+          ref={h2Ref}
           variants={rv}
           custom={1}
           initial={animateIn ? "hidden" : false}
           animate={show as never}
           className={cn(sg.className, styles.h2)}
         >
-          <TypewriterEffectSmooth words={H2_WORDS} />
+          {flipOn
+            ? H2_WORDS.map((w, i) => (
+                <FlipWords
+                  key={w.text}
+                  words={[w.text]}
+                  once
+                  delay={i * 0.12}
+                  className={w.className}
+                />
+              ))
+            : H2_WORDS.map((w) => (
+                <span key={w.text} className={w.className}>
+                  {w.text}{" "}
+                </span>
+              ))}
         </motion.h2>
 
         <motion.p
