@@ -47,29 +47,6 @@ const rv: Variants = {
   }),
 };
 
-/**
- * One-shot "tracing sweep" — Aceternity tracing-beam, horizontalized.
- * A comet head + corridor bloom races the journey line once when the
- * section scrolls into view, then vanishes. Decorative only: reduced
- * motion and no-JS both land on the static hidden state (CSS base),
- * while the CSS journey loop carries the content.
- */
-const sweepV: Variants = {
-  hidden: { opacity: 0, left: "0%" },
-  show: {
-    opacity: [0, 1, 1, 0],
-    left: ["0%", "100%"],
-    transition: {
-      left: { duration: 1.15, ease: [0.16, 1, 0.3, 1] },
-      opacity: { duration: 1.15, times: [0, 0.12, 0.86, 1], ease: "linear" },
-      delay: 0.35,
-    },
-    /* After the one-shot, park the comet back at the origin (it is fully
-       faded by then) so no off-track geometry lingers in the section. */
-    transitionEnd: { left: "0%" },
-  },
-};
-
 const STAGES = [
   {
     idx: "01",
@@ -159,14 +136,11 @@ export function HowItWorks() {
           stops in between.
         </motion.p>
 
-        {/* Journey pipeline — the section's hero.
-            - Ambient corridor bloom: static, ultra-subtle spotlight behind
-              the line (no animation, safe everywhere).
-            - Perpetual CSS loop (5.2s): the dot sprints the rail leg at
-              1.5× first-mile speed; a corridor flare + speed streaks ignite
-              only while it is in the linehaul leg; reduced-motion renders
-              the completed static journey.
-            - Tracing sweep: one-shot comet on section reveal (motion). */}
+        {/* Journey graphic — the story, abstract: a road dot halts at the
+            railhead, the payload rides the twin-rail linehaul, halts at the
+            destination, and a road dot takes over for direct delivery.
+            No icons, no drawings — the choreography is the message.
+            8s loop; reduced-motion lands on the completed static journey. */}
         <motion.div
           variants={rv}
           custom={3}
@@ -175,35 +149,20 @@ export function HowItWorks() {
           className={styles.pipeline}
           aria-hidden="true"
         >
-          <div className={styles.bloom} />
-          <div className={styles.track}>
-            <div className={styles.fill} />
-            <div className={styles.railLeg}>
-              <div className={styles.flare} />
-              <div className={styles.streaks}>
-                <span className={cn(styles.streak, styles.st1)} />
-                <span className={cn(styles.streak, styles.st2)} />
-                <span className={cn(styles.streak, styles.st3)} />
-                <span className={cn(styles.streak, styles.st4)} />
-              </div>
+          <div className={styles.route}>
+            <div className={styles.roadL} />
+            <div className={styles.rail} />
+            <div className={styles.roadR} />
+            <div className={styles.nodeA}>
+              <i />
             </div>
-            <motion.div
-              variants={sweepV}
-              initial={animateIn ? "hidden" : false}
-              animate={show as never}
-              className={styles.sweep}
-            />
-            <div className={styles.dot} />
-            <div className={cn(styles.stop, styles.s0)}>
-              <div className={styles.psDot} />
+            <div className={styles.nodeB}>
+              <i />
             </div>
-            <div className={cn(styles.stop, styles.s50)}>
-              <div className={styles.psDot} />
-              <div className={styles.burst} />
-            </div>
-            <div className={cn(styles.stop, styles.s100)}>
-              <div className={styles.psDot} />
-            </div>
+            <div className={styles.payload} />
+            <div className={styles.ringA} />
+            <div className={styles.ringB} />
+            <div className={styles.delivered} />
           </div>
           <div className={styles.stageRow}>
             {STAGES.map((s) => (

@@ -1,13 +1,9 @@
 /* ================================================================
-   How It Works — The Orchestration Layer · V0.1 restructure
-   Journey-first layout: pipeline (CSS loop) + 3 compact USP tiles.
-   Reduced motion: globals kill-switch + `forwards` fill → static
-   completed journey.
-   V0.2 wow pass (2026-10-20): ambient corridor bloom (static),
-   one-shot tracing sweep on reveal (motion), linehaul flare +
-   speed streaks + ignition ring + comet tail on the 5.2s CSS loop.
-   Every new keyframe animation ends on its neutral frame, so the
-   reduced-motion kill-switch lands on the static state.
+   How It Works — The Orchestration Layer · V0.1
+   Journey graphic: abstract road → twin-rail linehaul → road, with
+   two handoff halts. No icons, no drawings — choreography only.
+   8s CSS loop; every keyframe ends on its neutral frame so the
+   reduced-motion kill-switch lands on the completed static journey.
    ================================================================ */
 
 .sec {
@@ -18,7 +14,6 @@
   scroll-margin-top: 80px;
   overflow: hidden;
 }
-/* Grain — dark sections carry it per the design system. */
 .grain {
   position: absolute;
   inset: 0;
@@ -70,500 +65,205 @@
   max-width: 620px;
 }
 
-/* ---------------- journey pipeline ---------------- */
+/* ---------------- journey graphic ---------------- */
 .pipeline {
   position: relative;
   margin-top: 48px;
 }
-/* Ambient corridor spotlight behind the line — static, decorative. */
-.bloom {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: min(92%, 900px);
-  height: 170px;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(
-    50% 50% at 50% 50%,
-    rgba(232, 90, 44, 0.1) 0%,
-    transparent 70%
-  );
-  pointer-events: none;
-  z-index: 0;
-}
-.track {
+.route {
   position: relative;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 3px;
-  z-index: 1;
+  height: 44px;
 }
-.fill {
+/* Road legs: thin single lines (first + last mile). */
+.roadL,
+.roadR {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  background: linear-gradient(90deg, #e85a2c, #ff9a50);
-  border-radius: 3px;
-  box-shadow: 0 0 20px rgba(232, 90, 44, 0.5);
-  animation: howFill 5.2s linear infinite;
-  animation-fill-mode: forwards;
-}
-
-/* ---- the linehaul leg (middle 50%): episodic corridor flare + streaks ----
-   Ignites only while the payload is on the rail — the section's wow lives
-   here, not as perpetual fireworks. */
-.railLeg {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  right: 0;
-  pointer-events: none;
-}
-.flare {
-  position: absolute;
-  left: -6%;
-  right: -3%;
   top: 50%;
-  height: 34px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateY(-50%);
+}
+.roadL {
+  left: 0;
+  width: 25%;
+}
+.roadR {
+  left: 75%;
+  width: 25%;
+}
+/* Linehaul: twin rails — the only place on the page with two lines,
+   so "rail" is felt, not drawn. */
+.rail {
+  position: absolute;
+  left: 25%;
+  width: 50%;
+  top: 50%;
+  height: 6px;
   transform: translateY(-50%);
   background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 154, 80, 0.22) 30%,
-      rgba(255, 154, 80, 0.22) 70%,
-      transparent
-    ),
-    radial-gradient(
-      60% 90% at 50% 50%,
-      rgba(232, 90, 44, 0.3),
-      transparent 72%
-    );
-  filter: blur(10px);
-  opacity: 0;
-  animation: howFlare 5.2s linear infinite;
+    linear-gradient(rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.32)) top / 100% 1px no-repeat,
+    linear-gradient(rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.32)) bottom / 100% 1px no-repeat;
 }
-.streaks {
+/* Interchange halts: small rings where road hands off to rail. */
+.nodeA,
+.nodeB {
   position: absolute;
-  inset: 0;
-}
-.streak {
-  position: absolute;
-  left: -42px;
-  width: 34px;
-  height: 1px;
-  border-radius: 1px;
-  opacity: 0;
-  pointer-events: none;
-}
-.st1 {
-  top: -15px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.65) 55%,
-    rgba(255, 255, 255, 0.9)
-  );
-  animation: howStreakA 5.2s linear infinite;
-}
-.st2 {
-  top: -7px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 154, 80, 0.75),
-    transparent
-  );
-  animation: howStreakB 5.2s linear infinite;
-}
-.st3 {
-  top: calc(100% + 6px);
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.5),
-    transparent
-  );
-  animation: howStreakA 5.2s linear infinite;
-}
-.st4 {
-  top: calc(100% + 14px);
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 154, 80, 0.6) 30%,
-    rgba(255, 154, 80, 0.2) 80%,
-    transparent
-  );
-  animation: howStreakB 5.2s linear infinite;
-}
-
-/* One-shot tracing sweep (motion-driven, section reveal). Static hidden
-   base — reduced-motion and no-JS users simply never see it. */
-.sweep {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: min(46%, 260px);
-  height: 48px;
-  transform: translateY(-50%);
-  opacity: 0;
-  pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(232, 90, 44, 0.16) 50%,
-    transparent 100%
-  );
-}
-.sweep::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  height: 3px;
-  margin-top: -1.5px;
-  border-radius: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 154, 80, 0.75) 72%,
-    rgba(255, 154, 80, 0.95) 100%
-  );
-}
-.sweep::before {
-  content: "";
-  position: absolute;
-  right: -5px;
   top: 50%;
   width: 11px;
   height: 11px;
-  margin-top: -5.5px;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(255, 154, 80, 0.85) 42%,
-    transparent 72%
-  );
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  background: #08080a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-/* Comet dot: hot core + a tail that stretches while on the rail. */
-.dot {
+.nodeA {
+  left: 25%;
+}
+.nodeB {
+  left: 75%;
+}
+.nodeA i,
+.nodeB i {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+}
+/* The payload: one orange dot riding the whole journey. */
+.payload {
   position: absolute;
   top: 50%;
   left: 0;
-  width: 14px;
-  height: 14px;
+  width: 10px;
+  height: 10px;
   background: #e85a2c;
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 18px rgba(232, 90, 44, 0.85);
-  animation:
-    howDot 5.2s linear infinite,
-    howDotGlow 5.2s linear infinite;
+  box-shadow: 0 0 14px rgba(232, 90, 44, 0.8);
+  animation: howJourney 8s linear infinite;
   animation-fill-mode: forwards;
 }
-.dot::before {
-  content: "";
-  position: absolute;
-  right: 50%;
-  top: 50%;
-  width: 56px;
-  height: 2px;
-  margin-top: -1px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, transparent, rgba(232, 90, 44, 0.7));
-  transform-origin: 100% 50%;
-  transform: scaleX(0.7);
-  opacity: 0.5;
-  animation: howTail 5.2s linear infinite;
-}
-.dot::after {
-  content: "";
-  position: absolute;
-  inset: -7px;
-  border: 1px solid rgba(232, 90, 44, 0.4);
-  border-radius: 50%;
-  animation: howPulse 2s infinite;
-}
-.stop {
+/* Handoff pulses at the two halts. */
+.ringA,
+.ringB {
   position: absolute;
   top: 50%;
-  transform: translate(-50%, -50%);
-}
-.s0 {
-  left: 0%;
-}
-.s50 {
-  left: 50%;
-}
-.s100 {
-  left: 100%;
-}
-.psDot {
-  width: 9px;
-  height: 9px;
+  width: 11px;
+  height: 11px;
+  border: 1px solid rgba(232, 90, 44, 0.8);
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
-  transition:
-    background 0.4s,
-    box-shadow 0.4s;
-}
-/* Hub ignition ring — fires once per journey as the payload boards rail. */
-.burst {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 10px;
-  height: 10px;
-  border: 1px solid rgba(232, 90, 44, 0.85);
-  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
   opacity: 0;
-  transform: translate(-50%, -50%) scale(0.4);
-  animation: howBurst 5.2s linear infinite;
   pointer-events: none;
 }
-.s0 .psDot {
-  animation: howHit0 5.2s infinite;
-  animation-fill-mode: forwards;
+.ringA {
+  left: 25%;
+  animation: howRingA 8s linear infinite;
 }
-.s50 .psDot {
-  animation: howHit50 5.2s infinite;
-  animation-fill-mode: forwards;
+.ringB {
+  left: 75%;
+  animation: howRingB 8s linear infinite;
 }
-.s100 .psDot {
-  animation: howHit100 5.2s infinite;
-  animation-fill-mode: forwards;
+/* Delivered flash at the destination. */
+.delivered {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff9a50;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: howDelivered 8s linear infinite;
 }
 
-@keyframes howFill {
+/* Journey choreography (8s): road → halt → rail → halt → road →
+   delivered hold. */
+@keyframes howJourney {
   0% {
-    width: 0;
+    left: 0%;
   }
-  42% {
-    width: 50%;
+  20% {
+    left: 25%;
   }
-  70% {
-    width: 100%;
-  }
-  100% {
-    width: 100%;
-  }
-}
-@keyframes howDot {
-  0% {
-    left: 0;
-  }
-  42% {
-    left: 50%;
-  }
-  70% {
-    left: 100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-/* Linehaul corridor: lights as the dot enters the rail leg, dies as it
-   exits. Final frame neutral (reduced-motion lands here). */
-@keyframes howFlare {
-  0%,
-  41% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  62% {
-    opacity: 0.85;
-  }
-  72% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes howStreakA {
-  0%,
-  43% {
-    left: -42px;
-    opacity: 0;
-  }
-  44% {
-    left: -42px;
-    opacity: 0.55;
-  }
-  51% {
-    left: 100%;
-    opacity: 0;
-  }
-  52%,
-  100% {
-    left: 100%;
-    opacity: 0;
-  }
-}
-@keyframes howStreakB {
-  0%,
-  55% {
-    left: -42px;
-    opacity: 0;
+  24% {
+    left: 25%;
   }
   56% {
-    left: -42px;
-    opacity: 0.5;
+    left: 75%;
   }
-  64% {
+  60% {
+    left: 75%;
+  }
+  90% {
     left: 100%;
-    opacity: 0;
   }
-  65%,
   100% {
     left: 100%;
-    opacity: 0;
   }
 }
-@keyframes howBurst {
+@keyframes howRingA {
   0%,
-  41.8% {
+  19.9% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.4);
+    transform: translate(-50%, -50%) scale(0.6);
   }
-  42% {
-    opacity: 0.9;
+  20%,
+  24% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(2.2);
   }
-  52% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(2.6);
-  }
-  53%,
+  24.1%,
   100% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.4);
+    transform: translate(-50%, -50%) scale(0.6);
   }
 }
-@keyframes howTail {
+@keyframes howRingB {
   0%,
-  41% {
-    transform: scaleX(0.7);
-    opacity: 0.5;
+  55.9% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6);
   }
-  50% {
-    transform: scaleX(1.7);
+  56%,
+  60% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(2.2);
+  }
+  60.1%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+}
+@keyframes howDelivered {
+  0%,
+  89.9% {
+    opacity: 0;
+  }
+  90%,
+  94% {
     opacity: 1;
   }
-  70% {
-    transform: scaleX(1.7);
-    opacity: 1;
-  }
-  80% {
-    transform: scaleX(0.7);
-    opacity: 0.5;
-  }
+  95%,
   100% {
-    transform: scaleX(0.7);
-    opacity: 0.5;
-  }
-}
-@keyframes howDotGlow {
-  0%,
-  41% {
-    box-shadow: 0 0 18px rgba(232, 90, 44, 0.85);
-  }
-  55%,
-  70% {
-    box-shadow:
-      0 0 30px #e85a2c,
-      0 0 54px rgba(232, 90, 44, 0.5);
-  }
-  80%,
-  100% {
-    box-shadow: 0 0 18px rgba(232, 90, 44, 0.85);
-  }
-}
-@keyframes howPulse {
-  0% {
-    transform: scale(0.6);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1.7);
     opacity: 0;
-  }
-}
-@keyframes howHit0 {
-  0%,
-  4% {
-    background: #e85a2c;
-    box-shadow: 0 0 12px #e85a2c;
-  }
-  5%,
-  100% {
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: none;
-  }
-}
-@keyframes howHit50 {
-  0%,
-  41.9% {
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: none;
-  }
-  42%,
-  100% {
-    background: #e85a2c;
-    box-shadow: 0 0 12px #e85a2c;
-  }
-}
-@keyframes howHit100 {
-  0%,
-  69.9% {
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: none;
-  }
-  70%,
-  100% {
-    background: #e85a2c;
-    box-shadow: 0 0 12px #e85a2c;
-  }
-}
-/* Linehaul label breathes while the train is on the rail leg. */
-@keyframes howStageGlow {
-  0%,
-  41% {
-    text-shadow: none;
-  }
-  50%,
-  70% {
-    text-shadow: 0 0 16px rgba(232, 90, 44, 0.5);
-  }
-  82%,
-  100% {
-    text-shadow: none;
   }
 }
 
-.pipeline:hover .fill,
-.pipeline:hover .dot,
-.pipeline:hover .dot::before,
-.pipeline:hover .dot::after,
-.pipeline:hover .psDot,
-.pipeline:hover .burst,
-.pipeline:hover .flare,
-.pipeline:hover .streak,
-.pipeline:hover .stageHot .stageName {
+.pipeline:hover .payload,
+.pipeline:hover .ringA,
+.pipeline:hover .ringB,
+.pipeline:hover .delivered {
   animation-play-state: paused;
 }
 
-/* Stage labels under the track. */
+/* Stage labels under the route. */
 .stageRow {
-  position: relative;
-  z-index: 1;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   margin-top: 20px;
@@ -593,11 +293,8 @@
   letter-spacing: -0.01em;
   color: #fff;
 }
-/* The rail leg is the emphasis — orange stage name + sub; the name also
-   breathes a soft glow while the payload is on the rail. */
 .stageHot .stageName {
   color: #e85a2c;
-  animation: howStageGlow 5.2s linear infinite;
 }
 .stageSub {
   font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
