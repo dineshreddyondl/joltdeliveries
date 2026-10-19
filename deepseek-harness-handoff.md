@@ -1,5 +1,7 @@
 # JOLT WEBSITE — PROJECT HANDOFF (DeepSeek Harness Context)
 
+**CRITICAL RECALIBRATION (founder, 2026-10-19):** the frozen v5 design is a **SKELETON — visual direction only** (layout, vibe, motion language). It is NOT the final content/functionality/structure spec. Every section must be developed to **V0.1 production depth** — detailed copy, real states, sourced claims, reviewed by the founder per section. "Not vibe-coded": every section gets a spec, a founder review gate, and visual QA before it is considered done. Frozen = skeleton reference; AGENTS.md claim guardrails remain binding for claims.
+
 **You are the coding agent for the JOLT website.** Read `AGENTS.md` in the repo first — it is the binding instruction layer. This handoff is the bootstrap context; when anything here conflicts with `AGENTS.md` or `docs/uplift-spec.md`, those win.
 
 ## Locations
