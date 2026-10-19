@@ -244,7 +244,9 @@
   height: 17px;
   color: rgba(255, 255, 255, 0.7);
   transform: translate(-100%, -50%);
-  left: 25%;
+  /* nose-at-position, so offset by the body length: the tail starts
+     exactly at the railhead and the whole train stays in the track */
+  left: calc(25% + 58px);
   opacity: 0;
   animation: howTrain 8s linear infinite;
   animation-fill-mode: forwards;
@@ -274,16 +276,16 @@
 @keyframes howTrain {
   0%,
   25.9% {
-    left: 25%;
+    left: calc(25% + 58px);
     opacity: 0;
   }
   28% {
-    left: 25%;
+    left: calc(25% + 58px);
     opacity: 1;
     animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45);
   }
   46% {
-    left: 58%;
+    left: calc(50% + 29px);
     animation-timing-function: linear;
   }
   58% {
