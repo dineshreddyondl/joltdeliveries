@@ -248,6 +248,10 @@
   letter-spacing: -0.01em;
   color: #fff;
 }
+/* The rail leg is the emphasis — orange stage name + sub. */
+.stageHot .stageName {
+  color: #e85a2c;
+}
 .stageSub {
   font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
   font-size: 9.5px;
@@ -285,9 +289,9 @@
   letter-spacing: 0.16em;
 }
 .usp h3 {
-  font-size: 19px;
+  font-size: 23px;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   color: #fff;
 }
 .usp p {

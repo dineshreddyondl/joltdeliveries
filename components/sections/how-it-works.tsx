@@ -44,36 +44,39 @@ const STAGES = [
     idx: "01",
     name: "First Mile",
     sub: "Scheduled road pickup",
+    hot: false,
   },
   {
     idx: "02",
-    name: "Rail Linehaul",
-    sub: "Next Train Out · no fill-waiting",
+    name: "Just-in-Time Linehaul",
+    sub: "Next Train Out · no stops",
+    hot: true,
   },
   {
     idx: "03",
-    name: "Last Mile",
-    sub: "Direct delivery to your distributor",
+    name: "Direct Delivery",
+    sub: "Right to your distributor",
+    hot: false,
   },
 ];
 
 const USPS = [
   {
     step: "01 / NTO",
-    title: "Next Train Out speed",
-    line: "Your payload boards the next scheduled train — it never waits for a full truck.",
+    word: "Faster",
+    line: "Just-in-time linehaul on scheduled express trains.",
     spec: "Up to 89% less CO₂ per tonne-km vs road",
   },
   {
     step: "02 / HUBLESS",
-    title: "Hubless by design",
-    line: "One seamless motion — pickup, linehaul, delivery. Zero consolidation waits.",
+    word: "Seamless",
+    line: "One motion from first mile to last. Almost zero stops.",
     spec: "No mid-journey sorting",
   },
   {
     step: "03 / VISIBILITY",
-    title: "Control tower visibility",
-    line: "Every milestone tracked in real time — proactive alerts, SLA-backed.",
+    word: "Live",
+    line: "Live tracking at every milestone — not intermittent like traditional models.",
     spec: "Guaranteed SLA",
   },
 ];
@@ -109,9 +112,8 @@ export function HowItWorks() {
           animate={show as never}
           className={cn(sg.className, styles.h2)}
         >
-          Not another marketplace. We built the{" "}
-          <em>purpose-built layer</em> for express heavy commerce — the
-          fastest, from first mile to last mile.
+          A <em>purpose-built express layer</em> for heavy commerce — not
+          another bidding board or marketplace.
         </motion.h2>
 
         <motion.p
@@ -121,8 +123,9 @@ export function HowItWorks() {
           animate={show as never}
           className={styles.lede}
         >
-          Marketplaces match supply and demand, then wash their hands of the
-          SLA. We run the whole journey — and stand behind every delivery.
+          We don&rsquo;t match loads and hope. Every shipment moves
+          just-in-time — first mile, linehaul, last mile — with almost zero
+          stops in between.
         </motion.p>
 
         {/* Journey pipeline — the section's hero. CSS loop; reduced-motion
@@ -150,7 +153,10 @@ export function HowItWorks() {
           </div>
           <div className={styles.stageRow}>
             {STAGES.map((s) => (
-              <div key={s.idx} className={styles.stage}>
+              <div
+                key={s.idx}
+                className={cn(styles.stage, s.hot && styles.stageHot)}
+              >
                 <span className={styles.stageIdx}>{s.idx}</span>
                 <span className={cn(sg.className, styles.stageName)}>
                   {s.name}
@@ -172,7 +178,7 @@ export function HowItWorks() {
               className={styles.usp}
             >
               <span className={styles.step}>{u.step}</span>
-              <h3 className={sg.className}>{u.title}</h3>
+              <h3 className={sg.className}>{u.word}</h3>
               <p>{u.line}</p>
               <span className={styles.spec}>{u.spec}</span>
             </motion.div>
