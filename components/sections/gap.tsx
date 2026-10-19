@@ -78,7 +78,7 @@ export function Gap() {
           animate={show as never}
           className={cn(sg.className, styles.h2)}
         >
-          You never had a choice. You were forced to use networks that were{" "}
+          You never had a choice. You were using networks that were{" "}
           <PointerHighlight>
             <em>never built for you</em>
           </PointerHighlight>
