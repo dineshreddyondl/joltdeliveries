@@ -23,15 +23,36 @@ export function PointerHighlight({
   rectangleClassName,
   pointerClassName,
   containerClassName,
+  onComplete,
 }: {
   children: ReactNode;
   rectangleClassName?: string;
   pointerClassName?: string;
   containerClassName?: string;
+  /** Fired once when the draw-in animation finishes (or immediately in
+      reduced motion, where the static final state renders). */
+  onComplete?: () => void;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const reduceMotion = useReducedMotion();
+  const firedRef = useRef(false);
+
+  const fire = () => {
+    if (!firedRef.current) {
+      firedRef.current = true;
+      onComplete?.();
+    }
+  };
+
+  /* Reduced motion: no draw-in runs, so report completion once the box
+     has dimensions. */
+  useEffect(() => {
+    if (reduceMotion && dimensions.width > 0 && dimensions.height > 0) {
+      fire();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- fire is stable
+  }, [reduceMotion, dimensions.width, dimensions.height]);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -75,6 +96,7 @@ export function PointerHighlight({
             initial={{ width: 0, height: 0 }}
             whileInView={{ width, height }}
             transition={{ duration: 1, ease: "easeInOut" }}
+            onAnimationComplete={fire}
           />
           <motion.div
             className="pointer-events-none absolute"

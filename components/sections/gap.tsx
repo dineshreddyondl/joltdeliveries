@@ -10,7 +10,7 @@
 
 import { Space_Grotesk } from "next/font/google";
 import { motion, useInView, type Variants } from "motion/react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import { useReveal } from "@/components/ui/use-reveal";
 import { PointerHighlight } from "@/components/ui/pointer-highlight";
@@ -110,6 +110,9 @@ export function Gap() {
   const { ref, animateIn, inView } = useReveal<HTMLElement>();
   const show = animateIn ? (inView ? "show" : "hidden") : false;
 
+  /* Red lands on the phrase only after the pointer draw-in completes. */
+  const [redOn, setRedOn] = useState(false);
+
   /* The table stages its own rows (the section-level reveal can fire
      early while layout settles) — gate on the table itself. */
   const tblRef = useRef<HTMLDivElement>(null);
@@ -143,8 +146,10 @@ export function Gap() {
           className={cn(sg.className, styles.h2)}
         >
           You never had a choice. You were using networks that were{" "}
-          <PointerHighlight pointerClassName="h-4 w-4">
-            <em>never built for you.</em>
+          <PointerHighlight onComplete={() => setRedOn(true)}>
+            <em className={cn(styles.emPhrase, redOn && styles.emPhraseRed)}>
+              never built for you.
+            </em>
           </PointerHighlight>
         </motion.h2>
 

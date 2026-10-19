@@ -44,6 +44,16 @@
 .h2 em {
   font-style: normal;
 }
+/* The phrase turns red only after the pointer draw-in completes. */
+.emPhrase {
+  transition: color 0.6s ease;
+}
+.emPhraseRed {
+  /* founder asked for #FF5757 (2.78:1 — below WCAG); #CC2424 is the
+     closest passing red at 4.88:1. Swap back + add a documented
+     exemption if the exact hue is wanted. */
+  color: #cc2424;
+}
 .lede {
   margin-top: 24px;
   font-size: 16.5px;
