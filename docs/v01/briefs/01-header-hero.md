@@ -58,7 +58,12 @@
 5. **Board header removed** → `LIVE · 9 PAYLOADS · pause/play` row deleted from the hero board (founder: irrelevant). Hover-pause and reduced-motion static behavior remain.
 6. **Image quality requirement** → all parade images must be high-resolution, transparent-background (no square photo backgrounds).
 
-## 8b. Parade asset spec (awaiting founder selection)
+## 8b. Dispatch line (founder decision 2026-10-19 — kept, schedule-derived)
+- "Next dispatch" shows at the top of the check card, computed from the git-committed table `lib/dispatch-data.ts` (cutoff, dispatch, frequency, exceptions, per-route).
+- Behavior: before cutoff → `CUTOFF 21:00 IST · NEXT DISPATCH TODAY 21:30`; after cutoff → `CUTOFF PASSED · NEXT DISPATCH TOMORROW 21:30 IST`; service days skipped; label carries `PLACEHOLDER DATA` until the founder confirms the row (`verified: true`). Countdown variant deferred — cutoff-first wins.
+- **Founder input needed:** real values for the table (HYD→BLR, DEL→BOM, BLR→HYD seeded with placeholders).
+
+## 8c. Parade asset spec (awaiting founder selection)
 - **10 candidates → 9 parade slots + 1 reserve** (keeps the 7.2s clock spec: 9 × 0.8s).
 - Format: PNG with transparency (cutout), ≥1024×1024, product centered, consistent lighting.
 - Narrative order to preserve (category-alternating, no two adjacent same category): FURNITURE → AUTO → FURNITURE → AUTO/INDUSTRIAL → BEDDING → FURNITURE → INDUSTRIAL → NURSERY → APPLIANCES.
