@@ -9,7 +9,8 @@
  */
 
 import { Space_Grotesk } from "next/font/google";
-import { motion, type Variants } from "motion/react";
+import { motion, useInView, type Variants } from "motion/react";
+import { useRef } from "react";
 
 import { useReveal } from "@/components/ui/use-reveal";
 import { PointerHighlight } from "@/components/ui/pointer-highlight";
@@ -31,6 +32,45 @@ const rv: Variants = {
   }),
 };
 
+/* Staged row reveal: rows roll in one after another; marks pop in
+   sequence; each row flashes orange as it lands (row 2 keeps its
+   persistent highlight). Gated on the TABLE's own visibility. */
+const rowV: Variants = {
+  hidden: { opacity: 0, y: 12 },
+  show: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: i * 0.5 },
+  }),
+};
+
+const markV: Variants = {
+  hidden: { opacity: 0, scale: 0.4 },
+  /* custom encodes row*10 + markIndex so the mark waits for its row. */
+  show: (c: number) => ({
+    opacity: 1,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 16,
+      delay: Math.floor(c / 10) * 0.5 + 0.15 + (c % 10) * 0.2,
+    },
+  }),
+};
+
+const flashV: Variants = {
+  hidden: { opacity: 0 },
+  show: (i: number) => ({
+    opacity: [0, 0.9, 0],
+    transition: {
+      duration: 0.6,
+      times: [0, 0.2, 1],
+      delay: i * 0.5 + 0.45,
+    },
+  }),
+};
+
 /* One comparison table (founder): the two networks share the same
    variables — express speed, bulky speed, bulk pricing — and the
    verdict lives in the highlighted double-✕ row: neither network
@@ -40,12 +80,10 @@ const CMP = [
   {
     name: "Express Courier Network",
     sub: "Built for small parcels",
-    hack: "Hack 1",
   },
   {
     name: "LTL Network",
     sub: "Built for bulk aggregation",
-    hack: "Hack 2",
   },
 ];
 
@@ -71,6 +109,12 @@ const ROWS = [
 export function Gap() {
   const { ref, animateIn, inView } = useReveal<HTMLElement>();
   const show = animateIn ? (inView ? "show" : "hidden") : false;
+
+  /* The table stages its own rows (the section-level reveal can fire
+     early while layout settles) — gate on the table itself. */
+  const tblRef = useRef<HTMLDivElement>(null);
+  const tblInView = useInView(tblRef as never, { once: true, amount: 0.4 });
+  const lit = animateIn && tblInView;
 
   return (
     <section
@@ -122,12 +166,12 @@ export function Gap() {
           initial={animateIn ? "hidden" : false}
           animate={show as never}
           className={styles.cmpTable}
+          ref={tblRef}
         >
           <div className={styles.cmpHeadRow}>
             <span className={styles.cmpLabel} />
             {CMP.map((col) => (
               <span key={col.name} className={styles.cmpCol}>
-                <span className={styles.hackTag}>{col.hack}</span>
                 <span className={cn(sg.className, styles.cmpColTitle)}>
                   {col.name}
                 </span>
@@ -135,24 +179,40 @@ export function Gap() {
               </span>
             ))}
           </div>
-          {ROWS.map((row) => (
-            <div
+          {ROWS.map((row, i) => (
+            <motion.div
               key={row.label}
+              variants={rowV}
+              custom={i}
+              initial={animateIn ? "hidden" : false}
+              animate={lit ? "show" : false}
               className={cn(styles.cmpRow, row.highlight && styles.cmpHi)}
             >
+              <motion.span
+                variants={flashV}
+                custom={i}
+                initial={animateIn ? "hidden" : false}
+                animate={lit ? "show" : false}
+                className={styles.cmpFlash}
+                aria-hidden="true"
+              />
               <span className={styles.cmpLabel}>
                 {row.label}
                 <i>{row.note}</i>
               </span>
-              {row.marks.map((ok, i) => (
-                <span
-                  key={i}
+              {row.marks.map((ok, j) => (
+                <motion.span
+                  key={j}
+                  variants={markV}
+                  custom={i * 10 + j}
+                  initial={animateIn ? "hidden" : false}
+                  animate={lit ? "show" : false}
                   className={cn(styles.cmpCell, ok && styles.cmpCellOk)}
                 >
                   {ok ? "✓" : "✕"}
-                </span>
+                </motion.span>
               ))}
-            </div>
+            </motion.div>
           ))}
         </motion.div>
 

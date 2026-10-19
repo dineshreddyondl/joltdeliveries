@@ -72,23 +72,14 @@
 .cmpCol {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 4px;
   padding: 24px 28px 20px;
   min-width: 0;
 }
 .cmpCol + .cmpCol {
   border-left: 1px solid #e4e0d6;
-}
-.hackTag {
-  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #6b6b66;
-  border: 1px solid rgba(12, 14, 9, 0.12);
-  border-radius: 100px;
-  padding: 3px 8px;
-  align-self: flex-start;
 }
 .cmpColTitle {
   font-size: 20px;
@@ -105,7 +96,15 @@
   color: #3f3d38;
 }
 .cmpRow {
+  position: relative;
   border-top: 1px solid rgba(12, 14, 9, 0.07);
+}
+.cmpFlash {
+  position: absolute;
+  inset: 0;
+  background: rgba(232, 90, 44, 0.16);
+  opacity: 0;
+  pointer-events: none;
 }
 .cmpRow:first-of-type {
   border-top: none;
