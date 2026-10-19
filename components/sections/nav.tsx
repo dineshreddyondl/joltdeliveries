@@ -20,13 +20,10 @@
 import { useEffect, useState } from "react";
 import { Archivo } from "next/font/google";
 
-import { ServiceabilityChecker, WHATSAPP_NUMBER } from "@/components/serviceability/serviceability-checker";
+import { ServiceabilityChecker } from "@/components/serviceability/serviceability-checker";
 import { PilotFlow } from "@/components/pilot/pilot-flow";
 import { cn } from "@/lib/utils";
 import styles from "./nav.module.css";
-
-const waUrl = (message: string) =>
-  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
 const archivo = Archivo({
   subsets: ["latin"],
@@ -58,35 +55,8 @@ export function Nav() {
       aria-label="Main"
       className={cn(styles.nav, scrolled && styles.scrolled, archivo.variable)}
     >
-      {/* Utility bar (Brief 09) — self-serve strip; only real actions.
-          Desktop-only so mobile keeps the clean two-CTA nav. */}
-      <div className={styles.util}>
-        <span className={styles.utilLive}>
-          <i className={styles.utilSq} aria-hidden="true" />
-          Live Lanes
-        </span>
-        <span className={styles.utilCtas}>
-          <button
-            type="button"
-            onClick={() => window.dispatchEvent(new Event("jolt:open-checker"))}
-          >
-            Check lane
-          </button>
-          <button
-            type="button"
-            onClick={() => window.dispatchEvent(new Event("jolt:open-pilot"))}
-          >
-            Start pilot
-          </button>
-          <a
-            href={waUrl("Hi JOLT! I have a freight query.")}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            WhatsApp
-          </a>
-        </span>
-      </div>
+      {/* Utility bar removed 2026-10-19 (founder: benchmark starts at nav —
+          page opens directly on the white nav, no black strip). */}
 
       <div className={styles.row}>
         <a
