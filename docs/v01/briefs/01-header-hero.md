@@ -9,7 +9,7 @@ Reference mock: `design-reference/jolt-hero-v01-proofrail-v5-learnings.html`
 (images still being finalised — layout is what's frozen).
 
 ### Structure (top → bottom)
-1. **Utility bar** (desktop): `LIVE LANES` label left · `Check lane` · `Start pilot` · `WhatsApp` right.
+1. ~~Utility bar~~ — **removed 2026-10-19** (founder: benchmark has no black top strip; page starts at the nav). Supersedes the earlier LIVE-LANES-utility decision.
 2. **Nav:** `JOLT Deliveries` wordmark · ghost `Check serviceability` · orange `Start pilot`.
 3. **Hero grid** (2 cols → 1 col ≤768): copy left, stage right.
 4. **Marquee:** Ather · Wakefit · Ola Electric · Duroflex (founder-authorized).
