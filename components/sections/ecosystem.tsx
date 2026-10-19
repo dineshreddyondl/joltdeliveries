@@ -79,38 +79,15 @@ export function Ecosystem() {
           animate={show as never}
           className={styles.lede}
         >
-          Express SLAs for your distributors and your end-consumers. Zero IT
-          overhaul required — our API plugs into your existing stack. Just
-          switch us on.
-        </motion.p>
-
-        {/* Sub-heading — outside the box, under the section hero. */}
-        <motion.h3
-          variants={rv}
-          custom={3}
-          initial={animateIn ? "hidden" : false}
-          animate={show as never}
-          className={cn(sg.className, styles.fHead)}
-        >
-          Your SCM stack, already connected.
-        </motion.h3>
-
-        <motion.p
-          variants={rv}
-          custom={4}
-          initial={animateIn ? "hidden" : false}
-          animate={show as never}
-          className={styles.fSub}
-        >
-          We ship integrations with the platforms your ops teams already use
-          — no IT overhaul.
+          Your SCM stack, already connected. We ship integrations with the
+          platforms your ops teams already use — no IT overhaul.
         </motion.p>
 
         {/* Feature card — the box carries ONLY the animation + the SCM
             platform scroll. */}
         <motion.div
           variants={rv}
-          custom={5}
+          custom={3}
           initial={animateIn ? "hidden" : false}
           animate={show as never}
           className={styles.featureCard}
@@ -134,11 +111,23 @@ export function Ecosystem() {
           </div>
         </motion.div>
 
+        <motion.p
+          variants={rv}
+          custom={4}
+          initial={animateIn ? "hidden" : false}
+          animate={show as never}
+          className={styles.fAfter}
+        >
+          Express SLAs for your distributors and your end-consumers. Zero IT
+          overhaul required — our API plugs into your existing stack. Just
+          switch us on.
+        </motion.p>
+
         {/* Two movement types, one line each. */}
         <div className={styles.cases}>
           <motion.div
             variants={rv}
-            custom={6}
+            custom={5}
             initial={animateIn ? "hidden" : false}
             animate={show as never}
             className={styles.caseCard}
@@ -149,7 +138,7 @@ export function Ecosystem() {
           </motion.div>
           <motion.div
             variants={rv}
-            custom={7}
+            custom={6}
             initial={animateIn ? "hidden" : false}
             animate={show as never}
             className={styles.caseCard}
@@ -162,7 +151,7 @@ export function Ecosystem() {
 
         <motion.p
           variants={rv}
-          custom={8}
+          custom={7}
           initial={animateIn ? "hidden" : false}
           animate={show as never}
           className={styles.distance}
@@ -172,7 +161,7 @@ export function Ecosystem() {
 
         <motion.p
           variants={rv}
-          custom={9}
+          custom={8}
           initial={animateIn ? "hidden" : false}
           animate={show as never}
           className={cn(sg.className, styles.same)}
