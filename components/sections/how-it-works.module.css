@@ -1,16 +1,29 @@
 /* ================================================================
-   How It Works — CSS · port of frozen v5 (.pipeline / .pipe-*, lines
-   552–565) with a CSS-only loop. Reduced motion: globals kill-switch
-   + `forwards` fill → completed static pipeline.
+   How It Works — The Orchestration Layer · V0.1 restructure
+   Journey-first layout: pipeline (CSS loop) + 3 compact USP tiles.
+   Reduced motion: globals kill-switch + `forwards` fill → static
+   completed journey.
    ================================================================ */
 
 .sec {
+  position: relative;
   padding: 64px 24px;
   background: #08080a;
   color: #fff;
   scroll-margin-top: 80px;
+  overflow: hidden;
+}
+/* Grain — dark sections carry it per the design system. */
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20width=%27160%27%20height=%27160%27%3E%3Cfilter%20id=%27n%27%3E%3CfeTurbulence%20type=%27fractalNoise%27%20baseFrequency=%270.9%27%20numOctaves=%272%27/%3E%3CfeColorMatrix%20type=%27saturate%27%20values=%270%27/%3E%3C/filter%3E%3Crect%20width=%27160%27%20height=%27160%27%20filter=%27url(%23n)%27/%3E%3C/svg%3E");
+  pointer-events: none;
 }
 .wrap {
+  position: relative;
   max-width: 1140px;
   margin: 0 auto;
   padding: 0 32px;
@@ -24,7 +37,7 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #e85a2c;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
 .tag::before {
   content: "";
@@ -37,18 +50,22 @@
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.12;
-  max-width: 760px;
+  max-width: 820px;
   color: #fff;
 }
+.h2 em {
+  font-style: normal;
+  box-shadow: inset 0 -0.38em #e85a2c;
+}
 .lede {
-  margin-top: 20px;
+  margin-top: 24px;
   font-size: 16.5px;
   line-height: 1.7;
   color: #8b8b90;
   max-width: 620px;
 }
 
-/* ---------------- pipeline (CSS loop) ---------------- */
+/* ---------------- journey pipeline ---------------- */
 .pipeline {
   position: relative;
   margin-top: 48px;
@@ -200,36 +217,111 @@
   animation-play-state: paused;
 }
 
-/* ---------------- columns ---------------- */
-.cols {
+/* Stage labels under the track. */
+.stageRow {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 36px;
-  margin-top: 40px;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 20px;
 }
-.col .step {
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.stage:nth-child(2) {
+  align-items: center;
+  text-align: center;
+}
+.stage:nth-child(3) {
+  align-items: flex-end;
+  text-align: right;
+}
+.stageIdx {
   font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
-  font-size: 11px;
+  font-size: 10px;
+  letter-spacing: 0.2em;
   color: #e85a2c;
-  letter-spacing: 0.16em;
-  display: block;
-  margin-bottom: 12px;
 }
-.col h3 {
-  font-size: 20px;
+.stageName {
+  font-size: 18px;
   font-weight: 600;
-  margin-bottom: 10px;
+  letter-spacing: -0.01em;
   color: #fff;
 }
-.col p {
-  font-size: 15px;
-  color: #b9b9bf; /* 7.4:1 on #08080A (frozen #8B8B90 ≈ 7.1:1) */
-  line-height: 1.65;
+.stageSub {
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8b8b90;
 }
 
-@media (min-width: 768px) {
-  .cols {
+/* ---------------- USP tiles ---------------- */
+.usps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-top: 48px;
+}
+@media (min-width: 1024px) {
+  .usps {
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 20px;
+  }
+}
+.usp {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.step {
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 10px;
+  color: #e85a2c;
+  letter-spacing: 0.16em;
+}
+.usp h3 {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+.usp p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #b9b9bf; /* 7.4:1 on #08080A */
+  flex: 1;
+}
+.spec {
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8b8b90;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 12px;
+}
+.footnote {
+  margin-top: 24px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #8b8b90;
+}
+.footnote sup {
+  color: #e85a2c;
+  margin-right: 3px;
+}
+
+@media (max-width: 640px) {
+  .stageName {
+    font-size: 15px;
+  }
+  .stageSub {
+    font-size: 8px;
+    letter-spacing: 0.08em;
   }
 }

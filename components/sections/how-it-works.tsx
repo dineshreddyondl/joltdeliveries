@@ -1,12 +1,20 @@
 "use client";
 
 /**
- * How It Works — The Orchestration Layer · Brief 06 (claim-corrected)
- * Frozen v5 port: dark band, sec-tag, H2, lede, pipeline (CSS-only
- * loop) and three columns (NTO / HUBLESS / VISIBILITY). Copy per
- * Brief 06: scoped "fastest mid-mile", "cleanest" rail, domestic-lane
- * wording, "up to 89% less CO₂ per tonne-km" + footnote, honest
- * consolidation wording.
+ * How It Works — The Orchestration Layer · V0.1 restructure (founder 2026-10-19)
+ *
+ * The solution + USP section. Restructured from three dense paragraphs to a
+ * low-density, journey-first layout:
+ *   H2 → one-line lede → horizontal journey pipeline (FIRST MILE → RAIL
+ *   LINEHAUL → LAST MILE with the travelling dot) → three compact USP cards
+ *   (NTO / HUBLESS / VISIBILITY, one line each + mono spec) → CO₂ footnote.
+ *
+ * Copy changes in this pass (flagged to founder):
+ * - H2: founder's new sentence "We built the purpose-built layer for express
+ *   heavy commerce — the fastest, from first mile to last mile."
+ * - Lede: black-box/cleanest-weight duplication vs Why Now removed.
+ * - 89% CO₂ now carries its required footnote (NITI Aayog, SFC India 2025).
+ * - "absolute visibility" → "every milestone tracked".
  */
 
 import { Space_Grotesk } from "next/font/google";
@@ -31,21 +39,42 @@ const rv: Variants = {
   }),
 };
 
-const COLS = [
+const STAGES = [
+  {
+    idx: "01",
+    name: "First Mile",
+    sub: "Scheduled road pickup",
+  },
+  {
+    idx: "02",
+    name: "Rail Linehaul",
+    sub: "Next Train Out · no fill-waiting",
+  },
+  {
+    idx: "03",
+    name: "Last Mile",
+    sub: "Direct delivery to your distributor",
+  },
+];
+
+const USPS = [
   {
     step: "01 / NTO",
-    title: "Next Train Out (NTO) Speed",
-    body: "Aviation has Next Flight Out. We built Next Train Out for heavy commerce. Your payload doesn\u2019t wait for a truck to fill up. High-capacity rail bypasses highway tolls and traffic to deliver non-stop linehaul \u2014 up to 89% less CO\u2082 per tonne-km vs road.",
+    title: "Next Train Out speed",
+    line: "Your payload boards the next scheduled train — it never waits for a full truck.",
+    spec: "Up to 89% less CO₂ per tonne-km vs road",
   },
   {
     step: "02 / HUBLESS",
-    title: "End-to-End Hubless Execution",
-    body: "From first-mile pickup to final-mile delivery. No multi-day consolidation waits. No waiting in truck hubs. We pick up your payload, load it directly onto the rail linehaul, and deliver it straight to the destination. One seamless motion. Zero mid-journey sorting delays.",
+    title: "Hubless by design",
+    line: "One seamless motion — pickup, linehaul, delivery. Zero consolidation waits.",
+    spec: "No mid-journey sorting",
   },
   {
     step: "03 / VISIBILITY",
-    title: "Control Tower Visibility",
-    body: "Real-time tracking across every milestone. Rail used to be a blind spot. Our tech gives your ops team proactive alerts and absolute visibility, allowing us to guarantee the SLA.",
+    title: "Control tower visibility",
+    line: "Every milestone tracked in real time — proactive alerts, SLA-backed.",
+    spec: "Guaranteed SLA",
   },
 ];
 
@@ -60,6 +89,7 @@ export function HowItWorks() {
       aria-labelledby="how-heading"
       className={styles.sec}
     >
+      <div className={styles.grain} aria-hidden="true" />
       <div className={styles.wrap}>
         <motion.span
           variants={rv}
@@ -79,8 +109,9 @@ export function HowItWorks() {
           animate={show as never}
           className={cn(sg.className, styles.h2)}
         >
-          Not another marketplace. We built the intelligence to unlock the
-          fastest mid-mile network in India.
+          Not another marketplace. We built the{" "}
+          <em>purpose-built layer</em> for express heavy commerce — the
+          fastest, from first mile to last mile.
         </motion.h2>
 
         <motion.p
@@ -91,12 +122,11 @@ export function HowItWorks() {
           className={styles.lede}
         >
           Marketplaces match supply and demand, then wash their hands of the
-          SLA. We don&rsquo;t. Indian rail was always the cleanest way to move
-          weight. It was just an analog black box. We built the tech to run it
-          end-to-end, and we take full accountability for the delivery.
+          SLA. We run the whole journey — and stand behind every delivery.
         </motion.p>
 
-        {/* Pipeline — CSS-only loop (reduced-motion → completed static) */}
+        {/* Journey pipeline — the section's hero. CSS loop; reduced-motion
+            renders the completed static journey. */}
         <motion.div
           variants={rv}
           custom={3}
@@ -118,24 +148,47 @@ export function HowItWorks() {
               <div className={styles.psDot} />
             </div>
           </div>
+          <div className={styles.stageRow}>
+            {STAGES.map((s) => (
+              <div key={s.idx} className={styles.stage}>
+                <span className={styles.stageIdx}>{s.idx}</span>
+                <span className={cn(sg.className, styles.stageName)}>
+                  {s.name}
+                </span>
+                <span className={styles.stageSub}>{s.sub}</span>
+              </div>
+            ))}
+          </div>
         </motion.div>
 
-        <div className={styles.cols}>
-          {COLS.map((col, i) => (
+        <div className={styles.usps}>
+          {USPS.map((u, i) => (
             <motion.div
-              key={col.step}
+              key={u.step}
               variants={rv}
               custom={i + 3}
               initial={animateIn ? "hidden" : false}
               animate={show as never}
-              className={styles.col}
+              className={styles.usp}
             >
-              <span className={styles.step}>{col.step}</span>
-              <h3 className={sg.className}>{col.title}</h3>
-              <p>{col.body}</p>
+              <span className={styles.step}>{u.step}</span>
+              <h3 className={sg.className}>{u.title}</h3>
+              <p>{u.line}</p>
+              <span className={styles.spec}>{u.spec}</span>
             </motion.div>
           ))}
         </div>
+
+        <motion.p
+          variants={rv}
+          custom={6}
+          initial={animateIn ? "hidden" : false}
+          animate={show as never}
+          className={styles.footnote}
+        >
+          <sup aria-hidden="true">‡</sup>
+          vs road freight per tonne-km · NITI Aayog, SFC India 2025
+        </motion.p>
       </div>
     </section>
   );
