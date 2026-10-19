@@ -29,6 +29,7 @@ import { Space_Grotesk } from "next/font/google";
 import { motion, type Variants } from "motion/react";
 
 import { useReveal } from "@/components/ui/use-reveal";
+import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import { cn } from "@/lib/utils";
 import styles from "./how-it-works.module.css";
 
@@ -92,6 +93,23 @@ function TrainGlyph() {
     </svg>
   );
 }
+
+const H2_WORDS = [
+  { text: "A" },
+  { text: "purpose-built", className: "text-[#E85A2C]" },
+  { text: "express", className: "text-[#E85A2C]" },
+  { text: "layer", className: "text-[#E85A2C]" },
+  { text: "for" },
+  { text: "heavy" },
+  { text: "commerce" },
+  { text: "—" },
+  { text: "not" },
+  { text: "another" },
+  { text: "bidding" },
+  { text: "board" },
+  { text: "or" },
+  { text: "marketplace." },
+];
 
 const STAGES = [
   {
@@ -166,8 +184,7 @@ export function HowItWorks() {
           animate={show as never}
           className={cn(sg.className, styles.h2)}
         >
-          A <em>purpose-built express layer</em> for heavy commerce — not
-          another bidding board or marketplace.
+          <TypewriterEffectSmooth words={H2_WORDS} />
         </motion.h2>
 
         <motion.p
