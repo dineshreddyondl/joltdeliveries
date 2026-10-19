@@ -84,6 +84,12 @@
   transform: translateY(-8px);
   box-shadow: 0 30px 60px rgba(10, 10, 11, 0.1);
 }
+.trapArtSvg {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 24px;
+}
 .badge {
   font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
   font-size: 10.5px;
