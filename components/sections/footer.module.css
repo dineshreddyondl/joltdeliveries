@@ -15,7 +15,17 @@
   grid-template-columns: 1fr;
   gap: 48px;
 }
-.brand .logo {
+.brand .logoRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mark {
+  width: 34px;
+  height: 34px;
+  display: block;
+}
+.logo {
   font-size: 22px;
   font-weight: 700;
   letter-spacing: 0.06em;

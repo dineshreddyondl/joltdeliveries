@@ -3,6 +3,14 @@
    .cta-btns, .fineprint, .u — lines 579–593)
    ================================================================ */
 
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20width=%27160%27%20height=%27160%27%3E%3Cfilter%20id=%27n%27%3E%3CfeTurbulence%20type=%27fractalNoise%27%20baseFrequency=%270.9%27%20numOctaves=%272%27/%3E%3CfeColorMatrix%20type=%27saturate%27%20values=%270%27/%3E%3C/filter%3E%3Crect%20width=%27160%27%20height=%27160%27%20filter=%27url(%23n)%27/%3E%3C/svg%3E");
+  pointer-events: none;
+}
 .sec {
   padding: 88px 24px;
   text-align: center;
@@ -36,7 +44,7 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #e85a2c;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
   width: 100%;
   justify-content: center;
   justify-content: center;
@@ -52,7 +60,7 @@
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.035em;
-  margin: 0 auto 26px;
+  margin: 0 auto 24px;
   max-width: 900px;
   margin-inline: auto;
   text-align: center;
@@ -75,7 +83,7 @@
   opacity: 0.9;
 }
 .lede {
-  margin: 22px auto 0;
+  margin: 24px auto 0;
   font-size: 16.5px;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.68);

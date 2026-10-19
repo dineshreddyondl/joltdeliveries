@@ -40,6 +40,7 @@ export function Cta() {
       aria-labelledby="cta-heading"
       className={styles.sec}
     >
+      <div className={styles.grain} aria-hidden="true" />
       <div className={styles.glow} aria-hidden="true" />
       <div className={styles.wrap}>
         <motion.span

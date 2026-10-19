@@ -1,4 +1,5 @@
 import { Space_Grotesk } from "next/font/google";
+import Image from "next/image";
 import { WHATSAPP_NUMBER } from "@/components/serviceability/serviceability-checker";
 import { cn } from "@/lib/utils";
 import styles from "./footer.module.css";
@@ -26,8 +27,18 @@ export function Footer() {
     <footer className={styles.footer}>
       <div className={styles.grid}>
         <div className={styles.brand}>
-          <div className={cn(sg.className, styles.logo)}>
-            JOLT<i>Deliveries</i>
+          <div className={styles.logoRow}>
+            <Image
+              src="/assets/jolt-logo-dark.svg"
+              alt=""
+              aria-hidden="true"
+              width={34}
+              height={34}
+              className={styles.mark}
+            />
+            <div className={cn(sg.className, styles.logo)}>
+              JOLT<i>Deliveries</i>
+            </div>
           </div>
           <div className={styles.by}>An ONDL Network Platform</div>
           <div className={styles.tagline}>
@@ -45,7 +56,7 @@ export function Footer() {
             <a href="#how">How It Works</a>
             <a href="#eco">Solutions</a>
             <a href="#live-lanes">Route Network</a>
-            <a href="#cta">Pricing</a>
+            <a href="#cta">Pilot</a>
           </nav>
           <nav aria-label="Company" className={styles.col}>
             <h4>Company</h4>
