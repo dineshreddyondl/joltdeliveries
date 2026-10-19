@@ -16,3 +16,4 @@
 | 2026-10-19 | Lane-table header | Founder: 'just keep like the benchmark' — column header = `Traditional Logistics` (guardrail override; sweep exemption to be applied on implementation). |
 | 2026-10-19 | Utility bar | Removed (founder 'x' on the black strip; benchmark starts at nav). Supersedes LIVE-LANES utility decision. |
 | 2026-10-19 | Hero dot-to-dot | Founder: whole hero identical to benchmark EXCEPT the right-side stage animation. Ported: real logo nav, aurora, blaze+embers, benchmark marquee; utility bar already removed. |
+| 2026-10-19 | Loop rhythm | Start-stop: 7.2s journey + 2.4s delivered hold + clean reset. Clock-journey (12/3/6/9) variant rejected by founder — images must stay dominant. |

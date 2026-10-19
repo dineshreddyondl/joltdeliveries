@@ -33,11 +33,12 @@ Reference mock: `design-reference/jolt-hero-v01-proofrail-v5-learnings.html`
   - Times row: `09:10 · 09:40 · 10:30 · 11:02` (SAMPLE tag removed by founder instruction 2026-10-19).
 - **Category ticker:** below the stage — 6 dots + `CURRENT CATEGORY → NEXT CATEGORY`.
 
-### Timing — ONE master clock (non-negotiable)
-- All motion derives from a single 7.2s CSS animation clock (mirror: production uses one `requestAnimationFrame` loop).
-- Segment windows: 0–26% · 26–52% · 52–78% of loop; nodes flash at 4.5% / 30.5% / 56%; DELIVERED flare + stamp slam at 97.5–100% (frame-exact, verified delta 0ms).
-- Parade index = floor(loopT / 1200) % 6 — the 6th product holds the stage through the slam.
-- No `Date.now()` or independent intervals for the board.
+### Timing — ONE master clock, START-STOP rhythm (non-negotiable, founder 2026-10-19)
+- Loop = **9.6s**: journey fills 0–7.2s → DELIVERED flare + stamp slam → **2.4s HOLD (everything stopped, stamp visible)** → clean reset (stamp disappears, nodes clear) → restart.
+- One clock drives everything (production: single `requestAnimationFrame` loop — no Date.now(), no separate intervals).
+- Segment windows (of 9.6s): 0–20.2% · 21.7–39.4% · 40.8–58.5%; nodes flash 3.4% / 22.9% / 42%; DELIVERED flare + stamp slam at 73.1–80% (verified synced, delta 0ms).
+- Parade: 6 products × 1.2s (0–7.2s); the 6th product holds through the delivered pause.
+- Rejected and recorded: clock-journey variant (dial IS the journey, 12/3/6/9 nodes) — founder: images buried under clock, no stop; continuous rotation rejected.
 
 ### Reduced motion
 - Static first product; journey bar fully lit; stamp visible static; no loops, no pulses; status shows `INSTANT PICKUP`.
