@@ -9,7 +9,8 @@
  */
 
 import { Space_Grotesk } from "next/font/google";
-import { motion, type Variants } from "motion/react";
+import { motion, useInView, type Variants } from "motion/react";
+import { useRef } from "react";
 
 import { FOOTNOTES } from "@/lib/metrics-data";
 import { useReveal } from "@/components/ui/use-reveal";
@@ -31,17 +32,8 @@ const rv: Variants = {
   }),
 };
 
-/* Node ignition: numbered node pops in with a spring, then the spine
-   segment below it lights up (the timeline's reveal micro-motion). */
-const nodeV: Variants = {
-  hidden: { scale: 0.5, opacity: 0 },
-  show: (i: number) => ({
-    scale: 1,
-    opacity: 1,
-    transition: { type: "spring", stiffness: 260, damping: 18, delay: 0.1 + i * 0.08 },
-  }),
-};
-
+/* Spine ignition: the segment below each node lights up when the
+   timeline itself scrolls into view (the timeline's reveal micro-motion). */
 const segV: Variants = {
   hidden: { scaleY: 0, opacity: 0 },
   show: (i: number) => ({
@@ -50,7 +42,7 @@ const segV: Variants = {
     transition: {
       duration: 0.9,
       ease: [0.16, 1, 0.3, 1],
-      delay: 0.35 + i * 0.08,
+      delay: 0.15 + i * 0.1,
     },
   }),
 };
@@ -76,6 +68,17 @@ const ITEMS = [
 export function WhyNow() {
   const { ref, animateIn, inView } = useReveal<HTMLElement>();
   const show = animateIn ? (inView ? "show" : "hidden") : false;
+
+  /* The ignite has its own visibility gate: the section-level reveal can
+     fire early (layout settles during load), which would play the spine
+     animation before the reader reaches it. Scoping to the timeline means
+     nodes + segments only ignite when the timeline itself is on screen. */
+  const tlRef = useRef<HTMLDivElement>(null);
+  const tlInView = useInView(tlRef as never, {
+    once: true,
+    amount: 0.25,
+  });
+  const lit = animateIn && tlInView;
 
   return (
     <section
@@ -116,7 +119,7 @@ export function WhyNow() {
           Heavy commerce moved online. Logistics didn&rsquo;t.
         </motion.p>
 
-        <div className={styles.timeline}>
+        <div className={styles.timeline} ref={tlRef}>
           {ITEMS.map((item, i) => (
             <motion.div
               key={item.n}
@@ -126,21 +129,15 @@ export function WhyNow() {
               animate={show as never}
               className={styles.tlItem}
             >
-              <motion.div
-                variants={nodeV}
-                custom={i}
-                initial={animateIn ? "hidden" : false}
-                animate={show as never}
-                className={styles.tlNode}
-              >
+              <div className={styles.tlNode}>
                 <span>{item.n}</span>
-              </motion.div>
+              </div>
               {i < ITEMS.length - 1 && (
                 <motion.span
                   variants={segV}
                   custom={i}
                   initial={animateIn ? "hidden" : false}
-                  animate={show as never}
+                  animate={lit ? "show" : false}
                   className={styles.tlSeg}
                   aria-hidden="true"
                 />
