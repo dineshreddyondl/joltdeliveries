@@ -38,6 +38,7 @@ import { Space_Grotesk } from "next/font/google";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 
 import { cn } from "@/lib/utils";
+import { Cover } from "@/components/ui/cover";
 import { CustomerMarquee } from "@/components/sections/customer-marquee";
 import styles from "./hero.module.css";
 
@@ -623,7 +624,7 @@ export function Hero() {
           >
             India&rsquo;s first express layer for{" "}
             <span className={styles.em}>
-              heavy shipments
+              <Cover>heavy shipments</Cover>
               <i className={styles.blaze} aria-hidden="true">
                 <i className={styles.s1} />
                 <i className={styles.s2} />
