@@ -52,27 +52,25 @@
   max-width: 700px;
   margin-top: 48px;
 }
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 12px;
+  bottom: 12px;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(232, 90, 44, 0.6),
+    rgba(255, 255, 255, 0.1)
+  );
+}
 .tlItem {
   position: relative;
   padding-bottom: 48px;
 }
 .tlItem:last-child {
   padding-bottom: 0;
-}
-/* Spine segment between nodes — ignites as its node reveals. */
-.tlSeg {
-  position: absolute;
-  left: 15px;
-  top: 31px;
-  bottom: 0;
-  width: 1px;
-  transform-origin: top;
-  background: linear-gradient(
-    180deg,
-    rgba(232, 90, 44, 0.85),
-    rgba(232, 90, 44, 0.12)
-  );
-  pointer-events: none;
 }
 .tlNode {
   position: absolute;
@@ -136,9 +134,5 @@
     width: 27px;
     height: 27px;
     font-size: 9px;
-  }
-  .tlSeg {
-    left: 13px; /* node center shifts to 13.5px with the 27px node */
-    top: 27px;
   }
 }
