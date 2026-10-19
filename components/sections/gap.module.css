@@ -51,116 +51,133 @@
   color: #55524b; /* ~7.2:1 on #F4F2ED */
   max-width: 620px;
 }
-.trapGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
+/* One comparison table (founder): two networks, shared variables,
+   highlighted double-fail row. */
+.cmpTable {
   margin-top: 48px;
-}
-/* Side-by-side bento pair on desktop; stacked on mobile. */
-@media (min-width: 768px) {
-  .trapGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    align-items: stretch;
-  }
-}
-.trap {
   background: #fff;
   border: 1px solid #e4e0d6;
   border-radius: 18px;
-  padding: 40px;
-  position: relative;
   overflow: hidden;
+  box-shadow: 0 18px 44px -32px rgba(12, 14, 9, 0.3);
+}
+.cmpHeadRow,
+.cmpRow {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr 1fr;
+}
+.cmpHeadRow {
+  border-bottom: 1px solid #e4e0d6;
+}
+.cmpCol {
   display: flex;
   flex-direction: column;
-  transition:
-    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.4s;
+  gap: 4px;
+  padding: 24px 28px 20px;
+  min-width: 0;
 }
-/* Bento pair: subtly different surface tints so the two tiles don't
-   read as one repeated box. */
-.freight {
-  background: #faf8f4;
+.cmpCol + .cmpCol {
+  border-left: 1px solid #e4e0d6;
 }
-/* Ghost index numeral — echoes the Why Now timeline numbering. */
-.ghostNum {
-  position: absolute;
-  right: 20px;
-  bottom: 4px;
+.hackTag {
   font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
-  font-weight: 700;
-  font-size: 64px;
-  line-height: 1;
-  letter-spacing: -0.06em;
-  color: rgba(12, 14, 9, 0.05);
-  pointer-events: none;
-  user-select: none;
-}
-.trap:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 30px 60px rgba(10, 10, 11, 0.1);
-}
-/* Heading row: title + descriptor left, "HACK N" tag on the side. */
-.trapHead {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 20px;
-}
-.sideBadge {
-  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
-  font-size: 10px;
-  letter-spacing: 0.14em;
+  font-size: 9px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #6b6b66;
   border: 1px solid rgba(12, 14, 9, 0.12);
   border-radius: 100px;
-  padding: 4px 10px;
-  white-space: nowrap;
-  flex-shrink: 0;
+  padding: 3px 8px;
+  align-self: flex-start;
 }
-.trap h3 {
-  font-size: 23px;
+.cmpColTitle {
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: 8px;
   color: #0c0e09;
 }
-.sub {
+.cmpSub {
   font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
-  font-size: 10.5px;
+  font-size: 9.5px;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #3f3d38; /* ~9.3:1 on white — was #6b6b66 @ 5.36 (too grey) */
-  display: block;
-  margin-bottom: 20px;
+  color: #3f3d38;
 }
-/* Two point lines per card — light copy, bento-style. */
-.pts {
+.cmpRow {
+  border-top: 1px solid rgba(12, 14, 9, 0.07);
+}
+.cmpRow:first-of-type {
+  border-top: none;
+}
+.cmpLabel {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  flex: 1; /* pushes the tagline to the card bottom */
-}
-.pt {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
+  gap: 2px;
+  padding: 16px 28px;
   font-size: 15.5px;
-  line-height: 1.55;
-  color: #55524b;
+  font-weight: 600;
+  color: #0c0e09;
 }
-.pt i {
-  width: 7px;
-  height: 7px;
-  background: #e85a2c;
-  border-radius: 2px;
-  flex-shrink: 0;
-  margin-top: 8px;
+.cmpLabel i {
+  font-style: normal;
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6b6b66;
+  font-weight: 400;
 }
+.cmpCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 28px;
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: #e85a2c;
+}
+.cmpCell + .cmpCell {
+  border-left: 1px solid rgba(12, 14, 9, 0.07);
+}
+.cmpCellOk {
+  color: #0c0e09;
+}
+/* The highlighted row: neither network gives you bulky speed. */
+.cmpHi {
+  background: rgba(232, 90, 44, 0.07);
+  border-top: 1px solid rgba(232, 90, 44, 0.25);
+}
+.cmpHi .cmpLabel {
+  color: #c2410c;
+}
+.cmpHi .cmpLabel i {
+  color: #c2410c;
+}
+.cmpHi .cmpCell {
+  color: #c2410c;
+}
+@media (max-width: 640px) {
+  .cmpCol {
+    padding: 18px 14px 14px;
+  }
+  .cmpLabel {
+    padding: 14px 14px;
+    font-size: 13.5px;
+  }
+  .cmpLabel i {
+    font-size: 8.5px;
+  }
+  .cmpCell {
+    padding: 14px 10px;
+    font-size: 15px;
+  }
+  .cmpColTitle {
+    font-size: 16px;
+  }
+}
+
 .verdict {
   margin-top: 48px;
   text-align: center;
@@ -175,10 +192,4 @@
 .verdict b {
   color: #0c0e09;
   font-style: normal;
-}
-
-@media (max-width: 640px) {
-  .trap {
-    padding: 28px 22px;
-  }
 }

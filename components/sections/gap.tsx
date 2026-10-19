@@ -31,28 +31,40 @@ const rv: Variants = {
   }),
 };
 
-const TRAPS = [
+/* One comparison table (founder): the two networks share the same
+   variables — express speed, bulky speed, bulk pricing — and the
+   verdict lives in the highlighted double-✕ row: neither network
+   gives you bulky speed. */
+
+const CMP = [
   {
-    n: "01",
-    badge: "Hack 1",
-    tone: "courier",
-    title: "Express Courier Network",
+    name: "Express Courier Network",
     sub: "Built for small parcels",
-    points: [
-      "Heavy goods get damaged in parcel networks",
-      "Dimensional pricing destroys your unit economics",
-    ],
+    hack: "Hack 1",
   },
   {
-    n: "02",
-    badge: "Hack 2",
-    tone: "freight",
-    title: "LTL Network",
+    name: "LTL Network",
     sub: "Built for bulk aggregation",
-    points: [
-      "Your shipment idles in hub yards, waiting for volume",
-      "You save money — and lose a week",
-    ],
+    hack: "Hack 2",
+  },
+];
+
+const ROWS = [
+  {
+    label: "Express speed",
+    note: "Same-day / next-day",
+    marks: [true, false],
+  },
+  {
+    label: "Bulky speed",
+    note: "Your 200kg+ shipment",
+    marks: [false, false],
+    highlight: true,
+  },
+  {
+    label: "Bulk pricing",
+    note: "Freight economics at scale",
+    marks: [false, true],
   },
 ];
 
@@ -104,37 +116,45 @@ export function Gap() {
           entirely different categories.
         </motion.p>
 
-        <div className={styles.trapGrid}>
-          {TRAPS.map((trap, i) => (
-            <motion.div
-              key={trap.badge}
-              variants={rv}
-              custom={i + 2}
-              initial={animateIn ? "hidden" : false}
-              animate={show as never}
-              className={cn(styles.trap, styles[trap.tone])}
-            >
-              <div className={styles.trapHead}>
-                <div>
-                  <h3 className={sg.className}>{trap.title}</h3>
-                  <span className={styles.sub}>{trap.sub}</span>
-                </div>
-                <span className={styles.sideBadge}>{trap.badge}</span>
-              </div>
-              <div className={styles.pts}>
-                {trap.points.map((pt) => (
-                  <p key={pt} className={styles.pt}>
-                    <i aria-hidden="true" />
-                    {pt}
-                  </p>
-                ))}
-              </div>
-              <span className={styles.ghostNum} aria-hidden="true">
-                {trap.n}
+        <motion.div
+          variants={rv}
+          custom={2}
+          initial={animateIn ? "hidden" : false}
+          animate={show as never}
+          className={styles.cmpTable}
+        >
+          <div className={styles.cmpHeadRow}>
+            <span className={styles.cmpLabel} />
+            {CMP.map((col) => (
+              <span key={col.name} className={styles.cmpCol}>
+                <span className={styles.hackTag}>{col.hack}</span>
+                <span className={cn(sg.className, styles.cmpColTitle)}>
+                  {col.name}
+                </span>
+                <span className={styles.cmpSub}>{col.sub}</span>
               </span>
-            </motion.div>
+            ))}
+          </div>
+          {ROWS.map((row) => (
+            <div
+              key={row.label}
+              className={cn(styles.cmpRow, row.highlight && styles.cmpHi)}
+            >
+              <span className={styles.cmpLabel}>
+                {row.label}
+                <i>{row.note}</i>
+              </span>
+              {row.marks.map((ok, i) => (
+                <span
+                  key={i}
+                  className={cn(styles.cmpCell, ok && styles.cmpCellOk)}
+                >
+                  {ok ? "✓" : "✕"}
+                </span>
+              ))}
+            </div>
           ))}
-        </div>
+        </motion.div>
 
         <motion.div
           variants={rv}
