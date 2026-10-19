@@ -97,9 +97,9 @@ function TrainGlyph() {
 
 const H2_WORDS = [
   { text: "A" },
-  { text: "purpose-built", className: "text-[#E85A2C]" },
-  { text: "express", className: "text-[#E85A2C]" },
-  { text: "layer", className: "text-[#E85A2C]" },
+  { text: "purpose-built", className: "text-[#E85A2C]", effect: true },
+  { text: "express", className: "text-[#E85A2C]", effect: true },
+  { text: "layer", className: "text-[#E85A2C]", effect: true },
   { text: "for" },
   { text: "heavy" },
   { text: "commerce" },
@@ -192,21 +192,21 @@ export function HowItWorks() {
           animate={show as never}
           className={cn(sg.className, styles.h2)}
         >
-          {flipOn
-            ? H2_WORDS.map((w, i) => (
-                <FlipWords
-                  key={w.text}
-                  words={[w.text]}
-                  once
-                  delay={i * 0.12}
-                  className={w.className}
-                />
-              ))
-            : H2_WORDS.map((w) => (
-                <span key={w.text} className={w.className}>
-                  {w.text}{" "}
-                </span>
-              ))}
+          {H2_WORDS.map((w, i) =>
+            w.effect && flipOn ? (
+              <FlipWords
+                key={w.text}
+                words={[w.text]}
+                once
+                delay={i * 0.12}
+                className={w.className}
+              />
+            ) : (
+              <span key={w.text} className={w.className}>
+                {w.text}{" "}
+              </span>
+            ),
+          )}
         </motion.h2>
 
         <motion.p
