@@ -79,9 +79,13 @@
 .roadR {
   position: absolute;
   top: 50%;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.16);
+  height: 7px;
   transform: translateY(-50%);
+  /* a road lane: two edges + dashed centre line */
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.22)) top / 100% 1px no-repeat,
+    linear-gradient(rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.22)) bottom / 100% 1px no-repeat,
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.35) 0 7px, transparent 7px 13px) center / 100% 1.5px no-repeat;
 }
 .roadL {
   left: 0;
@@ -98,12 +102,13 @@
   left: 25%;
   width: 50%;
   top: 50%;
-  height: 14px;
+  height: 16px;
   transform: translateY(-50%);
+  /* a track: two rails + full-height sleepers */
   background:
-    linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)) top / 100% 1px no-repeat,
-    linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)) bottom / 100% 1px no-repeat,
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.07) 0 1.5px, transparent 1.5px 18px) center / 100% 4px no-repeat;
+    linear-gradient(rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.38)) top / 100% 1px no-repeat,
+    linear-gradient(rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.38)) bottom / 100% 1px no-repeat,
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.14) 0 1.5px, transparent 1.5px 15px) center / 100% 16px no-repeat;
 }
 /* Interchange halts: small rings where road hands off to rail. */
 .nodeA,
