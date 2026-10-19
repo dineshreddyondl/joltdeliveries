@@ -104,14 +104,31 @@
   font-size: 23px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   color: #0c0e09;
 }
-.trap p {
+/* Two point lines per card — light copy, bento-style. */
+.pts {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1; /* pushes the tagline to the card bottom */
+}
+.pt {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
   font-size: 15.5px;
+  line-height: 1.55;
   color: #55524b;
-  line-height: 1.7;
-  flex: 1; /* pushes the tagline to the card bottom in the bento pair */
+}
+.pt i {
+  width: 7px;
+  height: 7px;
+  background: #e85a2c;
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin-top: 8px;
 }
 .tagline {
   font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
