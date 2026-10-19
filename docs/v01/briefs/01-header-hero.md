@@ -1,85 +1,65 @@
 # V0.1 Brief — 01 · Header + Hero
 
-## 1. Job to be done & target user
-- **Who:** B2B distributors / logistics & supply-chain managers (primary), D2C brand ops (secondary). Skeptical buyers who have been burned by courier/LTL workarounds.
-- **Must believe in 5 seconds:** JOLT moves *heavy* commerce — many categories, not just furniture — with express speed and a real SLA.
-- **Conversion job:** action — open the serviceability checker, start a pilot, or estimate a lane. Primary CTA: pilot.
+> **LAYOUT FROZEN 2026-10-19** (founder: "let's freeze the layout first").
+> Everything under §1 is frozen; §2 lists the only remaining open decisions.
 
-## 2. Full copy spec (current strings, verbatim)
-- Utility bar: `NETWORK LIVE` · `CHECK LANE` · `START PILOT` · `WHATSAPP`
-- Nav: `JOLT Deliveries` wordmark · `Start pilot` · `Check serviceability`
-- Eyebrow: `Express speed is no longer just for small parcels.`
-- H1: `India's first express layer for heavy shipments.` (em/blaze on `heavy shipments` — **founder override 2026-10-19**, benchmark sentence; guardrail #1 overridden, recorded)
-- Pillars: `Just-in-time execution` · `Direct dispatch` · `up to 89% less CO₂ per tonne-km`
-- Lanes: `[ Live Lanes ]` · header `Route / LTL / Part-Load / JOLT Deliveries` · 11 rows + DEL→BOM showcase
-- Board: `LIVE` · `9 PAYLOADS` · stamp `DELIVERED IN 24 HRS` · chip `CATEGORY / NAME / SPEC` (9 payloads, category-alternating parade)
-- Estimate widget: `INSTANT FREIGHT ESTIMATE` · `FREE · NO SIGNUP` · result `Indicative estimate: ₹X · <eta>` · disclaimers · `Get a contract rate on WhatsApp →`
-- Marquee: `Ather · Wakefit · Ola Electric · Duroflex` (founder-authorized)
+## 1. Frozen layout — "B · single stage" (design-reference mock v5.1+)
 
-## 3. Claims & data register
-| Claim | Status | Notes |
-|---|---|---|
-| "rail-first express network for 200kg+ B2B" | ✅ | uplift §0 #1 scoped replacement |
-| "up to 89% less CO₂ per tonne-km" | ⚠️ | **conflicts with metrics band "80% Lower emissions"** (benchmark override) — see Founder inputs #1 |
-| Lanes TATs vs "LTL / Part-Load" | ✅ | §0 #5 baseline |
-| DEL→BOM 4–5 days → 2 days | ✅ | showcase lane, §0 #5 |
-| "NETWORK LIVE" | ⚠️ | live-status claim, not wired to ops — see Founder inputs #2 |
-| Board parade specs (5 KG alternator, 9 KG gear, 30 KG mattress…) | ⚠️ | illustrative placeholders — founder to confirm |
-| "DELIVERED IN 24 HRS" stamp | ⚠️ | lane-dependent; illustrative board, keep as product promise |
-| Customer brand names | ✅ | founder-authorized override recorded |
+Reference mock: `design-reference/jolt-hero-v01-proofrail-v5-learnings.html`
+(images still being finalised — layout is what's frozen).
 
-## 4. Layout & visual deltas vs skeleton
-- Kept 1:1: nav, eyebrow, H1 blaze, pillars, lanes table, board + clock spec (9 payloads · 0.8s · 7.2s sweep · stamp slam), marquee.
-- Deltas (all founder-approved or pending):
-  - Parade re-ordered category-alternating + category tag in chip ✅ (approved)
-  - Estimate widget added under the hero grid ⚠️ — **placement decision open**
-  - NITI footnotes removed ✅
-  - Board image opacity bug fixed ✅
-  - Utility bar added above nav ✅
+### Structure (top → bottom)
+1. **Utility bar** (desktop): `PILOT LANES` label left · `Check my lane` · `WhatsApp` right.
+2. **Nav:** `JOLT Deliveries` wordmark · ghost `Check my lane` · orange `Start pilot`.
+3. **Hero grid** (2 cols → 1 col ≤768): copy left, stage right.
+4. **Marquee:** Ather · Wakefit · Ola Electric · Duroflex (founder-authorized).
+5. Sections below unchanged (metrics, narrative, etc.).
 
-## 5. Motion & states matrix
-- Board: 0.8s cadence, 7.2s sweep, stamp slam 8.6s, hover-pause, pause/play button, reduced-motion static frame.
-- Blaze: 580ms entrance; pillars/lanes/board fade-up (ready-gated, hydration-safe).
-- Estimate widget: idle/loading (≥400ms)/result/error/invalid; per-field errors; reduced-motion static.
-- Marquee: 26s CSS loop, hover-pause, edge mask.
-- All states verified at 320/768/1440 in the QA suite.
+### Left column (outcome-first copy)
+- Eyebrow: `For COOs & supply-chain leaders moving heavy freight.`
+- H1 (options A/B/C — **pick pending**, §2.1) with orange blaze on the key phrase.
+- Proof line: `Mattresses, furniture, appliances, machine parts — today heavy means slow: 3–7 days, no promise. JOLT delivers 200kg+ in 24–48 hours · 10 pilot lanes · Delhi→Mumbai 2 days`
+- Who-line: `D2C heavy SKUs · warehouse-to-dealer · service-center parts`
+- **Check-my-lane card** (single action): dispatch line on top (schedule-derived, §8b) → 2 fields (FROM / TO) → `Check lane` → result card (lane status · TAT · next dispatch · ₹/kg indicative) → reveals `Start pilot`.
+- **Lanes snapshot:** 3 rows, pause-on-hover, `All 10 lanes →`.
 
-## 6. A11y & responsive
-- Contrast ≥4.5:1 (audited 0 failures), board aria-label, pause button labeled, focus-visible orange, reduced-motion everywhere, no 320px overflow.
+### Right column — the stage
+- **Card:** 1:1 rounded-22 stage, white, spotlight radial tint, grain overlay, hairline border, deep soft shadow.
+- **Products:** 6-image parade, **1.2s per product = exactly one 7.2s loop** (one per category, no repeats). Conveyor entry: slide-in from right + springy settle (cubic-bezier .18,1.35,.4,1), camera flash per swap, spotlight pulse, contact shadow pulse.
+- **Chip:** top-left, 3 lines — `CATEGORY / NAME / SPEC`. (No arrival line — redundant with the stamp.)
+- **Stamp:** top-right — `DELIVERED IN 24–48 HRS` (wording pending §2.2). **Slams at the loop's DELIVERED flare and stays.**
+- **Journey bar (inside the stage, bottom band, soft white gradient floor):**
+  - Status row: blinking dot + live stage text (`INSTANT PICKUP → NEXT TRAIN OUT → OUT FOR DELIVERY → DELIVERED`) + `LOOP 07.2s` right.
+  - Nodes + segments: 4 nodes (20px; DELIVERED 26px), 3 segments (3px). Segments fill with shimmer gradient; arrowhead rides each fill tip; nodes flash orange with expanding ripple when reached; labels below light up (ink + ●) as passed.
+  - Times row: `09:10 · 09:40 · 10:30 · 11:02` (SAMPLE tag removed by founder instruction 2026-10-19).
+- **Category ticker:** below the stage — 6 dots + `CURRENT CATEGORY → NEXT CATEGORY`.
 
-## 7. Performance notes
-- **Concern:** 9 payload PNGs are 160–380 KB each (~2.5 MB board). Proposal: compress/convert to WebP (same files, served as-is; board keeps raw `<img>` for the rAF classList loop — compressed files still work). Add as acceptance criterion.
+### Timing — ONE master clock (non-negotiable)
+- All motion derives from a single 7.2s CSS animation clock (mirror: production uses one `requestAnimationFrame` loop).
+- Segment windows: 0–26% · 26–52% · 52–78% of loop; nodes flash at 4.5% / 30.5% / 56%; DELIVERED flare + stamp slam at 97.5–100% (frame-exact, verified delta 0ms).
+- Parade index = floor(loopT / 1200) % 6 — the 6th product holds the stage through the slam.
+- No `Date.now()` or independent intervals for the board.
 
-## 8. Founder decisions (recorded 2026-10-19)
-1. **Carbon figure** → benchmark: hero pillar now `80% less carbon` (was "up to 89% per tonne-km"). Guardrail exemption recorded (hero.tsx added to sweep exclusions).
-2. **Utility bar label** → `LIVE LANES` (was "Network Live").
-3. **Estimate widget placement** → keep under the hero grid. ✅
-4. **Payload images** → founder will bring NEW Magnific selections; see asset spec below. Current parade is a placeholder until then.
-5. **Board header removed** → `LIVE · 9 PAYLOADS · pause/play` row deleted from the hero board (founder: irrelevant). Hover-pause and reduced-motion static behavior remain.
-6. **Image quality requirement** → all parade images must be high-resolution, transparent-background (no square photo backgrounds).
+### Reduced motion
+- Static first product; journey bar fully lit; stamp visible static; no loops, no pulses; status shows `INSTANT PICKUP`.
 
-## 8b. Dispatch line (founder decision 2026-10-19 — kept, schedule-derived)
-- "Next dispatch" shows at the top of the check card, computed from the git-committed table `lib/dispatch-data.ts` (cutoff, dispatch, frequency, exceptions, per-route).
-- Behavior: before cutoff → `CUTOFF 21:00 IST · NEXT DISPATCH TODAY 21:30`; after cutoff → `CUTOFF PASSED · NEXT DISPATCH TOMORROW 21:30 IST`; service days skipped; label carries `PLACEHOLDER DATA` until the founder confirms the row (`verified: true`). Countdown variant deferred — cutoff-first wins.
-- **Founder input needed:** real values for the table (HYD→BLR, DEL→BOM, BLR→HYD seeded with placeholders).
+### Responsive
+- ≤768: single column, copy above stage. ≤480: times row hidden, labels 7px, nodes 14px, stagebar inset 12px, no overflow (verified 320/768/1440).
 
-## 8c. Parade asset spec (awaiting founder selection)
-- **10 candidates → 9 parade slots + 1 reserve** (keeps the 7.2s clock spec: 9 × 0.8s).
-- Format: PNG with transparency (cutout), ≥1024×1024, product centered, consistent lighting.
-- Narrative order to preserve (category-alternating, no two adjacent same category): FURNITURE → AUTO → FURNITURE → AUTO/INDUSTRIAL → BEDDING → FURNITURE → INDUSTRIAL → NURSERY → APPLIANCES.
-- On delivery: I optimize (compress, keep transparency), wire into `public/assets/`, update chip specs to real values, and re-run the full QA suite.
+## 2. Open decisions (not layout — to close before implementation)
 
-## 9. Acceptance criteria (checkable)
-1. All copy strings match this brief verbatim after founder edits.
-2. Parade cycles the approved 9-item sequence; board images render (computed opacity 1); clock spec intact.
-3. Estimate widget passes E2E (result + disclaimers) at 3 widths.
-4. `tsc`/`eslint`/`next build`/banned-sweep/Playwright/a11y all green.
-5. Visual QA: screenshots at 320/768/1440 + board freeze-frames reviewed by founder.
-6. Performance: board asset total < 1.2 MB after compression.
-7. Founder review passed → freeze recorded.
+1. **H1 wording** — A `Parcel speed, finally, for the heavy stuff.` · B `Heavy shipments that arrive on time.` · C founder sentence `India's first express layer for heavy shipments.` (C = guardrail-override, recorded).
+2. **Stamp wording** — `DELIVERED IN 24–48 HRS` vs `DELIVERED IN 24 HRS`.
+3. **Final images** (deferred by founder — "worry about wiring later"): 6 slots = sofa · alternator · [bench/armchair] · [bed candidate A/B/C/D or window scene] · crib · appliances. Cutout pipeline documented below.
+4. **Dispatch schedule values** — real rows for `lib/dispatch-data.ts` (currently placeholders).
 
-## 10. Freeze
-- [ ] Founder review · date · notes → freeze-log.md
+## 3. Image pipeline (when founder picks)
+- Uniform background required (no visible boxes). Pure-white JPEGs → flood-fill cutout (feathered alpha). LIGHT-SCENE → ring-forced flood-fill. Full-res Freepik downloads preferred over 740px previews (pixelation fix); 2× Lanczos + unsharp interim.
+- Candidates already converted in `public/assets/hero-final/`: alternator/crib/appliances/bench cutouts + 4 bed options (A mattress-1707 · B luxury-76586 · C luxury-79322 · D isolated-263672).
 
-## Out of scope
-Metrics band content · narrative sections · ecosystem · CTA/footer · legal · new routes (intake process applies).
+## 4. Acceptance criteria (for implementation)
+1. Copy matches §1 verbatim once §2 picks land.
+2. Single-clock timing spec verified in browser (delta 0ms flare↔stamp; 6×1.2s lock).
+3. All states at 320/768/1440, reduced-motion pass, no overflow.
+4. Gates: tsc · lint · build · sweep · Playwright · a11y green.
+5. Founder review → freeze recorded.
