@@ -37,12 +37,12 @@ const rv: Variants = {
 };
 
 const PLATFORMS = [
-  { name: "SAP", role: "Enterprise ERP" },
-  { name: "Oracle", role: "Cloud SCM" },
-  { name: "Clickpost", role: "Post-purchase & tracking" },
-  { name: "Pando", role: "Transport management" },
-  { name: "eShipz", role: "Shipping automation" },
-  { name: "Custom REST APIs", role: "Your own stack" },
+  { name: "Clickpost", role: "Post-purchase & tracking", desc: "Tracking and NDR management for D2C shipments." },
+  { name: "Pando", role: "Transport management", desc: "Shipper TMS for enterprise freight." },
+  { name: "eShipz", role: "Shipping automation", desc: "Multi-carrier shipping platform." },
+  { name: "RoAdo", role: "Road freight", desc: "Truckload booking for first and last mile." },
+  { name: "ERP", role: "Enterprise systems", desc: "Your existing ERP stack, connected via API." },
+  { name: "Custom REST APIs", role: "Your own stack", desc: "Build on our APIs exactly how you need." },
 ];
 
 export function Ecosystem() {
@@ -92,7 +92,7 @@ export function Ecosystem() {
         </motion.p>
 
         {/* Integrated platform list — feature-block-animated-card style:
-            hover beams + glow, staggered reveal. */}
+            logo tile + title row, description, hover beams. */}
         <div className={styles.platforms}>
           {PLATFORMS.map((p, i) => (
             <motion.div
@@ -108,17 +108,69 @@ export function Ecosystem() {
                 viewBox="0 0 120 120"
                 aria-hidden="true"
               >
-                <rect x="10" y="58.5" width="100" height="3" rx="1.5" />
+                <defs>
+                  <linearGradient
+                    id={`ecoBeamA${i}`}
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="0%"
+                  >
+                    <stop offset="0%" stopColor="rgba(232,90,44,0)" />
+                    <stop offset="50%" stopColor="rgba(232,90,44,0.55)" />
+                    <stop offset="100%" stopColor="rgba(232,90,44,0)" />
+                  </linearGradient>
+                </defs>
+                <rect
+                  x="10"
+                  y="58.5"
+                  width="100"
+                  height="3"
+                  rx="1.5"
+                  fill="none"
+                  stroke={`url(#ecoBeamA${i})`}
+                  strokeWidth="3"
+                />
               </svg>
               <svg
                 className={cn(styles.beam, styles.beamB)}
                 viewBox="0 0 120 120"
                 aria-hidden="true"
               >
-                <rect x="10" y="58.5" width="100" height="3" rx="1.5" />
+                <defs>
+                  <linearGradient
+                    id={`ecoBeamB${i}`}
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="0%"
+                  >
+                    <stop offset="0%" stopColor="rgba(232,90,44,0)" />
+                    <stop offset="50%" stopColor="rgba(232,90,44,0.4)" />
+                    <stop offset="100%" stopColor="rgba(232,90,44,0)" />
+                  </linearGradient>
+                </defs>
+                <rect
+                  x="10"
+                  y="58.5"
+                  width="100"
+                  height="3"
+                  rx="1.5"
+                  fill="none"
+                  stroke={`url(#ecoBeamB${i})`}
+                  strokeWidth="3"
+                />
               </svg>
-              <span className={styles.pRole}>{p.role}</span>
-              <h3 className={sg.className}>{p.name}</h3>
+              <div className={styles.pTop}>
+                <span className={styles.pTile} aria-hidden="true">
+                  {p.name[0]}
+                </span>
+                <div className={styles.pHead}>
+                  <h3 className={sg.className}>{p.name}</h3>
+                  <span className={styles.pRole}>{p.role}</span>
+                </div>
+              </div>
+              <p className={styles.pDesc}>{p.desc}</p>
             </motion.div>
           ))}
         </div>

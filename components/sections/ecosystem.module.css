@@ -144,15 +144,45 @@
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
-  padding: 22px;
-  min-height: 108px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 6px;
+  gap: 14px;
   transition:
     background 0.4s,
     border-color 0.4s;
+}
+.pTop {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+.pTile {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: #e85a2c;
+}
+.pHead {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.pDesc {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #b9b9bf;
+  position: relative;
 }
 .pCard:hover {
   background: rgba(232, 90, 44, 0.05);
@@ -203,15 +233,14 @@
 }
 .pRole {
   font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
-  font-size: 9.5px;
-  letter-spacing: 0.16em;
+  font-size: 9px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #e85a2c;
 }
 .pCard h3 {
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 700;
   letter-spacing: -0.01em;
   color: #fff;
-  position: relative;
 }
