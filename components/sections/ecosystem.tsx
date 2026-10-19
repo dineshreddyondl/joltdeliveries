@@ -84,11 +84,33 @@ export function Ecosystem() {
           switch us on.
         </motion.p>
 
-        {/* Feature card — benchmark SCM scroll inside the block, with the
-            vertical glowing beam + sparkles riding over it. */}
-        <motion.div
+        {/* Sub-heading — outside the box, under the section hero. */}
+        <motion.h3
           variants={rv}
           custom={3}
+          initial={animateIn ? "hidden" : false}
+          animate={show as never}
+          className={cn(sg.className, styles.fHead)}
+        >
+          Your SCM stack, already connected.
+        </motion.h3>
+
+        <motion.p
+          variants={rv}
+          custom={4}
+          initial={animateIn ? "hidden" : false}
+          animate={show as never}
+          className={styles.fSub}
+        >
+          We ship integrations with the platforms your ops teams already use
+          — no IT overhaul.
+        </motion.p>
+
+        {/* Feature card — the box carries ONLY the animation + the SCM
+            platform scroll. */}
+        <motion.div
+          variants={rv}
+          custom={5}
           initial={animateIn ? "hidden" : false}
           animate={show as never}
           className={styles.featureCard}
@@ -99,15 +121,6 @@ export function Ecosystem() {
               <span className={cn(styles.spark, styles.sp2)} />
               <span className={cn(styles.spark, styles.sp3)} />
             </span>
-          </div>
-          <div className={styles.fLeft}>
-            <h3 className={sg.className}>
-              Your SCM stack, already connected.
-            </h3>
-            <p>
-              We ship integrations with the platforms your ops teams already
-              use — no IT overhaul.
-            </p>
           </div>
           <div className={styles.fMarquee} aria-hidden="true">
             <div className={styles.fMarqueeTrack}>
@@ -125,7 +138,7 @@ export function Ecosystem() {
         <div className={styles.cases}>
           <motion.div
             variants={rv}
-            custom={3}
+            custom={6}
             initial={animateIn ? "hidden" : false}
             animate={show as never}
             className={styles.caseCard}
@@ -136,7 +149,7 @@ export function Ecosystem() {
           </motion.div>
           <motion.div
             variants={rv}
-            custom={4}
+            custom={7}
             initial={animateIn ? "hidden" : false}
             animate={show as never}
             className={styles.caseCard}
@@ -149,7 +162,7 @@ export function Ecosystem() {
 
         <motion.p
           variants={rv}
-          custom={5}
+          custom={8}
           initial={animateIn ? "hidden" : false}
           animate={show as never}
           className={styles.distance}
@@ -159,7 +172,7 @@ export function Ecosystem() {
 
         <motion.p
           variants={rv}
-          custom={6}
+          custom={9}
           initial={animateIn ? "hidden" : false}
           animate={show as never}
           className={cn(sg.className, styles.same)}
