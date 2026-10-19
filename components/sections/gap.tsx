@@ -59,14 +59,18 @@ const markV: Variants = {
   }),
 };
 
-const flashV: Variants = {
+/* Per-cell glow: travels cell by cell in reading order after the marks
+   pop in — green on ✓ cells, red on ✕ cells. */
+const glowV: Variants = {
   hidden: { opacity: 0 },
-  show: (i: number) => ({
-    opacity: [0, 0.9, 0],
+  show: (c: number) => ({
+    opacity: [0, 1, 0],
     transition: {
-      duration: 0.6,
-      times: [0, 0.2, 1],
-      delay: i * 0.5 + 0.45,
+      duration: 0.8,
+      times: [0, 0.15, 1],
+      repeat: Infinity,
+      repeatDelay: 4.0,
+      delay: 2.4 + c * 0.8,
     },
   }),
 };
@@ -200,14 +204,6 @@ export function Gap() {
               animate={lit ? "show" : false}
               className={cn(styles.cmpRow, row.highlight && styles.cmpHi)}
             >
-              <motion.span
-                variants={flashV}
-                custom={i}
-                initial={animateIn ? "hidden" : false}
-                animate={lit ? "show" : false}
-                className={styles.cmpFlash}
-                aria-hidden="true"
-              />
               <span className={styles.cmpLabel}>
                 <span className={styles.cmpIdx}>
                   {String(i + 1).padStart(2, "0")}
@@ -227,11 +223,19 @@ export function Gap() {
                   className={cn(styles.cmpCell, ok && styles.cmpCellOk)}
                 >
                   {ok ? "✓" : "✕"}
+                  <motion.span
+                    variants={glowV}
+                    custom={i * 2 + j}
+                    initial={animateIn ? "hidden" : false}
+                    animate={lit ? "show" : false}
+                    className={cn(
+                      styles.cmpGlow,
+                      ok ? styles.cmpGlowOk : styles.cmpGlowNo,
+                    )}
+                    aria-hidden="true"
+                  />
                 </motion.span>
               ))}
-              {row.highlight && (
-                <span className={styles.cmpHiBorder} aria-hidden="true" />
-              )}
             </motion.div>
           ))}
         </motion.div>

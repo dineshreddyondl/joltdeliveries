@@ -168,13 +168,6 @@
 .cmpRow:hover {
   background: rgba(12, 14, 9, 0.03);
 }
-.cmpFlash {
-  position: absolute;
-  inset: 0;
-  background: rgba(232, 90, 44, 0.16);
-  opacity: 0;
-  pointer-events: none;
-}
 .cmpRow:first-of-type {
   border-top: none;
 }
@@ -218,6 +211,7 @@
 }
 /* Boxed mark cells on a hairline grid, 16px marks centered. */
 .cmpCell {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -226,74 +220,29 @@
   font-size: 16px;
   font-weight: 700;
   line-height: 1;
-  color: #e85a2c;
+  color: #cc2424;
 }
 .cmpRow > .cmpCell {
   border-left: 1px solid rgba(12, 14, 9, 0.08);
 }
-.cmpCellOk {
-  color: #0c0e09;
-}
-/* The highlighted row: neither network gives you bulky speed. */
-.cmpHi {
-  background: rgba(232, 90, 44, 0.07);
-  border-top: 1px solid rgba(232, 90, 44, 0.25);
-}
-.cmpHi:hover {
-  background: rgba(232, 90, 44, 0.1);
-}
-/* Moving border ring (founder: moving-border highlight). A rotating
-   conic-gradient segment, masked to a 1.5px ring around the row. The
-   global reduced-motion kill-switch freezes it. */
-@property --joltHiA {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-.cmpHiBorder {
+.cmpGlow {
   position: absolute;
-  inset: 0;
-  border-radius: 10px;
-  padding: 1.5px;
+  inset: 2px;
+  border-radius: 8px;
+  opacity: 0;
   pointer-events: none;
-  z-index: 1;
 }
-.cmpHiBorder::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: inherit;
-  background: conic-gradient(
-    from var(--joltHiA),
-    transparent 0deg,
-    transparent 300deg,
-    rgba(232, 90, 44, 0.85) 330deg,
-    #e85a2c 360deg
-  );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  animation: joltHiSpin 6s linear infinite;
+.cmpGlowOk {
+  background: rgba(46, 125, 50, 0.16);
 }
-@keyframes joltHiSpin {
-  to {
-    --joltHiA: 360deg;
-  }
+.cmpGlowNo {
+  background: rgba(204, 36, 36, 0.14);
 }
-.cmpHi .cmpLabel {
-  color: #c2410c;
+.cmpCellOk {
+  color: #2e7d32;
 }
-.cmpHi .cmpLabel i {
-  color: #c2410c;
-}
-.cmpHi .cmpIdx {
-  color: #c2410c;
-}
-.cmpHi .cmpCell {
-  color: #c2410c;
-}
+/* Row 2 is identified by its two red ✕ marks — no row-level
+   highlight (founder: cell-by-cell glow instead). */
 @media (max-width: 640px) {
   .cmpTable {
     margin-top: 32px;
