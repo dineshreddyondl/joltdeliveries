@@ -49,10 +49,10 @@
   transition: color 0.6s ease;
 }
 .emPhraseRed {
-  /* founder asked for #FF5757 (2.78:1 — below WCAG); #CC2424 is the
-     closest passing red at 4.88:1. Swap back + add a documented
-     exemption if the exact hue is wanted. */
-  color: #cc2424;
+  /* founder override 2026-10-19: exact #FF5757 requested. Measures
+     2.78:1 on #F4F2ED (below WCAG 3:1) — documented a11y exemption,
+     recorded in the freeze log. */
+  color: #ff5757;
 }
 .lede {
   margin-top: 24px;
