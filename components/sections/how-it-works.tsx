@@ -136,21 +136,21 @@ const STAGES = [
 const USPS = [
   {
     step: "01 / NTO",
-    word: "Faster",
-    line: "Just-in-time linehaul on scheduled express trains.",
+    word: "5× Faster",
+    line: "Five times faster than LTL aggregation on long lanes — and cleaner.",
     spec: "Up to 89% less CO₂ per tonne-km vs road",
   },
   {
     step: "02 / HUBLESS",
-    word: "Seamless",
-    line: "One motion from first mile to last. Almost zero stops.",
+    word: "Zero Stops",
+    line: "Always in motion — no hubs, no sorting, no waiting.",
     spec: "No mid-journey sorting",
   },
   {
-    step: "03 / VISIBILITY",
-    word: "Live",
-    line: "Live tracking at every milestone — not intermittent like traditional models.",
-    spec: "Guaranteed SLA",
+    step: "03 / INTEGRATED",
+    word: "Integrated",
+    line: "One API. One network. One SLA.",
+    spec: "Live tracking at every milestone",
   },
 ];
 
