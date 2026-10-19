@@ -36,13 +36,24 @@ const rv: Variants = {
   }),
 };
 
+/* Staggered bounce for the platform tiles (feature-block style). */
+const bounce: Variants = {
+  hidden: { opacity: 0, y: 16, scale: 0.9 },
+  show: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { type: "spring", stiffness: 260, damping: 14, delay: 0.3 + i * 0.08 },
+  }),
+};
+
 const PLATFORMS = [
-  { name: "Clickpost", role: "Post-purchase & tracking", desc: "Tracking and NDR management for D2C shipments." },
-  { name: "Pando", role: "Transport management", desc: "Shipper TMS for enterprise freight." },
-  { name: "eShipz", role: "Shipping automation", desc: "Multi-carrier shipping platform." },
-  { name: "RoAdo", role: "Road freight", desc: "Truckload booking for first and last mile." },
-  { name: "ERP", role: "Enterprise systems", desc: "Your existing ERP stack, connected via API." },
-  { name: "Custom REST APIs", role: "Your own stack", desc: "Build on our APIs exactly how you need." },
+  { name: "Clickpost", role: "Post-purchase & tracking" },
+  { name: "Pando", role: "Transport management" },
+  { name: "eShipz", role: "Shipping automation" },
+  { name: "RoAdo", role: "Road freight" },
+  { name: "ERP", role: "Enterprise systems" },
+  { name: "Custom APIs", role: "Your own stack" },
 ];
 
 export function Ecosystem() {
@@ -91,89 +102,51 @@ export function Ecosystem() {
           switch us on.
         </motion.p>
 
-        {/* Integrated platform list — feature-block-animated-card style:
-            logo tile + title row, description, hover beams. */}
-        <div className={styles.platforms}>
-          {PLATFORMS.map((p, i) => (
-            <motion.div
-              key={p.name}
-              variants={rv}
-              custom={i + 3}
-              initial={animateIn ? "hidden" : false}
-              animate={show as never}
-              className={styles.pCard}
-            >
-              <svg
-                className={cn(styles.beam, styles.beamA)}
-                viewBox="0 0 120 120"
-                aria-hidden="true"
+        {/* Feature card — the block's anatomy: title + description on the
+            left, a grid of tool tiles with staggered bounce on the right,
+            a vertical glowing beam with sparkles animating through. */}
+        <motion.div
+          variants={rv}
+          custom={3}
+          initial={animateIn ? "hidden" : false}
+          animate={show as never}
+          className={styles.featureCard}
+        >
+          <div className={styles.fBeam} aria-hidden="true">
+            <span className={styles.fBeamLine}>
+              <span className={cn(styles.spark, styles.sp1)} />
+              <span className={cn(styles.spark, styles.sp2)} />
+              <span className={cn(styles.spark, styles.sp3)} />
+            </span>
+          </div>
+          <div className={styles.fLeft}>
+            <h3 className={sg.className}>
+              Your SCM stack, already connected.
+            </h3>
+            <p>
+              We ship integrations with the platforms your ops teams already
+              use — no IT overhaul.
+            </p>
+          </div>
+          <div className={styles.fLogos}>
+            {PLATFORMS.map((p, i) => (
+              <motion.div
+                key={p.name}
+                variants={bounce}
+                custom={i}
+                initial={animateIn ? "hidden" : false}
+                animate={show as never}
+                className={styles.plogo}
               >
-                <defs>
-                  <linearGradient
-                    id={`ecoBeamA${i}`}
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="0%"
-                  >
-                    <stop offset="0%" stopColor="rgba(232,90,44,0)" />
-                    <stop offset="50%" stopColor="rgba(232,90,44,0.55)" />
-                    <stop offset="100%" stopColor="rgba(232,90,44,0)" />
-                  </linearGradient>
-                </defs>
-                <rect
-                  x="10"
-                  y="58.5"
-                  width="100"
-                  height="3"
-                  rx="1.5"
-                  fill="none"
-                  stroke={`url(#ecoBeamA${i})`}
-                  strokeWidth="3"
-                />
-              </svg>
-              <svg
-                className={cn(styles.beam, styles.beamB)}
-                viewBox="0 0 120 120"
-                aria-hidden="true"
-              >
-                <defs>
-                  <linearGradient
-                    id={`ecoBeamB${i}`}
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="0%"
-                  >
-                    <stop offset="0%" stopColor="rgba(232,90,44,0)" />
-                    <stop offset="50%" stopColor="rgba(232,90,44,0.4)" />
-                    <stop offset="100%" stopColor="rgba(232,90,44,0)" />
-                  </linearGradient>
-                </defs>
-                <rect
-                  x="10"
-                  y="58.5"
-                  width="100"
-                  height="3"
-                  rx="1.5"
-                  fill="none"
-                  stroke={`url(#ecoBeamB${i})`}
-                  strokeWidth="3"
-                />
-              </svg>
-              <div className={styles.pTop}>
-                <span className={styles.pTile} aria-hidden="true">
+                <span className={styles.plogoTile} aria-hidden="true">
                   {p.name[0]}
                 </span>
-                <div className={styles.pHead}>
-                  <h3 className={sg.className}>{p.name}</h3>
-                  <span className={styles.pRole}>{p.role}</span>
-                </div>
-              </div>
-              <p className={styles.pDesc}>{p.desc}</p>
-            </motion.div>
-          ))}
-        </div>
+                <span className={styles.plogoName}>{p.name}</span>
+                <span className={styles.plogoRole}>{p.role}</span>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
 
         {/* Two movement types, one line each. */}
         <div className={styles.cases}>

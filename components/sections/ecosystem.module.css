@@ -121,126 +121,152 @@
   color: #e85a2c;
 }
 
-/* ---------------- integrated platforms (feature cards) ---------------- */
-.platforms {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  margin-top: 48px;
-}
-@media (min-width: 640px) {
-  .platforms {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-@media (min-width: 1024px) {
-  .platforms {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-.pCard {
+/* ---------------- feature card (platforms block) ---------------- */
+.featureCard {
   position: relative;
   overflow: hidden;
+  margin-top: 48px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  transition:
-    background 0.4s,
-    border-color 0.4s;
+  border-radius: 16px;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
 }
-.pTop {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+@media (min-width: 768px) {
+  .featureCard {
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 40px;
+    align-items: center;
+  }
+}
+.fLeft {
   position: relative;
+  z-index: 1;
 }
-.pTile {
-  width: 36px;
-  height: 36px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 9px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.04);
-  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
-  font-size: 15px;
-  font-weight: 700;
-  color: #e85a2c;
-}
-.pHead {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-.pDesc {
-  font-size: 13.5px;
-  line-height: 1.55;
-  color: #b9b9bf;
-  position: relative;
-}
-.pCard:hover {
-  background: rgba(232, 90, 44, 0.05);
-  border-color: rgba(232, 90, 44, 0.32);
-}
-/* Rotating beams — Aceternity feature-block style. Hidden until hover;
-   the reduced-motion kill-switch freezes them (opacity 0). */
-.beam {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 180%;
-  height: 180%;
-  transform: translate(-50%, -50%) rotate(20deg);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s;
-}
-.beam rect {
-  fill: rgba(232, 90, 44, 0.13);
-}
-.beamB {
-  transform: translate(-50%, -50%) rotate(-28deg);
-}
-.pCard:hover .beamA {
-  opacity: 1;
-  animation: ecoBeamA 7s linear infinite;
-}
-.pCard:hover .beamB {
-  opacity: 1;
-  animation: ecoBeamB 9s linear infinite;
-}
-@keyframes ecoBeamA {
-  from {
-    transform: translate(-50%, -50%) rotate(20deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(380deg);
-  }
-}
-@keyframes ecoBeamB {
-  from {
-    transform: translate(-50%, -50%) rotate(-28deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(-388deg);
-  }
-}
-.pRole {
-  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #e85a2c;
-}
-.pCard h3 {
-  font-size: 17px;
+.fLeft h3 {
+  font-size: 22px;
   font-weight: 700;
   letter-spacing: -0.01em;
   color: #fff;
+  max-width: 340px;
+}
+.fLeft p {
+  margin-top: 10px;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: #b9b9bf;
+  max-width: 340px;
+}
+.fLogos {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+@media (max-width: 480px) {
+  .fLogos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.plogo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+}
+.plogoTile {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 17px;
+  font-weight: 700;
+  color: #e85a2c;
+}
+.plogoName {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #fff;
+}
+.plogoRole {
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8b8b90;
+}
+
+/* Glowing beam: horizontal line with sparkles, travelling vertically. */
+.fBeam {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.fBeamLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 10%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(232, 90, 44, 0.65) 30%,
+    rgba(232, 90, 44, 0.65) 70%,
+    transparent
+  );
+  box-shadow: 0 0 18px rgba(232, 90, 44, 0.45);
+  animation: ecoFBeam 7s ease-in-out infinite;
+}
+@keyframes ecoFBeam {
+  0%,
+  100% {
+    top: 8%;
+  }
+  50% {
+    top: 92%;
+  }
+}
+.spark {
+  position: absolute;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ff9a50;
+  transform: translateY(-50%);
+  box-shadow: 0 0 8px #ff9a50;
+  animation: ecoSpark 2.4s ease-in-out infinite;
+}
+.sp1 {
+  left: 14%;
+  animation-delay: 0s;
+}
+.sp2 {
+  left: 50%;
+  animation-delay: 0.8s;
+}
+.sp3 {
+  left: 86%;
+  animation-delay: 1.6s;
+}
+@keyframes ecoSpark {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(-50%) scale(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.3);
+  }
 }
