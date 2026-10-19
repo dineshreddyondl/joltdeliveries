@@ -31,6 +31,30 @@ const rv: Variants = {
   }),
 };
 
+/* Node ignition: numbered node pops in with a spring, then the spine
+   segment below it lights up (the timeline's reveal micro-motion). */
+const nodeV: Variants = {
+  hidden: { scale: 0.5, opacity: 0 },
+  show: (i: number) => ({
+    scale: 1,
+    opacity: 1,
+    transition: { type: "spring", stiffness: 260, damping: 18, delay: 0.1 + i * 0.08 },
+  }),
+};
+
+const segV: Variants = {
+  hidden: { scaleY: 0, opacity: 0 },
+  show: (i: number) => ({
+    scaleY: 1,
+    opacity: 1,
+    transition: {
+      duration: 0.9,
+      ease: [0.16, 1, 0.3, 1],
+      delay: 0.35 + i * 0.08,
+    },
+  }),
+};
+
 const ITEMS = [
   {
     n: "01",
@@ -89,9 +113,7 @@ export function WhyNow() {
           animate={show as never}
           className={styles.lede}
         >
-          Heavy commerce moved online, but logistics didn&rsquo;t. To scale
-          today, you need a network built for modern speed—not legacy
-          hub-and-spoke delays.
+          Heavy commerce moved online. Logistics didn&rsquo;t.
         </motion.p>
 
         <div className={styles.timeline}>
@@ -104,9 +126,25 @@ export function WhyNow() {
               animate={show as never}
               className={styles.tlItem}
             >
-              <div className={styles.tlNode}>
+              <motion.div
+                variants={nodeV}
+                custom={i}
+                initial={animateIn ? "hidden" : false}
+                animate={show as never}
+                className={styles.tlNode}
+              >
                 <span>{item.n}</span>
-              </div>
+              </motion.div>
+              {i < ITEMS.length - 1 && (
+                <motion.span
+                  variants={segV}
+                  custom={i}
+                  initial={animateIn ? "hidden" : false}
+                  animate={show as never}
+                  className={styles.tlSeg}
+                  aria-hidden="true"
+                />
+              )}
               <h3 className={sg.className}>{item.t}</h3>
               <p>{item.p}</p>
             </motion.div>

@@ -23,7 +23,7 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #e85a2c;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
 .tag::before {
   content: "";
@@ -40,7 +40,7 @@
   color: #fff;
 }
 .lede {
-  margin-top: 20px;
+  margin-top: 24px;
   font-size: 16.5px;
   line-height: 1.7;
   color: #8b8b90;
@@ -50,27 +50,29 @@
   position: relative;
   padding-left: 56px;
   max-width: 700px;
-  margin-top: 44px;
-}
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: 15px;
-  top: 12px;
-  bottom: 12px;
-  width: 1px;
-  background: linear-gradient(
-    180deg,
-    rgba(232, 90, 44, 0.6),
-    rgba(255, 255, 255, 0.1)
-  );
+  margin-top: 48px;
 }
 .tlItem {
   position: relative;
-  padding-bottom: 44px;
+  padding-bottom: 48px;
 }
 .tlItem:last-child {
   padding-bottom: 0;
+}
+/* Spine segment between nodes — ignites as its node reveals. */
+.tlSeg {
+  position: absolute;
+  left: 15px;
+  top: 31px;
+  bottom: 0;
+  width: 1px;
+  transform-origin: top;
+  background: linear-gradient(
+    180deg,
+    rgba(232, 90, 44, 0.85),
+    rgba(232, 90, 44, 0.12)
+  );
+  pointer-events: none;
 }
 .tlNode {
   position: absolute;
@@ -114,7 +116,7 @@
   margin-right: 3px;
 }
 .termLine {
-  margin-top: 56px;
+  margin-top: 72px;
   font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
   font-size: 15px;
   color: #e8e8ea;
@@ -134,5 +136,9 @@
     width: 27px;
     height: 27px;
     font-size: 9px;
+  }
+  .tlSeg {
+    left: 13px; /* node center shifts to 13.5px with the 27px node */
+    top: 27px;
   }
 }
