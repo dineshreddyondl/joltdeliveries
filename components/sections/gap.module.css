@@ -109,10 +109,11 @@
 }
 .sub {
   font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
-  font-size: 10px;
+  font-size: 10.5px;
+  font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #6b6b66;
+  color: #3f3d38; /* ~9.3:1 on white — was #6b6b66 @ 5.36 (too grey) */
   display: block;
   margin-bottom: 20px;
 }
