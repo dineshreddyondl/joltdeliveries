@@ -60,10 +60,16 @@
   display: grid;
   grid-template-columns: 1fr 1.15fr;
   gap: 48px;
-  align-items: start;
+  /* Stretch: both columns share the row height so the left column's lane
+     box can flex down to meet the stage card's bottom inline (founder). */
+  align-items: stretch;
 }
 .heroGrid > div {
   min-width: 0;
+}
+.leftCol {
+  display: flex;
+  flex-direction: column;
 }
 .estWrap {
   max-width: 1220px;
@@ -297,6 +303,11 @@
   margin-bottom: 0;
   background: #fff;
   box-shadow: 0 18px 44px -32px rgba(12, 14, 9, 0.3);
+  /* Flex-fill: the box absorbs the slack between the pillars and the
+     stage card's bottom so the two columns meet inline. */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 .laneCols {
   display: grid;
@@ -319,7 +330,9 @@
   font-weight: 700;
 }
 .laneView {
-  height: 118px;
+  position: relative;
+  flex: 1;
+  min-height: 118px;
   overflow: hidden;
   -webkit-mask-image: linear-gradient(
     180deg,
@@ -331,6 +344,12 @@
   mask-image: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
 }
 .laneTrack {
+  /* Out of flow inside the viewport: the 22-row track must not inflate
+     the grid row's intrinsic height (flex-fill would blow up). */
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
   display: flex;
   flex-direction: column;
   animation: heroLaneRoll 32s linear infinite;
@@ -671,10 +690,17 @@
 
 /* ---------- category ticker (below the stage) ---------- */
 .seq {
+  /* Absolute below the card: the ticker keeps its visual spot without
+     adding to the column's in-flow height, so the grid row height stays
+     equal to the stage card and the lane box aligns to its bottom. */
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  margin-top: 14px;
   display: flex;
   justify-content: center;
   gap: 8px;
-  margin-top: 14px;
   align-items: center;
 }
 .seqDot {
@@ -702,6 +728,11 @@
   }
   .stage {
     max-width: 100%;
+  }
+  /* Stacked: ticker returns to normal flow below the card. */
+  .seq {
+    position: static;
+    margin-top: 14px;
   }
 }
 @media (max-width: 560px) {

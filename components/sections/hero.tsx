@@ -605,7 +605,7 @@ export function Hero() {
       <div className={styles.aurora} aria-hidden="true" />
       <div className={cn(styles.heroWrap, styles.heroGrid)}>
         {/* ---------- LEFT · benchmark dot-to-dot ---------- */}
-        <div>
+        <div className={styles.leftCol}>
           <motion.span
             variants={fadeUp(0.4)}
             initial={animateIn ? "hidden" : false}
