@@ -50,12 +50,19 @@
 ## 7. Performance notes
 - **Concern:** 9 payload PNGs are 160–380 KB each (~2.5 MB board). Proposal: compress/convert to WebP (same files, served as-is; board keeps raw `<img>` for the rAF classList loop — compressed files still work). Add as acceptance criterion.
 
-## 8. Founder inputs needed (before build)
-1. **Unify the carbon figure:** hero "up to 89%" vs metrics "80% Lower emissions" — pick one (recommend: keep 89% hero, set metrics to "up to 89% Less CO₂ per tonne-km" — or full benchmark 80% both).
-2. **"NETWORK LIVE"** in the utility bar — keep, reword, or wire to real ops later?
-3. **Estimate widget placement** — keep under the hero grid, move elsewhere, or remove?
-4. **Payload specs** — confirm or correct the 9 chip specs.
-5. Any pillar-row wording changes (e.g., add "Guaranteed SLA" pillar).
+## 8. Founder decisions (recorded 2026-10-19)
+1. **Carbon figure** → benchmark: hero pillar now `80% less carbon` (was "up to 89% per tonne-km"). Guardrail exemption recorded (hero.tsx added to sweep exclusions).
+2. **Utility bar label** → `LIVE LANES` (was "Network Live").
+3. **Estimate widget placement** → keep under the hero grid. ✅
+4. **Payload images** → founder will bring NEW Magnific selections; see asset spec below. Current parade is a placeholder until then.
+5. **Board header removed** → `LIVE · 9 PAYLOADS · pause/play` row deleted from the hero board (founder: irrelevant). Hover-pause and reduced-motion static behavior remain.
+6. **Image quality requirement** → all parade images must be high-resolution, transparent-background (no square photo backgrounds).
+
+## 8b. Parade asset spec (awaiting founder selection)
+- **10 candidates → 9 parade slots + 1 reserve** (keeps the 7.2s clock spec: 9 × 0.8s).
+- Format: PNG with transparency (cutout), ≥1024×1024, product centered, consistent lighting.
+- Narrative order to preserve (category-alternating, no two adjacent same category): FURNITURE → AUTO → FURNITURE → AUTO/INDUSTRIAL → BEDDING → FURNITURE → INDUSTRIAL → NURSERY → APPLIANCES.
+- On delivery: I optimize (compress, keep transparency), wire into `public/assets/`, update chip specs to real values, and re-run the full QA suite.
 
 ## 9. Acceptance criteria (checkable)
 1. All copy strings match this brief verbatim after founder edits.

@@ -147,26 +147,8 @@ const raceReveal: Variants = {
   },
 };
 
-function PauseIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <rect x="6" y="5" width="4" height="14" />
-      <rect x="14" y="5" width="4" height="14" />
-    </svg>
-  );
-}
-
-function PlayIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M8 5v14l11-7z" />
-    </svg>
-  );
-}
-
 export function Hero() {
   const reduceMotion = useReducedMotion();
-  const [paused, setPaused] = useState(false);
   const [blazeIn, setBlazeIn] = useState(false);
   const pausedRef = useRef(false);
 
@@ -201,11 +183,6 @@ export function Hero() {
     const id = setTimeout(() => setBlazeIn(true), 580);
     return () => clearTimeout(id);
   }, [reduceMotion]);
-
-  const togglePaused = () => {
-    pausedRef.current = !pausedRef.current;
-    setPaused(pausedRef.current);
-  };
 
   /* Frozen rAF timeline (v5 script lines 1015–1138), ported 1:1 onto refs. */
   useEffect(() => {
@@ -392,12 +369,10 @@ export function Hero() {
       const tv = parseFloat(hashT[1]);
       t = tv % T;
       pausedRef.current = true;
-      setPaused(true);
       render(t);
     } else if (reduce) {
       t = 1.0;
       pausedRef.current = true;
-      setPaused(true);
       render(t);
     } else {
       render(0);
@@ -465,8 +440,7 @@ export function Hero() {
             </span>
             <span className={styles.plItem}>
               <i className={styles.plSq} />
-              up to <span className={styles.plAcid}>89%</span> less CO₂ per
-              tonne-km
+              <span className={styles.plAcid}>80%</span> less carbon
             </span>
           </motion.div>
 
@@ -517,25 +491,6 @@ export function Hero() {
           className={styles.heroRace}
         >
           <div className={styles.panel} ref={panelRef}>
-            {/* live label + pause/play (frozen pd-head + ctl styling) */}
-            <div className={styles.pdHead}>
-              <span className={styles.pdLive}>
-                <span className={styles.sq} aria-hidden="true" />
-                LIVE
-              </span>
-              <span className={styles.pdSide}>
-                <span className={styles.pdCount}>9 PAYLOADS</span>
-                <button
-                  type="button"
-                  className={styles.ctl}
-                  onClick={togglePaused}
-                  aria-label={paused ? "Play animation" : "Pause animation"}
-                >
-                  {paused ? <PlayIcon /> : <PauseIcon />}
-                </button>
-              </span>
-            </div>
-
             <div role="img" aria-label={BOARD_LABEL}>
               <div className={styles.parade}>
                 <div className={styles.zone} ref={zoneRef}>

@@ -63,7 +63,7 @@ export function Nav() {
       <div className={styles.util}>
         <span className={styles.utilLive}>
           <i className={styles.utilSq} aria-hidden="true" />
-          Network Live
+          Live Lanes
         </span>
         <span className={styles.utilCtas}>
           <button

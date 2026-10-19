@@ -80,7 +80,7 @@ Rules: `page.tsx` composes, never contains section markup. Shared contracts in `
 ## 7. Quality gates (Goal 3 — run on EVERY delivery)
 
 1. `npx tsc --noEmit` clean · 2. `npm run build` green · 3. `npm run lint` 0 errors
-4. Banned-claims grep across `app/` + `components/` — pattern targets the banned/unhedged forms only (the guardrail's own allowed wording "Up to 3x faster rotation…" must NOT be flagged): `first express layer|Express Layer for Heavy|Traditional Logistics|99\.2|1\.4T|80% less carbon|Quick-commerce killed|cash 3x faster|cut transit to 2 days`. **Founder-approved exemption (2026-10-19):** `components/sections/metrics-band.tsx` is excluded — Dinesh chose exact benchmark copy (80% / 99.2% / 1.4T / 24–48h) after reviewing the guardrail warnings.
+4. Banned-claims grep across `app/` + `components/` — pattern targets the banned/unhedged forms only (the guardrail's own allowed wording "Up to 3x faster rotation…" must NOT be flagged): `first express layer|Express Layer for Heavy|Traditional Logistics|99\.2|1\.4T|80% less carbon|Quick-commerce killed|cash 3x faster|cut transit to 2 days` **piped through `grep -v -E "metrics-band\.tsx|hero\.tsx|299\.241"`** — founder-approved exemptions (2026-10-19): metrics band benchmark copy (80% / 99.2% / 1.4T / 24–48h) and the hero "80% less carbon" pillar.
 5. Playwright browser pass: desktop + 320px overflow, console errors, reduced-motion static frame, dialog states, keyboard flow
 6. Contrast audit (`a11y-check.mjs`) — 0 real failures
 7. Copy-change list in the delivery summary

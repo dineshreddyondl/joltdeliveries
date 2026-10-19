@@ -407,61 +407,6 @@
   isolation: isolate;
   box-shadow: none;
 }
-.pdHead {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
-  font-size: 9.5px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: #5b5f54; /* 6.54:1 (was #878b80 @ 3.38) */
-  padding: 0 6px 10px;
-}
-.pdLive {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-}
-.pdLive .sq {
-  width: 6px;
-  height: 6px;
-  background: #e85a2c;
-  animation: heroBlink 1.6s infinite;
-}
-.pdCount {
-  color: #c2410c; /* 5.18:1 (was #e85a2c @ 3.44) */
-}
-.pdSide {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-.ctl {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  border: 1px solid #e7e8e3;
-  background: #fff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: #0c0e09;
-  flex-shrink: 0;
-}
-.ctl:hover {
-  border-color: #e85a2c;
-}
-.ctl:focus-visible {
-  outline: 2px solid #e85a2c;
-  outline-offset: 2px;
-}
-.ctl svg {
-  width: 11px;
-  height: 11px;
-  fill: currentColor;
-}
 .parade {
   padding: 10px 18px 0;
 }

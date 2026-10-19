@@ -73,8 +73,8 @@ npm run lint          # eslint . — 0 errors / 0 warnings
 npm run build         # stop `next dev` first — shared .next cache
 # Banned-claims sweep (AGENTS.md table — banned/unhedged forms only;
 # the guardrail's allowed "Up to 3x faster rotation…" wording is NOT flagged;
-# metrics-band.tsx excluded — founder-approved exact benchmark copy):
-grep -rn -E "first express layer|Express Layer for Heavy|Traditional Logistics|99\.2|1\.4T|80% less carbon|Quick-commerce killed|cash 3x faster|cut transit to 2 days" app components --exclude=metrics-band.tsx
+# metrics-band.tsx + hero.tsx filtered out — founder-approved benchmark copy):
+grep -rn -E "first express layer|Express Layer for Heavy|Traditional Logistics|99\.2|1\.4T|80% less carbon|Quick-commerce killed|cash 3x faster|cut transit to 2 days" app components --include="*.tsx" --include="*.ts" | grep -v -E "metrics-band\.tsx|hero\.tsx|299\.241"
 # Browser pass + contrast/keyboard audit (dev server running):
 PLAYWRIGHT_BROWSERS_PATH=0 node /Users/dinesh/.jolt-verify/verify-browser.mjs
 PLAYWRIGHT_BROWSERS_PATH=0 node /Users/dinesh/.jolt-verify/a11y-check.mjs
