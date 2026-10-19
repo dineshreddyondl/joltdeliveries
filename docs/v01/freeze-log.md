@@ -15,3 +15,4 @@
 | 2026-10-19 | Header+Hero **layout** | Founder: 'let's freeze the layout first' (images wired later). B single-stage spec locked: outcome-first copy, check-card + dispatch line, 6x1.2s parade, in-stage journey bar (4 stages), single master clock, slam-and-stay stamp, chip top-left, SAMPLE tag removed from times row. Open: H1 wording, stamp wording, final images, schedule values. |
 | 2026-10-19 | Lane-table header | Founder: 'just keep like the benchmark' — column header = `Traditional Logistics` (guardrail override; sweep exemption to be applied on implementation). |
 | 2026-10-19 | Utility bar | Removed (founder 'x' on the black strip; benchmark starts at nav). Supersedes LIVE-LANES utility decision. |
+| 2026-10-19 | Hero dot-to-dot | Founder: whole hero identical to benchmark EXCEPT the right-side stage animation. Ported: real logo nav, aurora, blaze+embers, benchmark marquee; utility bar already removed. |

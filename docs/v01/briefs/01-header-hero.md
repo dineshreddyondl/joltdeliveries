@@ -8,9 +8,9 @@
 Reference mock: `design-reference/jolt-hero-v01-proofrail-v5-learnings.html`
 (images still being finalised — layout is what's frozen).
 
-### Structure (top → bottom)
-1. ~~Utility bar~~ — **removed 2026-10-19** (founder: benchmark has no black top strip; page starts at the nav). Supersedes the earlier LIVE-LANES-utility decision.
-2. **Nav:** `JOLT Deliveries` wordmark · ghost `Check serviceability` · orange `Start pilot`.
+### Structure (top → bottom) — **benchmark dot-to-dot** (founder 2026-10-19: "hero stays same as benchmark except the right-side animation")
+1. **Nav:** benchmark-exact — ONDL mark SVG logo + `JOLT Deliveries` brand word, fixed, blurred white on scroll · orange `Start pilot` (with arrow) · ghost `Check serviceability`.
+2. **Hero chrome:** benchmark-exact — `.aurora` drift blobs (orange + teal), hero h1 with the real `.blaze` (sweep gradient + glow + 3 embers), eyebrow, pillar row, lane head/box. Right column = our improved stage (the ONLY deviation).
 3. **Hero grid** (2 cols → 1 col ≤768): copy left, stage right.
 4. **Marquee:** Ather · Wakefit · Ola Electric · Duroflex (founder-authorized).
 5. Sections below unchanged (metrics, narrative, etc.).
