@@ -37,6 +37,8 @@
   text-transform: uppercase;
   color: #e85a2c;
   margin-bottom: 22px;
+  width: 100%;
+  justify-content: center;
   justify-content: center;
 }
 .tag::before {
@@ -52,6 +54,8 @@
   letter-spacing: -0.035em;
   margin: 0 auto 26px;
   max-width: 900px;
+  margin-inline: auto;
+  text-align: center;
   color: #fff;
 }
 .u {
@@ -76,6 +80,7 @@
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.68);
   max-width: 640px;
+  text-align: center;
 }
 .btns {
   display: flex;
