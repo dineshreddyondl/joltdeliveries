@@ -1,8 +1,10 @@
 /* ================================================================
-   JOLT — Hero + dispatch board CSS · exact port of frozen v5
-   Source: frozen design/jolt-landing-v5.html (hero/nav/lane/db blocks,
-   lines 60–242). Class names localized by the CSS module; keyframes
-   keep frozen names prefixed with `hero` to avoid cross-module clashes.
+   JOLT — Hero · V0.1 frozen Header + Hero
+   Source: frozen v5 hero shell (aurora/blaze/pillars/lanes) +
+   `design-reference/jolt-hero-v01-proofrail-v5-learnings.html`
+   (square stage, journey bar, chip, stamp, ticker). Class names are
+   localized by the CSS module; the stage animation is driven by the
+   single rAF master clock in hero.tsx (no CSS keyframes on the stage).
    ================================================================ */
 
 /* ---------- hero shell ---------- */
@@ -59,6 +61,9 @@
   grid-template-columns: 1fr 1.15fr;
   gap: 48px;
   align-items: start;
+}
+.heroGrid > div {
+  min-width: 0;
 }
 .estWrap {
   max-width: 1220px;
@@ -257,6 +262,41 @@
   margin-left: 1px;
 }
 
+/* ---------- dispatch line (schedule-derived, honest) ---------- */
+.dline {
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #0c0e09;
+  background: rgba(12, 14, 9, 0.04);
+  border: 1px dashed rgba(12, 14, 9, 0.18);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  min-height: 33px;
+}
+.dline::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: #e85a2c;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.dtag {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #c2410c; /* 4.9:1 on the tinted white field */
+  border: 1px solid rgba(194, 65, 12, 0.35);
+  border-radius: 4px;
+  padding: 2px 5px;
+}
+
 /* ---------- live lanes ---------- */
 @keyframes heroBlink {
   0%,
@@ -389,7 +429,7 @@
   box-shadow: 0 0 8px rgba(232, 90, 44, 0.55);
 }
 
-/* ---------- hero race panel · V5 dispatch board ---------- */
+/* ---------- right column · the frozen square stage ---------- */
 .heroRace {
   position: relative;
   width: 100%;
@@ -397,157 +437,95 @@
   margin: 0 auto;
   font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
 }
-.panel {
+.stage {
+  position: relative;
   width: 100%;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  overflow: visible;
-  position: relative;
-  isolation: isolate;
-  box-shadow: none;
-}
-.parade {
-  padding: 10px 18px 0;
-}
-.zone {
-  position: relative;
-  height: 524px;
-  border: none;
-  background: transparent;
+  aspect-ratio: 1 / 1;
+  background: radial-gradient(ellipse at 50% 38%, rgba(232, 90, 44, 0.07), transparent 60%), #fff;
+  border: 1px solid rgba(12, 14, 9, 0.1);
+  border-radius: 22px;
   overflow: hidden;
+  isolation: isolate;
+  box-shadow: 0 30px 70px -40px rgba(12, 14, 9, 0.35);
 }
-.dbShadow {
-  position: absolute;
-  left: 50%;
-  top: calc(50% + 138px);
-  width: 300px;
-  height: 64px;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(ellipse at center, rgba(12, 14, 9, 0.14), rgba(12, 14, 9, 0) 66%);
-  pointer-events: none;
-}
-.dbCore {
+.spot {
   position: absolute;
   inset: 0;
-  will-change: transform;
-}
-.dbRing {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 480px;
-  height: 480px;
-  pointer-events: none;
-}
-.rc {
-  fill: none;
-  stroke: rgba(12, 14, 9, 0.14);
-  stroke-width: 1.5;
-}
-.ticks line {
-  stroke: rgba(12, 14, 9, 0.22);
-  stroke-width: 1.5;
-}
-.hand {
-  transform-origin: 140px 140px;
-  will-change: transform;
-}
-.hd {
-  stroke: #0c0e09;
-  stroke-width: 2.5;
-  stroke-linecap: round;
-}
-.hub {
-  fill: #e85a2c;
-}
-.dbFrame {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 380px;
-  height: 380px;
-}
-.it {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  background: radial-gradient(ellipse at 50% 38%, rgba(232, 90, 44, 0.12), transparent 62%);
   opacity: 0;
-}
-/* The rAF loop toggles the literal class "on" via classList — it must stay
-   un-hashed (CSS Modules hashes `.on` inside `.it.on`, so that pairing
-   never matched and the board rendered no image at all). */
-.it:global(.on) {
-  opacity: 1;
-}
-.dbGrain {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 380px;
-  height: 380px;
-  transform: translate(-50%, -50%);
   pointer-events: none;
-  opacity: 0.06;
+  z-index: 1;
+}
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20width=%27160%27%20height=%27160%27%3E%3Cfilter%20id=%27n%27%3E%3CfeTurbulence%20type=%27fractalNoise%27%20baseFrequency=%270.9%27%20numOctaves=%272%27/%3E%3CfeColorMatrix%20type=%27saturate%27%20values=%270%27/%3E%3C/filter%3E%3Crect%20width=%27160%27%20height=%27160%27%20filter=%27url(%23n)%27/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 4;
 }
-.dbFlash {
+.flash {
   position: absolute;
   inset: 0;
   background: #fff;
   opacity: 0;
   pointer-events: none;
+  z-index: 5;
 }
-.dbStamp {
-  position: absolute;
-  left: calc(50% + 112px);
-  top: calc(50% - 205px);
-  transform: translate(-50%, -50%) rotate(-8deg) scale(0.4);
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  border: 2.5px solid #0b0d02;
-  color: #0b0d02;
-  background: #e85a2c;
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 0.12em;
-  white-space: nowrap;
-  box-shadow: 0 14px 30px -12px rgba(194, 65, 12, 0.55);
-  opacity: 0;
-  pointer-events: none;
-}
-.dbStamp svg {
-  width: 20px;
-  height: 20px;
-  color: #0b0d02;
-}
-.pdChip {
+.product {
   position: absolute;
   left: 50%;
-  top: 14px;
-  transform: translateX(-50%);
+  top: 46%;
+  transform: translate(-50%, -50%);
+  width: 72%;
+  height: 66%;
+  z-index: 2;
+}
+.imgs {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.img {
+  position: absolute;
+  max-width: 94%;
+  max-height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transform: translate3d(64px, 0, 0) scale(0.96);
+  will-change: transform, opacity;
+}
+.contact {
+  position: absolute;
+  left: 50%;
+  top: 78%;
+  width: 44%;
+  height: 26px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse at center, rgba(12, 14, 9, 0.16), transparent 66%);
+  z-index: 1;
+  pointer-events: none;
+}
+.chip {
+  position: absolute;
+  left: 18px;
+  top: 16px;
+  background: rgba(12, 14, 9, 0.92);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 12px;
+  z-index: 3;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  background: #0c0e09;
-  color: #fff;
-  padding: 8px 14px;
-  border-radius: 10px;
-  opacity: 0;
+  gap: 2px;
   font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
-  pointer-events: none;
   box-shadow: 0 10px 22px -12px rgba(12, 14, 9, 0.55);
+  pointer-events: none;
 }
-.cCat {
+.chipCat {
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -555,54 +533,213 @@
   color: #e85a2c;
   white-space: nowrap;
 }
-.cName {
-  font-size: 9.5px;
+.chipName {
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   white-space: nowrap;
 }
-.cSpec {
+.chipSpec {
   font-size: 9px;
-  color: #e85a2c;
+  color: #b9b9bf;
   letter-spacing: 0.08em;
   white-space: nowrap;
 }
+.stamp {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #e85a2c;
+  color: #0b0d02;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transform: rotate(-7deg);
+  opacity: 0;
+  z-index: 3;
+  box-shadow: 0 10px 22px -10px rgba(194, 65, 12, 0.55);
+  pointer-events: none;
+  white-space: nowrap;
+}
 
-/* ---------- responsive (frozen lines 216–231) ---------- */
+/* ---------- in-stage journey bar ---------- */
+.stagebar {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 14px;
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid rgba(12, 14, 9, 0.08);
+  z-index: 3;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.86) 22%, rgba(255, 255, 255, 0.96) 100%);
+}
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 8.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #878b80;
+  margin-bottom: 10px;
+  height: 11px;
+}
+.statusLoop {
+  margin-left: auto;
+  color: #b8bcb0;
+  letter-spacing: 0.18em;
+}
+.blink {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e85a2c;
+  box-shadow: 0 0 8px rgba(232, 90, 44, 0.7);
+  flex-shrink: 0;
+}
+.nodes {
+  display: flex;
+  align-items: center;
+}
+.node {
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid rgba(12, 14, 9, 0.2);
+  border-radius: 50%;
+  background: #fff;
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nodeDot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: rgba(12, 14, 9, 0.14);
+}
+.nodeLast {
+  width: 26px;
+  height: 26px;
+}
+.nodeLast .nodeDot {
+  width: 15px;
+  height: 15px;
+}
+.ring {
+  position: absolute;
+  inset: -1.5px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(232, 90, 44, 0.7);
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.6);
+}
+.seg {
+  flex: 1;
+  height: 3px;
+  background: rgba(12, 14, 9, 0.07);
+  position: relative;
+  border-radius: 2px;
+  margin: 0 3px;
+}
+.fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  border-radius: 2px;
+  background: linear-gradient(100deg, #c2410c, #e85a2c 35%, #ff9b6a 50%, #e85a2c 65%, #c2410c);
+  background-size: 220% 100%;
+  box-shadow: 0 0 10px rgba(232, 90, 44, 0.45);
+}
+.arrow {
+  position: absolute;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 9px solid #e85a2c;
+  transform: translateY(-50%);
+  opacity: 0;
+  margin-left: -9px;
+  filter: drop-shadow(0 0 5px rgba(232, 90, 44, 0.8));
+  pointer-events: none;
+}
+.labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.labels span {
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #9aa08e;
+  white-space: nowrap;
+}
+.labels span[data-on="true"] {
+  color: #0c0e09;
+  font-weight: 700;
+}
+.labels span[data-on="true"]::before {
+  content: "● ";
+  color: #e85a2c;
+}
+.times {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 7px;
+  letter-spacing: 0.12em;
+  color: #b8bcb0;
+}
+
+/* ---------- category ticker (below the stage) ---------- */
+.seq {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+  align-items: center;
+}
+.seqDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(12, 14, 9, 0.14);
+  flex-shrink: 0;
+}
+.seqLabel {
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #6e7366; /* 4.88:1 on white (was --mut #878b80 @ 3.38) */
+  margin-left: 8px;
+  white-space: nowrap;
+}
+
+/* ---------- responsive (frozen brief §1: 2 cols → 1 col ≤768) ---------- */
+@media (max-width: 768px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: 64px;
+  }
+  .stage {
+    max-width: 100%;
+  }
+}
 @media (max-width: 560px) {
-  .zone {
-    height: 360px;
-  }
-  .dbRing {
-    width: 336px;
-    height: 336px;
-  }
-  .dbFrame {
-    width: 272px;
-    height: 272px;
-  }
-  .dbShadow {
-    width: 220px;
-    height: 48px;
-    top: calc(50% + 98px);
-  }
-  .dbGrain {
-    width: 272px;
-    height: 272px;
-  }
-  .dbStamp {
-    left: calc(50% + 44px);
-    top: calc(50% - 150px);
-    font-size: 10px;
-    letter-spacing: 0.06em;
-    padding: 8px 10px;
-    gap: 6px;
-    border-width: 2px;
-  }
-  .dbStamp svg {
-    width: 12px;
-    height: 12px;
-  }
   .laneRow {
     font-size: 11px;
     gap: 10px;
@@ -617,7 +754,7 @@
     font-size: 34px;
   }
 }
-@media (max-width: 400px) {
+@media (max-width: 480px) {
   .h1 {
     font-size: 30px;
   }
@@ -625,5 +762,55 @@
     font-size: 10px;
     gap: 8px;
     padding: 8px 10px;
+  }
+  .em {
+    white-space: normal;
+  }
+  .times {
+    display: none;
+  }
+  .labels span {
+    font-size: 7px;
+    letter-spacing: 0.1em;
+  }
+  .node {
+    width: 14px;
+    height: 14px;
+  }
+  .nodeLast {
+    width: 18px;
+    height: 18px;
+  }
+  .nodeDot {
+    width: 8px;
+    height: 8px;
+  }
+  .nodeLast .nodeDot {
+    width: 10px;
+    height: 10px;
+  }
+  .stagebar {
+    left: 12px;
+    right: 12px;
+    bottom: 10px;
+  }
+  .chip {
+    left: 10px;
+    top: 10px;
+    padding: 8px 11px;
+  }
+  .stamp {
+    right: 10px;
+    top: 10px;
+  }
+}
+
+/* Reduced motion: lane auto-scroll stops (stage handled in JS). */
+@media (prefers-reduced-motion: reduce) {
+  .laneTrack {
+    animation: none;
+  }
+  .laneHead .sq {
+    animation: none;
   }
 }
