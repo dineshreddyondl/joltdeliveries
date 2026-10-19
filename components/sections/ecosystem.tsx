@@ -123,11 +123,31 @@ export function Ecosystem() {
           switch us on.
         </motion.p>
 
+        <motion.p
+          variants={rv}
+          custom={4}
+          initial={animateIn ? "hidden" : false}
+          animate={show as never}
+          className={styles.distance}
+        >
+          Intercity or intracity — the same network, the same SLA.
+        </motion.p>
+
+        <motion.p
+          variants={rv}
+          custom={5}
+          initial={animateIn ? "hidden" : false}
+          animate={show as never}
+          className={cn(sg.className, styles.same)}
+        >
+          The solution remains the same. <em>Faster than ever.</em>
+        </motion.p>
+
         {/* Two movement types, one line each. */}
         <div className={styles.cases}>
           <motion.div
             variants={rv}
-            custom={5}
+            custom={6}
             initial={animateIn ? "hidden" : false}
             animate={show as never}
             className={styles.caseCard}
@@ -138,7 +158,7 @@ export function Ecosystem() {
           </motion.div>
           <motion.div
             variants={rv}
-            custom={6}
+            custom={7}
             initial={animateIn ? "hidden" : false}
             animate={show as never}
             className={styles.caseCard}
@@ -148,26 +168,6 @@ export function Ecosystem() {
             <p>Courier-grade delivery for heavy purchases.</p>
           </motion.div>
         </div>
-
-        <motion.p
-          variants={rv}
-          custom={7}
-          initial={animateIn ? "hidden" : false}
-          animate={show as never}
-          className={styles.distance}
-        >
-          Intercity or intracity — the same network, the same SLA.
-        </motion.p>
-
-        <motion.p
-          variants={rv}
-          custom={8}
-          initial={animateIn ? "hidden" : false}
-          animate={show as never}
-          className={cn(sg.className, styles.same)}
-        >
-          The solution remains the same. <em>Faster than ever.</em>
-        </motion.p>
       </div>
     </section>
   );
