@@ -35,22 +35,22 @@ const TRAPS = [
   {
     badge: "Workaround 01",
     tone: "courier",
-    title: "Stretching the Courier Network",
+    title: "Express Courier Network",
+    sub: "Built for small parcels",
     points: [
       "Heavy goods get damaged in parcel networks",
       "Dimensional pricing destroys your unit economics",
     ],
-    tagline: "A model built for small parcels",
   },
   {
     badge: "Workaround 02",
     tone: "freight",
-    title: "Settling for Traditional Transport",
+    title: "LTL Network",
+    sub: "Built for bulk aggregation",
     points: [
       "Your shipment idles in hub yards, waiting for volume",
       "You save money — and lose a week",
     ],
-    tagline: "A model built for bulk consolidation",
   },
 ];
 
@@ -114,6 +114,7 @@ export function Gap() {
             >
               <span className={styles.badge}>{trap.badge}</span>
               <h3 className={sg.className}>{trap.title}</h3>
+              <span className={styles.sub}>{trap.sub}</span>
               <div className={styles.pts}>
                 {trap.points.map((pt) => (
                   <p key={pt} className={styles.pt}>
@@ -122,7 +123,6 @@ export function Gap() {
                   </p>
                 ))}
               </div>
-              <span className={styles.tagline}>{trap.tagline}</span>
             </motion.div>
           ))}
         </div>

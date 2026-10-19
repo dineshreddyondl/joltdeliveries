@@ -104,8 +104,17 @@
   font-size: 23px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   color: #0c0e09;
+}
+.sub {
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6b6b66;
+  display: block;
+  margin-bottom: 20px;
 }
 /* Two point lines per card — light copy, bento-style. */
 .pts {
@@ -129,15 +138,6 @@
   border-radius: 2px;
   flex-shrink: 0;
   margin-top: 8px;
-}
-.tagline {
-  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #6b6b66;
-  margin-top: 20px;
-  display: block;
 }
 .verdict {
   margin-top: 48px;
