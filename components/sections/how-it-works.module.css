@@ -98,11 +98,12 @@
   left: 25%;
   width: 50%;
   top: 50%;
-  height: 6px;
+  height: 14px;
   transform: translateY(-50%);
   background:
-    linear-gradient(rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.32)) top / 100% 1px no-repeat,
-    linear-gradient(rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.32)) bottom / 100% 1px no-repeat;
+    linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)) top / 100% 1px no-repeat,
+    linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)) bottom / 100% 1px no-repeat,
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.12) 0 1.5px, transparent 1.5px 16px) center / 100% 4px no-repeat;
 }
 /* Interchange halts: small rings where road hands off to rail. */
 .nodeA,
@@ -158,6 +159,38 @@
   display: block;
   width: 100%;
   height: 100%;
+}
+
+/* Orange drag trail behind each moving prop. */
+.trail {
+  position: absolute;
+  right: calc(100% - 2px);
+  top: 50%;
+  height: 2px;
+  width: 48px;
+  transform: translateY(-50%);
+  background: linear-gradient(270deg, rgba(232, 90, 44, 0.7), rgba(232, 90, 44, 0));
+  border-radius: 2px;
+  pointer-events: none;
+}
+.train .trail {
+  width: 110px;
+  height: 2.5px;
+  background: linear-gradient(270deg, rgba(232, 90, 44, 0.9), rgba(232, 90, 44, 0));
+  box-shadow: 0 0 10px rgba(232, 90, 44, 0.35);
+}
+.truckB .trail {
+  animation: howTrailFade 8s linear infinite;
+}
+@keyframes howTrailFade {
+  0%,
+  93.9% {
+    opacity: 1;
+  }
+  96%,
+  100% {
+    opacity: 0;
+  }
 }
 .truckA,
 .truckB {
