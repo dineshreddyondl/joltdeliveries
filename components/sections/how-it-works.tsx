@@ -1,28 +1,23 @@
 "use client";
 
 /**
- * How It Works — The Orchestration Layer · V0.1 restructure (founder 2026-10-19)
+ * How It Works — The Orchestration Layer · V0.1 (founder copy + motion)
  *
- * The solution + USP section. Restructured from three dense paragraphs to a
- * low-density, journey-first layout:
- *   H2 → one-line lede → horizontal journey pipeline (FIRST MILE → RAIL
- *   LINEHAUL → LAST MILE with the travelling dot) → three compact USP cards
- *   (NTO / HUBLESS / VISIBILITY, one line each + mono spec) → CO₂ footnote.
+ * The solution + USP section, journey-first:
+ *   H2 (FlipWords on the orange "purpose-built express layer" phrase) →
+ *   one-line lede → journey graphic (symbolic truck/train props on a
+ *   dashed-road + sleepered-rail route, with two handoff halts, drag
+ *   trails and a bullet-train sprint) → three USP cards.
  *
- * V0.2 wow pass (designer 2026-10-20 — founder: "missing the wow moment"):
- *   - Reveal: Aceternity tracing-beam (horizontalized) comet sweep on
- *     section reveal + static ambient corridor bloom behind the pipeline.
- *   - Linehaul moment: rail leg paced 1.5×, comet-dot with stretching
- *     tail, corridor flare + speed streaks + hub ignition ring + linehaul
- *     label glow — all synchronized to the same 5.2s CSS loop.
- *   - Copy frozen. Reduced-motion / no-JS land on the static journey.
- *
- * Copy changes in this pass (flagged to founder):
- * - H2: founder's new sentence "We built the purpose-built layer for express
- *   heavy commerce — the fastest, from first mile to last mile."
+ * Founder copy decisions (flagged):
+ * - H2: "A purpose-built express layer for heavy commerce — not another
+ *   bidding board or marketplace." (orange phrase flips in).
  * - Lede: black-box/cleanest-weight duplication vs Why Now removed.
- * - 89% CO₂ now carries its required footnote (NITI Aayog, SFC India 2025).
- * - "absolute visibility" → "every milestone tracked".
+ * - USPs: 5× Faster / Zero Stops / Integrated (One API. One network.
+ *   One SLA.).
+ * - 89% CO₂ footnote REMOVED by founder ("vs road freight per tonne-km ·
+ *   NITI Aayog, SFC India 2025") — recorded as an override; re-confirm
+ *   the claim basis on final review.
  */
 
 import { Space_Grotesk } from "next/font/google";
@@ -289,17 +284,6 @@ export function HowItWorks() {
             </motion.div>
           ))}
         </div>
-
-        <motion.p
-          variants={rv}
-          custom={6}
-          initial={animateIn ? "hidden" : false}
-          animate={show as never}
-          className={styles.footnote}
-        >
-          <sup aria-hidden="true">‡</sup>
-          vs road freight per tonne-km · NITI Aayog, SFC India 2025
-        </motion.p>
       </div>
     </section>
   );
