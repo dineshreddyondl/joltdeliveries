@@ -9,6 +9,14 @@
  *   LINEHAUL → LAST MILE with the travelling dot) → three compact USP cards
  *   (NTO / HUBLESS / VISIBILITY, one line each + mono spec) → CO₂ footnote.
  *
+ * V0.2 wow pass (designer 2026-10-20 — founder: "missing the wow moment"):
+ *   - Reveal: Aceternity tracing-beam (horizontalized) comet sweep on
+ *     section reveal + static ambient corridor bloom behind the pipeline.
+ *   - Linehaul moment: rail leg paced 1.5×, comet-dot with stretching
+ *     tail, corridor flare + speed streaks + hub ignition ring + linehaul
+ *     label glow — all synchronized to the same 5.2s CSS loop.
+ *   - Copy frozen. Reduced-motion / no-JS land on the static journey.
+ *
  * Copy changes in this pass (flagged to founder):
  * - H2: founder's new sentence "We built the purpose-built layer for express
  *   heavy commerce — the fastest, from first mile to last mile."
@@ -37,6 +45,29 @@ const rv: Variants = {
     y: 0,
     transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: i * 0.08 },
   }),
+};
+
+/**
+ * One-shot "tracing sweep" — Aceternity tracing-beam, horizontalized.
+ * A comet head + corridor bloom races the journey line once when the
+ * section scrolls into view, then vanishes. Decorative only: reduced
+ * motion and no-JS both land on the static hidden state (CSS base),
+ * while the CSS journey loop carries the content.
+ */
+const sweepV: Variants = {
+  hidden: { opacity: 0, left: "0%" },
+  show: {
+    opacity: [0, 1, 1, 0],
+    left: ["0%", "100%"],
+    transition: {
+      left: { duration: 1.15, ease: [0.16, 1, 0.3, 1] },
+      opacity: { duration: 1.15, times: [0, 0.12, 0.86, 1], ease: "linear" },
+      delay: 0.35,
+    },
+    /* After the one-shot, park the comet back at the origin (it is fully
+       faded by then) so no off-track geometry lingers in the section. */
+    transitionEnd: { left: "0%" },
+  },
 };
 
 const STAGES = [
@@ -128,8 +159,14 @@ export function HowItWorks() {
           stops in between.
         </motion.p>
 
-        {/* Journey pipeline — the section's hero. CSS loop; reduced-motion
-            renders the completed static journey. */}
+        {/* Journey pipeline — the section's hero.
+            - Ambient corridor bloom: static, ultra-subtle spotlight behind
+              the line (no animation, safe everywhere).
+            - Perpetual CSS loop (5.2s): the dot sprints the rail leg at
+              1.5× first-mile speed; a corridor flare + speed streaks ignite
+              only while it is in the linehaul leg; reduced-motion renders
+              the completed static journey.
+            - Tracing sweep: one-shot comet on section reveal (motion). */}
         <motion.div
           variants={rv}
           custom={3}
@@ -138,14 +175,31 @@ export function HowItWorks() {
           className={styles.pipeline}
           aria-hidden="true"
         >
+          <div className={styles.bloom} />
           <div className={styles.track}>
             <div className={styles.fill} />
+            <div className={styles.railLeg}>
+              <div className={styles.flare} />
+              <div className={styles.streaks}>
+                <span className={cn(styles.streak, styles.st1)} />
+                <span className={cn(styles.streak, styles.st2)} />
+                <span className={cn(styles.streak, styles.st3)} />
+                <span className={cn(styles.streak, styles.st4)} />
+              </div>
+            </div>
+            <motion.div
+              variants={sweepV}
+              initial={animateIn ? "hidden" : false}
+              animate={show as never}
+              className={styles.sweep}
+            />
             <div className={styles.dot} />
             <div className={cn(styles.stop, styles.s0)}>
               <div className={styles.psDot} />
             </div>
             <div className={cn(styles.stop, styles.s50)}>
               <div className={styles.psDot} />
+              <div className={styles.burst} />
             </div>
             <div className={cn(styles.stop, styles.s100)}>
               <div className={styles.psDot} />
