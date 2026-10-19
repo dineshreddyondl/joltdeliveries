@@ -198,12 +198,8 @@ export function HowItWorks() {
             <div className={styles.roadL} />
             <div className={styles.rail} />
             <div className={styles.roadR} />
-            <div className={styles.nodeA}>
-              <i />
-            </div>
-            <div className={styles.nodeB}>
-              <i />
-            </div>
+            <div className={styles.nodeA} />
+            <div className={styles.nodeB} />
             <div className={styles.truckA}>
               <span className={styles.trail} />
               <TruckGlyph />
