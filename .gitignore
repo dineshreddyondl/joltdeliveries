@@ -31,6 +31,9 @@ Thumbs.db
 # Misc
 *.local
 
+# Browser save-page dumps accidentally landing in the repo root
+images from magnific/
+
 # Design mocks (excluded from deploy repo)
 design-reference/
 frozen design/

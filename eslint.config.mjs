@@ -26,6 +26,7 @@ const eslintConfig = [
       "assets/**",
       "design-reference/**",
       "frozen design/**",
+      "images from magnific/**",
       "next-env.d.ts",
     ],
   },

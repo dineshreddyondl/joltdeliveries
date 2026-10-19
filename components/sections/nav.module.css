@@ -1,40 +1,9 @@
 /* ================================================================
-   JOLT — Nav CSS · exact port of frozen v5
-   Source: frozen design/jolt-landing-v5.html (lines 35–58).
+   JOLT — Nav CSS · resizable-navbar shell (Aceternity) + frozen
+   branding. Shell layout comes from components/ui/resizable-navbar.tsx;
+   this module keeps the frozen ONDL mark, wordmark and CTA capsules.
    ================================================================ */
 
-.nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  display: flex;
-}
-.row {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 32px;
-  background: rgba(255, 255, 255, 0);
-  transition: background 0.3s, box-shadow 0.3s, backdrop-filter 0.3s;
-}
-.scrolled .row {
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 1px 0 rgba(12, 14, 9, 0.1);
-}
-
-/* Utility bar removed 2026-10-19 (founder) — nav starts at the white bar. */
-.navLogo {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  padding: 2px 0;
-}
 .ondlMark {
   width: 40px;
   height: 40px;
@@ -63,9 +32,6 @@
 @media (max-width: 640px) {
   .brandWord {
     display: none;
-  }
-  .row {
-    padding: 14px 20px;
   }
 }
 .navCtas {
