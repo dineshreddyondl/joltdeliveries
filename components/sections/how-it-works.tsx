@@ -47,6 +47,48 @@ const rv: Variants = {
   }),
 };
 
+/* Symbolic props — minimal thin-stroke glyphs, deliberately NOT emoji,
+   NOT illustrations. The truck is a cab + container + two wheels; the
+   train is a long body with windows, wheels, and one orange headlight. */
+function TruckGlyph() {
+  return (
+    <svg viewBox="0 0 32 18" className={styles.glyph} aria-hidden="true">
+      <path
+        d="M3 4.5h11v9H3zM14 8h5.2l5.8 5.5H3"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+      />
+      <circle cx="8" cy="14" r="2.1" fill="none" stroke="currentColor" strokeWidth="1.2" />
+      <circle cx="23" cy="14" r="2.1" fill="none" stroke="currentColor" strokeWidth="1.2" />
+    </svg>
+  );
+}
+
+function TrainGlyph() {
+  return (
+    <svg viewBox="0 0 64 18" className={styles.glyph} aria-hidden="true">
+      <rect
+        x="1.5"
+        y="4.5"
+        width="59"
+        height="9"
+        rx="4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+      />
+      <circle cx="12" cy="9" r="1.4" fill="currentColor" />
+      <circle cx="24" cy="9" r="1.4" fill="currentColor" />
+      <circle cx="36" cy="9" r="1.4" fill="currentColor" />
+      <circle cx="9" cy="14" r="2.1" fill="none" stroke="currentColor" strokeWidth="1.2" />
+      <circle cx="27" cy="14" r="2.1" fill="none" stroke="currentColor" strokeWidth="1.2" />
+      <circle cx="45" cy="14" r="2.1" fill="none" stroke="currentColor" strokeWidth="1.2" />
+      <circle cx="58" cy="6" r="1.6" fill="#E85A2C" />
+    </svg>
+  );
+}
+
 const STAGES = [
   {
     idx: "01",
@@ -136,11 +178,11 @@ export function HowItWorks() {
           stops in between.
         </motion.p>
 
-        {/* Journey graphic — the story, abstract: a road dot halts at the
-            railhead, the payload rides the twin-rail linehaul, halts at the
-            destination, and a road dot takes over for direct delivery.
-            No icons, no drawings — the choreography is the message.
-            8s loop; reduced-motion lands on the completed static journey. */}
+        {/* Journey graphic — the story with symbolic props: a subtle truck
+            drives the first mile and halts at the railhead; the train takes
+            over with an accelerate-cruise-decelerate linehaul; a truck
+            takes the last mile and delivers. Handoffs pulse at the two
+            interchange nodes. 8s loop; reduced-motion = delivered static. */}
         <motion.div
           variants={rv}
           custom={3}
@@ -159,7 +201,15 @@ export function HowItWorks() {
             <div className={styles.nodeB}>
               <i />
             </div>
-            <div className={styles.payload} />
+            <div className={styles.truckA}>
+              <TruckGlyph />
+            </div>
+            <div className={styles.train}>
+              <TrainGlyph />
+            </div>
+            <div className={styles.truckB}>
+              <TruckGlyph />
+            </div>
             <div className={styles.ringA} />
             <div className={styles.ringB} />
             <div className={styles.delivered} />
