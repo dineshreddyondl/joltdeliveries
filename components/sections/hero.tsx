@@ -12,9 +12,10 @@
  * total loop T = 9.0). The rAF timeline math below is the frozen file's
  * own (lines 1015–1138), ported 1:1 onto refs. No new animation libraries.
  *
- * Copy is claim-corrected per Brief 04 / AGENTS.md guardrails:
- * - H1: "India's rail-first express network for 200kg+ B2B."
- * - Pillar: "up to 89% less CO₂ per tonne-km" († footnote)
+ * Copy — founder overrides (2026-10-19, benchmark fidelity):
+ * - H1: "India's first express layer for heavy shipments." (em: heavy
+ *   shipments) — guardrail #1 overridden by founder instruction.
+ * - Pillar: "80% less carbon" (benchmark wording).
  * - Lanes header: "LTL / Part-Load" (claim-corrected column label)
  * - Showcase row: Delhi → Mumbai 4–5 days → 2 days
  */
@@ -412,9 +413,9 @@ export function Hero() {
             animate={animateIn ? "show" : false}
             className={cn(sg.className, styles.h1, blazeIn && styles.in)}
           >
-            India&rsquo;s rail-first express network for{" "}
+            India&rsquo;s first express layer for{" "}
             <span className={styles.em}>
-              200kg+ B2B
+              heavy shipments
               <i className={styles.blaze} aria-hidden="true">
                 <i className={styles.s1} />
                 <i className={styles.s2} />

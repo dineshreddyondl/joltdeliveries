@@ -9,7 +9,7 @@
 - Utility bar: `NETWORK LIVE` · `CHECK LANE` · `START PILOT` · `WHATSAPP`
 - Nav: `JOLT Deliveries` wordmark · `Start pilot` · `Check serviceability`
 - Eyebrow: `Express speed is no longer just for small parcels.`
-- H1: `India's rail-first express network for 200kg+ B2B.` (em: `200kg+ B2B`)
+- H1: `India's first express layer for heavy shipments.` (em/blaze on `heavy shipments` — **founder override 2026-10-19**, benchmark sentence; guardrail #1 overridden, recorded)
 - Pillars: `Just-in-time execution` · `Direct dispatch` · `up to 89% less CO₂ per tonne-km`
 - Lanes: `[ Live Lanes ]` · header `Route / LTL / Part-Load / JOLT Deliveries` · 11 rows + DEL→BOM showcase
 - Board: `LIVE` · `9 PAYLOADS` · stamp `DELIVERED IN 24 HRS` · chip `CATEGORY / NAME / SPEC` (9 payloads, category-alternating parade)
