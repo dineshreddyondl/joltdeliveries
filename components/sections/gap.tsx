@@ -12,6 +12,7 @@ import { Space_Grotesk } from "next/font/google";
 import { motion, type Variants } from "motion/react";
 
 import { useReveal } from "@/components/ui/use-reveal";
+import { PointerHighlight } from "@/components/ui/pointer-highlight";
 import { cn } from "@/lib/utils";
 import styles from "./gap.module.css";
 
@@ -78,7 +79,10 @@ export function Gap() {
           className={cn(sg.className, styles.h2)}
         >
           You never had a choice. You were forced to use networks that were{" "}
-          <em>never built for you</em>.
+          <PointerHighlight>
+            <em>never built for you</em>
+          </PointerHighlight>
+          .
         </motion.h2>
 
         <motion.p
