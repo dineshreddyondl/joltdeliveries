@@ -173,8 +173,15 @@ export function Gap() {
           className={styles.cmpTable}
           ref={tblRef}
         >
+          {/* Instrument strip: mono readout header for the matrix. */}
+          <div className={styles.cmpStrip}>
+            <span className={styles.cmpStripTag}>Comparison · Workarounds</span>
+            <span className={styles.cmpStripIdx}>
+              <b>01</b> / 02
+            </span>
+          </div>
           <div className={styles.cmpHeadRow}>
-            <span className={styles.cmpLabel} />
+            <span className={styles.cmpCorner}>Variable</span>
             {CMP.map((col) => (
               <span key={col.name} className={styles.cmpCol}>
                 <span className={cn(sg.className, styles.cmpColTitle)}>
@@ -202,8 +209,13 @@ export function Gap() {
                 aria-hidden="true"
               />
               <span className={styles.cmpLabel}>
-                {row.label}
-                <i>{row.note}</i>
+                <span className={styles.cmpIdx}>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className={styles.cmpLabelTxt}>
+                  {row.label}
+                  <i>{row.note}</i>
+                </span>
               </span>
               {row.marks.map((ok, j) => (
                 <motion.span
