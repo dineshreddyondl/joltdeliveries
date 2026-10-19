@@ -31,6 +31,7 @@ INTAKE (new unit only) → BRIEF (founder reviews & edits) → BUILD
 | `section-spec-template.md` | The brief template to copy per unit |
 | `intake.md` | Process for adding NEW sections or pages (e.g. /track) |
 | `freeze-log.md` | Freeze records — founder sign-offs per unit |
+| `review-rubric.md` | Fixed yes/no checklist for founder visual reviews (Part A machine-verified, Part B eyes-only; 3-round budget) |
 
 ## Roles
 
