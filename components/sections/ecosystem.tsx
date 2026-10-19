@@ -116,18 +116,6 @@ export function Ecosystem() {
           custom={4}
           initial={animateIn ? "hidden" : false}
           animate={show as never}
-          className={styles.fAfter}
-        >
-          Express SLAs for your distributors and your end-consumers. Zero IT
-          overhaul required — our API plugs into your existing stack. Just
-          switch us on.
-        </motion.p>
-
-        <motion.p
-          variants={rv}
-          custom={4}
-          initial={animateIn ? "hidden" : false}
-          animate={show as never}
           className={styles.distance}
         >
           Intercity or intracity — the same network, the same SLA.

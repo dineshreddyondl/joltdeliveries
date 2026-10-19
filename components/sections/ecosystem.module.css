@@ -132,13 +132,6 @@
   padding: 26px 0;
 }
 
-.fAfter {
-  margin-top: 48px;
-  font-size: 16.5px;
-  line-height: 1.7;
-  color: #b9b9bf;
-  max-width: 620px;
-}
 .fMarquee {
   position: relative;
   z-index: 1;
