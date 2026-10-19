@@ -55,7 +55,7 @@ export function PointerHighlight({
 
   return (
     <div
-      className={cn("relative w-fit", containerClassName)}
+      className={cn("relative inline-block w-fit", containerClassName)}
       ref={containerRef}
     >
       {children}
@@ -81,8 +81,8 @@ export function PointerHighlight({
             initial={{ opacity: 0 }}
             whileInView={{
               opacity: 1,
-              x: width + 4,
-              y: height + 4,
+              x: width + 2,
+              y: height + 2,
             }}
             style={{ rotate: -90 }}
             transition={{
@@ -112,7 +112,7 @@ export function PointerHighlight({
           <div
             className="absolute"
             style={{
-              transform: `translate(${width + 4}px, ${height + 4}px) rotate(-90deg)`,
+              transform: `translate(${width + 2}px, ${height + 2}px) rotate(-90deg)`,
             }}
           >
             <Pointer

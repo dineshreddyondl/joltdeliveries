@@ -79,10 +79,9 @@ export function Gap() {
           className={cn(sg.className, styles.h2)}
         >
           You never had a choice. You were using networks that were{" "}
-          <PointerHighlight>
-            <em>never built for you</em>
+          <PointerHighlight pointerClassName="h-4 w-4">
+            <em>never built for you.</em>
           </PointerHighlight>
-          .
         </motion.h2>
 
         <motion.p
