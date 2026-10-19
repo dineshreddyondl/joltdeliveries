@@ -51,19 +51,19 @@ const CMP = [
 
 const ROWS = [
   {
-    label: "Express speed",
-    note: "Same-day / next-day",
+    label: "Speed for small parcels",
+    note: "The courier sweet spot",
     marks: [true, false],
   },
   {
-    label: "Bulky speed",
-    note: "Your 200kg+ shipment",
+    label: "Speed for heavy shipments",
+    note: "The gap JOLT fills",
     marks: [false, false],
     highlight: true,
   },
   {
-    label: "Bulk pricing",
-    note: "Freight economics at scale",
+    label: "Cost efficient for bulk",
+    note: "Truckload economics",
     marks: [false, true],
   },
 ];
