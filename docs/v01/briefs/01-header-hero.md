@@ -9,19 +9,18 @@ Reference mock: `design-reference/jolt-hero-v01-proofrail-v5-learnings.html`
 (images still being finalised — layout is what's frozen).
 
 ### Structure (top → bottom)
-1. **Utility bar** (desktop): `PILOT LANES` label left · `Check my lane` · `WhatsApp` right.
-2. **Nav:** `JOLT Deliveries` wordmark · ghost `Check my lane` · orange `Start pilot`.
+1. **Utility bar** (desktop): `LIVE LANES` label left · `Check lane` · `Start pilot` · `WhatsApp` right.
+2. **Nav:** `JOLT Deliveries` wordmark · ghost `Check serviceability` · orange `Start pilot`.
 3. **Hero grid** (2 cols → 1 col ≤768): copy left, stage right.
 4. **Marquee:** Ather · Wakefit · Ola Electric · Duroflex (founder-authorized).
 5. Sections below unchanged (metrics, narrative, etc.).
 
-### Left column (outcome-first copy)
-- Eyebrow: `For COOs & supply-chain leaders moving heavy freight.`
-- H1 (options A/B/C — **pick pending**, §2.1) with orange blaze on the key phrase.
-- Proof line: `Mattresses, furniture, appliances, machine parts — today heavy means slow: 3–7 days, no promise. JOLT delivers 200kg+ in 24–48 hours · 10 pilot lanes · Delhi→Mumbai 2 days`
-- Who-line: `D2C heavy SKUs · warehouse-to-dealer · service-center parts`
-- **Check-my-lane card** (single action): dispatch line on top (schedule-derived, §8b) → 2 fields (FROM / TO) → `Check lane` → result card (lane status · TAT · next dispatch · ₹/kg indicative) → reveals `Start pilot`.
-- **Lanes snapshot:** 3 rows, pause-on-hover, `All 10 lanes →`.
+### Left column — **benchmark, retained as-is** (founder 2026-10-19)
+- Eyebrow: `Express speed is no longer just for small parcels.`
+- H1: `India's first express layer for heavy shipments.` with orange blaze on `heavy shipments` (founder override; A/B outcome variants available in the mock toggle but not default).
+- Pillars: `JUST-IN-TIME EXECUTION` · `DIRECT DISPATCH` · `80% LESS CARBON` (founder-approved benchmark wording).
+- **Dispatch line** (founder-kept element) sits above the table: schedule-derived from `lib/dispatch-data.ts`.
+- **LIVE LANES table** (benchmark): header `ROUTE | LTL / PART-LOAD | JOLT DELIVERIES`; 11 rows incl. Delhi→Mumbai showcase (4–5 → 2 days); fast lanes marked ⚡; auto-scroll 16s, pause-on-hover.
 
 ### Right column — the stage
 - **Card:** 1:1 rounded-22 stage, white, spotlight radial tint, grain overlay, hairline border, deep soft shadow.
@@ -50,6 +49,7 @@ Reference mock: `design-reference/jolt-hero-v01-proofrail-v5-learnings.html`
 
 1. **H1 wording** — A `Parcel speed, finally, for the heavy stuff.` · B `Heavy shipments that arrive on time.` · C founder sentence `India's first express layer for heavy shipments.` (C = guardrail-override, recorded).
 2. **Stamp wording** — `DELIVERED IN 24–48 HRS` vs `DELIVERED IN 24 HRS`.
+2b. **Estimate widget placement** — keep under the hero grid (founder earlier) as its own section; not part of the frozen hero columns.
 3. **Final images** (deferred by founder — "worry about wiring later"): 6 slots = sofa · alternator · [bench/armchair] · [bed candidate A/B/C/D or window scene] · crib · appliances. Cutout pipeline documented below.
 4. **Dispatch schedule values** — real rows for `lib/dispatch-data.ts` (currently placeholders).
 
