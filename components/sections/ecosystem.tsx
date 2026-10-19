@@ -2,12 +2,16 @@
 
 /**
  * Ecosystem — Live Across Your Logistics Ecosystem · Brief 07
- * Founder condensation (2026-10-20): the use cases were unclear.
- * Two movement types — B2B Distributor Movement / B2C Customer
- * Movement — one line each; the distance axis (intercity or
- * intracity) is the same network and SLA; closes on "the solution
- * remains the same — faster than ever." Heading/lede (integration
- * on the SCM stack) kept as approved.
+ * Founder direction (2026-10-20):
+ * - Use cases condensed (B2B Distributor Movement / B2C Customer
+ *   Movement, intercity or intracity, same solution).
+ * - After heading + supporting statement: the INTEGRATED PLATFORM
+ *   LIST in the style of Aceternity's feature-block-animated-card
+ *   (hover beams + glow, staggered reveal). Platform names come from
+ *   the frozen benchmark marquee (SAP · Oracle · Clickpost · Pando ·
+ *   eShipz · Custom REST APIs).
+ *   GUARDRAIL FLAG: brand names ship per founder request — the
+ *   verified-relationship re-check stays on the final review list.
  */
 
 import { Space_Grotesk } from "next/font/google";
@@ -32,7 +36,14 @@ const rv: Variants = {
   }),
 };
 
-const MARQUEE = ["REST APIs", "Webhooks", "EDI", "Custom REST APIs"];
+const PLATFORMS = [
+  { name: "SAP", role: "Enterprise ERP" },
+  { name: "Oracle", role: "Cloud SCM" },
+  { name: "Clickpost", role: "Post-purchase & tracking" },
+  { name: "Pando", role: "Transport management" },
+  { name: "eShipz", role: "Shipping automation" },
+  { name: "Custom REST APIs", role: "Your own stack" },
+];
 
 export function Ecosystem() {
   const { ref, animateIn, inView } = useReveal<HTMLElement>();
@@ -80,6 +91,38 @@ export function Ecosystem() {
           switch us on.
         </motion.p>
 
+        {/* Integrated platform list — feature-block-animated-card style:
+            hover beams + glow, staggered reveal. */}
+        <div className={styles.platforms}>
+          {PLATFORMS.map((p, i) => (
+            <motion.div
+              key={p.name}
+              variants={rv}
+              custom={i + 3}
+              initial={animateIn ? "hidden" : false}
+              animate={show as never}
+              className={styles.pCard}
+            >
+              <svg
+                className={cn(styles.beam, styles.beamA)}
+                viewBox="0 0 120 120"
+                aria-hidden="true"
+              >
+                <rect x="10" y="58.5" width="100" height="3" rx="1.5" />
+              </svg>
+              <svg
+                className={cn(styles.beam, styles.beamB)}
+                viewBox="0 0 120 120"
+                aria-hidden="true"
+              >
+                <rect x="10" y="58.5" width="100" height="3" rx="1.5" />
+              </svg>
+              <span className={styles.pRole}>{p.role}</span>
+              <h3 className={sg.className}>{p.name}</h3>
+            </motion.div>
+          ))}
+        </div>
+
         {/* Two movement types, one line each. */}
         <div className={styles.cases}>
           <motion.div
@@ -125,26 +168,6 @@ export function Ecosystem() {
         >
           The solution remains the same. <em>Faster than ever.</em>
         </motion.p>
-      </div>
-
-      {/* ---------- Generic capability marquee ---------- */}
-      <div className={styles.wrap}>
-        <motion.div
-          variants={rv}
-          custom={7}
-          initial={animateIn ? "hidden" : false}
-          animate={show as never}
-          className={styles.marquee}
-          aria-hidden="true"
-        >
-          <div className={styles.marqueeTrack}>
-            {[...MARQUEE, ...MARQUEE].map((item, i) => (
-              <span key={i} className={styles.mqItem}>
-                {item}
-              </span>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );
