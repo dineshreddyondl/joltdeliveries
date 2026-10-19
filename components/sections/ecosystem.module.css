@@ -1,16 +1,27 @@
 /* ================================================================
-   Ecosystem — CSS · port of frozen v5 (.band*, .marquee, lines
-   566–575, 458–461, 575)
+   Ecosystem — CSS · founder condensation 2026-10-20
+   Two movement cards (B2B / B2C) + distance line + closer, then
+   the capability marquee. Dark section with grain.
    ================================================================ */
 
 .sec {
+  position: relative;
   padding: 64px 0 0;
   background: #08080a;
   color: #fff;
   scroll-margin-top: 80px;
   overflow: hidden;
 }
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20width=%27160%27%20height=%27160%27%3E%3Cfilter%20id=%27n%27%3E%3CfeTurbulence%20type=%27fractalNoise%27%20baseFrequency=%270.9%27%20numOctaves=%272%27/%3E%3CfeColorMatrix%20type=%27saturate%27%20values=%270%27/%3E%3C/filter%3E%3Crect%20width=%27160%27%20height=%27160%27%20filter=%27url(%23n)%27/%3E%3C/svg%3E");
+  pointer-events: none;
+}
 .wrap {
+  position: relative;
   max-width: 1140px;
   margin: 0 auto;
   padding: 0 32px;
@@ -24,7 +35,7 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #e85a2c;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
 .tag::before {
   content: "";
@@ -41,64 +52,79 @@
   color: #fff;
 }
 .lede {
-  margin-top: 20px;
+  margin-top: 24px;
   font-size: 16.5px;
   line-height: 1.7;
   color: #8b8b90;
   max-width: 620px;
 }
 
-/* ---------------- audience bands ---------------- */
-.band {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 40px 24px;
-  margin-top: 44px;
-}
-.bandB2b {
-  background: #0d0d10;
-}
-.bandD2c {
-  background: linear-gradient(140deg, #2e130a, #1a0c06);
-}
-.bandInner {
-  max-width: 1240px;
-  margin: 0 auto;
+/* ---------------- movement cards ---------------- */
+.cases {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 18px;
-  align-items: center;
+  gap: 24px;
+  margin-top: 48px;
 }
-.bandTag {
+@media (min-width: 768px) {
+  .cases {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+.caseCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.caseTag {
   font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
-  font-size: 10.5px;
+  font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: #e85a2c;
-  display: block;
 }
-.bandSide h3 {
-  font-size: clamp(26px, 3.4vw, 42px);
+.caseCard h3 {
+  font-size: 21px;
   font-weight: 700;
-  letter-spacing: -0.025em;
-  margin-top: 12px;
+  letter-spacing: -0.01em;
   color: #fff;
 }
-.bandD2c .bandSide h3 {
-  color: #e85a2c;
+.caseCard p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #b9b9bf; /* 7.4:1 on #08080A */
 }
-.bandInner p {
-  font-size: 16px;
-  color: #b9b9bf; /* 7.4:1 on band bgs */
-  line-height: 1.7;
-  max-width: 540px;
+
+/* ---------------- distance line + closer ---------------- */
+.distance {
+  margin-top: 48px;
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8b8b90;
+}
+.same {
+  margin-top: 12px;
+  font-size: clamp(22px, 2.6vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.same em {
+  font-style: normal;
+  color: #e85a2c;
 }
 
 /* ---------------- marquee ---------------- */
 .marquee {
   overflow: hidden;
-  margin-top: 44px;
+  margin-top: 48px;
   width: 100%;
   max-width: 100%;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -128,15 +154,5 @@
 @keyframes ecoScroll {
   to {
     transform: translateX(-50%);
-  }
-}
-
-@media (min-width: 768px) {
-  .bandInner {
-    grid-template-columns: 1fr 1.25fr;
-    gap: 40px;
-  }
-  .band {
-    padding: 44px 48px;
   }
 }
