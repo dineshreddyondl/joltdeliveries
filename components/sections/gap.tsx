@@ -33,7 +33,7 @@ const rv: Variants = {
 
 const TRAPS = [
   {
-    badge: "Workaround 01",
+    badge: "Hack 1",
     tone: "courier",
     title: "Express Courier Network",
     sub: "Built for small parcels",
@@ -43,7 +43,7 @@ const TRAPS = [
     ],
   },
   {
-    badge: "Workaround 02",
+    badge: "Hack 2",
     tone: "freight",
     title: "LTL Network",
     sub: "Built for bulk aggregation",
@@ -112,9 +112,13 @@ export function Gap() {
               animate={show as never}
               className={cn(styles.trap, styles[trap.tone])}
             >
-              <span className={styles.badge}>{trap.badge}</span>
-              <h3 className={sg.className}>{trap.title}</h3>
-              <span className={styles.sub}>{trap.sub}</span>
+              <div className={styles.trapHead}>
+                <div>
+                  <h3 className={sg.className}>{trap.title}</h3>
+                  <span className={styles.sub}>{trap.sub}</span>
+                </div>
+                <span className={styles.sideBadge}>{trap.badge}</span>
+              </div>
               <div className={styles.pts}>
                 {trap.points.map((pt) => (
                   <p key={pt} className={styles.pt}>

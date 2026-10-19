@@ -82,23 +82,25 @@
   transform: translateY(-8px);
   box-shadow: 0 30px 60px rgba(10, 10, 11, 0.1);
 }
-.badge {
-  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 6px 12px;
-  border-radius: 100px;
-  display: inline-block;
+/* Heading row: title + descriptor left, "HACK N" tag on the side. */
+.trapHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
   margin-bottom: 20px;
 }
-.courier .badge {
-  background: #eeeae2;
-  color: #57534e;
-}
-.freight .badge {
-  background: #eeeae2;
-  color: #57534e;
+.sideBadge {
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6b6b66;
+  border: 1px solid rgba(12, 14, 9, 0.12);
+  border-radius: 100px;
+  padding: 4px 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .trap h3 {
   font-size: 23px;
