@@ -36,25 +36,7 @@ const rv: Variants = {
   }),
 };
 
-/* Staggered bounce for the platform tiles (feature-block style). */
-const bounce: Variants = {
-  hidden: { opacity: 0, y: 16, scale: 0.9 },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { type: "spring", stiffness: 260, damping: 14, delay: 0.3 + i * 0.08 },
-  }),
-};
-
-const PLATFORMS = [
-  { name: "Clickpost", role: "Post-purchase & tracking" },
-  { name: "Pando", role: "Transport management" },
-  { name: "eShipz", role: "Shipping automation" },
-  { name: "RoAdo", role: "Road freight" },
-  { name: "ERP", role: "Enterprise systems" },
-  { name: "Custom APIs", role: "Your own stack" },
-];
+const PLATFORMS = ["Clickpost", "Pando", "eShipz", "RoAdo", "ERP", "Custom APIs"];
 
 export function Ecosystem() {
   const { ref, animateIn, inView } = useReveal<HTMLElement>();
@@ -102,9 +84,8 @@ export function Ecosystem() {
           switch us on.
         </motion.p>
 
-        {/* Feature card — the block's anatomy: title + description on the
-            left, a grid of tool tiles with staggered bounce on the right,
-            a vertical glowing beam with sparkles animating through. */}
+        {/* Feature card — benchmark SCM scroll inside the block, with the
+            vertical glowing beam + sparkles riding over it. */}
         <motion.div
           variants={rv}
           custom={3}
@@ -128,23 +109,15 @@ export function Ecosystem() {
               use — no IT overhaul.
             </p>
           </div>
-          <div className={styles.fLogos}>
-            {PLATFORMS.map((p, i) => (
-              <motion.div
-                key={p.name}
-                variants={bounce}
-                custom={i}
-                initial={animateIn ? "hidden" : false}
-                animate={show as never}
-                className={styles.plogo}
-              >
-                <span className={styles.plogoTile} aria-hidden="true">
-                  {p.name[0]}
+          <div className={styles.fMarquee} aria-hidden="true">
+            <div className={styles.fMarqueeTrack}>
+              {[...PLATFORMS, ...PLATFORMS].map((name, i) => (
+                <span key={i} className={styles.fMqItem}>
+                  {name}
+                  <i>·</i>
                 </span>
-                <span className={styles.plogoName}>{p.name}</span>
-                <span className={styles.plogoRole}>{p.role}</span>
-              </motion.div>
-            ))}
+              ))}
+            </div>
           </div>
         </motion.div>
 
