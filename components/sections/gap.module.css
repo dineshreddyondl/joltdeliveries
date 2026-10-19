@@ -242,15 +242,45 @@
 .cmpHi:hover {
   background: rgba(232, 90, 44, 0.1);
 }
-/* 2px orange left-edge bar on the verdict row. */
-.cmpHi::before {
+/* Moving border ring (founder: moving-border highlight). A rotating
+   conic-gradient segment, masked to a 1.5px ring around the row. The
+   global reduced-motion kill-switch freezes it. */
+@property --joltHiA {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.cmpHiBorder {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  padding: 1.5px;
+  pointer-events: none;
+  z-index: 1;
+}
+.cmpHiBorder::before {
   content: "";
   position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: #e85a2c;
+  inset: 0;
+  border-radius: inherit;
+  padding: inherit;
+  background: conic-gradient(
+    from var(--joltHiA),
+    transparent 0deg,
+    transparent 300deg,
+    rgba(232, 90, 44, 0.85) 330deg,
+    #e85a2c 360deg
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: joltHiSpin 6s linear infinite;
+}
+@keyframes joltHiSpin {
+  to {
+    --joltHiA: 360deg;
+  }
 }
 .cmpHi .cmpLabel {
   color: #c2410c;

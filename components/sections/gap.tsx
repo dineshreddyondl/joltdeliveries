@@ -229,6 +229,9 @@ export function Gap() {
                   {ok ? "✓" : "✕"}
                 </motion.span>
               ))}
+              {row.highlight && (
+                <span className={styles.cmpHiBorder} aria-hidden="true" />
+              )}
             </motion.div>
           ))}
         </motion.div>
