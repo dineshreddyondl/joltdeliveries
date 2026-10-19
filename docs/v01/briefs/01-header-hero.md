@@ -19,7 +19,7 @@ Reference mock: `design-reference/jolt-hero-v01-proofrail-v5-learnings.html`
 - Eyebrow: `Express speed is no longer just for small parcels.`
 - H1: `India's first express layer for heavy shipments.` with orange blaze on `heavy shipments` (founder override; A/B outcome variants available in the mock toggle but not default).
 - Pillars: `JUST-IN-TIME EXECUTION` · `DIRECT DISPATCH` · `80% LESS CARBON` (founder-approved benchmark wording).
-- **Dispatch line** (founder-kept element) sits above the table: schedule-derived from `lib/dispatch-data.ts`.
+- **Dispatch line** — ~~sits above the table: schedule-derived from `lib/dispatch-data.ts`~~ — **removed 2026-10-19** (founder: the `PLACEHOLDER DATA` tag + unverified 21:00/21:30 times don't belong on the live hero). `lib/dispatch-data.ts` stays for when real schedule rows are confirmed.
 - **LIVE LANES table** (benchmark): header `ROUTE | TRADITIONAL LOGISTICS | JOLT DELIVERIES` — **founder override 2026-10-19** ("just keep like the benchmark"); the AGENTS.md guardrail against "Traditional Logistics" is overridden for the hero table and the sweep must exempt it. 11 rows incl. Delhi→Mumbai showcase (4–5 → 2 days); fast lanes marked ⚡; auto-scroll 16s, pause-on-hover.
 
 ### Right column — the stage

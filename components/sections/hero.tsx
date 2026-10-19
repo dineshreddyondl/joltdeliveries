@@ -5,9 +5,11 @@
  *
  * Left column = benchmark dot-to-dot (frozen v5): aurora chrome, eyebrow,
  * H1 "India's first express layer for heavy shipments." with the blaze +
- * embers accent, pillar row, schedule-derived dispatch line and the
- * [ Live Lanes ] table ("Traditional Logistics" column header — founder
- * override 2026-10-19, the sweep exempts this file).
+ * embers accent, pillar row and the [ Live Lanes ] table ("Traditional
+ * Logistics" column header — founder override 2026-10-19, the sweep
+ * exempts this file). The schedule-derived dispatch line was removed
+ * 2026-10-19 (founder) — lib/dispatch-data.ts stays for when real
+ * schedule values are confirmed.
  *
  * Right column = THE SQUARE (frozen). A single 1:1 white stage with
  * spotlight + grain, 6-product parade (one per category) at 1.2s each,
@@ -36,7 +38,6 @@ import { Space_Grotesk } from "next/font/google";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 
 import { cn } from "@/lib/utils";
-import { nextDispatch } from "@/lib/dispatch-data";
 import { EstimateWidget } from "@/components/estimate/estimate-widget";
 import styles from "./hero.module.css";
 
@@ -276,22 +277,6 @@ const raceReveal: Variants = {
     transition: { duration: 0.7, ease: EASE, delay: 0.3 },
   },
 };
-
-/* Schedule-derived dispatch line (brief §1: sits above the lanes table).
-   Computed at render with `suppressHydrationWarning` — the only way the
-   text differs between SSR and hydration is crossing the 21:00 IST
-   cutoff, and the client value then wins on hydration. */
-function DispatchLine() {
-  const ans = nextDispatch("DEL → BOM");
-  return (
-    <div className={styles.dline}>
-      <span suppressHydrationWarning>{ans.label}</span>
-      <span className={styles.dtag}>
-        {ans.verified ? "SCHEDULE" : "PLACEHOLDER DATA"}
-      </span>
-    </div>
-  );
-}
 
 export function Hero() {
   const reduceMotion = useReducedMotion();
@@ -677,14 +662,6 @@ export function Hero() {
             <span className={styles.sq} />
             [ Live Lanes ]
           </motion.span>
-
-          <motion.div
-            variants={fadeUp(0.8)}
-            initial={animateIn ? "hidden" : false}
-            animate={animateIn ? "show" : false}
-          >
-            <DispatchLine />
-          </motion.div>
 
           <motion.div
             variants={fadeUp(0.9)}
