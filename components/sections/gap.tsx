@@ -33,6 +33,7 @@ const rv: Variants = {
 
 const TRAPS = [
   {
+    n: "01",
     badge: "Hack 1",
     tone: "courier",
     title: "Express Courier Network",
@@ -43,6 +44,7 @@ const TRAPS = [
     ],
   },
   {
+    n: "02",
     badge: "Hack 2",
     tone: "freight",
     title: "LTL Network",
@@ -127,6 +129,9 @@ export function Gap() {
                   </p>
                 ))}
               </div>
+              <span className={styles.ghostNum} aria-hidden="true">
+                {trap.n}
+              </span>
             </motion.div>
           ))}
         </div>

@@ -78,6 +78,25 @@
     transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.4s;
 }
+/* Bento pair: subtly different surface tints so the two tiles don't
+   read as one repeated box. */
+.freight {
+  background: #faf8f4;
+}
+/* Ghost index numeral — echoes the Why Now timeline numbering. */
+.ghostNum {
+  position: absolute;
+  right: 20px;
+  bottom: 4px;
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: rgba(12, 14, 9, 0.05);
+  pointer-events: none;
+  user-select: none;
+}
 .trap:hover {
   transform: translateY(-8px);
   box-shadow: 0 30px 60px rgba(10, 10, 11, 0.1);
