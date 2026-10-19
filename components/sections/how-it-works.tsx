@@ -68,26 +68,27 @@ function TruckGlyph() {
 function TrainGlyph() {
   return (
     <svg viewBox="0 0 72 16" className={styles.glyph} aria-hidden="true">
-      {/* streamlined bullet body: rounded tail, tapered nose */}
+      {/* body: straight shell with rounded tail, short angled nose */}
       <path
-        d="M2 12.5 L2 3.5 Q2 2.6 2.9 2.6 H40 Q44.5 2.6 44.5 4.5 L46 8 L44.5 11.5 Q44.5 12.5 40 12.5 H2.9 Q2 12.5 2 12.5 Z"
+        d="M2 12.5 L2 3.5 Q2 2.5 3 2.5 H48 L56 5 Q60 8 56 11 L48 13.5 H3 Q2 13.5 2 12.5 Z"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.2"
       />
+      {/* windscreen pane near the nose */}
       <path
-        d="M44.5 4.5 C54 4.5 62 5.4 66 8 C62 10.6 54 11.5 44.5 11.5"
+        d="M44 3.5 L48.5 8 L44 12.5"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.2"
+        strokeWidth="1"
       />
-      <circle cx="11" cy="7.5" r="1.3" fill="currentColor" />
-      <circle cx="20" cy="7.5" r="1.3" fill="currentColor" />
-      <circle cx="29" cy="7.5" r="1.3" fill="currentColor" />
-      <circle cx="8" cy="13.6" r="1.8" fill="none" stroke="currentColor" strokeWidth="1.1" />
+      <circle cx="12" cy="7.5" r="1.3" fill="currentColor" />
+      <circle cx="22" cy="7.5" r="1.3" fill="currentColor" />
+      <circle cx="32" cy="7.5" r="1.3" fill="currentColor" />
+      <circle cx="9" cy="13.6" r="1.8" fill="none" stroke="currentColor" strokeWidth="1.1" />
       <circle cx="26" cy="13.6" r="1.8" fill="none" stroke="currentColor" strokeWidth="1.1" />
-      <circle cx="44" cy="13.6" r="1.8" fill="none" stroke="currentColor" strokeWidth="1.1" />
-      <circle cx="63" cy="6" r="1.5" fill="#E85A2C" />
+      <circle cx="43" cy="13.6" r="1.8" fill="none" stroke="currentColor" strokeWidth="1.1" />
+      <circle cx="57.5" cy="6.5" r="1.4" fill="#E85A2C" />
     </svg>
   );
 }
