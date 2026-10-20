@@ -1,6 +1,6 @@
 # JOLT Landing — V-0.1-Beta freeze (2026-10-21)
 
-Tag: `v0.1-beta` · HEAD: TBD (filled at tag time)
+Tag: `v0.1-beta` · HEAD: c0f7a71
 Frozen as the base version per founder direction.
 
 ## What this version contains
