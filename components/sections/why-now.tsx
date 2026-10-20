@@ -11,7 +11,6 @@
 import { Space_Grotesk } from "next/font/google";
 import { motion, type Variants } from "motion/react";
 
-import { FOOTNOTES } from "@/lib/metrics-data";
 import { TracingBeam } from "@/components/ui/tracing-beam";
 import { useReveal } from "@/components/ui/use-reveal";
 import { cn } from "@/lib/utils";
@@ -96,8 +95,13 @@ export function WhyNow() {
 
         {/* Timeline with the tracing beam — the beam follows the scroll
             from The Expectation Gap to The Tech Unlock. Beam sits on the
-            old spine line (left:15px) so the numbered nodes ride on it. */}
-        <TracingBeam className={styles.beamWrap} beamClassName="left-[15px]">
+            node centers: dot ml 7.5px, svg line ml -3.5px (line x=19). */}
+        <TracingBeam
+          className={styles.beamWrap}
+          beamClassName="left-0"
+          dotClassName="ml-[7.5px]"
+          svgClassName="ml-[-3.5px]"
+        >
           <div className={styles.timeline}>
             {ITEMS.map((item, i) => (
               <motion.div
@@ -117,17 +121,6 @@ export function WhyNow() {
             ))}
           </div>
         </TracingBeam>
-
-        <motion.p
-          variants={rv}
-          custom={4}
-          initial={animateIn ? "hidden" : false}
-          animate={show as never}
-          className={styles.footnote}
-        >
-          <sup aria-hidden="true">‡</sup>
-          {FOOTNOTES.capital}
-        </motion.p>
 
         <motion.div
           variants={rv}

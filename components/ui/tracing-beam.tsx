@@ -22,10 +22,14 @@ export const TracingBeam = ({
   children,
   className,
   beamClassName = "-left-4 md:-left-20",
+  dotClassName = "ml-[27px]",
+  svgClassName = "ml-4",
 }: {
   children: React.ReactNode;
   className?: string;
   beamClassName?: string;
+  dotClassName?: string;
+  svgClassName?: string;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -73,7 +77,7 @@ export const TracingBeam = ({
                 ? "none"
                 : "rgba(0, 0, 0, 0.24) 0px 3px 8px",
           }}
-          className="ml-[27px] flex h-4 w-4 items-center justify-center rounded-full border border-[rgba(232,90,44,0.55)] shadow-sm"
+          className={cn("flex h-4 w-4 items-center justify-center rounded-full border border-[rgba(232,90,44,0.55)] shadow-sm", dotClassName)}
         >
           <motion.div
             transition={{ duration: 0.2, delay: 0.5 }}
@@ -84,7 +88,7 @@ export const TracingBeam = ({
           viewBox={`0 0 20 ${svgHeight}`}
           width="20"
           height={svgHeight}
-          className="ml-4 block"
+          className={cn("block", svgClassName)}
           aria-hidden="true"
         >
           <motion.path
