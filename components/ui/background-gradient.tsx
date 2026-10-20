@@ -15,11 +15,14 @@ export const BackgroundGradient = ({
   className,
   containerClassName,
   animate = true,
+  muted = false,
 }: {
   children?: React.ReactNode;
   className?: string;
   containerClassName?: string;
   animate?: boolean;
+  /** Stone/ink ring instead of orange - for balancing accent density. */
+  muted?: boolean;
 }) => {
   const reduce = usePrefersReducedMotion();
   const run = animate && !reduce;
@@ -30,8 +33,9 @@ export const BackgroundGradient = ({
       backgroundPosition: ["0, 50%", "100% 50%", "0 50%"],
     },
   };
-  const gradient =
-    "bg-[radial-gradient(circle_farthest-side_at_0_100%,#E85A2C,transparent),radial-gradient(circle_farthest-side_at_100%_0,#C2410C,transparent),radial-gradient(circle_farthest-side_at_100%_100%,#FF9A50,transparent),radial-gradient(circle_farthest-side_at_0_0,#08080A,#08080A)]";
+  const gradient = muted
+    ? "bg-[radial-gradient(circle_farthest-side_at_0_100%,#4A4E44,transparent),radial-gradient(circle_farthest-side_at_100%_0,#3A3D34,transparent),radial-gradient(circle_farthest-side_at_100%_100%,#6B6B66,transparent),radial-gradient(circle_farthest-side_at_0_0,#08080A,#08080A)]"
+    : "bg-[radial-gradient(circle_farthest-side_at_0_100%,#E85A2C,transparent),radial-gradient(circle_farthest-side_at_100%_0,#C2410C,transparent),radial-gradient(circle_farthest-side_at_100%_100%,#FF9A50,transparent),radial-gradient(circle_farthest-side_at_0_0,#08080A,#08080A)]";
 
   return (
     <div className={cn("relative p-[4px] group", containerClassName)}>

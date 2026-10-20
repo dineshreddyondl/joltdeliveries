@@ -283,6 +283,7 @@ export function HowItWorks() {
               <BackgroundGradient
                 containerClassName="h-full rounded-[14px]"
                 className={styles.uspInner}
+                muted={i !== 0}
               >
                 <span className={styles.step}>{u.step}</span>
                 <h3 className={sg.className}>{u.word}</h3>
