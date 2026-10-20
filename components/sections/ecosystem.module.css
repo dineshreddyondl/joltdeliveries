@@ -251,6 +251,17 @@
   }
   .cases {
     margin-top: 32px;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .caseCard {
+    padding: 16px;
+  }
+  .caseCard h3 {
+    font-size: 15px;
+  }
+  .caseCard p {
+    font-size: 12.5px;
   }
   .distance {
     margin-top: 32px;

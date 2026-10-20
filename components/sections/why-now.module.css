@@ -148,9 +148,29 @@
     margin-top: 32px;
   }
   .tlItem {
-    padding-bottom: 32px;
+    padding-bottom: 0;
   }
   .termLine {
-    margin-top: 40px;
+    margin-top: 32px;
+  }
+  /* horizontal parade: beam column hidden, items swipe sideways */
+  .beamWrap > div:first-child {
+    display: none;
+  }
+  .timeline {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-left: 0;
+    padding-bottom: 8px;
+  }
+  .tlItem {
+    min-width: 78%;
+    scroll-snap-align: center;
+  }
+  .tlNode {
+    position: static;
+    margin-bottom: 10px;
   }
 }
