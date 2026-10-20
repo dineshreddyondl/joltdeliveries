@@ -80,11 +80,11 @@ const PRODUCTS = [
     spec: "5 KG · 0.15 CBM",
   },
   {
-    src: "/assets/hero-final/hero-furniture-bench-nb.png",
-    alt: "Velvet bench",
+    src: "/assets/hero-final/hero-furniture-desk-nb.png",
+    alt: "Adjustable desk",
     cat: "FURNITURE",
-    name: "VELVET BENCH",
-    spec: "18 KG · 0.9 CBM",
+    name: "ADJUSTABLE DESK",
+    spec: "38 KG · 1.1 CBM",
   },
   {
     src: "/assets/hero-final/hero-bedding-mattress-rollpack.png",
@@ -94,7 +94,7 @@ const PRODUCTS = [
     spec: "45 KG · 1.9 CBM",
   },
   {
-    src: "/assets/hero-final/hero-nursery-crib-nb.png",
+    src: "/assets/hero-final/hero-nursery-crib-nb2.png",
     alt: "Baby crib",
     cat: "NURSERY",
     name: "BABY CRIB",
@@ -144,7 +144,7 @@ const STAT = [
 const TIMES = ["09:10", "09:40", "10:30", "11:02"];
 
 const STAGE_LABEL =
-  "Live dispatch stage: a square shipment board cycling through six heavy shipments — sectional sofa, alternator, velvet bench, mattress set, baby crib and appliance set. Each one runs the journey bar: instant pickup, next train out, out for delivery, then a DELIVERED IN 24 HRS seal slams and stays.";
+  "Live dispatch stage: a square shipment board cycling through six heavy shipments — sectional sofa, alternator, adjustable desk, mattress set, baby crib and appliance set. Each one runs the journey bar: instant pickup, next train out, out for delivery, then a DELIVERED IN 24 HRS seal slams and stays.";
 
 /* ------------------------------ easing ------------------------------ */
 
