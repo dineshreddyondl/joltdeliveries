@@ -220,6 +220,7 @@ function cubicBezier(
   };
 }
 
+const ENTRY_EASE = cubicBezier(0.18, 1.35, 0.4, 1);
 const STAMP_EASE = cubicBezier(0.16, 1, 0.3, 1);
 
 /**
@@ -345,36 +346,29 @@ export function Hero() {
           img.style.opacity = "1";
           img.style.transform = "translate3d(0,0,0)";
         } else if (i === k) {
-          /* Left-to-right, one at a time: the previous load exits
-             right fully, THEN the new one enters from the left. */
-          const sinceSwap = tt - k * PER;
-          if (sinceSwap < 0.6) {
-            img.style.opacity = "0";
-            img.style.transform = "translate3d(-100%,0,0)";
-          } else {
-            const p2 = sinceSwap - 0.6;
-            const e = STAMP_EASE(Math.min(1, p2 / 0.6));
-            const x = -100 * (1 - e);
-            img.style.opacity = "1";
-            img.style.transform = `translate3d(${x.toFixed(2)}%,0,0)`;
-          }
-        } else if (i === (k + NP - 1) % NP && tt < HOLD_AT) {
-          /* Previous load slides out to the right. */
-          const sinceSwap = tt - k * PER;
-          const e = STAMP_EASE(Math.min(1, sinceSwap / 0.6));
-          const x = 100 * e;
-          img.style.opacity = "1";
-          img.style.transform = `translate3d(${x.toFixed(2)}%,0,0)`;
+          const p = tt - i * PER;
+          let op = Math.min(1, p / 0.1); /* quick fade-in */
+          if (p > PER - 0.12) op *= (PER - p) / 0.12; /* soft exit fade */
+          const x = 64 * (1 - ENTRY_EASE(Math.min(1, p / 0.5))); /* conveyor */
+          const s = 0.96 + 0.04 * Math.min(1, p / 0.2);
+          img.style.opacity = String(op);
+          img.style.transform = `translate3d(${x.toFixed(2)}px,0,0) scale(${s.toFixed(3)})`;
         } else {
           img.style.opacity = "0";
-          img.style.transform = "translate3d(-100%,0,0)";
+          img.style.transform = "translate3d(64px,0,0) scale(0.96)";
         }
       });
 
-      /* ---------- contact-shadow pulse per swap (no flash/spot) */
+      /* ---------- camera flash + spotlight + contact-shadow pulses per swap */
       const sinceSwap = tt - k * PER;
-      flash.style.opacity = "0";
-      spot.style.opacity = "0";
+      const flashO =
+        sinceSwap < 0.3 ? Math.sin(clamp01(sinceSwap / 0.3) * Math.PI) : 0;
+      flash.style.opacity = String(flashO);
+      const spotO =
+        sinceSwap < 0.6
+          ? 0.7 * Math.sin(clamp01(sinceSwap / 0.6) * Math.PI)
+          : 0;
+      spot.style.opacity = String(spotO);
       const contactScale =
         1 +
         0.07 *
