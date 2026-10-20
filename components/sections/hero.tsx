@@ -604,13 +604,12 @@ export function Hero() {
           >
             India&rsquo;s first express layer for{" "}
             <span className={styles.em}>
-              <PointerHighlight showPointer={false} onComplete={() => setHlOn(true)}>
+              <PointerHighlight onComplete={() => setHlOn(true)}>
                 <em className={cn(styles.hl, hlOn && styles.hlOn)}>
-                  heavy shipments
+                  heavy shipments.
                 </em>
               </PointerHighlight>
             </span>
-            .
           </motion.h1>
 
           <motion.div
