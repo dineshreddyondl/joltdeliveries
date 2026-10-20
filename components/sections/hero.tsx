@@ -345,36 +345,36 @@ export function Hero() {
           img.style.opacity = "1";
           img.style.transform = "translate3d(0,0,0)";
         } else if (i === k) {
-          /* Push: the new load slides in from the right, driving the
-             previous one out the left - adjacent, never overlapping. */
+          /* Left-to-right, one at a time: the previous load exits
+             right fully, THEN the new one enters from the left. */
           const sinceSwap = tt - k * PER;
-          const e = STAMP_EASE(Math.min(1, sinceSwap / 0.9));
-          const x = 100 * (1 - e);
-          img.style.opacity = "1";
-          img.style.transform = `translate3d(${x.toFixed(2)}%,0,0)`;
+          if (sinceSwap < 0.6) {
+            img.style.opacity = "0";
+            img.style.transform = "translate3d(-100%,0,0)";
+          } else {
+            const p2 = sinceSwap - 0.6;
+            const e = STAMP_EASE(Math.min(1, p2 / 0.6));
+            const x = -100 * (1 - e);
+            img.style.opacity = "1";
+            img.style.transform = `translate3d(${x.toFixed(2)}%,0,0)`;
+          }
         } else if (i === (k + NP - 1) % NP && tt < HOLD_AT) {
-          /* Previous load is pushed out the left edge. */
+          /* Previous load slides out to the right. */
           const sinceSwap = tt - k * PER;
-          const e = STAMP_EASE(Math.min(1, sinceSwap / 0.9));
-          const x = -100 * e;
+          const e = STAMP_EASE(Math.min(1, sinceSwap / 0.6));
+          const x = 100 * e;
           img.style.opacity = "1";
           img.style.transform = `translate3d(${x.toFixed(2)}%,0,0)`;
         } else {
           img.style.opacity = "0";
-          img.style.transform = "translate3d(100%,0,0)";
+          img.style.transform = "translate3d(-100%,0,0)";
         }
       });
 
-      /* ---------- camera flash + spotlight + contact-shadow pulses per swap */
+      /* ---------- contact-shadow pulse per swap (no flash/spot) */
       const sinceSwap = tt - k * PER;
-      const flashO =
-        sinceSwap < 0.3 ? Math.sin(clamp01(sinceSwap / 0.3) * Math.PI) : 0;
-      flash.style.opacity = String(flashO);
-      const spotO =
-        sinceSwap < 0.6
-          ? 0.7 * Math.sin(clamp01(sinceSwap / 0.6) * Math.PI)
-          : 0;
-      spot.style.opacity = String(spotO);
+      flash.style.opacity = "0";
+      spot.style.opacity = "0";
       const contactScale =
         1 +
         0.07 *
