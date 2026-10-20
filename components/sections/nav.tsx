@@ -89,7 +89,7 @@ export function Nav() {
       {/* ---------- desktop ---------- */}
       <NavBody>
         <NavbarLogo>
-          <span className={styles.logoTile} aria-hidden="true">
+          <span className={styles.logoImg} aria-hidden="true">
             {/* eslint-disable-next-line @next/next/no-img-element -- brand mark, local asset */}
             <img src="/assets/jolt-logo-dark.svg" alt="" width={30} height={30} />
           </span>
@@ -130,7 +130,7 @@ export function Nav() {
       <MobileNav>
         <MobileNavHeader>
           <NavbarLogo>
-            <span className={styles.logoTile} aria-hidden="true">
+            <span className={styles.logoImg} aria-hidden="true">
               {/* eslint-disable-next-line @next/next/no-img-element -- brand mark, local asset */}
               <img src="/assets/jolt-logo-dark.svg" alt="" width={30} height={30} />
             </span>

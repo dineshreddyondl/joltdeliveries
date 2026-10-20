@@ -93,17 +93,15 @@
   }
 }
 
-.logoTile {
+.logoImg {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: #0c0e09;
+  width: 32px;
+  height: 32px;
   flex: none;
 }
-.logoTile img {
+.logoImg img {
   width: 30px;
   height: 30px;
 }
