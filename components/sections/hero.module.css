@@ -60,7 +60,8 @@
   display: grid;
   grid-template-columns: 1fr 1.15fr;
   grid-template-areas: "left race" "lanes race";
-  gap: 48px;
+  column-gap: 48px;
+  row-gap: 20px;
   align-items: stretch;
 }
 .heroGrid > div {
@@ -68,6 +69,7 @@
 }
 .leftCol {
   grid-area: left;
+  align-self: start;
 }
 .heroRace {
   grid-area: race;
@@ -76,6 +78,7 @@
   grid-area: lanes;
   display: flex;
   flex-direction: column;
+  align-self: start;
 }
 .laneBox {
   border: 1px solid rgba(12, 14, 9, 0.07);
@@ -307,7 +310,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin: 0 0 10px;
+  margin: 0 0 6px;
 }
 .laneHead .sq {
   width: 7px;
