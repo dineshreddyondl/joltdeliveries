@@ -2,13 +2,13 @@
 
 import {
   motion,
-  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
 } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { usePrefersReducedMotion } from "@/components/ui/use-prefers-reduced-motion";
 
 /**
  * Aceternity TracingBeam, themed for JOLT:
@@ -34,7 +34,7 @@ export const TracingBeam = ({
   const ref = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [svgHeight, setSvgHeight] = useState(0);
-  const reduce = useReducedMotion();
+  const reduce = usePrefersReducedMotion();
 
   useEffect(() => {
     const el = contentRef.current;
@@ -101,7 +101,7 @@ export const TracingBeam = ({
             d={`M 1 0V -36 l 18 24 V ${svgHeight * 0.8} l -18 24V ${svgHeight}`}
             fill="none"
             stroke="url(#jolt-beam)"
-            strokeWidth="1.25"
+            strokeWidth="1"
             className="motion-reduce:hidden"
           />
           <defs>
@@ -114,8 +114,8 @@ export const TracingBeam = ({
               y2={reduce ? staticY2 : y2}
             >
               <stop stopColor="#E85A2C" stopOpacity="0" />
-              <stop stopColor="#FF9A50" />
-              <stop offset="0.325" stopColor="#E85A2C" />
+              <stop stopColor="#F0A070" />
+              <stop offset="0.325" stopColor="#E85A2C" stopOpacity="0.85" />
               <stop offset="1" stopColor="#E85A2C" stopOpacity="0" />
             </motion.linearGradient>
           </defs>
