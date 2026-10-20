@@ -247,12 +247,12 @@ export const SparklesCore = ({
               },
               opacity: {
                 value: {
-                  min: 0.1,
-                  max: 1,
+                  min: 0.65,
+                  max: 0.65,
                 },
                 animation: {
                   count: 0,
-                  enable: true,
+                  enable: false,
                   speed: speed ?? 4,
                   decay: 0,
                   delay: 0,
