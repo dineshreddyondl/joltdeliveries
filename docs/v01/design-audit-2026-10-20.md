@@ -49,3 +49,37 @@
 1. **Phase 2:** 3 mobile-crop calls (hero, eco, cta) ≈ 2,500 tokens — approve and I fire them.
 2. **Apply P1 fixes 1–5** through the normal gate after your accept/reject.
 3. Record decisions in `freeze-log.md`.
+
+---
+
+## Phase 2 — mobile crops + page-level flow (Qwen-Max, +~3.3k tokens)
+
+### Mobile (390px) — hero, eco, cta
+| Section | mobile_fit | New findings |
+|---|---|---|
+| hero | 7 (up from 5) | P1: headline↔subtext gap +4–8px; stage image cramped (more padding / smaller image) |
+| eco | 6 | P1: case cards too close — increase gap; P2: headline weak at mobile size |
+| cta | 8 | P1: CTA text needs more action ("Start pilot" reads weaker than a verb-first line); P2: too much space above CTAs on mobile |
+
+### Page-level flow (desktop, top + bottom halves)
+| dim | top | bottom |
+|---|---|---|
+| flow | 7 | 7 |
+| rhythm | 6 | 6 |
+| **repetition** | 8 | **5** |
+| palette | 7 | 8 |
+| pacing | 6 | 6 |
+
+**Findings:**
+- P1 (bottom): card treatment repeats too predictably — why/gap/how/eco all present "card grid" bodies; vary at least one section's body shape.
+- P1 (top): header→hero transition abrupt (eyebrow lands with no bridge); hero→metrics dense.
+- P2 (top): orange overuse in the features cluster; more white/ink balance between sections.
+
+### Audit totals
+- Calls: 13 · tokens: ~10.0k (Phase 1 ~6.7k + Phase 2 ~3.3k) · all verdicts `tune`.
+- Strongest: typography, color system, motion-fit on static sections.
+- Weakest: section-body repetition, spacing rhythm consistency, a few mobile spacing details.
+
+### Consolidated action list (nothing applied — awaiting founder accept/reject)
+**P1:** eco scroll speed · gap travelling glow · how H2/H3 delta · cta button spacing + SLA link · footer hierarchy · m-hero headline↔subtext gap · m-hero stage image padding · m-eco card gap · m-cta CTA verb-first text · vary one card-grid section body.
+**P2:** why beam opacity · m-cta spacing above CTAs · m-eco headline size · hero→metrics breathing · orange balance in features cluster · CTA font 16px on mobile.
