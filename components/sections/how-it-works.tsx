@@ -27,6 +27,7 @@ import { useRef } from "react";
 import { useReveal } from "@/components/ui/use-reveal";
 import { FlipWords } from "@/components/ui/flip-words";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
+import { useAutoCarousel } from "@/components/ui/use-auto-carousel";
 import { cn } from "@/lib/utils";
 import styles from "./how-it-works.module.css";
 
@@ -159,6 +160,7 @@ export function HowItWorks() {
   const h2Ref = useRef<HTMLHeadingElement>(null);
   const h2InView = useInView(h2Ref as never, { once: true, amount: 0.6 });
   const flipOn = animateIn && h2InView;
+  const uspCarousel = useAutoCarousel<HTMLDivElement>(USPS.length);
 
   return (
     <section
@@ -268,7 +270,7 @@ export function HowItWorks() {
           </div>
         </motion.div>
 
-        <div className={styles.usps}>
+        <div className={styles.usps} ref={uspCarousel.ref}>
           {USPS.map((u, i) => (
             <motion.div
               key={u.step}
@@ -288,6 +290,18 @@ export function HowItWorks() {
                 <span className={styles.spec}>{u.spec}</span>
               </BackgroundGradient>
             </motion.div>
+          ))}
+        </div>
+
+        <div className={styles.carouselDots} aria-hidden="true">
+          {USPS.map((u, i) => (
+            <button
+              key={u.step}
+              type="button"
+              tabIndex={-1}
+              className={i === uspCarousel.index ? styles.carouselDotActive : styles.carouselDot}
+              onClick={() => uspCarousel.goTo(i)}
+            />
           ))}
         </div>
       </div>

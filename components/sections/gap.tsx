@@ -216,6 +216,7 @@ export function Gap() {
               {row.marks.map((ok, j) => (
                 <motion.span
                   key={j}
+                  data-cap={j === 0 ? "Courier" : "LTL"}
                   variants={markV}
                   custom={i * 10 + j}
                   initial={animateIn ? "hidden" : false}

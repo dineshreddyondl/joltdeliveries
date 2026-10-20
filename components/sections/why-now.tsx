@@ -12,6 +12,7 @@ import { Space_Grotesk } from "next/font/google";
 import { motion, type Variants } from "motion/react";
 
 import { TracingBeam } from "@/components/ui/tracing-beam";
+import { useAutoCarousel } from "@/components/ui/use-auto-carousel";
 import { useReveal } from "@/components/ui/use-reveal";
 import { cn } from "@/lib/utils";
 import styles from "./why-now.module.css";
@@ -52,6 +53,7 @@ const ITEMS = [
 export function WhyNow() {
   const { ref, animateIn, inView } = useReveal<HTMLElement>();
   const show = animateIn ? (inView ? "show" : "hidden") : false;
+  const carousel = useAutoCarousel<HTMLDivElement>(ITEMS.length);
 
   return (
     <section
@@ -102,7 +104,7 @@ export function WhyNow() {
           dotClassName="ml-[7.5px]"
           svgClassName="ml-[-3.5px]"
         >
-          <div className={styles.timeline}>
+          <div className={styles.timeline} ref={carousel.ref}>
             {ITEMS.map((item, i) => (
               <motion.div
                 key={item.n}
@@ -121,6 +123,18 @@ export function WhyNow() {
             ))}
           </div>
         </TracingBeam>
+
+        <div className={styles.carouselDots} aria-hidden="true">
+          {ITEMS.map((item, i) => (
+            <button
+              key={item.n}
+              type="button"
+              tabIndex={-1}
+              className={i === carousel.index ? styles.carouselDotActive : styles.carouselDot}
+              onClick={() => carousel.goTo(i)}
+            />
+          ))}
+        </div>
 
         <motion.div
           variants={rv}

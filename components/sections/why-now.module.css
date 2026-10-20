@@ -174,3 +174,33 @@
     margin-bottom: 10px;
   }
 }
+
+.carouselDots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+.carouselDot,
+.carouselDotActive {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.25);
+  transition: all 0.25s;
+}
+.carouselDotActive {
+  width: 18px;
+  border-radius: 3px;
+  background: #e85a2c;
+  box-shadow: 0 0 8px rgba(232, 90, 44, 0.5);
+}
+@media (min-width: 769px) {
+  .carouselDots {
+    display: none;
+  }
+}
+
