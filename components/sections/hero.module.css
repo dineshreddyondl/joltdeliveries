@@ -378,7 +378,7 @@
   display: flex;
   flex-direction: column;
   animation: heroLaneRoll 32s linear infinite;
-  animation-delay: 3.4s;
+  animation-delay: 4.4s;
 }
 .laneBox:hover .laneTrack {
   animation-play-state: paused;
@@ -915,11 +915,11 @@
   animation: heroUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
 }
 .heroGrid[data-seq] .pillarRow {
-  animation: heroUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.8s both;
+  animation: heroUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.6s both;
 }
 .heroGrid[data-seq] .laneWrap {
-  animation: heroUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 2.5s both;
+  animation: heroUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 3.4s both;
 }
 .heroGrid[data-seq] .heroRace {
-  animation: heroUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 3.1s both;
+  animation: heroUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 2.2s both;
 }

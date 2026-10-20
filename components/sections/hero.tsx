@@ -272,7 +272,7 @@ export function Hero() {
       return;
     }
     const id = setTimeout(() => setBlazeIn(true), 580);
-    const stageId = setTimeout(() => setStageOn(true), 3700);
+    const stageId = setTimeout(() => setStageOn(true), 3000);
     return () => {
       clearTimeout(id);
       clearTimeout(stageId);
