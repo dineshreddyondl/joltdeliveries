@@ -719,7 +719,7 @@
 @media (max-width: 768px) {
   .heroGrid {
     grid-template-columns: 1fr;
-    gap: 64px;
+    gap: 28px;
   }
   .stage {
     max-width: 100%;

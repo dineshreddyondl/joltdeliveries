@@ -11,9 +11,10 @@
 }
 .brandWord {
   display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  line-height: 0.92;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 6px;
+  line-height: 1;
   font-family: var(--font-archivo), "Archivo", sans-serif;
   color: #0c0e09;
   white-space: nowrap;
@@ -31,7 +32,11 @@
 }
 @media (max-width: 640px) {
   .brandWord {
-    display: none;
+    font-size: 15px;
+  }
+  .brandWord em {
+    font-size: 7.5px;
+    letter-spacing: 0.18em;
   }
 }
 .navCtas {
