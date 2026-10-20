@@ -255,6 +255,8 @@ const raceReveal: Variants = {
 export function Hero() {
   const reduceMotion = useReducedMotion();
   const [blazeIn, setBlazeIn] = useState(false);
+  /* The phrase turns red only after the pointer draw-in completes. */
+  const [hlRedOn, setHlRedOn] = useState(false);
   const pausedRef = useRef(false);
 
   /* Hydration-safe animation gate: SSR and first client render ship the
@@ -601,8 +603,18 @@ export function Hero() {
           >
             India&rsquo;s first express layer for{" "}
             <span className={styles.em}>
-              <PointerHighlight pointerClassName="h-5 w-5">
-                <em className={styles.hl}>heavy shipments</em>
+              <PointerHighlight
+                pointerClassName="h-5 w-5"
+                onComplete={() => setHlRedOn(true)}
+              >
+                <em
+                  className={cn(
+                    styles.hl,
+                    hlRedOn && styles.hlRed,
+                  )}
+                >
+                  heavy shipments
+                </em>
               </PointerHighlight>
             </span>
             .
