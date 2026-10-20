@@ -675,10 +675,11 @@ export function Hero() {
             role="img"
             aria-label={STAGE_LABEL}
           >
-            <div className={styles.spot} ref={spotRef} aria-hidden="true" />
             <div className={styles.grain} aria-hidden="true" />
 
             <div className={styles.product}>
+              <div className={styles.spot} ref={spotRef} aria-hidden="true" />
+              <div className={styles.flash} ref={flashRef} aria-hidden="true" />
               <div className={styles.imgs}>
                 {PRODUCTS.map((p, i) => (
                   /* eslint-disable-next-line @next/next/no-img-element -- the
@@ -770,8 +771,6 @@ export function Hero() {
                 ))}
               </div>
             </div>
-
-            <div className={styles.flash} ref={flashRef} aria-hidden="true" />
           </div>
 
           <div className={styles.seq}>
