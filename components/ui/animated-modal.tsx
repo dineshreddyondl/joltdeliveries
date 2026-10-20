@@ -12,6 +12,18 @@ import {
   useState,
 } from "react";
 
+function useIsMobile() {
+  const [mobile, setMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    const update = () => setMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return mobile;
+}
+
 interface ModalContextType {
   open: boolean;
   setOpen: (open: boolean) => void;
@@ -74,6 +86,7 @@ export const ModalBody = ({
 }) => {
   const { open, setOpen } = useModal();
   const reduce = useReducedMotion();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (open) {
@@ -102,7 +115,7 @@ export const ModalBody = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, backdropFilter: "blur(10px)" }}
           exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-          className="fixed [perspective:800px] [transform-style:preserve-3d] inset-0 h-full w-full flex items-center justify-center z-[1100]"
+          className="fixed [perspective:800px] [transform-style:preserve-3d] inset-0 h-full w-full flex items-center justify-center max-md:items-end z-[1100]"
         >
           <Overlay />
 
@@ -111,16 +124,24 @@ export const ModalBody = ({
             role="dialog"
             aria-modal="true"
             className={cn(
-              "min-h-[50%] max-h-[90%] md:max-w-[40%] bg-white border border-[#E4E0D6] md:rounded-2xl relative z-[1100] flex flex-col flex-1 overflow-hidden",
+              "min-h-[50%] max-h-[90%] md:max-w-[40%] max-md:w-full max-md:max-w-none max-md:min-h-0 bg-white border border-[#E4E0D6] md:rounded-2xl max-md:rounded-t-2xl max-md:rounded-b-none relative z-[1100] flex flex-col flex-1 overflow-hidden",
               className,
             )}
             initial={
               reduce
-                ? { opacity: 1, scale: 1 }
-                : { opacity: 0, scale: 0.5, rotateX: 40, y: 40 }
+                ? { opacity: 1, y: 0 }
+                : isMobile
+                  ? { opacity: 1, y: "100%" }
+                  : { opacity: 0, scale: 0.5, rotateX: 40, y: 40 }
             }
             animate={reduce ? undefined : { opacity: 1, scale: 1, rotateX: 0, y: 0 }}
-            exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.8, rotateX: 10 }}
+            exit={
+              reduce
+                ? { opacity: 0 }
+                : isMobile
+                  ? { opacity: 1, y: "100%" }
+                  : { opacity: 0, scale: 0.8, rotateX: 10 }
+            }
             transition={{ type: "spring", stiffness: 260, damping: 15 }}
           >
             <CloseIcon />
