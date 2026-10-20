@@ -92,3 +92,18 @@
     font-size: 16px;
   }
 }
+
+.logoTile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #0c0e09;
+  flex: none;
+}
+.logoTile img {
+  width: 30px;
+  height: 30px;
+}
