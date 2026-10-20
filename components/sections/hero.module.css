@@ -925,5 +925,5 @@
   animation: heroUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 3.4s both;
 }
 .heroGrid[data-seq] .heroRace {
-  animation: heroUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 2.2s both;
+  animation: heroUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.9s both;
 }

@@ -271,7 +271,7 @@ export function Hero() {
       return;
     }
     const id = setTimeout(() => setBlazeIn(true), 580);
-    const stageId = setTimeout(() => setStageOn(true), 3000);
+    const stageId = setTimeout(() => setStageOn(true), 2700);
     return () => {
       clearTimeout(id);
       clearTimeout(stageId);
@@ -655,8 +655,10 @@ export function Hero() {
           ref={raceRef}
         >
           {/* Sparkle band rising off the top edge of the stage — pure
-              overlay, desktop-only, never under reduced motion. */}
-          {!reduceMotion && (
+              overlay, desktop-only, never under reduced motion. Gated on
+              `ready` (hydration-safe: SSR and first client render agree)
+              plus `!reduceMotion` (client-only media state). */}
+          {ready && !reduceMotion && (
             <div className={styles.stageSparkle} aria-hidden="true">
               <SparklesCore
                 background="transparent"
