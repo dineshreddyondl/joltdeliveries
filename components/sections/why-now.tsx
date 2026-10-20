@@ -12,6 +12,7 @@ import { Space_Grotesk } from "next/font/google";
 import { motion, type Variants } from "motion/react";
 
 import { FOOTNOTES } from "@/lib/metrics-data";
+import { TracingBeam } from "@/components/ui/tracing-beam";
 import { useReveal } from "@/components/ui/use-reveal";
 import { cn } from "@/lib/utils";
 import styles from "./why-now.module.css";
@@ -93,24 +94,29 @@ export function WhyNow() {
           Heavy commerce moved online. Logistics didn&rsquo;t.
         </motion.p>
 
-        <div className={styles.timeline}>
-          {ITEMS.map((item, i) => (
-            <motion.div
-              key={item.n}
-              variants={rv}
-              custom={i}
-              initial={animateIn ? "hidden" : false}
-              animate={show as never}
-              className={styles.tlItem}
-            >
-              <div className={styles.tlNode}>
-                <span>{item.n}</span>
-              </div>
-              <h3 className={sg.className}>{item.t}</h3>
-              <p>{item.p}</p>
-            </motion.div>
-          ))}
-        </div>
+        {/* Timeline with the tracing beam — the beam follows the scroll
+            from The Expectation Gap to The Tech Unlock. Beam sits on the
+            old spine line (left:15px) so the numbered nodes ride on it. */}
+        <TracingBeam className={styles.beamWrap} beamClassName="left-[15px]">
+          <div className={styles.timeline}>
+            {ITEMS.map((item, i) => (
+              <motion.div
+                key={item.n}
+                variants={rv}
+                custom={i}
+                initial={animateIn ? "hidden" : false}
+                animate={show as never}
+                className={styles.tlItem}
+              >
+                <div className={styles.tlNode}>
+                  <span>{item.n}</span>
+                </div>
+                <h3 className={sg.className}>{item.t}</h3>
+                <p>{item.p}</p>
+              </motion.div>
+            ))}
+          </div>
+        </TracingBeam>
 
         <motion.p
           variants={rv}
