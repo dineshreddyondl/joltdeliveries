@@ -1,0 +1,45 @@
+/* BackgroundRippleEffect — JOLT adaptation
+   Radial mask fades the grid (floor usage), ripple cells flash in a
+   staggered wave from the tapped/clicked origin. */
+
+.grid {
+  opacity: 0.6;
+  -webkit-mask-image: radial-gradient(
+    ellipse 70% 65% at 50% 0%,
+    #000 30%,
+    transparent 78%
+  );
+  mask-image: radial-gradient(
+    ellipse 70% 65% at 50% 0%,
+    #000 30%,
+    transparent 78%
+  );
+}
+
+.cell {
+  position: relative;
+  border: 0.5px solid;
+  opacity: 0.4;
+  transition: opacity 150ms;
+  will-change: transform;
+}
+.cell:hover {
+  opacity: 0.8;
+}
+.cellRipple {
+  animation: cellRipple var(--duration, 300ms) ease-out var(--delay, 0ms) both;
+}
+@keyframes cellRipple {
+  0% {
+    opacity: 0.25;
+    transform: scale(0.97);
+  }
+  35% {
+    opacity: 0.9;
+    background-color: rgba(194, 65, 12, 0.06);
+  }
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+}

@@ -805,3 +805,12 @@
     animation: none;
   }
 }
+
+/* Floor ripple (aceternity background-ripple, founder trial). */
+.rippleFloor {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 300px;
+  z-index: 1;
+}

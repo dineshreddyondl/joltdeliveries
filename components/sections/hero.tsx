@@ -40,6 +40,7 @@ import { motion, useReducedMotion, type Variants } from "motion/react";
 import { cn } from "@/lib/utils";
 import { Cover } from "@/components/ui/cover";
 import { LANES, SHOWCASE_LANE } from "@/lib/lanes";
+import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
 import { CustomerMarquee } from "@/components/sections/customer-marquee";
 import styles from "./hero.module.css";
 
@@ -576,6 +577,10 @@ export function Hero() {
   return (
     <header id="top" className={styles.hero}>
       <div className={styles.aurora} aria-hidden="true" />
+      {/* Floor ripple — click/tap anywhere empty to ripple the grid. */}
+      <div className={styles.rippleFloor} aria-hidden="true">
+        <BackgroundRippleEffect rows={7} cols={34} cellSize={44} />
+      </div>
       <div className={cn(styles.heroWrap, styles.heroGrid)}>
         {/* ---------- LEFT · benchmark dot-to-dot ---------- */}
         <div className={styles.leftCol}>
