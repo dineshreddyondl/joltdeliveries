@@ -78,7 +78,7 @@ export function MetricsBand() {
       number: 80,
       unit: "%",
       leadIn: "Lower emissions",
-      rest: "vs road freight — rail-first linehaul",
+      rest: "vs road freight",
       srOnly:
         "80 percent lower emissions versus road freight, rail-first linehaul",
     },
@@ -88,7 +88,7 @@ export function MetricsBand() {
       decimalPlaces: 1,
       unit: "%",
       leadIn: "SLA adherence",
-      rest: "across all live lanes",
+      rest: "all live lanes",
       srOnly: "99.2 percent SLA adherence across all live lanes",
     },
     {
@@ -105,7 +105,7 @@ export function MetricsBand() {
       number: "24–48",
       unit: "h",
       leadIn: "Distributor arrivals",
-      rest: "B2B replenishment, guaranteed",
+      rest: "guaranteed B2B",
       srOnly:
         "24 to 48 hour distributor arrivals, B2B replenishment guaranteed",
     },
@@ -123,7 +123,7 @@ export function MetricsBand() {
       </h2>
 
       <div className="mx-auto max-w-[1140px] px-8">
-        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-8 pb-2 -mx-8 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-[22px] sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-[22px] lg:grid-cols-4">
           {cards.map((c, i) => (
             <motion.div
               key={c.key}
@@ -132,7 +132,7 @@ export function MetricsBand() {
               initial={animateIn ? "hidden" : false}
               animate={animateIn ? (bandInView ? "show" : "hidden") : false}
               className={cn(
-                "min-w-[78%] snap-center rounded-[18px] border border-[rgba(12,14,9,0.06)] bg-white p-[30px_26px] sm:min-w-0",
+                "rounded-[14px] border border-[rgba(12,14,9,0.06)] bg-white p-[18px_14px] sm:rounded-[18px] sm:p-[30px_26px]",
                 reduceMotion
                   ? ""
                   : "transition-[transform,box-shadow] duration-300 ease-out pointer-fine:hover:-translate-y-[3px] pointer-fine:hover:shadow-[0_24px_60px_-24px_rgba(12,14,9,0.18)]",
@@ -141,7 +141,7 @@ export function MetricsBand() {
               <div
                 className={cn(
                   sg.className,
-                  "text-[clamp(32px,3.4vw,42px)] font-bold leading-none tracking-[-0.03em] text-[#0C0E09]",
+                  "text-[clamp(26px,3.4vw,42px)] font-bold leading-none tracking-[-0.03em] text-[#0C0E09]",
                 )}
               >
                 {typeof c.number === "string" ? (
@@ -166,7 +166,7 @@ export function MetricsBand() {
                 </span>
               </div>
 
-              <p className="mt-3 text-[14px] leading-[1.5] text-[#4A4E44]">
+              <p className="mt-2 text-[12.5px] leading-[1.4] text-[#4A4E44] sm:mt-3 sm:text-[14px] sm:leading-[1.5]">
                 <span className="font-semibold text-[#0C0E09]">
                   {c.leadIn}
                 </span>{" "}
