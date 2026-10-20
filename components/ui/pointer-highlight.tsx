@@ -104,25 +104,27 @@ export function PointerHighlight({
             transition={{ duration: 1, ease: "easeInOut" }}
             onAnimationComplete={fire}
           />
-          <motion.div
-            className="pointer-events-none absolute"
-            initial={{ opacity: showPointer ? 0 : 0 }}
-            whileInView={{
-              opacity: showPointer ? 1 : 0,
-              x: width + pointerInset,
-              y: height + pointerInset,
-            }}
-            style={{ rotate: -90 }}
-            transition={{
-              opacity: { duration: 0.1, ease: "easeInOut" },
-              duration: 1,
-              ease: "easeInOut",
-            }}
-          >
-            <Pointer
-              className={cn("h-5 w-5 text-[#E85A2C]", pointerClassName)}
-            />
-          </motion.div>
+          {showPointer && (
+            <motion.div
+              className="pointer-events-none absolute"
+              initial={{ opacity: 0 }}
+              whileInView={{
+                opacity: 1,
+                x: width + pointerInset,
+                y: height + pointerInset,
+              }}
+              style={{ rotate: -90 }}
+              transition={{
+                opacity: { duration: 0.1, ease: "easeInOut" },
+                duration: 1,
+                ease: "easeInOut",
+              }}
+            >
+              <Pointer
+                className={cn("h-5 w-5 text-[#E85A2C]", pointerClassName)}
+              />
+            </motion.div>
+          )}
         </motion.div>
       )}
       {width > 0 && height > 0 && reduceMotion && (
@@ -137,16 +139,18 @@ export function PointerHighlight({
               rectangleClassName,
             )}
           />
-          <div
-            className="absolute"
-            style={{
-              transform: `translate(${width + 2}px, ${height + 2}px) rotate(-90deg)`,
-            }}
-          >
-            <Pointer
-              className={cn("h-5 w-5 text-[#E85A2C]", pointerClassName)}
-            />
-          </div>
+          {showPointer && (
+            <div
+              className="absolute"
+              style={{
+                transform: `translate(${width + 2}px, ${height + 2}px) rotate(-90deg)`,
+              }}
+            >
+              <Pointer
+                className={cn("h-5 w-5 text-[#E85A2C]", pointerClassName)}
+              />
+            </div>
+          )}
         </div>
       )}
     </div>
