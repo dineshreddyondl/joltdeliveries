@@ -654,7 +654,7 @@ export function Hero() {
                 particleDensity={220}
                 speed={1.2}
                 className="h-full w-full"
-                particleColor="#FFFFFF"
+                particleColor="#0C0E09"
               />
             </div>
           )}
