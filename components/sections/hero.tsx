@@ -732,7 +732,6 @@ export function Hero() {
                 <span ref={statusRef} data-stage-status>
                   INSTANT PICKUP
                 </span>
-                <span className={styles.statusLoop}>LOOP 07.2s</span>
               </div>
               <div className={styles.nodes}>
                 {STAGES.map((label, j) => (
