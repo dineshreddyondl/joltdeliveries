@@ -1,7 +1,8 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
+import { usePrefersReducedMotion } from "@/components/ui/use-prefers-reduced-motion";
 
 /**
  * Aceternity BackgroundGradient, themed for JOLT:
@@ -20,7 +21,7 @@ export const BackgroundGradient = ({
   containerClassName?: string;
   animate?: boolean;
 }) => {
-  const reduce = useReducedMotion();
+  const reduce = usePrefersReducedMotion();
   const run = animate && !reduce;
 
   const variants = {
@@ -43,7 +44,7 @@ export const BackgroundGradient = ({
         }
         style={{ backgroundSize: run ? "400% 400%" : undefined }}
         className={cn(
-          "absolute inset-0 rounded-[inherit] z-[1] opacity-25 group-hover:opacity-100 blur-xl transition duration-500 will-change-transform",
+          "absolute inset-0 rounded-[inherit] z-[1] opacity-35 group-hover:opacity-100 blur-xl transition duration-500 will-change-transform",
           gradient,
         )}
       />
@@ -56,7 +57,7 @@ export const BackgroundGradient = ({
         }
         style={{ backgroundSize: run ? "400% 400%" : undefined }}
         className={cn(
-          "absolute inset-0 rounded-[inherit] z-[1] will-change-transform opacity-40 group-hover:opacity-90 transition duration-500",
+          "absolute inset-0 rounded-[inherit] z-[1] will-change-transform opacity-55 group-hover:opacity-90 transition duration-500",
           gradient,
         )}
       />
