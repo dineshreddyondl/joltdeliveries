@@ -606,6 +606,7 @@ export function Hero() {
               <PointerHighlight
                 pointerClassName="h-5 w-5"
                 pointerInset={-6}
+                showPointer={false}
                 onComplete={() => setHlRedOn(true)}
               >
                 <em
@@ -777,7 +778,7 @@ export function Hero() {
             variants={fadeUp(0.9)}
             initial={animateIn ? "hidden" : false}
             animate={animateIn ? "show" : false}
-            className={styles.laneBox}
+            className={styles.laneWrap}
             id="live-lanes"
           >
             <motion.span
@@ -789,6 +790,7 @@ export function Hero() {
               <span className={styles.sq} />
               [ Live Lanes ]
             </motion.span>
+            <div className={styles.laneBox}>
             <div className={styles.laneCols}>
               <span>Route</span>
               {/* Founder override 2026-10-19: benchmark column label kept
@@ -810,6 +812,7 @@ export function Hero() {
                 ))}
               </div>
             </div>
+          </div>
           </motion.div>
       </div>
 

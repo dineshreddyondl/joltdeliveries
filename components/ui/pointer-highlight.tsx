@@ -25,6 +25,7 @@ export function PointerHighlight({
   containerClassName,
   onComplete,
   pointerInset = 2,
+  showPointer = true,
 }: {
   children: ReactNode;
   rectangleClassName?: string;
@@ -35,6 +36,8 @@ export function PointerHighlight({
   onComplete?: () => void;
   /** Pulls the pointer in from the box corner (negative = inside). */
   pointerInset?: number;
+  /** Hide the corner pointer glyph (box draw-in only). */
+  showPointer?: boolean;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
@@ -103,9 +106,9 @@ export function PointerHighlight({
           />
           <motion.div
             className="pointer-events-none absolute"
-            initial={{ opacity: 0 }}
+            initial={{ opacity: showPointer ? 0 : 0 }}
             whileInView={{
-              opacity: 1,
+              opacity: showPointer ? 1 : 0,
               x: width + pointerInset,
               y: height + pointerInset,
             }}

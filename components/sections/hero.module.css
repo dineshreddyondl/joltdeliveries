@@ -72,8 +72,15 @@
 .heroRace {
   grid-area: race;
 }
-.laneBox {
+.laneWrap {
   grid-area: lanes;
+  display: flex;
+  flex-direction: column;
+}
+.laneBox {
+  border: 1px solid rgba(12, 14, 9, 0.07);
+  border-radius: 12px;
+  overflow: hidden;
 }
 .leftCol {
   display: flex;
