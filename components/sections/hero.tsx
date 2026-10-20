@@ -605,6 +605,7 @@ export function Hero() {
             <span className={styles.em}>
               <PointerHighlight
                 pointerClassName="h-5 w-5"
+                pointerInset={-6}
                 onComplete={() => setHlRedOn(true)}
               >
                 <em

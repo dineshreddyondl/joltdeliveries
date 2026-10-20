@@ -24,6 +24,7 @@ export function PointerHighlight({
   pointerClassName,
   containerClassName,
   onComplete,
+  pointerInset = 2,
 }: {
   children: ReactNode;
   rectangleClassName?: string;
@@ -32,6 +33,8 @@ export function PointerHighlight({
   /** Fired once when the draw-in animation finishes (or immediately in
       reduced motion, where the static final state renders). */
   onComplete?: () => void;
+  /** Pulls the pointer in from the box corner (negative = inside). */
+  pointerInset?: number;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
@@ -103,8 +106,8 @@ export function PointerHighlight({
             initial={{ opacity: 0 }}
             whileInView={{
               opacity: 1,
-              x: width + 2,
-              y: height + 2,
+              x: width + pointerInset,
+              y: height + pointerInset,
             }}
             style={{ rotate: -90 }}
             transition={{
