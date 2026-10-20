@@ -344,18 +344,26 @@ export function Hero() {
       imgs.forEach((img, i) => {
         if (i === NP - 1 && tt >= HOLD_AT) {
           img.style.opacity = "1";
-          img.style.transform = "translate3d(0,0,0) scale(1)";
+          img.style.transform = "translate3d(0,0,0)";
         } else if (i === k) {
+          /* Departure-board entry: the load rises from below. */
           const p = tt - i * PER;
-          let op = Math.min(1, p / 0.1); /* quick fade-in */
-          if (p > PER - 0.12) op *= (PER - p) / 0.12; /* soft exit fade */
-          const x = 64 * (1 - ENTRY_EASE(Math.min(1, p / 0.5))); /* conveyor */
-          const s = 0.96 + 0.04 * Math.min(1, p / 0.2);
+          const e = ENTRY_EASE(Math.min(1, p / 0.55));
+          const y = 100 * (1 - e);
+          const op = 0.6 + 0.4 * Math.min(1, p / 0.45);
           img.style.opacity = String(op);
-          img.style.transform = `translate3d(${x.toFixed(2)}px,0,0) scale(${s.toFixed(3)})`;
+          img.style.transform = `translate3d(0,${y.toFixed(2)}%,0)`;
+        } else if (i === (k + NP - 1) % NP && tt < HOLD_AT) {
+          /* Departure-board exit: the previous load leaves upward. */
+          const sinceSwap = tt - k * PER;
+          const e = ENTRY_EASE(Math.min(1, sinceSwap / 0.55));
+          const y = -55 * e;
+          const op = 1 - 0.5 * Math.min(1, sinceSwap / 0.55);
+          img.style.opacity = String(op);
+          img.style.transform = `translate3d(0,${y.toFixed(2)}%,0)`;
         } else {
           img.style.opacity = "0";
-          img.style.transform = "translate3d(64px,0,0) scale(0.96)";
+          img.style.transform = "translate3d(0,100%,0)";
         }
       });
 
