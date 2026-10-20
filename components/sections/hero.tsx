@@ -38,7 +38,7 @@ import { Space_Grotesk } from "next/font/google";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 
 import { cn } from "@/lib/utils";
-import { PointerHighlight } from "@/components/ui/pointer-highlight";
+import { Cover } from "@/components/ui/cover";
 import { LANES, SHOWCASE_LANE } from "@/lib/lanes";
 import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
 import { CustomerMarquee } from "@/components/sections/customer-marquee";
@@ -255,8 +255,6 @@ const raceReveal: Variants = {
 export function Hero() {
   const reduceMotion = useReducedMotion();
   const [blazeIn, setBlazeIn] = useState(false);
-  /* The phrase turns red only after the pointer draw-in completes. */
-  const [hlRedOn, setHlRedOn] = useState(false);
   const pausedRef = useRef(false);
 
   /* Hydration-safe animation gate: SSR and first client render ship the
@@ -603,21 +601,12 @@ export function Hero() {
           >
             India&rsquo;s first express layer for{" "}
             <span className={styles.em}>
-              <PointerHighlight
-                pointerClassName="h-5 w-5"
-                pointerInset={-6}
-                showPointer={false}
-                onComplete={() => setHlRedOn(true)}
-              >
-                <em
-                  className={cn(
-                    styles.hl,
-                    hlRedOn && styles.hlRed,
-                  )}
-                >
-                  heavy shipments
-                </em>
-              </PointerHighlight>
+              <Cover>heavy shipments</Cover>
+              <i className={styles.blaze} aria-hidden="true">
+                <i className={styles.s1} />
+                <i className={styles.s2} />
+                <i className={styles.s3} />
+              </i>
             </span>
             .
           </motion.h1>

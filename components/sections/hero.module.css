@@ -117,14 +117,7 @@
   position: relative;
   white-space: nowrap;
 }
-.hl {
-  font-style: normal;
-  color: #0c0e09;
-  transition: color 0.6s ease;
-}
-.hlRed {
-  color: #c2410c;
-}
+
 .blaze {
   position: absolute;
   left: 0;
