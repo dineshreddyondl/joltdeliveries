@@ -10,7 +10,16 @@
 import { Space_Grotesk } from "next/font/google";
 import { motion, type Variants } from "motion/react";
 
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalTrigger,
+  useModal,
+} from "@/components/ui/animated-modal";
 import { useReveal } from "@/components/ui/use-reveal";
+import { LANES } from "@/lib/lanes";
 import { cn } from "@/lib/utils";
 import styles from "./cta.module.css";
 
@@ -28,6 +37,97 @@ const rv: Variants = {
     transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: i * 0.08 },
   }),
 };
+
+/** "Check Active Routes" — the live-lanes page inside the animated modal. */
+function RoutesModal() {
+  return (
+    <Modal>
+      <ModalTrigger className={styles.btnPrimary} ariaLabel="Check active routes">
+        Check Active Routes
+      </ModalTrigger>
+      <ModalBody>
+        <ModalContent>
+          <h4 className={cn(sg.className, styles.modalH)}>Active Routes</h4>
+          <p className={styles.modalNote}>
+            Ten corridors live on our network today. Serviceability is
+            confirmed at the pincode level when you start a pilot.
+          </p>
+          <div className={styles.laneTable}>
+            <div className={styles.laneHead}>
+              <span>Lane</span>
+              <span>LTL / Part-Load</span>
+              <span>With JOLT</span>
+            </div>
+            {LANES.map((l) => (
+              <div key={l.lane} className={styles.laneRow}>
+                <span>{l.lane}</span>
+                <span>{l.old}</span>
+                <span className={cn(l.fast && styles.laneFast)}>{l.next}</span>
+              </div>
+            ))}
+          </div>
+        </ModalContent>
+        <ModalFooter>
+          <CloseButton label="Close" ghost />
+          <StartPilotButton />
+        </ModalFooter>
+      </ModalBody>
+    </Modal>
+  );
+}
+
+/** "Start Pilot" — the pilot intro page inside the animated modal. */
+function PilotModal() {
+  return (
+    <Modal>
+      <ModalTrigger className={styles.btnGhost} ariaLabel="Start pilot">
+        Start Pilot
+      </ModalTrigger>
+      <ModalBody>
+        <ModalContent>
+          <h4 className={cn(sg.className, styles.modalH)}>Start a Pilot</h4>
+          <p className={styles.modalNote}>
+            Pick a lane, share your monthly volume and payload class. Three
+            quick steps — and a callback promise within two business hours.
+          </p>
+        </ModalContent>
+        <ModalFooter>
+          <CloseButton label="Close" ghost />
+          <StartPilotButton />
+        </ModalFooter>
+      </ModalBody>
+    </Modal>
+  );
+}
+
+function StartPilotButton() {
+  const { setOpen } = useModal();
+  return (
+    <button
+      type="button"
+      className={styles.modalPrimary}
+      onClick={() => {
+        setOpen(false);
+        window.dispatchEvent(new Event("jolt:open-pilot"));
+      }}
+    >
+      Begin the 3-step pilot
+    </button>
+  );
+}
+
+function CloseButton({ label, ghost }: { label: string; ghost?: boolean }) {
+  const { setOpen } = useModal();
+  return (
+    <button
+      type="button"
+      className={ghost ? styles.modalGhost : styles.modalPrimary}
+      onClick={() => setOpen(false)}
+    >
+      {label}
+    </button>
+  );
+}
 
 export function Cta() {
   const { ref, animateIn, inView } = useReveal<HTMLElement>();
@@ -85,16 +185,8 @@ export function Cta() {
           animate={show as never}
           className={styles.btns}
         >
-          <a href="#live-lanes" className={styles.btnPrimary}>
-            Check Active Routes
-          </a>
-          <button
-            type="button"
-            onClick={() => window.dispatchEvent(new Event("jolt:open-pilot"))}
-            className={styles.btnGhost}
-          >
-            Start Pilot
-          </button>
+          <RoutesModal />
+          <PilotModal />
         </motion.div>
 
         <motion.p

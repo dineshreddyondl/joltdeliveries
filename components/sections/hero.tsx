@@ -39,6 +39,7 @@ import { motion, useReducedMotion, type Variants } from "motion/react";
 
 import { cn } from "@/lib/utils";
 import { Cover } from "@/components/ui/cover";
+import { LANES, SHOWCASE_LANE } from "@/lib/lanes";
 import { CustomerMarquee } from "@/components/sections/customer-marquee";
 import styles from "./hero.module.css";
 
@@ -221,35 +222,6 @@ function cubicBezier(
 
 const ENTRY_EASE = cubicBezier(0.18, 1.35, 0.4, 1);
 const STAMP_EASE = cubicBezier(0.16, 1, 0.3, 1);
-
-/* ==================== live lanes (benchmark dot-to-dot) ==================== */
-
-interface Lane {
-  lane: string;
-  old: string;
-  next: string;
-  fast?: boolean;
-}
-
-const LANES: Lane[] = [
-  { lane: "Hyderabad → Delhi", old: "7 days", next: "3 days" },
-  { lane: "Mumbai → Hyderabad", old: "3 days", next: "1 day" },
-  { lane: "Mumbai → Delhi", old: "5 days", next: "2 days" },
-  { lane: "Chennai → Mumbai", old: "5 days", next: "2 days" },
-  { lane: "Bangalore → Trivandrum", old: "6 days", next: "2 days" },
-  { lane: "Bangalore → Delhi", old: "7 days", next: "3 days" },
-  { lane: "Hyderabad → Bangalore", old: "3 days", next: "24 hrs", fast: true },
-  { lane: "Bangalore → Chennai", old: "2 days", next: "24 hrs", fast: true },
-  { lane: "Coimbatore → Trivandrum", old: "5 days", next: "24 hrs", fast: true },
-  { lane: "Hyderabad → Pune", old: "3 days", next: "24 hrs", fast: true },
-];
-
-/** Showcase lane (AGENTS.md): the one corridor where the gap is real. */
-const SHOWCASE_LANE: Lane = {
-  lane: "Delhi → Mumbai",
-  old: "4–5 days",
-  next: "2 days",
-};
 
 /**
  * Two identical 11-row cycles so `translateY(-50%)` loops seamlessly;
