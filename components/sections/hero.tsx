@@ -640,36 +640,6 @@ export function Hero() {
             <span className={styles.sq} />
             [ Live Lanes ]
           </motion.span>
-
-          <motion.div
-            variants={fadeUp(0.9)}
-            initial={animateIn ? "hidden" : false}
-            animate={animateIn ? "show" : false}
-            className={styles.laneBox}
-            id="live-lanes"
-          >
-            <div className={styles.laneCols}>
-              <span>Route</span>
-              {/* Founder override 2026-10-19: benchmark column label kept
-                  verbatim — the banned-claims sweep exempts this file. */}
-              <span>Traditional Logistics</span>
-              <span>JOLT Deliveries</span>
-            </div>
-            <div className={styles.laneView}>
-              <div className={styles.laneTrack}>
-                {LANE_TRACK.map((r, i) => (
-                  <div
-                    key={i}
-                    className={cn(styles.laneRow, r.fast && styles.fast)}
-                  >
-                    <span className={styles.lane}>{r.lane}</span>
-                    <s>{r.old}</s>
-                    <span className={styles.new}>{r.next}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
         </div>
 
         {/* ---------- RIGHT · the frozen square stage ---------- */}
@@ -800,6 +770,35 @@ export function Hero() {
             </span>
           </div>
         </motion.div>
+          <motion.div
+            variants={fadeUp(0.9)}
+            initial={animateIn ? "hidden" : false}
+            animate={animateIn ? "show" : false}
+            className={styles.laneBox}
+            id="live-lanes"
+          >
+            <div className={styles.laneCols}>
+              <span>Route</span>
+              {/* Founder override 2026-10-19: benchmark column label kept
+                  verbatim — the banned-claims sweep exempts this file. */}
+              <span>Traditional Logistics</span>
+              <span>JOLT Deliveries</span>
+            </div>
+            <div className={styles.laneView}>
+              <div className={styles.laneTrack}>
+                {LANE_TRACK.map((r, i) => (
+                  <div
+                    key={i}
+                    className={cn(styles.laneRow, r.fast && styles.fast)}
+                  >
+                    <span className={styles.lane}>{r.lane}</span>
+                    <s>{r.old}</s>
+                    <span className={styles.new}>{r.next}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
       </div>
 
       {/* Brands marquee — inside the hero section (frozen mock: the

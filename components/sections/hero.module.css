@@ -59,13 +59,21 @@
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1.15fr;
+  grid-template-areas: "left race" "lanes race";
   gap: 48px;
-  /* Stretch: both columns share the row height so the left column's lane
-     box can flex down to meet the stage card's bottom inline (founder). */
   align-items: stretch;
 }
 .heroGrid > div {
   min-width: 0;
+}
+.leftCol {
+  grid-area: left;
+}
+.heroRace {
+  grid-area: race;
+}
+.laneBox {
+  grid-area: lanes;
 }
 .leftCol {
   display: flex;
@@ -719,6 +727,7 @@
 @media (max-width: 768px) {
   .heroGrid {
     grid-template-columns: 1fr;
+    grid-template-areas: "left" "race" "lanes";
     gap: 28px;
   }
   .stage {
