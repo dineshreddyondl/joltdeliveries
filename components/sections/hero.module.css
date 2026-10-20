@@ -376,6 +376,7 @@
   display: flex;
   flex-direction: column;
   animation: heroLaneRoll 32s linear infinite;
+  animation-delay: 3.4s;
 }
 .laneBox:hover .laneTrack {
   animation-play-state: paused;
@@ -891,4 +892,32 @@
   .stageSparkle {
     display: none;
   }
+}
+
+/* ---------- sequenced entrance (CSS keyframes; data-seq set only
+   after mount for non-reduced users) ---------- */
+@keyframes heroUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.heroGrid[data-seq] .eyebrow {
+  animation: heroUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.heroGrid[data-seq] .h1 {
+  animation: heroUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+.heroGrid[data-seq] .pillarRow {
+  animation: heroUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.8s both;
+}
+.heroGrid[data-seq] .laneWrap {
+  animation: heroUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 2.5s both;
+}
+.heroGrid[data-seq] .heroRace {
+  animation: heroUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 3.1s both;
 }

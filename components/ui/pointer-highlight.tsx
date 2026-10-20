@@ -26,6 +26,7 @@ export function PointerHighlight({
   onComplete,
   pointerInset = 2,
   showPointer = true,
+  delay = 0,
 }: {
   children: ReactNode;
   rectangleClassName?: string;
@@ -38,6 +39,8 @@ export function PointerHighlight({
   pointerInset?: number;
   /** Hide the corner pointer glyph (box draw-in only). */
   showPointer?: boolean;
+  /** Entrance delay for the draw-in (seconds). */
+  delay?: number;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
@@ -101,7 +104,7 @@ export function PointerHighlight({
             )}
             initial={{ width: 0, height: 0 }}
             whileInView={{ width, height }}
-            transition={{ duration: 1, ease: "easeInOut" }}
+            transition={{ duration: 1, ease: "easeInOut", delay }}
             onAnimationComplete={fire}
           />
           {showPointer && (
@@ -115,9 +118,10 @@ export function PointerHighlight({
               }}
               style={{ rotate: -90 }}
               transition={{
-                opacity: { duration: 0.1, ease: "easeInOut" },
+                opacity: { duration: 0.1, ease: "easeInOut", delay },
                 duration: 1,
                 ease: "easeInOut",
+                delay,
               }}
             >
               <Pointer

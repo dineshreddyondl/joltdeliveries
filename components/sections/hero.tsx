@@ -35,7 +35,7 @@
 
 import { Fragment, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Space_Grotesk } from "next/font/google";
-import { motion, useReducedMotion, type Variants } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
 import { cn } from "@/lib/utils";
 import { PointerHighlight } from "@/components/ui/pointer-highlight";
@@ -50,8 +50,6 @@ const sg = Space_Grotesk({
   weight: "700",
   display: "swap",
 });
-
-const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 /* SSR-safe layout effect: runs before paint on the client, no-op on server. */
 const useIsomorphicLayoutEffect =
@@ -235,30 +233,15 @@ const LANE_TRACK = [...LANE_CYCLE, ...LANE_CYCLE];
 
 /* ==================== entrance variants (frozen timings) ==================== */
 
-const fadeUp = (delay: number): Variants => ({
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: EASE, delay },
-  },
-});
-
-const raceReveal: Variants = {
-  hidden: { opacity: 0, y: 26 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: EASE, delay: 0.3 },
-  },
-};
-
 export function Hero() {
   const reduceMotion = useReducedMotion();
   const [blazeIn, setBlazeIn] = useState(false);
   /* Same treatment as 'never built for you': the color lands only after
      the pointer draw-in — orange here instead of red. */
   const [hlOn, setHlOn] = useState(false);
+  /* Sequenced entrance: the stage loop starts only after the left
+     column has finished presenting (reading order). */
+  const [stageOn, setStageOn] = useState(false);
   const pausedRef = useRef(false);
 
   /* Hydration-safe animation gate: SSR and first client render ship the
@@ -289,7 +272,11 @@ export function Hero() {
       return;
     }
     const id = setTimeout(() => setBlazeIn(true), 580);
-    return () => clearTimeout(id);
+    const stageId = setTimeout(() => setStageOn(true), 3700);
+    return () => {
+      clearTimeout(id);
+      clearTimeout(stageId);
+    };
   }, [reduceMotion]);
 
   /* ============ ONE master clock — the frozen 9.6s start-stop loop ============
@@ -561,12 +548,15 @@ export function Hero() {
       render(t);
     } else if (reduce) {
       renderStatic();
-    } else {
+    } else if (stageOn) {
       render(0);
       raf = requestAnimationFrame((n) => {
         last = n;
         tick(n);
       });
+    } else {
+      /* Pre-sequence: static first frame, loop waits its turn. */
+      render(0);
     }
 
     return () => {
@@ -576,7 +566,7 @@ export function Hero() {
       stageEl.removeEventListener("pointerenter", enter);
       stageEl.removeEventListener("pointerleave", leave);
     };
-  }, []);
+  }, [stageOn]);
 
   return (
     <header id="top" className={styles.hero}>
@@ -585,27 +575,24 @@ export function Hero() {
       <div className={styles.rippleFloor} aria-hidden="true">
         <BackgroundRippleEffect rows={7} cols={34} cellSize={44} />
       </div>
-      <div className={cn(styles.heroWrap, styles.heroGrid)}>
+      <div
+        className={cn(styles.heroWrap, styles.heroGrid)}
+        data-seq={animateIn ? "1" : undefined}
+      >
         {/* ---------- LEFT · benchmark dot-to-dot ---------- */}
         <div className={styles.leftCol}>
           <motion.span
-            variants={fadeUp(0.4)}
-            initial={animateIn ? "hidden" : false}
-            animate={animateIn ? "show" : false}
             className={styles.eyebrow}
           >
             Express speed is no longer just for small parcels.
           </motion.span>
 
           <motion.h1
-            variants={fadeUp(0.5)}
-            initial={animateIn ? "hidden" : false}
-            animate={animateIn ? "show" : false}
             className={cn(sg.className, styles.h1, blazeIn && styles.in)}
           >
             India&rsquo;s first express layer for{" "}
             <span className={styles.em}>
-              <PointerHighlight onComplete={() => setHlOn(true)}>
+              <PointerHighlight delay={0.35} onComplete={() => setHlOn(true)}>
                 <em className={cn(styles.hl, hlOn && styles.hlOn)}>
                   heavy shipments.
                 </em>
@@ -614,9 +601,6 @@ export function Hero() {
           </motion.h1>
 
           <motion.div
-            variants={fadeUp(0.7)}
-            initial={animateIn ? "hidden" : false}
-            animate={animateIn ? "show" : false}
             className={styles.pillarRow}
           >
             <span className={styles.plItem}>
@@ -634,16 +618,10 @@ export function Hero() {
           </motion.div>
 
                   <motion.div
-            variants={fadeUp(0.9)}
-            initial={animateIn ? "hidden" : false}
-            animate={animateIn ? "show" : false}
             className={styles.laneWrap}
             id="live-lanes"
           >
             <motion.span
-              variants={fadeUp(0.85)}
-              initial={animateIn ? "hidden" : false}
-              animate={animateIn ? "show" : false}
               className={styles.laneHead}
             >
               <span className={styles.sq} />
@@ -677,9 +655,6 @@ export function Hero() {
 
         {/* ---------- RIGHT · the frozen square stage ---------- */}
         <motion.div
-          variants={raceReveal}
-          initial={animateIn ? "hidden" : false}
-          animate={animateIn ? "show" : false}
           className={styles.heroRace}
           ref={raceRef}
         >
