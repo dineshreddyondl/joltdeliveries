@@ -80,7 +80,7 @@ const PRODUCTS = [
     spec: "5 KG · 0.15 CBM",
   },
   {
-    src: "/assets/hero-final/hero-furniture-desk-iso.png",
+    src: "/assets/hero-final/hero-furniture-desk-iso2.png",
     alt: "Adjustable desk",
     cat: "FURNITURE",
     name: "DESK + CHAIR SET",
