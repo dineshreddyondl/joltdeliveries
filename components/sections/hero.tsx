@@ -220,7 +220,6 @@ function cubicBezier(
   };
 }
 
-const ENTRY_EASE = cubicBezier(0.18, 1.35, 0.4, 1);
 const STAMP_EASE = cubicBezier(0.16, 1, 0.3, 1);
 
 /**
@@ -346,16 +345,13 @@ export function Hero() {
           img.style.opacity = "1";
           img.style.transform = "translate3d(0,0,0)";
         } else if (i === k) {
-          const p = tt - i * PER;
-          let op = Math.min(1, p / 0.1); /* quick fade-in */
-          if (p > PER - 0.12) op *= (PER - p) / 0.12; /* soft exit fade */
-          const x = 64 * (1 - ENTRY_EASE(Math.min(1, p / 0.5))); /* conveyor */
-          const s = 0.96 + 0.04 * Math.min(1, p / 0.2);
-          img.style.opacity = String(op);
-          img.style.transform = `translate3d(${x.toFixed(2)}px,0,0) scale(${s.toFixed(3)})`;
+          /* Camera cut: instant swap, no travel - the per-swap flash
+             + spotlight pulses sell the cut. */
+          img.style.opacity = "1";
+          img.style.transform = "translate3d(0,0,0)";
         } else {
           img.style.opacity = "0";
-          img.style.transform = "translate3d(64px,0,0) scale(0.96)";
+          img.style.transform = "translate3d(0,0,0)";
         }
       });
 
