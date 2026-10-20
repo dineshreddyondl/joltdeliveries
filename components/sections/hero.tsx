@@ -220,7 +220,6 @@ function cubicBezier(
   };
 }
 
-const ENTRY_EASE = cubicBezier(0.18, 1.35, 0.4, 1);
 const STAMP_EASE = cubicBezier(0.16, 1, 0.3, 1);
 
 /**
@@ -346,30 +345,23 @@ export function Hero() {
           img.style.opacity = "1";
           img.style.transform = "translate3d(0,0,0)";
         } else if (i === k) {
-          /* Subtle dissolve: gentle fade-in with a whisper of lift. */
+          /* Push: the new load slides in from the right, driving the
+             previous one out the left - adjacent, never overlapping. */
           const sinceSwap = tt - k * PER;
-          if (sinceSwap < 0.4) {
-            img.style.opacity = "0";
-            img.style.transform = "translate3d(0,12px,0)";
-          } else {
-            const p2 = sinceSwap - 0.4;
-            const e = ENTRY_EASE(Math.min(1, p2 / 0.8));
-            const y = 12 * (1 - e);
-            const op = Math.min(1, p2 / 0.6);
-            img.style.opacity = String(op);
-            img.style.transform = `translate3d(0,${y.toFixed(2)}px,0)`;
-          }
+          const e = STAMP_EASE(Math.min(1, sinceSwap / 0.9));
+          const x = 100 * (1 - e);
+          img.style.opacity = "1";
+          img.style.transform = `translate3d(${x.toFixed(2)}%,0,0)`;
         } else if (i === (k + NP - 1) % NP && tt < HOLD_AT) {
-          /* Previous load dissolves in place with a tiny drift. */
+          /* Previous load is pushed out the left edge. */
           const sinceSwap = tt - k * PER;
-          const e = ENTRY_EASE(Math.min(1, sinceSwap / 0.4));
-          const y = -10 * e;
-          const op = 1 - Math.min(1, sinceSwap / 0.4);
-          img.style.opacity = String(op);
-          img.style.transform = `translate3d(0,${y.toFixed(2)}px,0)`;
+          const e = STAMP_EASE(Math.min(1, sinceSwap / 0.9));
+          const x = -100 * e;
+          img.style.opacity = "1";
+          img.style.transform = `translate3d(${x.toFixed(2)}%,0,0)`;
         } else {
           img.style.opacity = "0";
-          img.style.transform = "translate3d(0,100%,0)";
+          img.style.transform = "translate3d(100%,0,0)";
         }
       });
 
