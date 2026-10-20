@@ -66,7 +66,7 @@ const pct = (p: number) => (p / 100) * T;
    being finalised per the brief; wiring follows the frozen mock). */
 const PRODUCTS = [
   {
-    src: "/assets/hero-final/hero-furniture-sofa-cutout.png",
+    src: "/assets/hero-final/test-sofa-cutout.png",
     alt: "Sectional sofa",
     cat: "FURNITURE",
     name: "SECTIONAL SOFA",
