@@ -145,7 +145,7 @@ const STAT = [
 const TIMES = ["09:10", "09:40", "10:30", "11:02"];
 
 const STAGE_LABEL =
-  "Live dispatch stage: a square shipment board cycling through six heavy shipments — sectional sofa, alternator, velvet bench, mattress set, baby crib and appliance set. Each one runs the journey bar: instant pickup, next train out, out for delivery, then a DELIVERED IN 24–48 HRS stamp slams and stays.";
+  "Live dispatch stage: a square shipment board cycling through six heavy shipments — sectional sofa, alternator, velvet bench, mattress set, baby crib and appliance set. Each one runs the journey bar: instant pickup, next train out, out for delivery, then a DELIVERED IN 24 HRS seal slams and stays.";
 
 /* ------------------------------ easing ------------------------------ */
 
@@ -693,7 +693,9 @@ export function Hero() {
               ref={stampRef}
               data-stage-stamp
             >
-              DELIVERED IN 24&ndash;48 HRS
+              <span className={styles.stampRing} aria-hidden="true" />
+              <span className={styles.stampT1}>DELIVERED</span>
+              <span className={styles.stampT2}>IN 24 HRS</span>
             </div>
 
             <div className={styles.stagebar} aria-hidden="true">

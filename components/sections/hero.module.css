@@ -534,21 +534,41 @@
 }
 .stamp {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  background: #e85a2c;
-  color: #0b0d02;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  padding: 8px 12px;
-  border-radius: 8px;
+  top: 12px;
+  right: 12px;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #c2410c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
   transform: rotate(-7deg);
   opacity: 0;
   z-index: 3;
   box-shadow: 0 10px 22px -10px rgba(194, 65, 12, 0.55);
   pointer-events: none;
-  white-space: nowrap;
+}
+.stampRing {
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  border: 1px solid rgba(194, 65, 12, 0.55);
+}
+.stampT1 {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #c2410c;
+}
+.stampT2 {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #0c0e09;
 }
 
 /* ---------- in-stage journey bar ---------- */
@@ -800,9 +820,18 @@
     padding: 8px 11px;
   }
   .stamp {
+    top: 10px;
     right: 10px;
-    top: auto;
-    bottom: 56px;
+    bottom: auto;
+    width: 64px;
+    height: 64px;
+  }
+  .stampT1 {
+    font-size: 10px;
+  }
+  .stampT2 {
+    font-size: 7px;
+    letter-spacing: 0.06em;
   }
 }
 
