@@ -26,6 +26,7 @@ import { useRef } from "react";
 
 import { useReveal } from "@/components/ui/use-reveal";
 import { FlipWords } from "@/components/ui/flip-words";
+import { BackgroundGradient } from "@/components/ui/background-gradient";
 import { cn } from "@/lib/utils";
 import styles from "./how-it-works.module.css";
 
@@ -275,12 +276,17 @@ export function HowItWorks() {
               custom={i + 3}
               initial={animateIn ? "hidden" : false}
               animate={show as never}
-              className={styles.usp}
+              className={styles.uspWrap}
             >
-              <span className={styles.step}>{u.step}</span>
-              <h3 className={sg.className}>{u.word}</h3>
-              <p>{u.line}</p>
-              <span className={styles.spec}>{u.spec}</span>
+              <BackgroundGradient
+                containerClassName="h-full rounded-[14px]"
+                className={styles.uspInner}
+              >
+                <span className={styles.step}>{u.step}</span>
+                <h3 className={sg.className}>{u.word}</h3>
+                <p>{u.line}</p>
+                <span className={styles.spec}>{u.spec}</span>
+              </BackgroundGradient>
             </motion.div>
           ))}
         </div>
