@@ -38,7 +38,7 @@ import { Space_Grotesk } from "next/font/google";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 
 import { cn } from "@/lib/utils";
-import { Cover } from "@/components/ui/cover";
+import { PointerHighlight } from "@/components/ui/pointer-highlight";
 import { LANES, SHOWCASE_LANE } from "@/lib/lanes";
 import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
 import { CustomerMarquee } from "@/components/sections/customer-marquee";
@@ -601,12 +601,9 @@ export function Hero() {
           >
             India&rsquo;s first express layer for{" "}
             <span className={styles.em}>
-              <Cover>heavy shipments</Cover>
-              <i className={styles.blaze} aria-hidden="true">
-                <i className={styles.s1} />
-                <i className={styles.s2} />
-                <i className={styles.s3} />
-              </i>
+              <PointerHighlight pointerClassName="h-5 w-5">
+                <em className={styles.hl}>heavy shipments</em>
+              </PointerHighlight>
             </span>
             .
           </motion.h1>

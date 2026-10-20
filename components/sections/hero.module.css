@@ -110,6 +110,10 @@
   position: relative;
   white-space: nowrap;
 }
+.hl {
+  font-style: normal;
+  color: #c2410c;
+}
 .blaze {
   position: absolute;
   left: 0;
