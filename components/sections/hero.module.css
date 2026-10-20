@@ -870,3 +870,22 @@
   height: 300px;
   z-index: 1;
 }
+
+/* Sparkle band over the stage's top edge (decorative overlay). */
+.stageSparkle {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  top: -20px;
+  height: 96px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.85;
+  -webkit-mask-image: radial-gradient(ellipse 65% 100% at 50% 0%, #000 25%, transparent 75%);
+  mask-image: radial-gradient(ellipse 65% 100% at 50% 0%, #000 25%, transparent 75%);
+}
+@media (max-width: 1023px) {
+  .stageSparkle {
+    display: none;
+  }
+}

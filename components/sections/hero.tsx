@@ -39,6 +39,7 @@ import { motion, useReducedMotion, type Variants } from "motion/react";
 
 import { cn } from "@/lib/utils";
 import { PointerHighlight } from "@/components/ui/pointer-highlight";
+import { SparklesCore } from "@/components/ui/sparkles";
 import { LANES, SHOWCASE_LANE } from "@/lib/lanes";
 import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
 import { CustomerMarquee } from "@/components/sections/customer-marquee";
@@ -642,6 +643,21 @@ export function Hero() {
           className={styles.heroRace}
           ref={raceRef}
         >
+          {/* Sparkle band rising off the top edge of the stage — pure
+              overlay, desktop-only, never under reduced motion. */}
+          {!reduceMotion && (
+            <div className={styles.stageSparkle} aria-hidden="true">
+              <SparklesCore
+                background="transparent"
+                minSize={0.4}
+                maxSize={1}
+                particleDensity={220}
+                speed={1.2}
+                className="h-full w-full"
+                particleColor="#FFFFFF"
+              />
+            </div>
+          )}
           <div
             className={styles.stage}
             ref={stageRef}
