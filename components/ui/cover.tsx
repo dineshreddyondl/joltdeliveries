@@ -81,7 +81,7 @@ export const Cover = ({
               <motion.div
                 animate={{ translateX: ["-50%", "0%"] }}
                 transition={{
-                  translateX: { duration: 10, ease: "linear", repeat: Infinity },
+                  translateX: { duration: 18, ease: "linear", repeat: Infinity },
                 }}
                 className="flex h-full w-[200%]"
               >
@@ -89,7 +89,8 @@ export const Cover = ({
                   background="transparent"
                   minSize={0.4}
                   maxSize={1}
-                  particleDensity={500}
+                  particleDensity={150}
+                  speed={1.2}
                   className="h-full w-full"
                   particleColor="#E85A2C"
                 />
@@ -97,7 +98,8 @@ export const Cover = ({
                   background="transparent"
                   minSize={0.4}
                   maxSize={1}
-                  particleDensity={500}
+                  particleDensity={150}
+                  speed={1.2}
                   className="h-full w-full"
                   particleColor="#E85A2C"
                 />
