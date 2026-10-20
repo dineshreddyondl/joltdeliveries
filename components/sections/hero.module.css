@@ -59,9 +59,9 @@
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1.15fr;
-  grid-template-areas: "left race" "lanes race";
+  grid-template-areas: "left race" "left race";
   column-gap: 48px;
-  row-gap: 20px;
+  row-gap: 8px;
   align-items: stretch;
 }
 .heroGrid > div {
@@ -69,16 +69,16 @@
 }
 .leftCol {
   grid-area: left;
-  align-self: start;
+  display: flex;
+  flex-direction: column;
 }
 .heroRace {
   grid-area: race;
 }
 .laneWrap {
-  grid-area: lanes;
   display: flex;
   flex-direction: column;
-  align-self: start;
+  flex: 1;
 }
 .laneBox {
   border: 1px solid rgba(12, 14, 9, 0.07);
@@ -310,7 +310,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin: 0 0 6px;
+  margin: 0 0 4px;
 }
 .laneHead .sq {
   width: 7px;
@@ -767,7 +767,7 @@
 @media (max-width: 768px) {
   .heroGrid {
     grid-template-columns: 1fr;
-    grid-template-areas: "left" "race" "lanes";
+    grid-template-areas: "left" "race";
     gap: 16px;
   }
   .stage {
