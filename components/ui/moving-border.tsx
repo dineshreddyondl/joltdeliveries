@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   motion,
   useAnimationFrame,
@@ -70,19 +70,36 @@ export function Button({
 export const MovingBorder = ({
   children,
   duration = 5000,
-  rx,
-  ry,
   ...otherProps
 }: {
   children: React.ReactNode;
   duration?: number;
-  rx?: string;
-  ry?: string;
   [key: string]: unknown;
 }) => {
   const pathRef = useRef<SVGRectElement | null>(null);
+  const svgRef = useRef<SVGSVGElement | null>(null);
   const progress = useMotionValue<number>(0);
   const reduce = useReducedMotion();
+  /* Trace the HOST's actual corner radius so the path follows the
+     pill contour (percentages resolved against the pill height). */
+  const [radius, setRadius] = useState(20);
+  useEffect(() => {
+    const host = svgRef.current?.parentElement?.parentElement;
+    if (!host) return;
+    const update = () => {
+      const cs = getComputedStyle(host);
+      const v = cs.borderTopLeftRadius;
+      const h = host.getBoundingClientRect().height;
+      let px = 20;
+      if (v.includes("%")) px = (parseFloat(v) / 100) * h;
+      else px = parseFloat(v) || 20;
+      setRadius(px);
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(host);
+    return () => ro.disconnect();
+  }, []);
 
   useAnimationFrame((time) => {
     if (reduce) return;
@@ -124,14 +141,15 @@ export const MovingBorder = ({
         className="absolute h-full w-full"
         width="100%"
         height="100%"
+        ref={svgRef}
         {...otherProps}
       >
         <rect
           fill="none"
           width="100%"
           height="100%"
-          rx={rx}
-          ry={ry}
+          rx={radius}
+          ry={radius}
           ref={pathRef}
         />
       </svg>
