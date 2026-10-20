@@ -233,10 +233,10 @@
   pointer-events: none;
 }
 .cmpGlowOk {
-  background: rgba(46, 125, 50, 0.16);
+  background: rgba(46, 125, 50, 0.10);
 }
 .cmpGlowNo {
-  background: rgba(204, 36, 36, 0.14);
+  background: rgba(204, 36, 36, 0.08);
 }
 .cmpCellOk {
   color: #2e7d32;

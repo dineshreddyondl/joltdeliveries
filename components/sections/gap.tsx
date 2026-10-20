@@ -66,11 +66,10 @@ const glowV: Variants = {
   show: (c: number) => ({
     opacity: [0, 1, 0],
     transition: {
-      duration: 0.8,
-      times: [0, 0.15, 1],
-      repeat: Infinity,
-      repeatDelay: 4.0,
-      delay: 2.4 + c * 0.8,
+      duration: 1.6,
+      times: [0, 0.35, 1],
+      repeat: 0,
+      delay: 2.4 + (c % 2) * 0.12,
     },
   }),
 };
