@@ -92,7 +92,7 @@
 }
 .btns {
   display: flex;
-  gap: 12px;
+  gap: 20px;
   justify-content: center;
   margin-top: 40px;
   flex-wrap: wrap;
@@ -143,7 +143,7 @@
   color: rgba(255, 255, 255, 0.6);
 }
 .fineprintLink {
-  color: #e8e8ea;
+  color: #ffa075;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -244,5 +244,8 @@
 @media (max-width: 768px) {
   .sec {
     padding: 64px 24px;
+  }
+  .btns {
+    margin-top: 24px;
   }
 }

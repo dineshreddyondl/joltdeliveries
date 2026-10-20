@@ -81,7 +81,7 @@ function PilotModal() {
   return (
     <Modal>
       <ModalTrigger className={styles.btnGhost} ariaLabel="Start pilot">
-        Start Pilot
+        Start Your Pilot
       </ModalTrigger>
       <ModalBody>
         <ModalContent>
