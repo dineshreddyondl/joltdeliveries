@@ -765,7 +765,7 @@
   .heroGrid {
     grid-template-columns: 1fr;
     grid-template-areas: "left" "race" "lanes";
-    gap: 24px;
+    gap: 16px;
   }
   .stage {
     max-width: 100%;
@@ -773,7 +773,7 @@
   /* Stacked: ticker returns to normal flow below the card. */
   .seq {
     position: static;
-    margin-top: 14px;
+    margin-top: 8px;
   }
 }
 @media (max-width: 560px) {
@@ -874,15 +874,15 @@
 /* Sparkle band over the stage's top edge (decorative overlay). */
 .stageSparkle {
   position: absolute;
-  left: 12%;
-  right: 12%;
-  top: -20px;
-  height: 96px;
+  left: 8%;
+  right: 8%;
+  top: 42%;
+  height: 110px;
   pointer-events: none;
   z-index: 2;
   opacity: 0.85;
-  -webkit-mask-image: radial-gradient(ellipse 65% 100% at 50% 0%, #000 25%, transparent 75%);
-  mask-image: radial-gradient(ellipse 65% 100% at 50% 0%, #000 25%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 100% at 50% 50%, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 100% at 50% 50%, #000 30%, transparent 75%);
 }
 @media (max-width: 1023px) {
   .stageSparkle {
