@@ -123,7 +123,7 @@ export function MetricsBand() {
       </h2>
 
       <div className="mx-auto max-w-[1140px] px-8">
-        <div className="grid grid-cols-1 gap-[22px] sm:grid-cols-2 lg:grid-cols-4">
+        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-8 pb-2 -mx-8 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-[22px] sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4">
           {cards.map((c, i) => (
             <motion.div
               key={c.key}
@@ -132,7 +132,7 @@ export function MetricsBand() {
               initial={animateIn ? "hidden" : false}
               animate={animateIn ? (bandInView ? "show" : "hidden") : false}
               className={cn(
-                "rounded-[18px] border border-[rgba(12,14,9,0.06)] bg-white p-[30px_26px]",
+                "min-w-[78%] snap-center rounded-[18px] border border-[rgba(12,14,9,0.06)] bg-white p-[30px_26px] sm:min-w-0",
                 reduceMotion
                   ? ""
                   : "transition-[transform,box-shadow] duration-300 ease-out pointer-fine:hover:-translate-y-[3px] pointer-fine:hover:shadow-[0_24px_60px_-24px_rgba(12,14,9,0.18)]",

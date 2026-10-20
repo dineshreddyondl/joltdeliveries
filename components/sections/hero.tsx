@@ -631,15 +631,6 @@ export function Hero() {
             </span>
           </motion.div>
 
-          <motion.span
-            variants={fadeUp(0.85)}
-            initial={animateIn ? "hidden" : false}
-            animate={animateIn ? "show" : false}
-            className={styles.laneHead}
-          >
-            <span className={styles.sq} />
-            [ Live Lanes ]
-          </motion.span>
         </div>
 
         {/* ---------- RIGHT · the frozen square stage ---------- */}
@@ -777,6 +768,15 @@ export function Hero() {
             className={styles.laneBox}
             id="live-lanes"
           >
+            <motion.span
+              variants={fadeUp(0.85)}
+              initial={animateIn ? "hidden" : false}
+              animate={animateIn ? "show" : false}
+              className={styles.laneHead}
+            >
+              <span className={styles.sq} />
+              [ Live Lanes ]
+            </motion.span>
             <div className={styles.laneCols}>
               <span>Route</span>
               {/* Founder override 2026-10-19: benchmark column label kept

@@ -728,7 +728,7 @@
   .heroGrid {
     grid-template-columns: 1fr;
     grid-template-areas: "left" "race" "lanes";
-    gap: 28px;
+    gap: 24px;
   }
   .stage {
     max-width: 100%;
