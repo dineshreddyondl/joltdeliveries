@@ -116,7 +116,7 @@ export function MetricsBand() {
       id="metrics"
       ref={bandRef}
       aria-labelledby="metrics-heading"
-      className="bg-white py-6"
+      className="bg-white py-6 max-md:py-4"
     >
       <h2 id="metrics-heading" className="sr-only">
         JOLT by the numbers

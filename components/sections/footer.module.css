@@ -127,3 +127,15 @@
     gap: 48px;
   }
 }
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 56px 24px 24px;
+  }
+  .col a {
+    min-height: 36px;
+  }
+  .support {
+    margin-top: 14px;
+  }
+}

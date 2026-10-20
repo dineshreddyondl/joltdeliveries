@@ -506,7 +506,7 @@
    ================================================================ */
 @media (max-width: 768px) {
   .route {
-    height: 400px;
+    height: 340px;
   }
   .roadL,
   .roadR {
@@ -665,5 +665,27 @@
   100% {
     top: 97%;
     opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .sec {
+    padding: 40px 24px;
+  }
+  .tag {
+    margin-bottom: 16px;
+  }
+  .lede {
+    margin-top: 16px;
+  }
+  .pipeline {
+    margin-top: 32px;
+  }
+  .usps {
+    margin-top: 32px;
+    gap: 16px;
+  }
+  .uspInner {
+    padding: 20px;
   }
 }

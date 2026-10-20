@@ -327,3 +327,18 @@
   color: #0c0e09;
   font-style: normal;
 }
+
+@media (max-width: 768px) {
+  .sec {
+    padding: 40px 24px;
+  }
+  .tag {
+    margin-bottom: 16px;
+  }
+  .lede {
+    margin-top: 16px;
+  }
+  .verdict {
+    margin-top: 32px;
+  }
+}

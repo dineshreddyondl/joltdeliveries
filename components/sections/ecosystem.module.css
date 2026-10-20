@@ -235,3 +235,24 @@
     transform: translateY(-50%) scale(1.3);
   }
 }
+
+@media (max-width: 768px) {
+  .sec {
+    padding: 40px 0;
+  }
+  .tag {
+    margin-bottom: 16px;
+  }
+  .lede {
+    margin-top: 16px;
+  }
+  .featureCard {
+    margin-top: 32px;
+  }
+  .cases {
+    margin-top: 32px;
+  }
+  .distance {
+    margin-top: 32px;
+  }
+}

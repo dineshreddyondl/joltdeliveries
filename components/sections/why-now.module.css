@@ -133,3 +133,24 @@
     font-size: 9px;
   }
 }
+
+@media (max-width: 768px) {
+  .sec {
+    padding: 40px 24px;
+  }
+  .tag {
+    margin-bottom: 16px;
+  }
+  .lede {
+    margin-top: 16px;
+  }
+  .beamWrap {
+    margin-top: 32px;
+  }
+  .tlItem {
+    padding-bottom: 32px;
+  }
+  .termLine {
+    margin-top: 40px;
+  }
+}
