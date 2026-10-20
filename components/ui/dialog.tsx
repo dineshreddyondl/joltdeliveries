@@ -34,7 +34,7 @@ const DialogOverlay = React.forwardRef<
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
         className={cn(
-          "fixed inset-0 z-50 bg-[#050507]/[0.72] backdrop-blur-[6px]",
+          "fixed inset-0 z-[1100] bg-[#050507]/[0.72] backdrop-blur-[6px]",
           className,
         )}
       />
@@ -54,7 +54,7 @@ const DialogContent = React.forwardRef<
       <DialogPrimitive.Content
         ref={ref}
         className={cn(
-          "fixed left-[50%] top-[50%] z-50 w-[min(460px,calc(100vw-48px))] translate-x-[-50%] translate-y-[-50%]",
+          "fixed left-[50%] top-[50%] z-[1100] w-[min(460px,calc(100vw-48px))] max-h-[85dvh] translate-x-[-50%] translate-y-[-50%]",
           className,
         )}
         {...props}
@@ -63,7 +63,7 @@ const DialogContent = React.forwardRef<
           initial={reduceMotion ? false : { opacity: 0, y: 14, scale: 0.97 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="overflow-hidden rounded-[16px] border border-[rgba(255,255,255,0.14)] bg-[#08080A] text-[#E8E8EA] shadow-[0_40px_90px_-20px_rgba(0,0,0,0.7),0_0_60px_-20px_rgba(232,90,44,0.35)]"
+          className="overflow-y-auto overscroll-contain rounded-[16px] border border-[rgba(255,255,255,0.14)] bg-[#08080A] text-[#E8E8EA] shadow-[0_40px_90px_-20px_rgba(0,0,0,0.7),0_0_60px_-20px_rgba(232,90,44,0.35)]"
         >
           {children}
         </motion.div>

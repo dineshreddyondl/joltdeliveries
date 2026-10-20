@@ -102,7 +102,7 @@ export const ModalBody = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, backdropFilter: "blur(10px)" }}
           exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-          className="fixed [perspective:800px] [transform-style:preserve-3d] inset-0 h-full w-full flex items-center justify-center z-50"
+          className="fixed [perspective:800px] [transform-style:preserve-3d] inset-0 h-full w-full flex items-center justify-center z-[1100]"
         >
           <Overlay />
 
@@ -111,7 +111,7 @@ export const ModalBody = ({
             role="dialog"
             aria-modal="true"
             className={cn(
-              "min-h-[50%] max-h-[90%] md:max-w-[40%] bg-white border border-[#E4E0D6] md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden",
+              "min-h-[50%] max-h-[90%] md:max-w-[40%] bg-white border border-[#E4E0D6] md:rounded-2xl relative z-[1100] flex flex-col flex-1 overflow-hidden",
               className,
             )}
             initial={
@@ -140,7 +140,7 @@ export const ModalContent = ({
   className?: string;
 }) => {
   return (
-    <div className={cn("flex flex-col flex-1 p-8 md:p-10", className)}>
+    <div className={cn("flex flex-col flex-1 p-8 md:p-10 overflow-y-auto overscroll-contain", className)}>
       {children}
     </div>
   );
@@ -171,7 +171,7 @@ const Overlay = ({ className }: { className?: string }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, backdropFilter: "blur(10px)" }}
       exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-      className={cn("fixed inset-0 h-full w-full bg-black bg-opacity-50 z-50", className)}
+      className={cn("fixed inset-0 h-full w-full bg-black bg-opacity-50 z-[1100]", className)}
     />
   );
 };
@@ -183,7 +183,7 @@ const CloseIcon = () => {
       type="button"
       aria-label="Close"
       onClick={() => setOpen(false)}
-      className="absolute top-4 right-4 z-10 text-[#0C0E09] hover:text-[#C2410C] transition-colors"
+      className="absolute top-3 right-3 z-10 flex h-10 w-10 items-center justify-center rounded-full text-[#0C0E09] hover:text-[#C2410C] transition-colors"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -195,7 +195,7 @@ const CloseIcon = () => {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="h-4 w-4"
+        className="h-5 w-5"
       >
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M18 6l-12 12" />

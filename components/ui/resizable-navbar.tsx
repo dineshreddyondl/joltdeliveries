@@ -305,7 +305,7 @@ export const MobileNavToggle = ({
       aria-label={isOpen ? "Close menu" : "Open menu"}
       aria-expanded={isOpen}
       onClick={onClick}
-      className="flex items-center justify-center rounded-full p-2 text-[#0C0E09] focus-visible:outline-[#E85A2C]"
+      className="flex h-11 w-11 items-center justify-center rounded-full p-0 text-[#0C0E09] focus-visible:outline-[#E85A2C]"
     >
       {isOpen ? <IconX /> : <IconMenu2 />}
     </button>

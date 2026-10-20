@@ -361,7 +361,7 @@ export function ServiceabilityChecker() {
 
   const fieldClass = (invalid: boolean) =>
     cn(
-      "w-full rounded-[10px] border bg-[rgba(255,255,255,0.05)] px-4 py-[13px] text-[14px] text-white outline-none transition-colors duration-200 placeholder:text-[#8B8B90]",
+      "w-full rounded-[10px] border bg-[rgba(255,255,255,0.05)] px-4 py-[13px] text-[16px] text-white outline-none transition-colors duration-200 placeholder:text-[#8B8B90]",
       invalid
         ? "border-[rgba(232,90,44,0.6)] focus:border-[#E85A2C]"
         : "border-[rgba(255,255,255,0.16)] focus:border-[#E85A2C]",

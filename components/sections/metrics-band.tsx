@@ -166,7 +166,7 @@ export function MetricsBand() {
                 </span>
               </div>
 
-              <p className="mt-3 text-[13px] leading-[1.5] text-[#4A4E44]">
+              <p className="mt-3 text-[14px] leading-[1.5] text-[#4A4E44]">
                 <span className="font-semibold text-[#0C0E09]">
                   {c.leadIn}
                 </span>{" "}
