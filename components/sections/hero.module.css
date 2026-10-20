@@ -18,6 +18,8 @@
   max-width: 1220px;
   margin: 0 auto;
   padding: 0 32px;
+  position: relative;
+  z-index: 2; /* above the ripple floor so the lanes table receives hover */
 }
 .aurora {
   position: absolute;
