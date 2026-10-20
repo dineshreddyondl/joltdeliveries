@@ -60,6 +60,7 @@ export function WhyNow() {
       aria-labelledby="why-heading"
       className={styles.sec}
     >
+      <div className={styles.grain} aria-hidden="true" />
       <div className={styles.wrap}>
         <motion.span
           variants={rv}

@@ -34,7 +34,7 @@
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #e85a2c;
+  color: #c2410c;
   margin-bottom: 24px;
 }
 .tag::before {
@@ -125,7 +125,7 @@
 .featureCard {
   position: relative;
   overflow: hidden;
-  margin-top: 32px;
+  margin-top: 48px;
   background: #ffffff;
   border: 1px solid #e4e0d6;
   border-radius: 16px;

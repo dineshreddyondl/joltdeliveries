@@ -4,10 +4,21 @@
    ================================================================ */
 
 .footer {
+  position: relative;
+  overflow: hidden;
   background: #08080a;
   color: #fff;
   padding: 72px 24px 28px;
 }
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20width=%27160%27%20height=%27160%27%3E%3Cfilter%20id=%27n%27%3E%3CfeTurbulence%20type=%27fractalNoise%27%20baseFrequency=%270.9%27%20numOctaves=%272%27/%3E%3CfeColorMatrix%20type=%27saturate%27%20values=%270%27/%3E%3C/filter%3E%3Crect%20width=%27160%27%20height=%27160%27%20filter=%27url(%23n)%27/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
 .grid {
   max-width: 1140px;
   margin: 0 auto;
@@ -56,6 +67,9 @@
   font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
   font-size: 12px;
   color: #8b8b90;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 10px;
 }
 .support a {
   color: #e8e8ea;
@@ -95,7 +109,7 @@
 }
 .bar {
   max-width: 1140px;
-  margin: 56px auto 0;
+  margin: 48px auto 0;
   padding-top: 26px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   font-size: 12px;

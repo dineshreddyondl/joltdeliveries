@@ -165,7 +165,7 @@ export function Gap() {
           className={styles.lede}
         >
           Heavy B2B never got a network built for it. You&rsquo;ve just been
-          surviving on workarounds—hacking logistics models designed for
+          surviving on workarounds — hacking logistics models designed for
           entirely different categories.
         </motion.p>
 

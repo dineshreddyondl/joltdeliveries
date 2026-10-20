@@ -7,7 +7,7 @@
   background: #f4f2ed;
   color: #0c0e09;
   padding: 64px 24px;
-  border-radius: 36px 36px 0 0;
+  border-radius: 0;
   position: relative;
   scroll-margin-top: 80px;
 }
@@ -68,7 +68,7 @@
    on the verdict row. Constrained to 880px, centered under the head.
    ================================================================ */
 .cmpTable {
-  margin-top: 40px;
+  margin-top: 48px;
   max-width: 880px;
   margin-left: auto;
   margin-right: auto;
@@ -313,7 +313,7 @@
 }
 
 .verdict {
-  margin-top: 40px;
+  margin-top: 48px;
   text-align: center;
 }
 .verdict p {
