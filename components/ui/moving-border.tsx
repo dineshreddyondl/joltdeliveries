@@ -105,8 +105,16 @@ export const MovingBorder = ({
       ? pathRef.current.getPointAtLength(val).y
       : 0;
   });
+  /* Tangent angle so the streak stays aligned to the border. */
+  const angle = useTransform(progress, (val) => {
+    const len = pathRef.current?.getTotalLength();
+    if (!pathRef.current || !len || len <= 0) return 0;
+    const a = pathRef.current.getPointAtLength(val);
+    const b = pathRef.current.getPointAtLength(Math.min(val + 2, len - 0.001));
+    return (Math.atan2(b.y - a.y, b.x - a.x) * 180) / Math.PI;
+  });
 
-  const transform = useMotionTemplate`translateX(${x}px) translateY(${y}px) translateX(-50%) translateY(-50%)`;
+  const transform = useMotionTemplate`translateX(${x}px) translateY(${y}px) translateX(-50%) translateY(-50%) rotate(${angle}deg)`;
 
   return (
     <>

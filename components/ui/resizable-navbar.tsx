@@ -177,7 +177,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
       {visible && (
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
           <MovingBorder duration={6000} rx="30%" ry="30%">
-            <div className="h-16 w-16 rounded-full bg-[radial-gradient(#E85A2C_45%,transparent_60%)] opacity-80" />
+            <div className="h-[3px] w-14 rounded-full bg-gradient-to-r from-transparent via-[#E85A2C] to-transparent shadow-[0_0_12px_rgba(232,90,44,0.7)]" />
           </MovingBorder>
         </div>
       )}
@@ -246,7 +246,7 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
       {visible && (
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
           <MovingBorder duration={6000} rx="30%" ry="30%">
-            <div className="h-14 w-14 rounded-full bg-[radial-gradient(#E85A2C_45%,transparent_60%)] opacity-80" />
+            <div className="h-[3px] w-10 rounded-full bg-gradient-to-r from-transparent via-[#E85A2C] to-transparent shadow-[0_0_10px_rgba(232,90,44,0.6)]" />
           </MovingBorder>
         </div>
       )}
