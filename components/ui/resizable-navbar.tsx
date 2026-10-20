@@ -18,6 +18,7 @@
  */
 
 import { cn } from "@/lib/utils";
+import { MovingBorder } from "@/components/ui/moving-border";
 import {
   motion,
   AnimatePresence,
@@ -173,6 +174,13 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         className,
       )}
     >
+      {visible && (
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          <MovingBorder duration={6000} rx="30%" ry="30%">
+            <div className="h-16 w-16 rounded-full bg-[radial-gradient(#E85A2C_45%,transparent_60%)] opacity-80" />
+          </MovingBorder>
+        </div>
+      )}
       {children}
     </motion.div>
   );
@@ -235,6 +243,13 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
         className,
       )}
     >
+      {visible && (
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          <MovingBorder duration={6000} rx="30%" ry="30%">
+            <div className="h-14 w-14 rounded-full bg-[radial-gradient(#E85A2C_45%,transparent_60%)] opacity-80" />
+          </MovingBorder>
+        </div>
+      )}
       {children}
     </motion.div>
   );
