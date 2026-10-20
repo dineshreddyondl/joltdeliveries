@@ -38,7 +38,7 @@ import { Space_Grotesk } from "next/font/google";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 
 import { cn } from "@/lib/utils";
-import { Cover } from "@/components/ui/cover";
+import { PointerHighlight } from "@/components/ui/pointer-highlight";
 import { LANES, SHOWCASE_LANE } from "@/lib/lanes";
 import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
 import { CustomerMarquee } from "@/components/sections/customer-marquee";
@@ -255,6 +255,9 @@ const raceReveal: Variants = {
 export function Hero() {
   const reduceMotion = useReducedMotion();
   const [blazeIn, setBlazeIn] = useState(false);
+  /* Same treatment as 'never built for you': the color lands only after
+     the pointer draw-in — orange here instead of red. */
+  const [hlOn, setHlOn] = useState(false);
   const pausedRef = useRef(false);
 
   /* Hydration-safe animation gate: SSR and first client render ship the
@@ -601,12 +604,11 @@ export function Hero() {
           >
             India&rsquo;s first express layer for{" "}
             <span className={styles.em}>
-              <Cover>heavy shipments</Cover>
-              <i className={styles.blaze} aria-hidden="true">
-                <i className={styles.s1} />
-                <i className={styles.s2} />
-                <i className={styles.s3} />
-              </i>
+              <PointerHighlight onComplete={() => setHlOn(true)}>
+                <em className={cn(styles.hl, hlOn && styles.hlOn)}>
+                  heavy shipments
+                </em>
+              </PointerHighlight>
             </span>
             .
           </motion.h1>
