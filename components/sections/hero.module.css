@@ -771,6 +771,15 @@
   .stage {
     max-width: 100%;
   }
+  /* Audit P1: headline-subtext breathing room on mobile. */
+  .eyebrow {
+    margin-bottom: 32px;
+  }
+  /* Audit P1: stage image cramped at 390 - smaller image, more air. */
+  .product {
+    width: 78%;
+    height: 60%;
+  }
   /* Stacked: ticker returns to normal flow below the card. */
   .seq {
     position: static;
