@@ -83,3 +83,20 @@
 ### Consolidated action list (nothing applied — awaiting founder accept/reject)
 **P1:** eco scroll speed · gap travelling glow · how H2/H3 delta · cta button spacing + SLA link · footer hierarchy · m-hero headline↔subtext gap · m-hero stage image padding · m-eco card gap · m-cta CTA verb-first text · vary one card-grid section body.
 **P2:** why beam opacity · m-cta spacing above CTAs · m-eco headline size · hero→metrics breathing · orange balance in features cluster · CTA font 16px on mobile.
+
+---
+
+## Application status (founder-approved items)
+| Group | Fix | Commit |
+|---|---|---|
+| hero | eyebrow->H1 +6px · stage image 78/60% · mobile CTA 16px | e3a0589 |
+| metrics | 24px rhythm (gap 24, padding 24/16) | d31d7d2 |
+| why | beam toned (#F0A070, core 0.85, stroke 1) | de49e5c |
+| gap | glow -> one soft pulse (alphas halved) | 9f992b0 |
+| how | H2 clamp 34/50, h3 21 · USP glow rest 0.35/0.55 | 75d9624 |
+| eco | scroll 26s->52s · mobile gap 16 · H2 min 34 | 4ed2b46 |
+| cta | gap 20 · "Start Your Pilot" (COPY CHANGE flagged) · SLA link orange · mobile margin 24 | f12e3b9 |
+| footer | Product column leads · Support links #F0A070 | 0e55c09 |
+| page-level | BackgroundGradient muted variant — only 5x Faster keeps orange | 72593eb |
+
+Rejected (untouched): why proof-point, gap proof-details, page-level repetition, header->hero transition.
