@@ -87,7 +87,7 @@ const PRODUCTS = [
     spec: "18 KG · 0.9 CBM",
   },
   {
-    src: "/assets/hero-final/hero-bedding-mattress-roll.png",
+    src: "/assets/hero-final/hero-bedding-mattress-rollpack.png",
     alt: "Mattress with bed frame",
     cat: "BEDDING",
     name: "MATTRESS SET",
